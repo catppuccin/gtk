@@ -1,0 +1,11 @@
+[Desktop Entry]
+Type=X-GNOME-Metatheme
+Name=catppuccin-light-solid
+Comment=A Catppuccin like Gtk+ theme based on WhiteSur
+Encoding=UTF-8
+
+[X-GNOME-Metatheme]
+GtkTheme=catppuccin-light
+MetacityTheme=catppuccin-light
+ButtonLayout=close,minimize,maximize:menu
+
