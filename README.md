@@ -4,6 +4,8 @@
 Theme inspired by the [Catppuccin project.](https://github.com/catppuccin) 
 Based on the [WhiteSur](https://github.com/vinceliuice/WhiteSur-gtk-theme/) theme by [Vinceliuice](https://github.com/vinceliuice).
 
+![](images/screen.png)
+
 ## Installation
 
 - Download and extract the **Catppuccin.tar.xz** file. or **Catppuccin-light.tar.xz** file.
