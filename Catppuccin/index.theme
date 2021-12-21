@@ -1,11 +1,10 @@
 [Desktop Entry]
 Type=X-GNOME-Metatheme
-Name=catppuccin-dark-solid
+Name=Catppuccin
 Comment=A Catppuccin like Gtk+ theme based on WhiteSur
 Encoding=UTF-8
 
 [X-GNOME-Metatheme]
-GtkTheme=catppuccin
+GtkTheme=Catppuccin
 MetacityTheme=catppuccin
 ButtonLayout=close,minimize,maximize:menu
-
