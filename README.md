@@ -8,7 +8,7 @@ Based on the [Colloid](https://github.com/vinceliuice/Colloid-gtk-theme) theme b
 
 ## Installation
 
-- Download and extract the **Catppuccin.tar.xz** file. or **Catppuccin-COLOR.tar.xz** file.
+- Download and extract the **Catppuccin.tar.xz (blue default color)** file. or **Catppuccin-COLOR.tar.xz** file.
 [From Release](https://github.com/sadrach-cl/catppuccin-gtk/releases/)
 
 
