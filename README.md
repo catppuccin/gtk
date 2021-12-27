@@ -2,18 +2,18 @@
 # Catppuccin GTK3+ theme.
 
 Theme inspired by the [Catppuccin project.](https://github.com/catppuccin) 
-Based on the [WhiteSur](https://github.com/vinceliuice/WhiteSur-gtk-theme/) theme by [Vinceliuice](https://github.com/vinceliuice).
+Based on the [Colloid](https://github.com/vinceliuice/Colloid-gtk-theme) theme by [Vinceliuice](https://github.com/vinceliuice).
 
 ![](images/screen.png)
 
 ## Installation
 
-- Download and extract the **Catppuccin.tar.xz** file. or **Catppuccin-light.tar.xz** file.
+- Download and extract the **Catppuccin.tar.xz** file. or **Catppuccin-COLOR.tar.xz** file.
 [From Release](https://github.com/sadrach-cl/catppuccin-gtk/releases/)
 
 
 - Move the theme folder to **".themes"** in your home directory. **(~/.themes)**
-- Select **"Catppuccin** or **Catppuccin-light"** via your desktop specific tweaks application (**gnome-tweaks** on Gnome3+).
+- Select **"Catppuccin** or **Catppuccin-COLOR"** via your desktop specific tweaks application (**gnome-tweaks** on Gnome3+).
   
 ## About Catppuccin proyect
 
