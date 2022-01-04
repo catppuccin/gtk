@@ -1,40 +1,31 @@
+<h3 align="center">
+	<img src="https://raw.githubusercontent.com/catppuccin/catppuccin/dev/assets/logos/exports/1544x1544_circle.png" width="100" alt="Logo"/><br/>
+	<img src="https://raw.githubusercontent.com/catppuccin/catppuccin/dev/assets/misc/transparent.png" height="30" width="0px"/>
+	Catppuccin for GTK
+	<img src="https://raw.githubusercontent.com/catppuccin/catppuccin/dev/assets/misc/transparent.png" height="30" width="0px"/>
+</h3>
 
-# Catppuccin GTK3+ theme.
+<p align="center">
+    <a href="https://github.com/catppuccin/gtk/stargazers"><img src="https://img.shields.io/github/stars/catppuccin/gtk?colorA=1e1e28&colorB=c9cbff&style=for-the-badge&logo=starship style=for-the-badge"></a>
+    <a href="https://github.com/catppuccin/gtk/issues"><img src="https://img.shields.io/github/issues/catppuccin/gtk?colorA=1e1e28&colorB=f7be95&style=for-the-badge"></a>
+    <a href="https://github.com/catppuccin/gtk/contributors"><img src="https://img.shields.io/github/contributors/catppuccin/gtk?colorA=1e1e28&colorB=b1e1a6&style=for-the-badge"></a>
+</p>
 
-Theme inspired by the [Catppuccin project.](https://github.com/catppuccin) 
-Based on the [Colloid](https://github.com/vinceliuice/Colloid-gtk-theme) theme by [Vinceliuice](https://github.com/vinceliuice).
+<p align="center">
+  <img src="https://raw.githubusercontent.com/catppuccin/gtk/dev/assets/ss.png"/>
+</p>
 
-![](images/screen.png)
+# About
 
-## Installation
+This GTK theme is based on the [Colloid](https://github.com/vinceliuice/Colloid-gtk-theme) theme made by [Vinceliuice](https://github.com/vinceliuice)
+
+## Usage
 
 - Download and extract the **Catppuccin.tar.xz (blue default color)** file. or **Catppuccin-COLOR.tar.xz** file.
 [From Release](https://github.com/sadrach-cl/catppuccin-gtk/releases/)
-
-
 - Move the theme folder to **".themes"** in your home directory. **(~/.themes)**
 - Select **"Catppuccin** or **Catppuccin-COLOR"** via your desktop specific tweaks application (**gnome-tweaks** on Gnome3+).
-  
-## About Catppuccin proyect
 
-<p align="center">
-	Catppuccin is a community-driven pastel theme that aims to be the middle ground between low and high contrast themes. It provides a warm palette with 18 eye-candy colors that are not only perfect for coding under various light conditions, but also for developing graphical user interfaces, making it extensible for numerous use-cases. In addition, this repository tracks the development of the actual color palette, organization-wide assets, resources and code samples for maintainers/developers.
-</p>
+## 💝 Thanks to
 
-## 🧠 Design Philosophy
-
--   **Colorful is better than colorless**: the colorfulness of something contributes to the distinction amongst the parts of that _something_, making it marginally easier to understand how things are structured.
--   **There should be balance**: not too dull, not too bright. Suitability under various light conditions is a most.
--   **Harmony is superior to dissonance**: vivacious colors must complement each other.
-
-## 📜 License
-
-Catppuccin is released under the MIT license, which grants the following permissions:
-
--   Commercial use
--   Distribution
--   Modification
--   Private use
-
-For more convoluted language, see the [LICENSE file](https://github.com/catppuccin/catppuccin/blob/main/LICENSE.md).
-
+- [sadrach-cl](https://github.com/sadrach-cl)
