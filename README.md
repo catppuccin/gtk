@@ -21,10 +21,10 @@ This GTK theme is based on the [Colloid](https://github.com/vinceliuice/Colloid-
 
 ## Usage
 
-- Download and extract the **Catppuccin.tar.xz (blue default color)** file. or **Catppuccin-COLOR.tar.xz** file.
+1. Download and extract the **Catppuccin.tar.xz (blue default color)** file. or **Catppuccin-COLOR.tar.xz** file.
 [From Release](https://github.com/sadrach-cl/catppuccin-gtk/releases/)
-- Move the theme folder to **".themes"** in your home directory. **(~/.themes)**
-- Select **"Catppuccin** or **Catppuccin-COLOR"** via your desktop specific tweaks application (**gnome-tweaks** on Gnome3+).
+2. Move the theme folder to **".themes"** in your home directory. **(~/.themes)**
+3. Select **"Catppuccin** or **Catppuccin-COLOR"** via your desktop specific tweaks application (**gnome-tweaks** on Gnome3+).
 
 ## 💝 Thanks to
 
