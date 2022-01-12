@@ -5,8 +5,11 @@ LOG_SUCCESS=$(shell date +"%H:%M:%S") \e[0;32mSUCCESS\e[0m
 
 .DEFAULT_GOAL := install
 ROOT_DIR=$(shell git rev-parse --show-toplevel)
+
 dest=$(ROOT_DIR)/pkgs
 quiet=false
+
+export ROOT_DIR
 
 install:
 	@echo -e "$(LOG_INFO) Under dev 👷🛑..."
