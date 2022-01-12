@@ -11,7 +11,7 @@
 @function on($color, $state: 'primary') {
   // Allow 'light' or 'dark' to $color
   @if ($color == 'light') { $color: #D9E0EE; }
-  @if ($color == 'dark') { $color: #131020; }
+  @if ($color == 'dark') { $color: #1E1D2F; }
 
   // Calculate color brightness according to https://www.w3.org/TR/AERT/#color-contrast
   $brightness: (red($color) * 299 + green($color) * 587 + blue($color) * 114) / 1000;
@@ -100,9 +100,9 @@
     @if ($type == 'b') { @return #D9E0EE; }
     @if ($type == 'c') { @return #D9E0EE; }
     @if ($type == 'd') { @return #C3BAC6; }
-    @if ($type == 'e') { @return #131020; }
-    @if ($type == 'f') { @return #131020; }
-    @if ($type == 'g') { @return #131020; }
+    @if ($type == 'e') { @return #1E1D2F; }
+    @if ($type == 'f') { @return #1E1D2F; }
+    @if ($type == 'g') { @return #1E1D2F; }
     @if ($type == 'h') { @return #1E1D2F; }
   }
   @if ($color_type == 'default') {
@@ -110,9 +110,9 @@
     @if ($type == 'b') { @return #D9E0EE; }
     @if ($type == 'c') { @return #D9E0EE; }
     @if ($type == 'd') { @return #C3BAC6; }
-    @if ($type == 'e') { @return #131020; }
-    @if ($type == 'f') { @return #131020; }
-    @if ($type == 'g') { @return #131020; }
+    @if ($type == 'e') { @return #1E1D2F; }
+    @if ($type == 'f') { @return #1E1D2F; }
+    @if ($type == 'g') { @return #1E1D2F; }
     @if ($type == 'h') { @return #1E1D2F; }
   }
 }
@@ -161,12 +161,12 @@ $entry:                                 if($variant == 'dark', on($background, s
 // Misc colors
 //
 
-$link:                                  #A4B9EF;
-$link-visited:                          if($variant == 'light', #C6AAE8, #C6AAE8);
+$link:                                  #F5E0DC;
+$link-visited:                          if($variant == 'light', #F2CDCD, #F2CDCD);
 
-$warning:                               if($variant == 'light', #EBDDAA, #EBDDAA);
-$error:                                 if($variant == 'light', #E38C8F, #E38C8F);
-$success:                               if($variant == 'light', #B1E3AD, #B1E3AD);
+$warning:                               if($variant == 'light', #FAE3B0, #FAE3B0);
+$error:                                 if($variant == 'light', #F28FAD, #F28FAD);
+$success:                               if($variant == 'light', #ABE9B3, #ABE9B3);
 
 $suggested:                             $primary;
 $destructive:                           $error;
@@ -223,9 +223,9 @@ $panel-fill:                            on($panel, fill);
 
 // Titlebutton colors
 
-$titlebutton-close:                      if($theme == 'grey', $applet-primary, if($color_type == 'nord', #E38C8F, #E38C8F));
-$titlebutton-max:                        if($theme == 'grey', $applet-primary, if($color_type == 'nord', #B1E3AD, #B1E3AD));
-$titlebutton-min:                        if($theme == 'grey', $applet-primary, if($color_type == 'nord', #EBDDAA, #EBDDAA));
+$titlebutton-close:                      if($theme == 'grey', $applet-primary, if($color_type == 'nord', #F28FAD, #F28FAD));
+$titlebutton-max:                        if($theme == 'grey', $applet-primary, if($color_type == 'nord', #ABE9B3, #ABE9B3));
+$titlebutton-min:                        if($theme == 'grey', $applet-primary, if($color_type == 'nord', #FAE3B0, #FAE3B0));
 
 // workaround for GTK3 @placeholder_text_color which doesn't allow translucent colors
 
