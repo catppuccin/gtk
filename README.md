@@ -47,6 +47,12 @@ Make sure you have the following dependencies installed:
 make package # dest=/some/dir quiet=false
 ```
 
+##### Building:
+
+```bash
+make build
+```
+
 ## 💝 Thanks to
 
 -   [sadrach-cl](https://github.com/sadrach-cl)
