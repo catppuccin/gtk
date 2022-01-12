@@ -10,8 +10,8 @@
 
 @function on($color, $state: 'primary') {
   // Allow 'light' or 'dark' to $color
-  @if ($color == 'light') { $color: #DADAE8; }
-  @if ($color == 'dark') { $color: #15121C; }
+  @if ($color == 'light') { $color: #D9E0EE; }
+  @if ($color == 'dark') { $color: #131020; }
 
   // Calculate color brightness according to https://www.w3.org/TR/AERT/#color-contrast
   $brightness: (red($color) * 299 + green($color) * 587 + blue($color) * 114) / 1000;
@@ -51,17 +51,17 @@
       @if ($variant == 'light') { @return #3b4252; }
       @else { @return #e5e9f0; }
     }
-    @if ($theme == 'default') { @return #5e81ac; }
-    @if ($theme == 'purple') { @return #b57daa; }
-    @if ($theme == 'pink') { @return #cd7092; }
-    @if ($theme == 'red') { @return #c35b65; }
-    @if ($theme == 'orange') { @return #d0846c; }
-    @if ($theme == 'yellow') { @return #e4b558; }
-    @if ($theme == 'green') { @return #82ac5d; }
-    @if ($theme == 'teal') { @return #83b9b8; }
+    @if ($theme == 'default') { @return #96CDFB; }
+    @if ($theme == 'purple') { @return $purple-400; }
+    @if ($theme == 'pink') { @return $pink-400; }
+    @if ($theme == 'red') { @return $red-600; }
+    @if ($theme == 'orange') { @return $orange-700; }
+    @if ($theme == 'yellow') { @return $yellow-700; }
+    @if ($theme == 'green') { @return $green-500; }
+    @if ($theme == 'teal') { @return $teal-500; }
   } @else {
     @if ($variant == 'light') {
-      @if ($theme == 'default') { @return #3c84f7; }
+      @if ($theme == 'default') { @return #96CDFB; }
       @if ($theme == 'purple') { @return $purple-400; }
       @if ($theme == 'pink') { @return $pink-400; }
       @if ($theme == 'red') { @return $red-600; }
@@ -71,15 +71,15 @@
       @if ($theme == 'teal') { @return $teal-500; }
       @if ($theme == 'grey') { @return $grey-900; }
     } @else {
-      @if ($theme == 'default') { @return #A4B9EF; }
-      @if ($theme == 'purple') { @return #C6AAE8; }
-      @if ($theme == 'pink') { @return #E5B4E2; }
-      @if ($theme == 'red') { @return #E38C8F; }
-      @if ($theme == 'orange') { @return #F9C096; }
-      @if ($theme == 'yellow') { @return #EBDDAA; }
-      @if ($theme == 'green') { @return #B1E3AD; }
-      @if ($theme == 'teal') { @return #BEE4ED; }
-      @if ($theme == 'grey') { @return #6E6C7E; }
+      @if ($theme == 'default') { @return #96CDFB; }
+      @if ($theme == 'purple') { @return $purple-400; }
+      @if ($theme == 'pink') { @return $pink-400; }
+      @if ($theme == 'red') { @return $red-600; }
+      @if ($theme == 'orange') { @return $orange-700; }
+      @if ($theme == 'yellow') { @return $yellow-700; }
+      @if ($theme == 'green') { @return $green-500; }
+      @if ($theme == 'teal') { @return $teal-500; }
+      @if ($theme == 'grey') { @return $grey-900; }
     }
   }
 }
@@ -96,24 +96,24 @@
     @if ($type == 'h') { @return #3c4153; }
   }
   @if ($color_type == 'blackness') {
-    @if ($type == 'a') { @return #DADAE8; }
-    @if ($type == 'b') { @return #DADAE8; }
-    @if ($type == 'c') { @return #DADAE8; }
+    @if ($type == 'a') { @return #D9E0EE; }
+    @if ($type == 'b') { @return #D9E0EE; }
+    @if ($type == 'c') { @return #D9E0EE; }
     @if ($type == 'd') { @return #C3BAC6; }
-    @if ($type == 'e') { @return #15121C; }
-    @if ($type == 'f') { @return #1B1923; }
-    @if ($type == 'g') { @return #1E1E28; }
-    @if ($type == 'h') { @return #332E41; }
+    @if ($type == 'e') { @return #131020; }
+    @if ($type == 'f') { @return #131020; }
+    @if ($type == 'g') { @return #131020; }
+    @if ($type == 'h') { @return #1E1D2F; }
   }
   @if ($color_type == 'default') {
-    @if ($type == 'a') { @return #DADAE8; }
-    @if ($type == 'b') { @return #DADAE8; }
-    @if ($type == 'c') { @return #DADAE8; }
+    @if ($type == 'a') { @return #D9E0EE; }
+    @if ($type == 'b') { @return #D9E0EE; }
+    @if ($type == 'c') { @return #D9E0EE; }
     @if ($type == 'd') { @return #C3BAC6; }
-    @if ($type == 'e') { @return #15121C; }
-    @if ($type == 'f') { @return #1B1923; }
-    @if ($type == 'g') { @return #1E1E28; }
-    @if ($type == 'h') { @return #332E41; }
+    @if ($type == 'e') { @return #131020; }
+    @if ($type == 'f') { @return #131020; }
+    @if ($type == 'g') { @return #131020; }
+    @if ($type == 'h') { @return #1E1D2F; }
   }
 }
 
