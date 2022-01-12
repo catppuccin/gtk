@@ -26,6 +26,13 @@ This GTK theme is based on the [Colloid](https://github.com/vinceliuice/Colloid-
 2. Move the theme folder to **".themes"** in your home directory. **(~/.themes)** (Skip this step if you are using the AUR package)
 3. Select **"Catppuccin** or **Catppuccin-COLOR"** via your desktop specific tweaks application (**gnome-tweaks** on Gnome3+).
 
+## Development
+
+Make sure you have the following dependencies installed:
+
+1. `git`
+2. `sassc`
+
 ## 💝 Thanks to
 
 -   [sadrach-cl](https://github.com/sadrach-cl)
