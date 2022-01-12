@@ -41,6 +41,12 @@ Make sure you have the following dependencies installed:
 1. `git`
 2. `sassc`
 
+##### Packaging:
+
+```bash
+make package # dest=/some/dir quite=false
+```
+
 ## 💝 Thanks to
 
 -   [sadrach-cl](https://github.com/sadrach-cl)
