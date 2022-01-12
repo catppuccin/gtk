@@ -44,7 +44,7 @@ Make sure you have the following dependencies installed:
 ##### Packaging:
 
 ```bash
-make package # dest=/some/dir quite=false
+make package # dest=/some/dir quiet=false
 ```
 
 ## 💝 Thanks to
