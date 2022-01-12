@@ -18,3 +18,7 @@ package:
 	@echo -e "$(LOG_INFO) Packaging all dark Catppuccin accents 📦..."
 	@mkdir -p $(dest)
 	@./scripts/package.sh $(dest) $(quiet)
+
+build:
+	@echo -e "$(LOG_INFO) Building CSS files 🎁..."
+	@./scripts/build.sh
