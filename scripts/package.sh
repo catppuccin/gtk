@@ -9,6 +9,8 @@ quiet=$2
 
 ./install.sh --dest ${dest} --theme all --size compact --color dark
 
+cd "${dest}" || exit 1
+
 for file in *; do
 	echo -e "  + \e[0;32mPackaging ${file}\e[0m"
 	# zip -r ${quiet} ${file}.zip ${file}

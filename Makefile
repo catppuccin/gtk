@@ -13,6 +13,5 @@ install:
 
 package:
 	@echo -e "$(LOG_INFO) Packaging all dark Catppuccin accents 📦..."
-	@echo $(dest)
-	# @mkdir -p $(dest)
-	# @./scripts/package.sh $(dest) $(quiet)
+	@mkdir -p $(dest)
+	@./scripts/package.sh $(dest) $(quiet)
