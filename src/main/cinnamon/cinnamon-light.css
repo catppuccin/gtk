@@ -333,7 +333,6 @@ StScrollBar StButton#vhandle:active, StScrollBar StButton#hhandle:active {
   border-radius: 12px;
   background-clip: padding-box;
   background-color: #D9E0EE;
-  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.15);
 }
 
 .menu .popup-menu-item,

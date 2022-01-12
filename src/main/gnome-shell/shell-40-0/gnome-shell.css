@@ -104,8 +104,6 @@ stage {
   border-radius: 36px;
   padding: 12px;
   background-color: #131020;
-  border: 1px solid black;
-  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.1);
 }
 
 .app-folder-dialog .folder-name-container {
@@ -732,8 +730,8 @@ StWidget.focused .app-well-app-running-dot {
 .candidate-popup-content, .modal-dialog {
   background-color: #D9E0EE;
   border-radius: 12px;
-  border: 1px solid rgba(0, 0, 0, 0.12);
-  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.15);
+  border: none;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.35);
 }
 
 .modal-dialog-linked-button:last-child {
@@ -2363,8 +2361,6 @@ StEntry StLabel.hint-text, .popup-menu .search-entry StLabel.hint-text {
   border-radius: 12px;
   margin: 0;
   font-weight: normal;
-  border: 1px solid rgba(0, 0, 0, 0.12);
-  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.15);
 }
 
 .popup-menu .popup-menu-item {

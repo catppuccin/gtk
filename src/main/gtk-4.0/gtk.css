@@ -1304,7 +1304,7 @@ headerbar:disabled {
 }
 
 headerbar:backdrop {
-  background-color: #1E1D2F;
+  background-color: #1E1E2C;
   color: rgba(255, 255, 255, 0.7);
 }
 
@@ -1768,7 +1768,7 @@ menubar {
 }
 
 menubar:backdrop {
-  background-color: #1E1D2F;
+  background-color: #1E1E2C;
   color: rgba(255, 255, 255, 0.7);
 }
 
@@ -1899,22 +1899,13 @@ popover.background > contents {
   padding: 6px;
   background-color: #D9E0EE;
   border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  background-clip: border-box;
-  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.12), 0 2px 3px -1px rgba(0, 0, 0, 0.05), 0 4px 6px 0 rgba(0, 0, 0, 0.06), 0 1px 10px 0 rgba(0, 0, 0, 0.05);
+  border: none;
+  box-shadow: 0 2px 3px -1px rgba(0, 0, 0, 0.05), 0 4px 6px 0 rgba(0, 0, 0, 0.06), 0 1px 10px 0 rgba(0, 0, 0, 0.05);
 }
 
 popover.background > arrow:backdrop,
 popover.background > contents:backdrop {
-  box-shadow: 0 3px 2px -2px rgba(0, 0, 0, 0.05), 0 2px 3px -1px rgba(0, 0, 0, 0.06), 0 1px 4px 0 rgba(0, 0, 0, 0.05), 0 0 0 1px rgba(0, 0, 0, 0.12);
-}
-
-popover.background > arrow {
-  border: 1px solid rgba(0, 0, 0, 0.12);
-}
-
-popover.background > contents {
-  border: none;
+  box-shadow: 0 3px 2px -2px rgba(0, 0, 0, 0.05), 0 2px 3px -1px rgba(0, 0, 0, 0.06), 0 1px 4px 0 rgba(0, 0, 0, 0.05);
 }
 
 popover.background > contents > list,
@@ -2283,7 +2274,7 @@ tabbar:not(.inline) .end-action {
 }
 
 tabbar:not(.inline):backdrop .box {
-  background-color: #1E1D2F;
+  background-color: #1E1E2C;
   transition: all 75ms cubic-bezier(0, 0, 0.2, 1);
 }
 
@@ -4278,11 +4269,11 @@ window.csd {
   outline-offset: -1px;
   outline-style: solid;
   outline-width: 1px;
-  box-shadow: 0 8px 6px -5px rgba(0, 0, 0, 0.2), 0 16px 15px 2px rgba(0, 0, 0, 0.14), 0 6px 18px 5px rgba(0, 0, 0, 0.12), 0 0 0 1px rgba(0, 0, 0, 0.12), 0 0 36px transparent;
+  box-shadow: 0 8px 6px -5px rgba(0, 0, 0, 0.2), 0 16px 15px 2px rgba(0, 0, 0, 0.14), 0 6px 18px 5px rgba(0, 0, 0, 0.12), 0 0 36px transparent;
 }
 
 window.csd:backdrop {
-  box-shadow: 0 2px 3px -1px rgba(0, 0, 0, 0.15), 0 4px 3px 0 rgba(0, 0, 0, 0.18), 0 1px 6px 0 rgba(0, 0, 0, 0.12), 0 0 0 1px rgba(0, 0, 0, 0.12), 0 0 36px transparent;
+  box-shadow: 0 2px 3px -1px rgba(0, 0, 0, 0.15), 0 4px 3px 0 rgba(0, 0, 0, 0.18), 0 1px 6px 0 rgba(0, 0, 0, 0.12), 0 0 36px transparent;
 }
 
 window.csd.popup {
@@ -4302,7 +4293,7 @@ window.csd.dialog.message {
 }
 
 .solid-csd window.csd:backdrop {
-  background-color: #1E1D2F;
+  background-color: #1E1E2C;
 }
 
 window.csd.maximized, window.csd.fullscreen, window.csd.tiled, window.csd.tiled-top, window.csd.tiled-right, window.csd.tiled-bottom, window.csd.tiled-left {
@@ -4699,7 +4690,7 @@ read if you used those and something break with a version upgrade you're on your
 @define-color wm_unfocused_title rgba(255, 255, 255, 0.7);
 @define-color wm_highlight rgba(255, 255, 255, 0.1);
 @define-color wm_bg #1A1823;
-@define-color wm_unfocused_bg #1E1D2F;
+@define-color wm_unfocused_bg #1E1E2C;
 /*
 FIXME this is really an API */
 @define-color content_view_bg #D9E0EE;

@@ -11,7 +11,7 @@
 @function on($color, $state: 'primary') {
   // Allow 'light' or 'dark' to $color
   @if ($color == 'light') { $color: #D9E0EE; }
-  @if ($color == 'dark') { $color: #1E1D2F; }
+  @if ($color == 'dark') { $color: #1E1E2C; }
 
   // Calculate color brightness according to https://www.w3.org/TR/AERT/#color-contrast
   $brightness: (red($color) * 299 + green($color) * 587 + blue($color) * 114) / 1000;
@@ -100,10 +100,10 @@
     @if ($type == 'b') { @return #D9E0EE; }
     @if ($type == 'c') { @return #D9E0EE; }
     @if ($type == 'd') { @return #C3BAC6; }
-    @if ($type == 'e') { @return #1E1D2F; }
-    @if ($type == 'f') { @return #1E1D2F; }
-    @if ($type == 'g') { @return #1E1D2F; }
-    @if ($type == 'h') { @return #1E1D2F; }
+    @if ($type == 'e') { @return #1E1E2C; }
+    @if ($type == 'f') { @return #1E1E2C; }
+    @if ($type == 'g') { @return #1E1E2C; }
+    @if ($type == 'h') { @return #1E1E2C; }
   }
   @if ($color_type == 'default') {
     @if ($type == 'a') { @return #D9E0EE; }
@@ -112,7 +112,7 @@
     @if ($type == 'd') { @return #C3BAC6; }
     @if ($type == 'e') { @return #131020; }
     @if ($type == 'f') { @return #1A1823; }
-    @if ($type == 'g') { @return #1E1D2F; }
+    @if ($type == 'g') { @return #1E1E2C; }
     @if ($type == 'h') { @return #302D41; }
   }
 }
