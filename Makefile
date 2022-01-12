@@ -11,14 +11,17 @@ quiet=false
 
 export ROOT_DIR
 
+#? install the theme locally
 install:
 	@echo -e "$(LOG_INFO) Under dev 👷🛑..."
 
+#? generate packages for every accent
 package:
 	@echo -e "$(LOG_INFO) Packaging all dark Catppuccin accents 📦..."
 	@mkdir -p $(dest)
 	@./scripts/package.sh $(dest) $(quiet)
 
+#? generate required CSS files for certain environments
 build:
 	@echo -e "$(LOG_INFO) Building CSS files 🎁..."
 	@./scripts/build.sh
