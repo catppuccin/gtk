@@ -2,26 +2,6 @@
 
 REPO_DIR="$(git rev-parse --show-toplevel)"
 
-# Check command availability
-function has_command() {
-    command -v $1 >/dev/null
-}
-
-if [ ! "$(which sassc 2>/dev/null)" ]; then
-    echo sassc needs to be installed to generate the css.
-    if has_command zypper; then
-        sudo zypper in sassc
-    elif has_command apt; then
-        sudo apt install sassc
-    elif has_command dnf; then
-        sudo dnf install -y sassc
-    elif has_command yum; then
-        sudo yum install sassc
-    elif has_command pacman; then
-        sudo pacman -S --noconfirm sassc
-    fi
-fi
-
 SASSC_OPT="-M -t expanded"
 
 _COLOR_VARIANTS=('' '-light' '-dark')
