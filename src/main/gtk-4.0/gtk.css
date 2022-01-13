@@ -1304,7 +1304,7 @@ headerbar:disabled {
 }
 
 headerbar:backdrop {
-  background-color: #1E1E2C;
+  background-color: #1E1E2D;
   color: rgba(255, 255, 255, 0.7);
 }
 
@@ -1768,7 +1768,7 @@ menubar {
 }
 
 menubar:backdrop {
-  background-color: #1E1E2C;
+  background-color: #1E1E2D;
   color: rgba(255, 255, 255, 0.7);
 }
 
@@ -2274,7 +2274,7 @@ tabbar:not(.inline) .end-action {
 }
 
 tabbar:not(.inline):backdrop .box {
-  background-color: #1E1E2C;
+  background-color: #1E1E2D;
   transition: all 75ms cubic-bezier(0, 0, 0.2, 1);
 }
 
@@ -4293,7 +4293,7 @@ window.csd.dialog.message {
 }
 
 .solid-csd window.csd:backdrop {
-  background-color: #1E1E2C;
+  background-color: #1E1E2D;
 }
 
 window.csd.maximized, window.csd.fullscreen, window.csd.tiled, window.csd.tiled-top, window.csd.tiled-right, window.csd.tiled-bottom, window.csd.tiled-left {
@@ -4690,7 +4690,7 @@ read if you used those and something break with a version upgrade you're on your
 @define-color wm_unfocused_title rgba(255, 255, 255, 0.7);
 @define-color wm_highlight rgba(255, 255, 255, 0.1);
 @define-color wm_bg #1A1823;
-@define-color wm_unfocused_bg #1E1E2C;
+@define-color wm_unfocused_bg #1E1E2D;
 /*
 FIXME this is really an API */
 @define-color content_view_bg #D9E0EE;

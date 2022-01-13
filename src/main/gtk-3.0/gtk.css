@@ -1335,7 +1335,7 @@ searchbar > revealer > box {
 }
 
 .titlebar:backdrop {
-  background-color: #1E1E2C;
+  background-color: #1E1E2D;
   color: rgba(255, 255, 255, 0.7);
 }
 
@@ -1377,7 +1377,7 @@ searchbar > revealer > box {
 }
 
 .titlebar + separator:backdrop, .titlebar + separator.sidebar:backdrop {
-  background-color: #1E1E2C;
+  background-color: #1E1E2D;
 }
 
 .titlebar.selection-mode + separator, .titlebar.selection-mode + separator.sidebar, .selection-mode .titlebar + separator, .selection-mode .titlebar + separator.sidebar {
@@ -1822,7 +1822,7 @@ menubar,
 
 menubar:backdrop,
 .menubar:backdrop {
-  background-color: #1E1E2C;
+  background-color: #1E1E2D;
   color: rgba(255, 255, 255, 0.7);
 }
 
@@ -3997,7 +3997,7 @@ messagedialog.csd decoration {
 }
 
 .solid-csd decoration:backdrop {
-  background-color: #1E1E2C;
+  background-color: #1E1E2D;
 }
 
 button.titlebutton:not(.suggested-action):not(.destructive-action) {
@@ -5606,7 +5606,7 @@ window#GearyMainWindow.background.csd stack#conversation_viewer .geary-composer-
 
 .geary-main-window.unified > deck > overlay > .geary-main-layout > leaflet > separator.sidebar:backdrop,
 .geary-main-window.unified > deck > overlay > .geary-main-layout > leaflet > leaflet > separator.sidebar:backdrop {
-  background-color: #1E1E2C;
+  background-color: #1E1E2D;
 }
 
 .geary-main-window.unified > deck > overlay > .geary-main-layout > leaflet > leaflet > box.vertical + separator.sidebar {
@@ -6148,7 +6148,7 @@ UnityDecoration .top {
 }
 
 UnityDecoration .top:backdrop {
-  background-color: #1E1E2C;
+  background-color: #1E1E2D;
   color: rgba(255, 255, 255, 0.7);
 }
 
@@ -6547,7 +6547,7 @@ na-tray-applet {
 }
 
 .caja-desktop.view .entry {
-  background-color: #1E1E2C;
+  background-color: #1E1E2D;
   color: white;
   caret-color: currentColor;
 }
@@ -7582,7 +7582,7 @@ menubar.-vala-panel-background > menuitem:disabled {
  * LightDM GTK+ Greeter *
  ************************/
 #panel_window {
-  background-color: #1E1E2C;
+  background-color: #1E1E2D;
   color: white;
 }
 
@@ -7790,7 +7790,7 @@ read if you used those and something break with a version upgrade you're on your
 @define-color wm_unfocused_title rgba(255, 255, 255, 0.7);
 @define-color wm_highlight rgba(255, 255, 255, 0.1);
 @define-color wm_bg #1A1823;
-@define-color wm_unfocused_bg #1E1E2C;
+@define-color wm_unfocused_bg #1E1E2D;
 /*
 FIXME this is really an API */
 @define-color content_view_bg #D9E0EE;

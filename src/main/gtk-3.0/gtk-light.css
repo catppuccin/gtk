@@ -6538,7 +6538,7 @@ na-tray-applet {
 }
 
 .caja-desktop.view .entry {
-  background-color: #1E1E2C;
+  background-color: #1E1E2D;
   color: white;
   caret-color: currentColor;
 }
@@ -7573,7 +7573,7 @@ menubar.-vala-panel-background > menuitem:disabled {
  * LightDM GTK+ Greeter *
  ************************/
 #panel_window {
-  background-color: #1E1E2C;
+  background-color: #1E1E2D;
   color: white;
 }
 
