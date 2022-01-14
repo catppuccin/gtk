@@ -58,7 +58,7 @@ for color in '' '-dark'; do
     if [[ "$color" == '' ]]; then
       sed -i "s/#1A73E8/${theme_color}/g" "assets${theme}${color}.svg"
     else
-      sed -i "s/#3281ea/${theme_color}/g" "assets${theme}${color}.svg"
+      sed -i "s/#96cdfb/${theme_color}/g" "assets${theme}${color}.svg"
     fi
   fi
 done
