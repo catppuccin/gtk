@@ -28,4 +28,4 @@ This GTK theme is based on the [Colloid](https://github.com/vinceliuice/Colloid-
 
 ## 💝 Thanks to
 
-- [sadrach-cl](https://github.com/sadrach-cl)
+-   [sadrach-cl](https://github.com/sadrach-cl)
