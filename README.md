@@ -21,11 +21,38 @@ This GTK theme is based on the [Colloid](https://github.com/vinceliuice/Colloid-
 
 ## Usage
 
+### Requirements
+
+-   GTK `>=3.20`
+-   `gnome-themes-extra` (or `gnome-themes-standard`)
+-   Murrine engine
+
+### Installation
+
 1. Download and extract the **Catppuccin.tar.xz (blue default color)** file. or **Catppuccin-COLOR.tar.xz** file.
 [From Release](https://github.com/sadrach-cl/catppuccin-gtk/releases/) or you can install the theme from the [AUR](https://aur.archlinux.org/packages/catppuccin-gtk-theme)
 2. Move the theme folder to **".themes"** in your home directory. **(~/.themes)** (Skip this step if you are using the AUR package)
 3. Select **"Catppuccin** or **Catppuccin-COLOR"** via your desktop specific tweaks application (**gnome-tweaks** on Gnome3+).
 
+## Development
+
+Make sure you have the following dependencies installed:
+
+1. `git`
+2. `sassc`
+
+##### Packaging:
+
+```bash
+make package # dest=/some/dir quiet=false
+```
+
+##### Building:
+
+```bash
+make build
+```
+
 ## 💝 Thanks to
 
-- [sadrach-cl](https://github.com/sadrach-cl)
+-   [sadrach-cl](https://github.com/sadrach-cl)
