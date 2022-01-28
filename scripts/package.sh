@@ -8,7 +8,7 @@ quiet=$2
 } || quiet=""
 
 
-${ROOT_DIR}/scripts/install.sh --dest ${dest} --theme all --size compact --color dark
+${ROOT_DIR}/scripts/install.sh --dest ${dest} -t all
 
 cd "${dest}" || exit 1
 
