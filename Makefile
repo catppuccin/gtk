@@ -19,6 +19,7 @@ install:
 package:
 	@echo -e "$(LOG_INFO) Packaging all dark Catppuccin accents 📦..."
 	@mkdir -p $(dest)
+	@[[ -z "$(shell ls -A -- "$(dest)")" ]] && { echo "empty"; } || { rm -r $(dest)/*; }
 	@./scripts/package.sh $(dest) $(quiet)
 
 #? generate required CSS files for certain environments
