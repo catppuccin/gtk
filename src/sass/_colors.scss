@@ -154,7 +154,7 @@ $popover:                               $base;
 $panel-solid:                           if($topbar == 'dark', background(e), background(c)); // for Unity panel which doesn't allow translucent colors
 $panel:                                 rgba($panel-solid, $panel_opacity);
 
-$button:                                if($variant == 'dark', on($background, secondary-fill), on($background, fill));
+$button:                                theme(color);
 $entry:                                 if($variant == 'dark', on($background, secondary-fill), on($background, fill));
 
 //
