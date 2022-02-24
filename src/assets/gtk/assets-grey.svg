@@ -14,7 +14,7 @@
    xmlns:svg="http://www.w3.org/2000/svg">
   <sodipodi:namedview
      id="namedview202"
-     pagecolor="#ffffff"
+     pagecolor="#D9E0EE"
      bordercolor="#666666"
      borderopacity="1.0"
      inkscape:pageshadow="2"
@@ -60,7 +60,7 @@
        gradientTransform="scale(1.1453,0.87314)"
        gradientUnits="userSpaceOnUse">
       <stop
-         stop-color="#FFFFFF"
+         stop-color="#D9E0EE"
          offset="1"
          id="stop2" />
     </linearGradient>
@@ -73,7 +73,7 @@
        gradientTransform="scale(1.1453,0.87314)"
        gradientUnits="userSpaceOnUse">
       <stop
-         stop-color="#000000"
+         stop-color="#1E1E2E"
          stop-opacity=".87"
          offset="1"
          id="stop5" />
@@ -81,7 +81,7 @@
     <linearGradient
        id="color-text-secondary-disabled">
       <stop
-         stop-color="#000000"
+         stop-color="#1E1E2E"
          stop-opacity=".26"
          offset="1"
          id="stop8" />
@@ -89,7 +89,7 @@
     <linearGradient
        id="color-text-secondary-disabled-dark">
       <stop
-         stop-color="#FFFFFF"
+         stop-color="#D9E0EE"
          stop-opacity=".3"
          offset="1"
          id="stop11" />
@@ -104,14 +104,14 @@
     <linearGradient
        id="color-background">
       <stop
-         stop-color="#F2F2F2"
+         stop-color="#D9E0EE"
          offset="1"
          id="stop20" />
     </linearGradient>
     <linearGradient
        id="color-background-dark">
       <stop
-         stop-color="#1A1823"
+         stop-color="#1E1E2E"
          offset="1"
          id="stop23" />
     </linearGradient>
@@ -120,7 +120,7 @@
        x2="40"
        gradientUnits="userSpaceOnUse">
       <stop
-         stop-color="#FFFFFF"
+         stop-color="#D9E0EE"
          offset="1"
          id="stop26" />
     </linearGradient>

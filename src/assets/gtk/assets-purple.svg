@@ -14,7 +14,7 @@
    xmlns:svg="http://www.w3.org/2000/svg">
   <sodipodi:namedview
      id="namedview202"
-     pagecolor="#ffffff"
+     pagecolor="#D9E0EE"
      bordercolor="#666666"
      borderopacity="1.0"
      inkscape:pageshadow="2"
@@ -41,7 +41,7 @@
        gradientTransform="scale(1.1453 .87314)"
        gradientUnits="userSpaceOnUse">
       <stop
-         stop-color="#FFFFFF"
+         stop-color="#D9E0EE"
          offset="1"
          id="stop2" />
     </linearGradient>
@@ -54,7 +54,7 @@
        gradientTransform="scale(1.1453 .87314)"
        gradientUnits="userSpaceOnUse">
       <stop
-         stop-color="#000000"
+         stop-color="#1E1E2E"
          stop-opacity=".87"
          offset="1"
          id="stop5" />
@@ -62,28 +62,28 @@
     <linearGradient
        id="color-primary-dark">
       <stop
-         stop-color="#C6AAE8"
+         stop-color="#DDB6F2"
          offset="1"
          id="stop14" />
     </linearGradient>
     <linearGradient
        id="color-primary-light">
       <stop
-         stop-color="#C6AAE8"
+         stop-color="#DDB6F2"
          offset="1"
          id="stop17" />
     </linearGradient>
     <linearGradient
        id="color-background">
       <stop
-         stop-color="#F2F2F2"
+         stop-color="#D9E0EE"
          offset="1"
          id="stop20" />
     </linearGradient>
     <linearGradient
        id="color-background-dark">
       <stop
-         stop-color="#1A1823"
+         stop-color="#1E1E2E"
          offset="1"
          id="stop23" />
     </linearGradient>
@@ -92,7 +92,7 @@
        x2="40"
        gradientUnits="userSpaceOnUse">
       <stop
-         stop-color="#FFFFFF"
+         stop-color="#D9E0EE"
          offset="1"
          id="stop26" />
     </linearGradient>
@@ -101,7 +101,7 @@
        x2="40"
        gradientUnits="userSpaceOnUse">
       <stop
-         stop-color="#3C3C3C"
+         stop-color="#1E1E2E"
          offset="1"
          id="stop29" />
     </linearGradient>
@@ -168,7 +168,7 @@
        x2="40"
        gradientUnits="userSpaceOnUse">
       <stop
-         stop-color="#FFFFFF"
+         stop-color="#D9E0EE"
          offset="1"
          id="stop26-3" />
     </linearGradient>
