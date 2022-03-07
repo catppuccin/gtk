@@ -18,12 +18,12 @@
 
   @if ($brightness >= 156) {
     @if ($state == 'primary') { @return rgba(#1E1E2E, 0.87); }
-    @if ($state == 'secondary') { @return rgba(#1E1E2E, 0.6); }
+    @if ($state == 'secondary') { @return rgba(#1E1E2E, 0.7); }
     @if ($state == 'disabled') { @return rgba(#1E1E2E, 0.38); }
     @if ($state == 'secondary-disabled') { @return rgba(#1E1E2E, 0.26); }
     @if ($state == 'track') { @return rgba(#1E1E2E, 0.26); }
     @if ($state == 'track-disabled') { @return rgba(#1E1E2E, 0.12); }
-    @if ($state == 'divider') { @return rgba(#1E1E2E, 0.12); }
+    @if ($state == 'divider') { @return rgba(#1E1E2E, 0); }
     @if ($state == 'secondary-fill') { @return rgba(#1E1E2E, 0.08); }
     @if ($state == 'fill') { @return rgba(#1E1E2E, 0.04); }
   } @else {
@@ -33,7 +33,7 @@
     @if ($state == 'secondary-disabled') { @return rgba(#D9E0EE, 0.3); }
     @if ($state == 'track') { @return rgba(#D9E0EE, 0.3); }
     @if ($state == 'track-disabled') { @return rgba(#D9E0EE, 0.12); }
-    @if ($state == 'divider') { @return rgba(#D9E0EE, 0.12); }
+    @if ($state == 'divider') { @return rgba(#D9E0EE, 0); }
     @if ($state == 'secondary-fill') { @return rgba(#D9E0EE, 0.08); }
     @if ($state == 'fill') { @return rgba(#D9E0EE, 0.04); }
   }
@@ -138,20 +138,20 @@ $inverse-indicator:                     if($theme == 'grey', white, $primary);
 $applet-primary:                        if($topbar == 'dark' and $theme == 'grey' and $variant == 'light', #DDDDDD, $primary);
 
 $background:                            if($variant == 'light', background(a), background(g));
-$surface:                               if($variant == 'light', background(a), background(h));
+$surface:                               if($variant == 'light', background(a), background(g));
 $base:                                  if($variant == 'light', background(a), background(g));
-$base-alt:                              if($variant == 'light', background(b), background(f));
+$base-alt:                              if($variant == 'light', background(b), background(g));
 
 $tooltip:                               if($variant == 'dark', rgba(darken(background(e), 3%), 0.9), rgba(darken(background(h), 3%), 0.9));
 $osd:                                   background(e);
 $scrim:                                 background(f);
 $scrim-alt:                             background(g);
 $scrim-inverse:                         rgba(white, 0.1);
-$titlebar:                              if($topbar == 'dark', background(f), background(b));
+$titlebar:                              if($topbar == 'dark', background(g), background(b));
 $titlebar-backdrop:                     if($topbar == 'dark', background(g), background(a));
 $titlebar-primary:                      if($topbar == 'dark' and $theme == 'grey' and $variant == 'light', lighten($primary, 15%), $primary);
 $popover:                               $base;
-$panel-solid:                           if($topbar == 'dark', background(e), background(c)); // for Unity panel which doesn't allow translucent colors
+$panel-solid:                           if($topbar == 'dark', background(g), background(c)); // for Unity panel which doesn't allow translucent colors
 $panel:                                 rgba($panel-solid, $panel_opacity);
 
 $button:                                if($variant == 'dark', on($background, secondary-fill), on($background, fill));
@@ -171,10 +171,10 @@ $success:                               if($variant == 'light', #ABE9B3, #ABE9B3
 $suggested:                             $primary;
 $destructive:                           $error;
 
-$frame:                                 if($variant == 'light', rgba(black, 0.12), rgba(black, 0.20));
-$border:                                if($variant == 'light', rgba(black, 0.12), rgba(white, 0.12));
-$window-border:                         if($variant == 'light', rgba(black, 0.12), rgba(black, 0.75));
-$solid-border:                          if($variant == 'light', darken($background, 12%), lighten($background, 12%));
+$frame:                                 if($variant == 'light', rgba(black, 0.12), rgba(black, 0.0));
+$border:                                if($variant == 'light', rgba(black, 0.12), rgba(white, 0.0));
+$window-border:                         if($variant == 'light', rgba(black, 0.12), rgba(black, 0.0));
+$solid-border:                          if($variant == 'light', darken($background, 0%), lighten($background, 0%));
 $border-alt:                            rgba(black, 0.16); // darker border color for Chrome and Firefox
 
 //
