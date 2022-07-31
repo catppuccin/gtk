@@ -6,7 +6,7 @@
 // hard-coded css:
 // https://gitlab.gnome.org/GNOME/nautilus/blob/master/src/resources/css/nautilus.css
 
-$nautilus: if($variant == 'light' and $topbar == 'dark', $base-alt, $titlebar);
+$nautilus: $base-alt;
 
 .nautilus-window {
   &.background.csd {
@@ -27,7 +27,7 @@ $nautilus: if($variant == 'light' and $topbar == 'dark', $base-alt, $titlebar);
     }
 
     notebook widget.view:selected {
-      @extend %selected_items_color;
+      @extend %selected_items_primary;
     }
 
     &.unified {
@@ -69,7 +69,7 @@ $nautilus: if($variant == 'light' and $topbar == 'dark', $base-alt, $titlebar);
         }
       }
 
-      paned > separator { // Use paned separator to hide stack border-bottom-left-radius
+      paned > separator.wide { // Use paned separator to hide stack border-bottom-left-radius
         min-width: $window-radius;
         box-shadow: $window-radius 0 $base;
         background-color: $base;
@@ -185,6 +185,27 @@ $nautilus: if($variant == 'light' and $topbar == 'dark', $base-alt, $titlebar);
       &:disabled {
         background-color: transparent;
         color: $titlebar-text-disabled;
+      }
+    }
+  }
+}
+
+// >= 42.0
+.windowhandle .linked.nautilus-path-bar {
+  background-color: $titlebar-fill;
+  border-radius: $corner-radius;
+  margin: $space-size 0;
+
+  button:not(.suggested-action):not(.destructive-action) {
+    margin-top: 0;
+    margin-bottom: 0;
+
+    &.current-dir {
+      color: $titlebar-text;
+
+      &:hover, &:active {
+        background: none;
+        box-shadow: none;
       }
     }
   }
@@ -381,32 +402,30 @@ window.org-gnome-gedit {
 }
 
 .gedit-search-slider {
-  margin: 4px 4px 8px;
+  margin: 0 6px 10px;
+  padding: $space-size;
+  background-color: $surface;
+  border-radius: 0 0 $menu-radius $menu-radius;
+
+  @if $rimless == 'true' {
+    box-shadow: $shadow-z5;
+  } @else {
+    box-shadow: $shadow-z5, 0 0 0 1px $window-border;
+  }
 
   .linked:not(.vertical) > entry {
-    border-radius: $corner-radius;
-    @extend %entry_raised;
-
     .gedit-search-entry-occurrences-tag {
       all: unset;
       color: $text-secondary;
     }
 
-    $buttons_width: $small-size * 2 + $space-size * 3;
-
     &:dir(ltr) {
-      margin-right: -$buttons_width;
-      padding-right: $buttons_width;
-
       .gedit-search-entry-occurrences-tag { margin-left: $space-size; }
 
       image.right { margin-right: 0; }
     }
 
     &:dir(rtl) {
-      margin-left: -$buttons_width;
-      padding-left: $buttons_width;
-
       .gedit-search-entry-occurrences-tag { margin-right: $space-size; }
 
       image.left { margin-left: 0; }
@@ -421,20 +440,6 @@ window.org-gnome-gedit {
 
       &:disabled { color: on($error, secondary-disabled); }
     }
-  }
-
-  .linked > button {
-    border: solid $space-size transparent;
-    border-radius: $circular-radius;
-
-    @extend %button-flat-simple;
-    @extend %small-button;
-
-    &:last-child:dir(ltr),
-    &:not(:first-child):dir(rtl) { margin-left: -$space-size / 2; }
-
-    &:first-child:dir(rtl),
-    &:not(:last-child):dir(ltr) { margin-right: -$space-size / 2; }
   }
 }
 
@@ -487,7 +492,7 @@ frame.gedit-map-frame > border {
 
   @extend %circular_list;
 
-  row.activatable { @extend %circular_row; }
+  row { @extend %circular_row; }
 
   row.tweak-startup {
     border-radius: $corner-radius;
@@ -502,7 +507,7 @@ list {
     list {
       @extend %circular_list;
 
-      row.activatable { @extend %circular_row; }
+      row { @extend %circular_row; }
     }
   }
 }
@@ -560,6 +565,8 @@ window.background.csd {
     > stack.background {
       background: none;
 
+      frame > border { border: none; }
+
       > widget {
         > box.vertical > box.vertical { // Gnome 3.34 Wallpaper setting
           > scrolledwindow > viewport.frame {
@@ -572,6 +579,11 @@ window.background.csd {
           }
         }
       }
+    }
+
+    frame.view { // Wifi setting
+      border-radius: $corner-radius;
+      background: none;
     }
 
     > box.vertical > scrolledwindow.view { // > 3.25.90
@@ -594,6 +606,33 @@ window.background.csd {
           }
 
           separator { @extend %hide_separators; }
+        }
+      }
+    }
+  }
+
+  stack.background clamp.medium {
+    frame > box.vertical > box.vertical { // VPN setting
+      > list {
+        border-top-width: 0;
+        border-bottom-width: 0;
+
+        &, > row { border-radius: 0; }
+      }
+
+      &:first-child {
+        > list {
+          border-top-width: 1px;
+
+          &, > row { border-radius: $corner-radius $corner-radius 0 0; }
+        }
+      }
+
+      &:last-child {
+        > list {
+          border-bottom-width: 1px;
+
+          &, > row { border-radius:  0 0 $corner-radius $corner-radius; }
         }
       }
     }
@@ -622,7 +661,7 @@ hdyleaflet, leaflet, box.horizontal > stack.background {
   frame:not(.view) list:not(.contacts-contact-list) {
     @extend %circular_list;
 
-    row.activatable { @extend %circular_row; }
+    row { @extend %circular_row; }
   }
 
   stack.background, overlay {
@@ -630,12 +669,10 @@ hdyleaflet, leaflet, box.horizontal > stack.background {
       list {
         @extend %circular_list;
 
-        row.activatable { @extend %circular_row; }
+        row { @extend %circular_row; }
       }
     }
   }
-
-  frame > border { border: none; }
 
   > box.vertical > scrolledwindow > viewport.frame {
     list:not(.view):not(.tweak-group) {
@@ -649,25 +686,10 @@ hdyleaflet, leaflet, box.horizontal > stack.background {
     }
   }
 
-  frame.view {
-    @extend %circular_list;
-
-    list {
-      background: none;
-
-      > separator {
-        background: none;
-        min-height: 0;
-      }
-
-      row.activatable { @extend %circular_row; }
-    }
-  }
-
   list.view, list.frame {
     @extend %circular_list;
 
-    row.activatable { @extend %circular_row; }
+    row { @extend %circular_row; }
   }
 }
 
@@ -735,14 +757,14 @@ window.background.csd {
  ************************/
 
 tabbox { // Gnome 40.0
-  background-color: $background;
-  box-shadow: inset 0 -1px $divider;
-  padding: ($space-size / 2) ($space-size / 2) 0;
+  border: none;
+  background-color: $fill;
+  padding: $space-size / 2;
+  margin: $space-size / 2;
+  border-radius: $modal-radius + $space-size / 2;
 
   > tab {
     @extend %tabs_tab;
-    border-radius: $corner-radius $corner-radius 0 0;
-    border-bottom: none;
 
     // close button
     button {
@@ -787,7 +809,7 @@ window.background.csd.unified {
     list {
       @extend %circular_list;
 
-      row.activatable { @extend %circular_row; }
+      row { @extend %circular_row; }
     }
   }
 }
@@ -1661,7 +1683,7 @@ preferencesgroup, .geary-accounts-editor-pane {
   list {
     @extend %circular_list;
 
-    row.activatable { @extend %circular_row; }
+    row { @extend %circular_row; }
   }
 }
 
@@ -1760,7 +1782,7 @@ window.background.csd {
     > list {
       @extend %circular_list;
 
-      row.activatable { @extend %circular_row; }
+      row { @extend %circular_row; }
     }
   }
 
@@ -1776,7 +1798,7 @@ window.background.csd {
     > list {
       @extend %circular_list;
 
-      row.activatable { @extend %circular_row; }
+      row { @extend %circular_row; }
     }
   }
 
