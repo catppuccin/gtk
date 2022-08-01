@@ -16,7 +16,7 @@ make_gtkrc() {
   if [[ "${color}" != '-Dark' ]]; then
     case "$theme" in
       '')
-        theme_color='#8caaee'
+        theme_color='#b4befe'
         ;;
       -Purple)
         theme_color='#ca9ee6'
@@ -110,7 +110,7 @@ make_gtkrc() {
   else
     case "$theme" in
       '')
-        theme_color='#8caaee'
+        theme_color='#b4befe'
         ;;
       -Purple)
         theme_color='#ca9ee6'
