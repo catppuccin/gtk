@@ -4,11 +4,11 @@ set -Eeo pipefail
 REPO_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd)"
 SRC_DIR="${REPO_DIR}/basecode/src"
 
-#source "${REPO_DIR}/basecode/gtkrc.sh"
+source "${REPO_DIR}/basecode/gtkrc.sh"
 
 THEME_NAME=Catppuccin
 
-git clone --recursive https://github.com/vinceliuice/Colloid-gtk-theme.git basecode
+git submodule add https://github.com/vinceliuice/Colloid-gtk-theme.git basecode
 
 # Mod install.sh
 echo "Mod Install.sh"
