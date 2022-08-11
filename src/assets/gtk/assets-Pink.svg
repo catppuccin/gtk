@@ -14,7 +14,7 @@
    <stop stop-color="#000000" stop-opacity=".87" offset="1"/>
   </linearGradient>
   <linearGradient id="color-primary-dark">
-   <stop stop-color="#ea76cb" offset="1"/>
+   <stop stop-color="#f4b8e4" offset="1"/>
   </linearGradient>
   <linearGradient id="color-primary-light">
    <stop stop-color="#f4b8e4" offset="1"/>
