@@ -32,8 +32,8 @@ for theme in '' '-Purple' '-Pink' '-Red' '-Orange' '-Yellow' '-Green' '-Teal' '-
         theme_color_light='#a6d189'
         ;;
       -Teal)
-        theme_color_dark='#81c8be'
-        theme_color_light='#81c8be'
+        theme_color_dark='#babbf1'
+        theme_color_light='#babbf1'
         ;;
       -Grey)
         theme_color_dark='#ccd0da'

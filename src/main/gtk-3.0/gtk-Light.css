@@ -378,7 +378,7 @@ headerbar label:disabled, tab label:disabled, button label:disabled {
 
 label.osd {
   border-radius: 6px;
-  background-color: rgba(59, 62, 80, 0.9);
+  background-color: rgba(48, 51, 70, 0.9);
   color: #c6d0f5;
 }
 
@@ -3886,7 +3886,7 @@ tooltip {
 }
 
 tooltip.background {
-  background-color: rgba(59, 62, 80, 0.9);
+  background-color: rgba(48, 51, 70, 0.9);
   color: #c6d0f5;
 }
 
@@ -5667,7 +5667,7 @@ list.categories {
   min-height: 24px;
   padding: 0 4px;
   border-radius: 6px;
-  background-color: #232634;
+  background-color: #181926;
   color: #c6d0f5;
 }
 
@@ -6042,7 +6042,7 @@ window.background.chromium menu menuitem {
 }
 
 tooltip.background.chromium {
-  background-color: #3b3e50;
+  background-color: #303346;
 }
 
 /***********
@@ -6690,7 +6690,7 @@ na-tray-applet {
 }
 
 .caja-desktop.view .entry {
-  background-color: #303446;
+  background-color: #24273a;
   color: #c6d0f5;
   caret-color: currentColor;
 }
@@ -6792,7 +6792,7 @@ na-tray-applet {
 /* multimedia OSD */
 MsdOsdWindow.background.osd {
   border-radius: 6px;
-  background-color: rgba(59, 62, 80, 0.9);
+  background-color: rgba(48, 51, 70, 0.9);
   color: #c6d0f5;
 }
 
@@ -7373,7 +7373,7 @@ calendar.raven-calendar:selected {
 }
 
 .raven-mpris {
-  background-color: #232634;
+  background-color: #181926;
   color: #c6d0f5;
 }
 
@@ -7726,7 +7726,7 @@ menubar.-vala-panel-background > menuitem:disabled {
  * LightDM GTK+ Greeter *
  ************************/
 #panel_window {
-  background-color: #303446;
+  background-color: #24273a;
   color: #c6d0f5;
 }
 
