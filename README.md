@@ -34,6 +34,13 @@ This GTK theme is based on the [Colloid](https://github.com/vinceliuice/Colloid-
 2. Move the theme folder to **".themes"** in your home directory. **(~/.themes)** (Skip this step if you are using the AUR package)
 3. Select **"Catppuccin-Flavour** or **Catppuccin-Flavour-Color"** via your desktop specific tweaks application (**gnome-tweaks** on Gnome3+).
 
+### For Arch Linux users
+
+- We have 4 AUR packages for all the 4 flavours of the theme. With your favourite AUR helper, install them:
+  ```bash 
+  yay -S catppuccin-gtk-theme-mocha catppuccin-gtk-theme-macchiato catppuccin-gtk-theme-frappe catppuccin-gtk-theme-latte
+  ```
+
 ## Development
 
 ** WIP **
