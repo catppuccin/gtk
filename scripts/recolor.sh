@@ -3,16 +3,8 @@ set -Eeo pipefail
 
 REPO_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd)"
 SRC_DIR="${REPO_DIR}/basecode/src"
-
-#source "${REPO_DIR}/basecode/gtkrc.sh"
-
+WORK_DIR="${REPO_DIR}/basecode"
 THEME_NAME=Catppuccin
-
-###############
-# adding Colloid as a submodule
-###############
-git submodule add https://github.com/vinceliuice/Colloid-gtk-theme.git basecode
-
 
 # Mod install.sh
 echo "Mod Install.sh"
@@ -204,16 +196,3 @@ sed -i "s/FF7043/fe640b/g"                       "${SRC_DIR}/assets/gtk-2.0/make
 #Grey
 sed -i "s/464646/45475a/g"                       "${SRC_DIR}/assets/gtk-2.0/make-assets.sh"
 sed -i "s/DDDDDD/ccd0da/g"                       "${SRC_DIR}/assets/gtk-2.0/make-assets.sh"
-
-
-echo "Finish"
-
-
-
-# # sed -i 's/${3}${4}/${4}${3}/g'                                "${REPO_DIR}/basecode/install.sh"
-# sed -i 's/"$theme" "$color"/"$color" "$theme"/g'              "${REPO_DIR}/basecode/install.sh"
-# sed -i 's/${theme}${color}/${color}${theme}/g'                "${REPO_DIR}/basecode/install.sh"
-# sed -i 's/"${theme}" "${color}"/"${color}" "${theme}"/g'      "${REPO_DIR}/basecode/install.sh"
-# find . -not -name "catppinstall.sh" -type f -exec  sed -i 's/-Purple/-Mauve/;s/-Orange/-Peach/;s/purple/mauve/;s/orange/peach/g' {} +
-# find . -not -name "catppinstall.sh" -type f -exec  sed -i 's/-Light/-Latte/;s/-Dark/-Mocha/;s/light/Latte/;s/dark/mocha/g' {} +
-########

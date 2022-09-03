@@ -1,0 +1,9 @@
+[submodule "basecode"]
+	path = basecode
+	url = https://github.com/vinceliuice/Colloid-gtk-theme.git
+[submodule "/home/sadrach/clones/gtk/scripts/basecode"]
+	path = /home/sadrach/clones/gtk/scripts/basecode
+	url = https://github.com/vinceliuice/Colloid-gtk-theme.git
+[submodule "scripts/basecode"]
+	path = scripts/basecode
+	url = https://github.com/vinceliuice/Colloid-gtk-theme.git
