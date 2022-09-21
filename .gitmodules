@@ -7,3 +7,6 @@
 [submodule "scripts/basecode"]
 	path = scripts/basecode
 	url = https://github.com/vinceliuice/Colloid-gtk-theme.git
+[submodule "new/basecode"]
+	path = new/basecode
+	url = https://github.com/vinceliuice/Colloid-gtk-theme.git
