@@ -40,10 +40,11 @@ This GTK theme is based on the [Colloid](https://github.com/vinceliuice/Colloid-
   ```bash
   sudo flatpak override --filesystem=$HOME/.themes
   ```
-3. To set the theme for all Flatpaks, replace `##theme##` with the name of the theme you want to use and run this command:
+2. To set the theme for all Flatpaks, replace `##theme##` with the name of the theme you want to use and run this command:
   ```bash
   sudo flatpak override --env=GTK_THEME=##theme##
   ```
+3. For a more in depth tutorial see Hamza Algohary's tutorial on [It's Foss](https://itsfoss.com/flatpak-app-apply-theme/)
 
 ### For Arch Linux users
 
