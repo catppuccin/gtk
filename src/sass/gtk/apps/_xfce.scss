@@ -46,6 +46,16 @@ wnck-pager {
   &:selected { background-color: $primary; }
 }
 
+#xfce4-mpc-plugin-26 {
+  > frame > border {
+    border: none;
+  }
+}
+
+#xfce-panel-button {
+  -gtk-icon-style: symbolic;
+}
+
 XfdesktopIconView.view {
   border-radius: $corner-radius;
   background-color: transparent;
@@ -146,9 +156,6 @@ window#whiskermenu-window {
   // Set the application icon- and preview-size to 64px
   -XfwmTabwinWidget-icon-size: 64px;
   -XfwmTabwinWidget-preview-size: 64px;
-
-  button {
-  }
 }
 
 

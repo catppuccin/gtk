@@ -86,11 +86,12 @@ $nautilus: $base-alt;
   .floating-bar {
     min-height: 32px;
     padding: 0;
-    margin: 6px;
-    border-style: none;
+    margin: $space-size;
+    border: none;
     border-radius: $corner-radius;
     background-color: $primary;
     color: on($primary);
+    box-shadow: $shadow-z3;
 
     button {
       margin: (32px - $small-size) / 2;
@@ -702,13 +703,6 @@ window#gnome-system-monitor.background.csd {
     border-radius: 0 0 $window-radius $window-radius;
 
     > box.vertical {
-      // > scrolledwindow {
-      //   treeview.view:not(.progressbar):not(.trough) {
-      //     background: none;
-      //     @extend .view;
-      //   }
-      // }
-
       > revealer > actionbar > revealer > box {
         border-radius: 0 0 $window-radius $window-radius;
       }
@@ -773,6 +767,7 @@ tabbox { // Gnome 40.0
       border-radius: $circular-radius;
       border: none;
       padding: 0;
+      margin-right: -6px;
       @extend %button-flat-simple;
     }
   }
@@ -1420,6 +1415,13 @@ box.vertical > revealer > toolbar.search-bar {
   }
 }
 
+window.background.csd {
+  > stack > box > revealer > actionbar > revealer > box {
+    border-bottom-left-radius: $window-radius;
+    border-bottom-right-radius: $window-radius;
+  }
+}
+
 
 /*******************
  * Document Viewer *
@@ -1524,6 +1526,21 @@ window.background { // gnome-terminal 3.32 setting
       > stack {
         border-bottom-right-radius: $window-radius;
       }
+    }
+  }
+}
+
+// gnome-console
+.terminal-window {
+  background-color: $background;
+
+  tabbar {
+    tabbox {
+      background-color: $base-alt;
+      margin: 0;
+      border-radius: 0;
+      border-bottom: 1px solid $border;
+      background-clip: border-box;
     }
   }
 }
@@ -1850,12 +1867,6 @@ dialog.background.csd {
         }
       }
 
-      // > box.vertical > stack.view {
-      //   > scrolledwindow > treeview.view:not(:hover):not(:selected):not(:active) {
-      //     background-color: transparent;
-      //   }
-      // }
-
       toolbar.toolbar {
         border-radius: 0 0 $window-radius $window-radius;
       }
@@ -1879,8 +1890,6 @@ dialog.background.csd {
           background: none;
         }
       }
-
-      // treeview.view:not(:hover):not(:selected) { background: none; }
     }
 
     viewport.frame {
@@ -1895,6 +1904,8 @@ dialog.background.csd {
 //
 
 window.background.csd.unified {
+  background-color: $background;
+
   // Remove the sheen on headerbar...
   headerbar {
     box-shadow: inset 0 -1px $border;

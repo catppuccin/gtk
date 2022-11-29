@@ -1,7 +1,7 @@
 #! /usr/bin/env bash
 
 for theme in '' '-Purple' '-Pink' '-Red' '-Orange' '-Yellow' '-Green' '-Teal' '-Grey'; do
-  for type in '' '-Nord' '-Dracula'; do
+  for type in '' '-Nord' '-Dracula' '-Catppuccin-mocha' '-Catppuccin-macchiato' '-Catppuccin-frappe' '-Catppuccin-latte'; do
     case "$theme" in
       '')
         theme_color_dark='#3c84f7'
@@ -127,6 +127,168 @@ for theme in '' '-Purple' '-Pink' '-Red' '-Orange' '-Yellow' '-Green' '-Teal' '-
       esac
     fi
 
+    if [[ "$type" == '-Catppuccin-mocha' ]]; then
+      case "$theme" in
+        '')
+          theme_color_dark='#cba6f7'
+          theme_color_light='#8839ef'
+          ;;
+        -Purple)
+          theme_color_dark='#cba6f7'
+          theme_color_light='#8839ef'
+          ;;
+        -Pink)
+          theme_color_dark='#f5c2e7'
+          theme_color_light='#ea76cb'
+          ;;
+        -Red)
+          theme_color_dark='#f38ba8'
+          theme_color_light='#d20f39'
+          ;;
+        -Orange)
+          theme_color_dark='#fab387'
+          theme_color_light='#fe640b'
+          ;;
+        -Yellow)
+          theme_color_dark='#f9e2af'
+          theme_color_light='#df8e1d'
+          ;;
+        -Green)
+          theme_color_dark='#a6e3a1'
+          theme_color_light='#40a02b'
+          ;;
+        -Teal)
+          theme_color_dark='#94e2d5'
+          theme_color_light='#179299'
+          ;;
+        -Grey)
+          theme_color_dark='#a6adc8'
+          theme_color_light='#6c6f85'
+          ;;
+      esac
+    fi
+    
+    if [[ "$type" == '-Catppuccin-macchiato' ]]; then
+      case "$theme" in
+        '')
+          theme_color_dark='#c6a0f6'
+          theme_color_light='#d7bcf9'
+          ;;
+        -Purple)
+          theme_color_dark='#c6a0f6'
+          theme_color_light='#d7bcf9'
+          ;;
+        -Pink)
+          theme_color_dark='#f5bde6'
+          theme_color_light='#f8d1ed'
+          ;;
+        -Red)
+          theme_color_dark='#ed8796'
+          theme_color_light='#f2abb5'
+          ;;
+        -Orange)
+          theme_color_dark='#f5a97f'
+          theme_color_light='#f8c3a5'
+          ;;
+        -Yellow)
+          theme_color_dark='#eed49f'
+          theme_color_light='#f3e1bc'
+          ;;
+        -Green)
+          theme_color_dark='#a6da95'
+          theme_color_light='#c1e5b5'
+          ;;
+        -Teal)
+          theme_color_dark='#8bd5ca'
+          theme_color_light='#afe2da'
+          ;;
+        -Grey)
+          theme_color_dark='#a5adcb'
+          theme_color_light='#c0c6d0'
+          ;;
+      esac
+    fi
+
+    if [[ "$type" == '-Catppuccin-frappe' ]]; then
+      case "$theme" in
+        '')
+          theme_color_dark='#ca9ee6'
+          theme_color_light='#ead8f5'
+          ;;
+        -Purple)
+          theme_color_dark='#ca9ee6'
+          theme_color_light='#ead8f5'
+          ;;
+        -Pink)
+          theme_color_dark='#f4b8e4'
+          theme_color_light='#fbe3f4'
+          ;;
+        -Red)
+          theme_color_dark='#e78284'
+          theme_color_light='#f5cdce'
+          ;;
+        -Orange)
+          theme_color_dark='#ef9f76'
+          theme_color_light='#f9d9c8'
+          ;;
+        -Yellow)
+          theme_color_dark='#e5c890'
+          theme_color_light='#f5e9d3'
+          ;;
+        -Green)
+          theme_color_dark='#a6d189'
+          theme_color_light='#dbedd0'
+          ;;
+        -Teal)
+          theme_color_dark='#81c8be'
+          theme_color_light='#cde9e5'
+          ;;
+        -Grey)
+          theme_color_dark='#a5adce'
+          theme_color_light='#c0c6dd'
+          ;;
+      esac
+    fi
+    if [[ "$type" == '-Catppuccin-latte' ]]; then
+      case "$theme" in
+        '')
+          theme_color_dark='#8839ef'
+          theme_color_light='#cfb0f9'
+          ;;
+        -Purple)
+          theme_color_dark='#8839ef'
+          theme_color_light='#cfb0f9'
+          ;;
+        -Pink)
+          theme_color_dark='#ea77cb'
+          theme_color_light='#f7c8ea'
+          ;;
+        -Red)
+          theme_color_dark='#d20f39'
+          theme_color_light='#f795aa'
+          ;;
+        -Orange)
+          theme_color_dark='#fe640b'
+          theme_color_light='#ffc19d'
+          ;;
+        -Yellow)
+          theme_color_dark='#df8e1d'
+          theme_color_light='#f3d2a4'
+          ;;
+        -Green)
+          theme_color_dark='#40a02b'
+          theme_color_light='#abe59e'
+          ;;
+        -Teal)
+          theme_color_dark='#179299'
+          theme_color_light='#8be8ee'
+          ;;
+        -Grey)
+          theme_color_dark='#a5adce'
+          theme_color_light='#dbdeeb'
+          ;;
+      esac
+    fi
     if [[ "$type" != '' ]]; then
       rm -rf "thumbnail${theme}${type}.svg"
       cp -rf "thumbnail.svg" "thumbnail${theme}${type}.svg"

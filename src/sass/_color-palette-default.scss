@@ -1,68 +1,68 @@
 // Default Theme Color Palette
 
 // Red
-$red-light: #e78284;
-$red-dark: #e78284;
+$red-light: #F44336;
+$red-dark: #E53935;
 
 // Pink
-$pink-light: #f4b8e4;
-$pink-dark: #f4b8e4;
+$pink-light: #F06292;
+$pink-dark: #EC407A;
 
 // Purple
-$purple-light: #ca9ee6;
-$purple-dark: #ca9ee6;
+$purple-light: #BA68C8;
+$purple-dark: #AB47BC;
 
 // Blue
-$blue-light: #8caaee;
-$blue-dark: #8caaee;
+$blue-light: #5b9bf8;
+$blue-dark: #3c84f7;
 
 // Teal
-$teal-light: #81c8be;
-$teal-dark: #81c8be;
+$teal-light: #4DB6AC;
+$teal-dark: #009688;
 
 // Green
-$green-light: #a6d189;
-$green-dark: #a6d189;
+$green-light: #66BB6A;
+$green-dark: #4CAF50;
 
 // Yellow
-$yellow-light: #e5c890;
-$yellow-dark: #e5c890;
+$yellow-light: #FBC02D;
+$yellow-dark: #FFD600;
 
 // Orange
-$orange-light: #ef9f76;
-$orange-dark: #ef9f76;
+$orange-light: #FF8A65;
+$orange-dark: #FF7043;
 
 // Grey
-$grey-050: #dce0e8; // B    crust Late
-$grey-100: #e6e9ef; // C    Mantle Late
-$grey-150: #eff1f5; // A    Base Late 
-$grey-200: #ccd0da; // Surface 0 Late
-$grey-250: #bcc0cc; // D    Surface 1 Late
-$grey-300: #acb0be;
-$grey-350: #9ca0b0;
-$grey-400: #8c8fa1;
-$grey-450: #7c7f93;
-$grey-500: #6c6f85;
-$grey-550: #5c5f77;
-$grey-600: #45475a;
-$grey-650: #363a4f; // H
-$grey-700: #24273a; // G
-$grey-750: #181926; // F
-$grey-800: #181926; // E
-$grey-850: #45475a; // H
-$grey-900: #232634; // G
-$grey-950: #11111b; // F 
+$grey-050: #FAFAFA;
+$grey-100: #F2F2F2;
+$grey-150: #EEEEEE;
+$grey-200: #DDDDDD;
+$grey-250: #CCCCCC;
+$grey-300: #BFBFBF;
+$grey-350: #A0A0A0;
+$grey-400: #9E9E9E;
+$grey-450: #868686;
+$grey-500: #727272;
+$grey-550: #555555;
+$grey-600: #464646;
+$grey-650: #3C3C3C;
+$grey-700: #2C2C2C;
+$grey-750: #242424;
+$grey-800: #212121;
+$grey-850: #121212;
+$grey-900: #0F0F0F;
+$grey-950: #030303;
 
 // White
-$white: #c6d0f5;    // A    Base Late 
+$white: #FFFFFF;
 
 // Black
-$black: #11111b;    // E    Crust Mocha
+$black: #000000;
 
 // Button
-$button-close: #e78284;
-$button-max: #a6d189;
-$button-min: #e5c890;
+$button-close: #fd5f51;
+$button-max: #38c76a;
+$button-min: #fdbe04;
 
 // Theme
 $default-light: $blue-light;

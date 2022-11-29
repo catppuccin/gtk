@@ -1,0 +1,69 @@
+// Default Theme Color Palette
+
+// Red
+$red-light: #f795aa;
+$red-dark: #d20f39;
+
+// Pink
+$pink-light: #f7c8ea;
+$pink-dark: #ea76cb;
+
+// Purple
+$purple-light: #cfb0f9;
+$purple-dark: #8839ef;
+
+// Blue
+$blue-light: #a5c2fb;
+$blue-dark: #1e66f5;
+
+// Teal
+$teal-light: #8be8ee;
+$teal-dark: #179299;
+
+// Green
+$green-light: #abe59e;
+$green-dark: #40a02b;
+
+// Yellow
+$yellow-light: #f3d2a4;
+$yellow-dark: #df8e1d;
+
+// Orange
+$orange-light: #ffc19d;
+$orange-dark: #fe640b;
+
+// Grey
+$grey-050: #dce0e8;
+$grey-100: #181825;
+$grey-150: #1e1e2e;
+$grey-200: #313244;
+$grey-250: #45475a;
+$grey-300: #7f849c;
+$grey-350: #9399b2;
+$grey-400: #a6adc8;
+$grey-450: #bac2de;
+$grey-500: #acb0be;
+$grey-550: #bcc0cc;
+$grey-600: #ccd0da;
+$grey-650: #ccd0da;
+$grey-700: #eff1f5;  // Latte base - background  
+$grey-750: #e6e9ef; // Latte mantle 
+$grey-800: #dce0e8; // Latte crust
+$grey-850: #eff1f5;
+$grey-900: #e6e9ef;
+$grey-950: #dce0e8;
+
+// White
+$white: #eff1f5;
+
+// Black
+$black: #11111b;
+
+// Button
+$button-close: if($variant == "light", #d20f39, #f795aa);
+$button-max: if($variant == "light", #40a02b, #abe59e);
+$button-min: if($variant == "light", #df8e1d, #f3d2a4);
+
+// Theme
+$default-light: $purple-light;
+$default-dark: $purple-dark;

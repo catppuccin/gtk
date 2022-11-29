@@ -19,7 +19,7 @@
     @if ($state == 'primary') { @return rgba($black, 0.87); }
     @if ($state == 'secondary') { @return rgba($black, 0.6); }
     @if ($state == 'disabled') { @return rgba($black, 0.38); }
-    @if ($state == 'secondary-disabled') { @return rgba($black, 0.26); }
+    @if ($state == 'secondary-disabled') { @return rgba($black, 0.3); }
     @if ($state == 'track') { @return rgba($black, 0.26); }
     @if ($state == 'track-disabled') { @return rgba($black, 0.12); }
     @if ($state == 'divider') { @return rgba($black, 0.12); }
@@ -29,7 +29,7 @@
     @if ($state == 'primary') { @return $white; }
     @if ($state == 'secondary') { @return rgba($white, 0.7); }
     @if ($state == 'disabled') { @return rgba($white, 0.5); }
-    @if ($state == 'secondary-disabled') { @return rgba($white, 0.3); }
+    @if ($state == 'secondary-disabled') { @return rgba($white, 0.32); }
     @if ($state == 'track') { @return rgba($white, 0.3); }
     @if ($state == 'track-disabled') { @return rgba($white, 0.12); }
     @if ($state == 'divider') { @return rgba($white, 0.12); }
@@ -69,8 +69,8 @@
 }
 
 @function background($type) {
-  @if ($type == 'a') { @return $white; } 
-  @if ($type == 'b') { @return $grey-050; } 
+  @if ($type == 'a') { @return $white; }
+  @if ($type == 'b') { @return $grey-050; }
   @if ($type == 'c') { @return $grey-100; }
   @if ($type == 'd') { @return $grey-250; }
 
@@ -147,11 +147,11 @@ $assets-color:                          $primary;
   $assets-color:                        if($variant == 'light', $green-dark, $green-light);
 }
 
-$frame:                                 if($variant == 'light', rgba($black, 0), rgba($black, 0));
-$border:                                if($variant == 'light', rgba($black, 0), rgba($white, 0));
-$window-border:                         if($variant == 'light', rgba($black, 0), rgba($black, 0));
-$solid-border:                          if($variant == 'light', rgba($black, 0), rgba($white, 0));
-$border-alt:                            rgba($black, 0); // darker border color for Chrome and Firefox
+$frame:                                 if($variant == 'light', rgba($black, 0.12), rgba($black, 0.20));
+$border:                                if($variant == 'light', rgba($black, 0.12), rgba($white, 0.12));
+$window-border:                         if($variant == 'light', rgba($black, 0.12), rgba($black, 0.75));
+$solid-border:                          if($variant == 'light', mix(black, $base, 12%), mix(white, $base, 12%));
+$border-alt:                            rgba($black, 0.16); // darker border color for Chrome and Firefox
 
 //
 // Overlay state colors
