@@ -1,5 +1,7 @@
-work_dir = "basecode"
-tmp_dir = "basecode/tmp"
-submodule = "git submodule add --force https://github.com/vinceliuice/Colloid-gtk-theme.git basecode"
+import os
 
-name = "Catppuccin"
+
+repo_dir = os.getcwd()
+work_dir = f"${repo_dir}/colloid"
+src_dir = f"${work_dir}/src"
+theme_name = "Catppuccin"
