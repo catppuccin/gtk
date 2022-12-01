@@ -4,6 +4,34 @@ from ctp_colors import Color, latte
 from default_colors import *
 
 
+def recolor_accent(color: Color, file: str):
+    """
+    Recolors the accent color in a file.
+    """
+    print(f"Recoloring accent for {file}...")
+    # Recolor as per accent for dark
+    replacetext(file, "#464646", "#7c7f93")  # grey
+    replacetext(file, default_blue, color.lavender)
+    replacetext(file, default_purple, color.mauve)
+    replacetext(file, default_pink, color.pink)
+    replacetext(file, default_red, color.red)
+    replacetext(file, default_orange, color.peach)
+    replacetext(file, default_yellow, color.yellow)
+    replacetext(file, default_green, color.green)
+    replacetext(file, default_teal, color.teal)
+
+    # Recolor as per base for light theme. hard code it as latte
+    replacetext(file, "#DDDDDD", "#45475a")  # grey
+    replacetext(file, "#5b9bf8", latte.lavender)
+    replacetext(file, "#BA68C8", latte.mauve)
+    replacetext(file, "#F06292", latte.pink)
+    replacetext(file, "#F44336", latte.red)
+    replacetext(file, "#FB8C00", latte.peach)
+    replacetext(file, "#FFD600", latte.yellow)
+    replacetext(file, "#66BB6A", latte.green)
+    replacetext(file, "#4DB6AC", latte.teal)
+
+
 def recolor(color: Color):
     """
     Recolor the theme. currently hard code it frappe
@@ -13,26 +41,7 @@ def recolor(color: Color):
 
     print("MOD: Gtkrc.sh")
     # Recolor as per accent for dark
-    replacetext(f"{work_dir}/gtkrc.sh", "464646", "7c7f93")
-    replacetext(f"{work_dir}/gtkrc.sh", default_blue, color.lavender)
-    replacetext(f"{work_dir}/gtkrc.sh", default_purple, color.mauve)
-    replacetext(f"{work_dir}/gtkrc.sh", default_pink, color.pink)
-    replacetext(f"{work_dir}/gtkrc.sh", default_red, color.red)
-    replacetext(f"{work_dir}/gtkrc.sh", default_orange, color.peach)
-    replacetext(f"{work_dir}/gtkrc.sh", default_yellow, color.yellow)
-    replacetext(f"{work_dir}/gtkrc.sh", default_green, color.green)
-    replacetext(f"{work_dir}/gtkrc.sh", default_teal, color.teal)
-
-    # Recolor as per base for light theme. hard code it as latte
-    replacetext(f"{work_dir}/gtkrc.sh", "DDDDDD", "45475a")
-    replacetext(f"{work_dir}/gtkrc.sh", "5b9bf8", latte.lavender)
-    replacetext(f"{work_dir}/gtkrc.sh", "BA68C8", latte.mauve)
-    replacetext(f"{work_dir}/gtkrc.sh", "F06292", latte.pink)
-    replacetext(f"{work_dir}/gtkrc.sh", "F44336", latte.red)
-    replacetext(f"{work_dir}/gtkrc.sh", "FB8C00", latte.peach)
-    replacetext(f"{work_dir}/gtkrc.sh", "FFD600", latte.yellow)
-    replacetext(f"{work_dir}/gtkrc.sh", "66BB6A", latte.green)
-    replacetext(f"{work_dir}/gtkrc.sh", "4DB6AC", latte.teal)
+    recolor_accent(color, f"{work_dir}/gtkrc.sh")
 
     replacetext(f"{work_dir}/gtkrc.sh", "background_light='#FFFFFF'",
                 "background_light='#eff1f5'")  # use latte_base for background_light
@@ -54,3 +63,52 @@ def recolor(color: Color):
                 "background_alt='#464646'", "background_alt='#212121'")
     replacetext(f"{work_dir}/gtkrc.sh",
                 "titlebar_dark='#242424'", "titlebar_dark='#1e222a'")
+
+    print("Mod SASS Color_Palette_default")
+    recolor_accent(color, f"{src_dir}/sass/_color-palette-default.scss")
+
+    # Greys
+    replacetext(f"{src_dir}/sass/_color-palette-default.scss",
+                "grey-050: #FAFAFA", f"grey-050: {latte.crust}")
+    replacetext(f"{src_dir}/sass/_color-palette-default.scss",
+                "grey-100: #F2F2F2", f"grey-100: {latte.mantle}")
+    replacetext(f"{src_dir}/sass/_color-palette-default.scss",
+                "grey-150: #EEEEEE", f"grey-150: {latte.base}")
+    replacetext(f"{src_dir}/sass/_color-palette-default.scss",
+                "grey-200: #DDDDDD", "grey-200: #ccd0da")  # Surface 0 Late
+    replacetext(f"{src_dir}/sass/_color-palette-default.scss",
+                "grey-250: #CCCCCC", "grey-250: #bcc0cc")  # D = Surface 1 Late
+    replacetext(f"{src_dir}/sass/_color-palette-default.scss",
+                "grey-650: #3C3C3C", "grey-650: #313244")  # H $surface $tooltip
+    replacetext(f"{src_dir}/sass/_color-palette-default.scss", "grey-700: #2C2C2C",
+                "grey-700: #1e1e2e")  # G $background; $base; titlebar-backdrop; $popover
+    replacetext(f"{src_dir}/sass/_color-palette-default.scss",
+                "grey-750: #242424", "grey-750: #11111b")  # F $base-alt
+    replacetext(f"{src_dir}/sass/_color-palette-default.scss",
+                "grey-800: #212121", "grey-800: #11111b")  # E $panel-solid;
+    replacetext(f"{src_dir}/sass/_color-palette-default.scss",
+                "grey-850: #121212", "grey-950: #45475a")  # H Darknes
+    replacetext(f"{src_dir}/sass/_color-palette-default.scss",
+                "grey-900: #0F0F0F", "grey-900: #1e1e2e")  # G Darknes
+    replacetext(f"{src_dir}/sass/_color-palette-default.scss",
+                "grey-950: #030303", "grey-950: #11111b")  # F Darknes
+
+    # Buttons
+    replacetext(f"{src_dir}/sass/_color-palette-default.scss",
+                "button-close: #fd5f51", "button-close: #e78284")
+    replacetext(f"{src_dir}/sass/_color-palette-default.scss",
+                "button-max: #38c76a", "button-max: #a6d189")
+    replacetext(f"{src_dir}/sass/_color-palette-default.scss",
+                "button-min: #fdbe04", "button-min: #e5c890")
+
+    print("Mod Accent Cinnamon")
+    recolor_accent(color, f"{src_dir}/assets/cinnamon/make-assets.sh")
+
+    print("Mod Accent Gnome shell")
+    recolor_accent(color, f"{src_dir}/assets/gnome-shell/make-assets.sh")
+
+    print("Mod Accent GTK")
+    recolor_accent(color, f"{src_dir}/assets/gtk/make-assets.sh")
+
+    print("Mod Accent GTK 2.0")
+    recolor_accent(color, f"{src_dir}/assets/gtk-2.0/make-assets.sh")

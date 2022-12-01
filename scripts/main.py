@@ -6,6 +6,6 @@ Usage:
     python scripts/main.py [options]
 """
 from recolor import recolor
-from ctp_colors import frappe
+from ctp_colors import frappe, mocha
 
 recolor(frappe)
