@@ -6,5 +6,6 @@ Usage:
     python scripts/main.py [options]
 """
 from recolor import recolor
+from ctp_colors import frappe
 
-recolor()
+recolor(frappe)
