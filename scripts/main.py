@@ -48,7 +48,7 @@ parser.add_argument("--size", "-s",
 parser.add_argument('--tweaks',
                     metavar='Colloid specific tweaks',
                     type=str,
-                    default="",
+                    default=["rimless"],
                     nargs='+',
                     dest="tweaks",
                     choices=['black', 'rimless', 'normal'],
@@ -84,6 +84,7 @@ elif args.type == "macchiato":
     install_cmd += " -c dark"
 else:
     install_cmd += " -c light"
+install_cmd += " -l"
 
 install_cmd += f" -t {color_map[args.accent]}"
 install_cmd += f" -s {args.size}"
