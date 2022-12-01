@@ -8,6 +8,7 @@ Usage:
 import argparse
 import subprocess
 import os
+import shutil
 
 from recolor import recolor
 from ctp_colors import frappe, mocha, macchiato
@@ -53,6 +54,12 @@ parser.add_argument('--tweaks',
                     choices=['black', 'rimless', 'normal'],
                     help='Some specifc tweaks. like black, rimless, normal buttons etc.')
 
+parser.add_argument('--clean',
+                    help='Deletes the colloid repo',
+                    type=bool,
+                    default=False,
+                    dest="clean",)
+
 args = parser.parse_args()
 
 # Import Colloid source
@@ -86,3 +93,6 @@ if args.tweaks:
 
 os.chdir(work_dir)
 subprocess.call(install_cmd, shell=True)
+
+if args.clean:
+    shutil.rmtree(work_dir)
