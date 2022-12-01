@@ -1,2 +1,3 @@
 pkgs/
 *-temp.scss
+__pycache__
