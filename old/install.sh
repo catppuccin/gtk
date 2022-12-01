@@ -1,9 +1,7 @@
 #! /usr/bin/env bash
 set -Eeo pipefail
 
-REPO_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd)"
-
+source vars.sh
 ./clone.sh
-./permisions.sh
 ./recolor.sh
-./build.sh
+# ./build.sh

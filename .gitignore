@@ -1,3 +1,6 @@
 pkgs/
 *-temp.scss
 __pycache__
+
+# Work dir for colloid
+colloid/

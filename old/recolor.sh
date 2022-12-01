@@ -1,23 +1,18 @@
 #! /usr/bin/env bash
 set -Eeo pipefail
 
-REPO_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd)"
-SRC_DIR="${REPO_DIR}/basecode/src"
-WORK_DIR="${REPO_DIR}/basecode"
-THEME_NAME=Catppuccin
-
 # Mod install.sh
 echo "Recoloring the catppuccin style"
+
 # Replace Name
 sed -i "s/Colloid/${THEME_NAME}/g"                            "${WORK_DIR}/install.sh"
-exit 0
 
 ###############
 # Changing colors 
 ###############
 echo "Mod Gtkrc.sh"
-sed -i "s/3c84f7/b4befe/;s/AB47BC/ca9ee6/;s/EC407A/f4b8e4/;s/E53935/e78284/;s/F57C00/ef9f76/;s/FBC02D/e5c890/;s/4CAF50/a6d189/;s/009688/81c8be/;s/464646/7c7f93/g"            "${REPO_DIR}/basecode/gtkrc.sh"
-sed -i "s/5b9bf8/7287fd/;s/BA68C8/8839ef/;s/F06292/ea76cb/;s/F44336/d20f39/;s/FB8C00/fe640b/;s/FFD600/df8e1d/;s/66BB6A/40a02b/;s/4DB6AC/179299/;s/DDDDDD/45475a/g"            "${REPO_DIR}/basecode/gtkrc.sh"
+sed -i "s/3c84f7/b4befe/;s/AB47BC/ca9ee6/;s/EC407A/f4b8e4/;s/E53935/e78284/;s/F57C00/ef9f76/;s/FBC02D/e5c890/;s/4CAF50/a6d189/;s/009688/81c8be/;s/464646/7c7f93/g"            "${WORK_DIR}/gtkrc.sh"
+sed -i "s/5b9bf8/7287fd/;s/BA68C8/8839ef/;s/F06292/ea76cb/;s/F44336/d20f39/;s/FB8C00/fe640b/;s/FFD600/df8e1d/;s/66BB6A/40a02b/;s/4DB6AC/179299/;s/DDDDDD/45475a/g"            "${WORK_DIR}/gtkrc.sh"
 sed -i "s/background_light='#FFFFFF'/background_light='#eff1f5'/g"                 "${WORK_DIR}/gtkrc.sh"
 sed -i "s/background_dark='#0F0F0F'/background_dark='#232634'/g"                   "${WORK_DIR}/gtkrc.sh"
 sed -i "s/background_darker='#121212'/background_darker='#11111b'/g"               "${WORK_DIR}/gtkrc.sh"

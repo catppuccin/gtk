@@ -1,11 +1,9 @@
 #! /usr/bin/env bash
 set -Eeo pipefail
 
-REPO_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd)"
-WORK_DIR="${REPO_DIR}/basecode"
+echo "Building Catppuccin theme..."
 
-
-cd basecode
+cd ${WORK_DIR}
 ./gtkrc.sh 
 ./build.sh 
 ./install.sh -d ${WORK_DIR}/temp -t -c 
