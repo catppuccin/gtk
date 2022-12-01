@@ -94,5 +94,8 @@ if args.tweaks:
 os.chdir(work_dir)
 subprocess.call(install_cmd, shell=True)
 
+reset_cmd: str = "git reset --hard HEAD"
+subprocess.call(reset_cmd, shell=True)
+
 if args.clean:
     shutil.rmtree(work_dir)
