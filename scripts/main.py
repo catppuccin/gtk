@@ -58,6 +58,7 @@ parser.add_argument('--clean',
                     help='Deletes the colloid repo',
                     type=bool,
                     default=False,
+                    action=argparse.BooleanOptionalAction,
                     dest="clean",)
 
 args = parser.parse_args()
