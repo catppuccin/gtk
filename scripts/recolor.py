@@ -4,32 +4,49 @@ from ctp_colors import Color, latte
 from default_colors import *
 
 
-def recolor_accent(color: Color, file: str):
+def recolor_accent(color: Color, file: str, reverse: bool = False):
     """
     Recolors the accent color in a file.
+    color:
+        The color scheme to recolor to. Like mocha, frappe, latte, etc.
+    file:
+        The file to modify
+    reverse:
+        If true, the light and dark colors will be flipped.
+        Thats how it was in the initial script in some particular cases and idk why 
     """
     print(f"Recoloring accent for {file}...")
+    
+    global latte
+    temp = latte
+    if reverse:
+        latte = color
+        color = temp
+
     # Recolor as per accent for dark
     replacetext(file, "#464646", "#7c7f93")  # grey
-    replacetext(file, default_blue, color.lavender)
-    replacetext(file, default_purple, color.mauve)
-    replacetext(file, default_pink, color.pink)
-    replacetext(file, default_red, color.red)
-    replacetext(file, default_orange, color.peach)
-    replacetext(file, default_yellow, color.yellow)
-    replacetext(file, default_green, color.green)
-    replacetext(file, default_teal, color.teal)
+    replacetext(file, default_blue, latte.lavender)
+    replacetext(file, default_purple, latte.mauve)
+    replacetext(file, default_pink, latte.pink)
+    replacetext(file, default_red, latte.red)
+    replacetext(file, default_orange, latte.peach)
+    replacetext(file, default_yellow, latte.yellow)
+    replacetext(file, default_green, latte.green)
+    replacetext(file, default_teal, latte.teal)
 
     # Recolor as per base for light theme. hard code it as latte
     replacetext(file, "#DDDDDD", "#45475a")  # grey
-    replacetext(file, "#5b9bf8", latte.lavender)
-    replacetext(file, "#BA68C8", latte.mauve)
-    replacetext(file, "#F06292", latte.pink)
-    replacetext(file, "#F44336", latte.red)
-    replacetext(file, "#FB8C00", latte.peach)
-    replacetext(file, "#FFD600", latte.yellow)
-    replacetext(file, "#66BB6A", latte.green)
-    replacetext(file, "#4DB6AC", latte.teal)
+    replacetext(file, "#5b9bf8", color.lavender)
+    replacetext(file, "#BA68C8", color.mauve)
+    replacetext(file, "#F06292", color.pink)
+    replacetext(file, "#F44336", color.red)
+    replacetext(file, "#FB8C00", color.peach)
+    replacetext(file, "#FFD600", color.yellow)
+    replacetext(file, "#66BB6A", color.green)
+    replacetext(file, "#4DB6AC", color.teal)
+
+    # Restore it back if reversed
+    latte = temp
 
 
 def recolor(color: Color):
@@ -41,7 +58,7 @@ def recolor(color: Color):
 
     print("MOD: Gtkrc.sh")
     # Recolor as per accent for dark
-    recolor_accent(color, f"{work_dir}/gtkrc.sh")
+    recolor_accent(color, f"{work_dir}/gtkrc.sh", True)
 
     replacetext(f"{work_dir}/gtkrc.sh", "background_light='#FFFFFF'",
                 "background_light='#eff1f5'")  # use latte_base for background_light
