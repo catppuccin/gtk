@@ -104,7 +104,7 @@ def recolor(color: Color):
     replacetext(f"{src_dir}/sass/_color-palette-default.scss",
                 "grey-800: #212121", "grey-800: #11111b")  # E $panel-solid;
     replacetext(f"{src_dir}/sass/_color-palette-default.scss",
-                "grey-850: #121212", "grey-950: #45475a")  # H Darknes
+                "grey-850: #121212", "grey-850: #45475a")  # H Darknes
     replacetext(f"{src_dir}/sass/_color-palette-default.scss",
                 "grey-900: #0F0F0F", "grey-900: #1e1e2e")  # G Darknes
     replacetext(f"{src_dir}/sass/_color-palette-default.scss",
