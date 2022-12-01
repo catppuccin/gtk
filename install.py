@@ -12,7 +12,7 @@ import subprocess
 
 from scripts.ctp_colors import frappe, macchiato, mocha
 from scripts.recolor import recolor
-from scripts.var import color_map, tmp_dir, work_dir
+from scripts.var import clone_repo_dir, color_map, tmp_dir, work_dir
 
 
 parser = argparse.ArgumentParser(description='Catppuccin theme')
@@ -66,7 +66,7 @@ args = parser.parse_args()
 
 # Import Colloid source
 subprocess.call(
-    f"git submodule add --force https://github.com/vinceliuice/Colloid-gtk-theme.git {work_dir}", shell=True)
+    f"git submodule add --force https://github.com/vinceliuice/Colloid-gtk-theme.git {clone_repo_dir}", shell=True)
 
 try:
     os.makedirs(tmp_dir)
