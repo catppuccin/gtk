@@ -1,6 +1,7 @@
 from utils import replacetext
 from var import repo_dir, work_dir, src_dir, theme_name
 from ctp_colors import Color
+from default_colors import *
 
 
 def recolor(color: Color):
@@ -14,14 +15,14 @@ def recolor(color: Color):
     replacetext(f"{work_dir}/gtkrc.sh", "464646", "7c7f93")
 
     # Recolor as per accent
-    replacetext(f"{work_dir}/gtkrc.sh", "#3c84f7", color.lavender)
-    replacetext(f"{work_dir}/gtkrc.sh", "#AB47BC", color.mauve)
-    replacetext(f"{work_dir}/gtkrc.sh", "#EC407A", color.pink)
-    replacetext(f"{work_dir}/gtkrc.sh", "#E53935", color.red)
-    replacetext(f"{work_dir}/gtkrc.sh", "#F57C00", color.peach)
-    replacetext(f"{work_dir}/gtkrc.sh", "#FBC02D", color.yellow)
-    replacetext(f"{work_dir}/gtkrc.sh", "#4CAF50", color.green)
-    replacetext(f"{work_dir}/gtkrc.sh", "#009688", color.teal)
+    replacetext(f"{work_dir}/gtkrc.sh", default_blue, color.lavender)
+    replacetext(f"{work_dir}/gtkrc.sh", default_purple, color.mauve)
+    replacetext(f"{work_dir}/gtkrc.sh", default_pink, color.pink)
+    replacetext(f"{work_dir}/gtkrc.sh", default_red, color.red)
+    replacetext(f"{work_dir}/gtkrc.sh", default_orange, color.peach)
+    replacetext(f"{work_dir}/gtkrc.sh", default_yellow, color.yellow)
+    replacetext(f"{work_dir}/gtkrc.sh", default_green, color.green)
+    replacetext(f"{work_dir}/gtkrc.sh", default_teal, color.teal)
 
     # Recolor as per base
     replacetext(f"{work_dir}/gtkrc.sh", "background_light='#FFFFFF'",
