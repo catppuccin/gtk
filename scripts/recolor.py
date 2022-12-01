@@ -1,7 +1,7 @@
-from utils import replacetext
-from var import repo_dir, work_dir, src_dir, theme_name
-from ctp_colors import Color, latte
-from default_colors import *
+from .ctp_colors import Color, latte
+from .default_colors import *
+from .utils import replacetext
+from .var import repo_dir, src_dir, theme_name, work_dir
 
 
 def recolor_accent(color: Color, file: str, reverse: bool = False):

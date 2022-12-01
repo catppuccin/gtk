@@ -6,13 +6,14 @@ Usage:
     python install.py [options]
 """
 import argparse
-import subprocess
 import os
 import shutil
+import subprocess
 
+from scripts.ctp_colors import frappe, macchiato, mocha
 from scripts.recolor import recolor
-from scripts.ctp_colors import frappe, mocha, macchiato
-from scripts.var import work_dir, tmp_dir, color_map
+from scripts.var import color_map, tmp_dir, work_dir
+
 
 parser = argparse.ArgumentParser(description='Catppuccin theme')
 parser.add_argument('type',
