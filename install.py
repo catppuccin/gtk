@@ -3,16 +3,16 @@ Main script to clone, recolor and install the theme.
 Run this from the root of the repo.
 
 Usage:
-    python scripts/main.py [options]
+    python install.py [options]
 """
 import argparse
 import subprocess
 import os
 import shutil
 
-from recolor import recolor
-from ctp_colors import frappe, mocha, macchiato
-from var import work_dir, tmp_dir, color_map
+from scripts.recolor import recolor
+from scripts.ctp_colors import frappe, mocha, macchiato
+from scripts.var import work_dir, tmp_dir, color_map
 
 parser = argparse.ArgumentParser(description='Catppuccin theme')
 parser.add_argument('type',
