@@ -7,9 +7,10 @@ WORK_DIR="${REPO_DIR}/basecode"
 THEME_NAME=Catppuccin
 
 # Mod install.sh
-echo "Mod Install.sh"
+echo "Recoloring the catppuccin style"
 # Replace Name
-sed -i "s/Colloid/${THEME_NAME}/g"                            "${REPO_DIR}/basecode/install.sh"
+sed -i "s/Colloid/${THEME_NAME}/g"                            "${WORK_DIR}/install.sh"
+exit 0
 
 ###############
 # Changing colors 
@@ -17,17 +18,17 @@ sed -i "s/Colloid/${THEME_NAME}/g"                            "${REPO_DIR}/basec
 echo "Mod Gtkrc.sh"
 sed -i "s/3c84f7/b4befe/;s/AB47BC/ca9ee6/;s/EC407A/f4b8e4/;s/E53935/e78284/;s/F57C00/ef9f76/;s/FBC02D/e5c890/;s/4CAF50/a6d189/;s/009688/81c8be/;s/464646/7c7f93/g"            "${REPO_DIR}/basecode/gtkrc.sh"
 sed -i "s/5b9bf8/7287fd/;s/BA68C8/8839ef/;s/F06292/ea76cb/;s/F44336/d20f39/;s/FB8C00/fe640b/;s/FFD600/df8e1d/;s/66BB6A/40a02b/;s/4DB6AC/179299/;s/DDDDDD/45475a/g"            "${REPO_DIR}/basecode/gtkrc.sh"
-sed -i "s/background_light='#FFFFFF'/background_light='#eff1f5'/g"                 "${REPO_DIR}/basecode/gtkrc.sh"
-sed -i "s/background_dark='#0F0F0F'/background_dark='#232634'/g"                   "${REPO_DIR}/basecode/gtkrc.sh"
-sed -i "s/background_darker='#121212'/background_darker='#11111b'/g"               "${REPO_DIR}/basecode/gtkrc.sh"
-sed -i "s/background_alt='#212121'/background_alt='#1e1e2e'/g"                     "${REPO_DIR}/basecode/gtkrc.sh"
-sed -i "s/titlebar_light='#F2F2F2'/titlebar_light='#dce0e8'/g"                     "${REPO_DIR}/basecode/gtkrc.sh"
-sed -i "s/titlebar_dark='#030303'/titlebar_dark='#232634'/g"                       "${REPO_DIR}/basecode/gtkrc.sh"
-sed -i "s/background_dark='#2C2C2C'/background_dark='#232634'/g"                   "${REPO_DIR}/basecode/gtkrc.sh"
-sed -i "s/background_darker='#3C3C3C'/background_darker='#11111b'/g"               "${REPO_DIR}/basecode/gtkrc.sh"
-sed -i "s/background_alt='#464646'/background_alt='#212121'/g"                     "${REPO_DIR}/basecode/gtkrc.sh"
-sed -i "s/titlebar_light='#F2F2F2'/titlebar_light='#dce0e8'/g"                     "${REPO_DIR}/basecode/gtkrc.sh"
-sed -i "s/titlebar_dark='#242424'/titlebar_dark='#1e222a'/g"                       "${REPO_DIR}/basecode/gtkrc.sh"
+sed -i "s/background_light='#FFFFFF'/background_light='#eff1f5'/g"                 "${WORK_DIR}/gtkrc.sh"
+sed -i "s/background_dark='#0F0F0F'/background_dark='#232634'/g"                   "${WORK_DIR}/gtkrc.sh"
+sed -i "s/background_darker='#121212'/background_darker='#11111b'/g"               "${WORK_DIR}/gtkrc.sh"
+sed -i "s/background_alt='#212121'/background_alt='#1e1e2e'/g"                     "${WORK_DIR}/gtkrc.sh"
+sed -i "s/titlebar_light='#F2F2F2'/titlebar_light='#dce0e8'/g"                     "${WORK_DIR}/gtkrc.sh"
+sed -i "s/titlebar_dark='#030303'/titlebar_dark='#232634'/g"                       "${WORK_DIR}/gtkrc.sh"
+sed -i "s/background_dark='#2C2C2C'/background_dark='#232634'/g"                   "${WORK_DIR}/gtkrc.sh"
+sed -i "s/background_darker='#3C3C3C'/background_darker='#11111b'/g"               "${WORK_DIR}/gtkrc.sh"
+sed -i "s/background_alt='#464646'/background_alt='#212121'/g"                     "${WORK_DIR}/gtkrc.sh"
+sed -i "s/titlebar_light='#F2F2F2'/titlebar_light='#dce0e8'/g"                     "${WORK_DIR}/gtkrc.sh"
+sed -i "s/titlebar_dark='#242424'/titlebar_dark='#1e222a'/g"                       "${WORK_DIR}/gtkrc.sh"
 
 echo "Mod SASS Color_Palette_default"
 #Colors
