@@ -10,7 +10,7 @@ import os
 import shutil
 import subprocess
 
-from scripts.ctp_colors import frappe, macchiato, mocha
+from scripts.ctp_colors import ctp_colors
 from scripts.recolor import recolor
 from scripts.var import clone_repo_dir, color_map, tmp_dir, work_dir
 
@@ -75,18 +75,8 @@ except FileExistsError:
 
 install_cmd: str = "./install.sh"
 
-if args.type == "mocha":
-    recolor(mocha)
-    install_cmd += " -c dark"
-elif args.type == "frappe":
-    recolor(frappe)
-    install_cmd += " -c dark"
-elif args.type == "macchiato":
-    recolor(macchiato)
-    install_cmd += " -c dark"
-else:
-    install_cmd += " -c light"
-install_cmd += " -l"
+recolor(ctp_colors[args.type])
+install_cmd += " -c dark -l"
 
 install_cmd += f" -t {color_map[args.accent]}"
 install_cmd += f" -s {args.size}"

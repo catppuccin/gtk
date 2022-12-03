@@ -75,3 +75,10 @@ macchiato = Color(
     mantle="#1e2030",
     crust="#181926"
 )
+
+ctp_colors = {
+    "latte": latte,
+    "mocha": mocha,
+    "frappe": frappe,
+    "macchiato": macchiato,
+}
