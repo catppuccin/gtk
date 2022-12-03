@@ -30,9 +30,34 @@ This GTK theme is based on the [Colloid](https://github.com/vinceliuice/Colloid-
 ### Installation
 
 1. Download and extract the **Catppuccin-Flavour.zip** file. or **Catppuccin-Flavour-Color.zip** file.
-[From Release](https://github.com/sadrach-cl/catppuccin-gtk/releases/) or you can install the theme from the [AUR](https://aur.archlinux.org/packages/catppuccin-gtk-theme)
+[From Release](https://github.com/sadrach-cl/catppuccin-gtk/releases/) or you can install the theme from the [AUR](#for-arch-linux-users)
 2. Move the theme folder to **".themes"** in your home directory. **(~/.themes)** (Skip this step if you are using the AUR package)
 3. Select **"Catppuccin-Flavour** or **Catppuccin-Flavour-Color"** via your desktop specific tweaks application (**gnome-tweaks** on Gnome3+).
+
+### For Flatpak users
+
+1. To give your Flatpaks access to your themes folder run:
+  ```bash
+  sudo flatpak override --filesystem=$HOME/.themes
+  ```
+2. To set the theme for all Flatpaks, replace `##theme##` with the name of the theme you want to use and run this command:
+  ```bash
+  sudo flatpak override --env=GTK_THEME=##theme##
+  ```
+3. For a more in depth tutorial see Hamza Algohary's tutorial on [It's Foss](https://itsfoss.com/flatpak-app-apply-theme/)
+
+### For Arch Linux users
+
+We have 4 AUR packages for all the 4 flavours of the theme:
+- [Latte](https://aur.archlinux.org/packages/catppuccin-gtk-theme-latte)
+- [Frappe](https://aur.archlinux.org/packages/catppuccin-gtk-theme-frappe)
+- [Macchiato](https://aur.archlinux.org/packages/catppuccin-gtk-theme-macchiato)
+- [Mocha](https://aur.archlinux.org/packages/catppuccin-gtk-theme-mocha)
+
+With your favourite AUR helper, install them:
+  ```bash
+  yay -S catppuccin-gtk-theme-mocha catppuccin-gtk-theme-macchiato catppuccin-gtk-theme-frappe catppuccin-gtk-theme-latte
+  ```
 
 ## Development
 
