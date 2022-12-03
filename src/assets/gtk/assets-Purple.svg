@@ -14,10 +14,10 @@
    <stop stop-color="#000000" stop-opacity=".87" offset="1"/>
   </linearGradient>
   <linearGradient id="color-primary-dark">
-   <stop stop-color="#ca9ee6" offset="1"/>
+   <stop stop-color="#AB47BC" offset="1"/>
   </linearGradient>
   <linearGradient id="color-primary-light">
-   <stop stop-color="#ca9ee6" offset="1"/>
+   <stop stop-color="#BA68C8" offset="1"/>
   </linearGradient>
   <linearGradient id="color-surface">
    <stop stop-color="#FFFFFF" offset="1"/>

@@ -1,0 +1,69 @@
+// Default Theme Color Palette
+
+// Red
+$red-light: #f5cdce;
+$red-dark: #e78284;
+
+// Pink
+$pink-light: #fbe3f4;
+$pink-dark: #f4b8e4;
+
+// Purple
+$purple-light: #ead8f5;
+$purple-dark: #ca9ee6;
+
+// Blue
+$blue-light: #d1ddf8;
+$blue-dark: #8caaee;
+
+// Teal
+$teal-light: #cde9e5;
+$teal-dark: #81c8be;
+
+// Green
+$green-light: #dbedd0;
+$green-dark: #a6d189;
+
+// Yellow
+$yellow-light: #f5e9d3;
+$yellow-dark: #e5c890;
+
+// Orange
+$orange-light: #f9d9c8;
+$orange-dark: #ef9f76;
+
+// Grey
+$grey-050: #dce0e8;
+$grey-100: #e6e9ef;
+$grey-150: #eff1f5;
+$grey-200: #ccd0da;
+$grey-250: #bcc0cc;
+$grey-300: #8c8fa1;
+$grey-350: #7c7f93;
+$grey-400: #6c6f85;
+$grey-450: #6c6f85;
+$grey-500: #626880;
+$grey-550: #51576d;
+$grey-600: #414559;
+$grey-650: #414559;
+$grey-700: #303446;
+$grey-750: #292c3c;
+$grey-800: #232634;
+$grey-850: #303446;
+$grey-900: #292c3c;
+$grey-950: #232634;
+
+// White
+$white: #ffffff;
+
+// Black
+$black: #232634;
+
+// Button
+$button-close: if($variant == "light", #e78284, #f5cdce);
+$button-max: if($variant == "light", #a6d189, #dbedd0);
+$button-min: if($variant == "light", #e5c890, #f5e9d3);
+
+// Theme
+$default-light: $purple-light;
+$default-dark: $purple-dark;

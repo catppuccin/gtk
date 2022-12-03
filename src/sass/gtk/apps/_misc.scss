@@ -50,6 +50,25 @@ button.flat.tilix-small-button {
   background-color: $titlebar-track-disabled;
 }
 
+/*********
+ * Meld *
+ ********/
+.meld-notebook {
+  &, > stack {
+    background: none;
+    border-radius: 0 0 $window-radius $window-radius;
+  }
+}
+
+.meld-notebook-child {
+  background-color: $base-alt;
+  border-radius: 0 0 $window-radius $window-radius;
+}
+
+statusbar.meld-status-bar {
+  background: none;
+}
+
 
 /***********
  * Eclipse *
@@ -121,8 +140,9 @@ tooltip.background.chromium { background-color: rgba($tooltip, 1); }
 /***********
  * Firefox *
  ***********/
-
 #MozillaGtkWidget {
+  decoration { border: none; }
+
   &.background headerbar.titlebar.default-decoration button.titlebutton {
     @extend %firefox_window_button;
   }

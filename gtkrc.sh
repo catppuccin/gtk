@@ -16,31 +16,31 @@ make_gtkrc() {
   if [[ "${color}" != '-Dark' ]]; then
     case "$theme" in
       '')
-        theme_color='#b4befe'
+        theme_color='#3c84f7'
         ;;
       -Purple)
-        theme_color='#ca9ee6'
+        theme_color='#AB47BC'
         ;;
       -Pink)
-        theme_color='#f4b8e4'
+        theme_color='#EC407A'
         ;;
       -Red)
-        theme_color='#e78284'
+        theme_color='#E53935'
         ;;
       -Orange)
-        theme_color='#ef9f76'
+        theme_color='#F57C00'
         ;;
       -Yellow)
-        theme_color='#e5c890'
+        theme_color='#FBC02D'
         ;;
       -Green)
-        theme_color='#a6d189'
+        theme_color='#4CAF50'
         ;;
       -Teal)
-        theme_color='#babbf1'
+        theme_color='#009688'
         ;;
       -Grey)
-        theme_color='#7c7f93'
+        theme_color='#464646'
         ;;
     esac
 
@@ -107,34 +107,161 @@ make_gtkrc() {
           ;;
       esac
     fi
+
+    if [[ "$ctype" == '-Catppuccin-mocha' ]]; then
+      case "$theme" in
+        '')
+          theme_color='#cba6f7'
+          ;;
+        -Purple)
+          theme_color='#cba6f7'
+          ;;
+        -Pink)
+          theme_color='#f5c2e7'
+          ;;
+        -Red)
+          theme_color='#f38ba8'
+          ;;
+        -Orange)
+          theme_color='#fab387'
+          ;;
+        -Yellow)
+          theme_color='#f9e2af'
+          ;;
+        -Green)
+          theme_color='#a6e3a1'
+          ;;
+        -Teal)
+          theme_color='#94e2d5'
+          ;;
+        -Grey)
+          theme_color='#a6adc8'
+          ;;
+      esac
+    fi
+    if [[ "$ctype" == '-Catppuccin-macchiato' ]]; then
+      case "$theme" in
+        '')
+          theme_color='#c6a0f6'
+          ;;
+        -Purple)
+          theme_color='#c6a0f6'
+          ;;
+        -Pink)
+          theme_color='#f5bde6'
+          ;;
+        -Red)
+          theme_color='#ed8796'
+          ;;
+        -Orange)
+          theme_color='#f5a97f'
+          ;;
+        -Yellow)
+          theme_color='#eed49f'
+          ;;
+        -Green)
+          theme_color='#a6da95'
+          ;;
+        -Teal)
+          theme_color='#8bd5ca'
+          ;;
+        -Grey)
+          theme_color='#a5adcb'
+          ;;
+      esac
+    fi
+
+    if [[ "$ctype" == '-Catppuccin-frappe' ]]; then
+      case "$theme" in
+        '')
+          theme_color='#ca9ee6'
+          ;;
+        -Purple)
+          theme_color='#ca9ee6'
+          ;;
+        -Pink)
+          theme_color='#f4b8e4'
+          ;;
+        -Red)
+          theme_color='#e78284'
+          ;;
+        -Orange)
+          theme_color='#ef9f76'
+          ;;
+        -Yellow)
+          theme_color='#e5c890'
+          ;;
+        -Green)
+          theme_color='#a6d189'
+          ;;
+        -Teal)
+          theme_color='#81c8be'
+          ;;
+        -Grey)
+          theme_color='#a5adce'
+          ;;
+      esac
+    fi
+     if [[ "$ctype" == '-Catppuccin-latte' ]]; then
+      case "$theme" in
+        '')
+          theme_color='#8839ef'
+          ;;
+        -Purple)
+          theme_color='#8839ef'
+          ;;
+        -Pink)
+          theme_color='#ea76cb'
+          ;;
+        -Red)
+          theme_color='#d20f39'
+          ;;
+        -Orange)
+          theme_color='#fe640b'
+          ;;
+        -Yellow)
+          theme_color='#df8e1d'
+          ;;
+        -Green)
+          theme_color='#40a02b'
+          ;;
+        -Teal)
+          theme_color='#179299'
+          ;;
+        -Grey)
+          theme_color='#6c6f85'
+          ;;
+      esac
+    fi
+
   else
     case "$theme" in
       '')
-        theme_color='#b4befe'
+        theme_color='#5b9bf8'
         ;;
       -Purple)
-        theme_color='#ca9ee6'
+        theme_color='#BA68C8'
         ;;
       -Pink)
-        theme_color='#f4b8e4'
+        theme_color='#F06292'
         ;;
       -Red)
-        theme_color='#e78284'
+        theme_color='#F44336'
         ;;
       -Orange)
-        theme_color='#ef9f76'
+        theme_color='#FB8C00'
         ;;
       -Yellow)
-        theme_color='#e5c890'
+        theme_color='#FFD600'
         ;;
       -Green)
-        theme_color='#a6d189'
+        theme_color='#66BB6A'
         ;;
       -Teal)
-        theme_color='#81c8be'
+        theme_color='#4DB6AC'
         ;;
       -Grey)
-        theme_color='#7c7f93'
+        theme_color='#DDDDDD'
         ;;
     esac
 
@@ -206,12 +333,12 @@ make_gtkrc() {
   if [[ "$blackness" == 'true' ]]; then
     case "$ctype" in
       '')
-        background_light='#eff1f5'
-        background_dark='#232634'
-        background_darker='#11111b'
+        background_light='#FFFFFF'
+        background_dark='#0F0F0F'
+        background_darker='#121212'
         background_alt='#212121'
-        titlebar_light='#dce0e8'
-        titlebar_dark='#232634'
+        titlebar_light='#F2F2F2'
+        titlebar_dark='#030303'
         ;;
       -Nord)
         background_light='#f8fafc'
@@ -233,12 +360,12 @@ make_gtkrc() {
   else
     case "$ctype" in
       '')
-        background_light='#eff1f5'
-        background_dark='#232634'
-        background_darker='#11111b'
+        background_light='#FFFFFF'
+        background_dark='#2C2C2C'
+        background_darker='#3C3C3C'
         background_alt='#464646'
-        titlebar_light='#dce0e8'
-        titlebar_dark='#232634'
+        titlebar_light='#F2F2F2'
+        titlebar_dark='#242424'
         ;;
       -Nord)
         background_light='#f8fafc'
@@ -256,6 +383,37 @@ make_gtkrc() {
         titlebar_light='#f0f1f4'
         titlebar_dark='#1f2029'
         ;;
+      -Catppuccin-mocha)
+        background_light='#cdd6f4'
+        background_dark='#1e1e2e'
+        background_darker='#181825'
+        background_alt='#6c7086'
+        titlebar_light='#cdd6f4'
+        titlebar_dark='#1e1e2e'
+        ;;
+      -Catppuccin-macchiato)
+        background_light='#cad3f5'
+        background_dark='#24273a'
+        background_darker='#1e2030'
+        background_alt='#6e738d'
+        titlebar_light='#cad3f5'
+        titlebar_dark='#24273a'
+        ;;
+      -Catppuccin-frappe)
+        background_light='#c6d0f5'
+        background_dark='#303446'
+        background_darker='#292c3c'
+        background_alt='#737994'
+        titlebar_light='#c6d0f5'
+        titlebar_dark='#303446'
+        ;;
+    -Catppuccin-latte)
+        background_light='#eff1f5' # Latte base 
+        background_dark='#5c5f77' # Latte subtext1 
+        background_darker='#4c4f69' # Latte text
+        background_alt='#9ca0b0' # Latte overlay0. Don't know where this is used. 
+        titlebar_light='#dce0e8' # Latte crust
+        titlebar_dark='#4c4f69' # Latte text
     esac
   fi
 
