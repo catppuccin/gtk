@@ -62,6 +62,8 @@ With your favourite AUR helper, install them:
 ## Development
 
 ** WIP **
+Clone the repo using git clone --recurse-submodules git@github.com:npv12/gtk.git
+python install.py --help for better info
 
 ## 💝 Thanks to
 

@@ -2,8 +2,7 @@ import os
 
 
 repo_dir = os.getcwd()
-clone_repo_dir = "colloid"
-work_dir = f"{repo_dir}/{clone_repo_dir}"
+work_dir = f"{repo_dir}/colloid"
 src_dir = f"{work_dir}/src"
 tmp_dir = f"{work_dir}/tmp"
 theme_name = "Catppuccin"
