@@ -96,6 +96,12 @@ try:
     filename = f"{theme_name}-Dark"
     if args.size == 'compact':
         filename += '-Compact'
+    try:
+        shutil.rmtree(args.dest + "/" + new_filename + '-hdpi')
+        shutil.rmtree(args.dest + "/" + new_filename + '-xhdpi')
+        shutil.rmtree(args.dest + "/" + new_filename)
+    except:
+        pass
     os.rename(args.dest + "/" + filename + '-hdpi', args.dest + "/" + new_filename + '-hdpi')
     os.rename(args.dest + "/" + filename + '-xhdpi', args.dest + "/" + new_filename + '-xhdpi')
     os.rename(args.dest + "/" + filename, args.dest + "/" + new_filename)
