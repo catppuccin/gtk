@@ -1,9 +1,9 @@
 from .ctp_colors import Color, latte
 from .utils import replacetext
-from .var import src_dir, theme_name, work_dir
+from .var import src_dir, theme_name, work_dir, def_accent_dark, def_accent_light, def_color_map
 
 
-def recolor_accent(color: Color, file: str, accent: str = "Blue"):
+def recolor_accent(color: Color, file: str, accent: str = "blue"):
     """
     Recolors the accent color in a file.
     color:
@@ -16,10 +16,10 @@ def recolor_accent(color: Color, file: str, accent: str = "Blue"):
     print(f"Recoloring accent for {file}...")
 
     # Recolor as per accent for light. Hard code it as latte
-    replacetext(file, "#3c84f7", latte.color_map[accent])
+    replacetext(file, def_accent_light[def_color_map[accent]], latte.color_map[accent])
 
     # Recolor as per base for dark theme.
-    replacetext(file, "#5b9bf8", color.color_map[accent])
+    replacetext(file, def_accent_dark[def_color_map[accent]], color.color_map[accent])
 
 
 def recolor(color: Color, accent: str):

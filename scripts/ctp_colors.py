@@ -2,7 +2,7 @@ class Color:
     def __init__(self, rosewater, flamingo, pink, mauve, red, maroon, peach,
                  yellow, green, teal, sky, sapphire, blue, lavender,
                  text, subtext0, subtext1, overlay0, overlay1, overlay2,
-                 surface0, surface1, surface2, base, mantle, crust, extra_colors=None):
+                 surface0, surface1, surface2, base, mantle, crust):
 
         self.rosewater = rosewater  # All accent colours
         self.flamingo = flamingo
@@ -31,9 +31,6 @@ class Color:
         self.base = base
         self.mantle = mantle
         self.crust = crust
-
-        # Array of extra colors defined outside of catppuccin that maybe required
-        self.extra_colors = extra_colors
 
         self.color_map = {}
         self.__create_color_map__()
