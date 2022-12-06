@@ -18,6 +18,8 @@ class Color:
         self.sapphire = sapphire
         self.blue = blue
         self.lavender = lavender
+        self.white = text
+        self.black = base
 
         self.text = text            # All remaining colors
         self.subtext0 = subtext0
@@ -44,7 +46,7 @@ class Color:
     def get_accent(self):
         accent = {}
         for key, value in self.color_map.items():
-            if key not in ['text', 'subtext0', 'subtext1', 'overlay0', 'overlay1', 'overlay2', 'surface0', 'surface1', 'surface2', 'base', 'mantle', 'crust']:
+            if key not in ['white', 'black', 'text', 'subtext0', 'subtext1', 'overlay0', 'overlay1', 'overlay2', 'surface0', 'surface1', 'surface2', 'base', 'mantle', 'crust']:
                 accent[key] = value
 
         return accent

@@ -16,7 +16,8 @@ def create_theme(type: str, accent: str, dest: str = tmp_dir, link: bool = False
 
     # Recolor colloid wrt our selection like mocha. latte
     recolor(ctp_colors[type], accent)
-    install_cmd: str = f"./install.sh -c dark -s {size} -n {name} -d {dest} -t {def_color_map[accent]}"
+    theme_style: str = "light" if type == "latte" else "dark"
+    install_cmd: str = f"./install.sh -c {theme_style} -s {size} -n {name} -d {dest} -t {def_color_map[accent]}"
     if tweaks:
         install_cmd += f" --tweaks {' '.join([tweak for tweak in tweaks])}"
 
@@ -29,10 +30,10 @@ def create_theme(type: str, accent: str, dest: str = tmp_dir, link: bool = False
     try:
         # Rename colloid generated files as per catppuccin
         new_filename = f"{theme_name}-{type.capitalize()}-{size.capitalize()}-{accent.capitalize()}"
-        if def_color_map[accent] == 'default':
-            filename = f"{theme_name}-Dark"
-        else:
-            filename = f"{theme_name}-{def_color_map[accent].capitalize()}-Dark"
+        filename = f"{theme_name}"
+        if def_color_map[accent] != 'default':
+            filename += f"-{def_color_map[accent].capitalize()}"
+        filename += f"-{theme_style.capitalize()}"
         if size == 'compact':
             filename += '-Compact'
         try:
