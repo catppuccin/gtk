@@ -4,7 +4,7 @@ import os
 repo_dir = os.getcwd()
 work_dir = f"{repo_dir}/colloid"
 src_dir = f"{work_dir}/src"
-tmp_dir = f"{work_dir}/tmp"
+tmp_dir = f"{repo_dir}/releases"
 theme_name = "Catppuccin"
 
 # Map catppuccin colors to colloid ones
@@ -23,12 +23,12 @@ def_color_map = {
     'green': 'green',
     'teal': 'teal',
     'sky': 'teal',
-    'sapphire': 'blue',
-    'blue': 'blue',
-    'lavender': 'blue'}
+    'sapphire': 'default',
+    'blue': 'default',
+    'lavender': 'default'}
 
 def_accent_light = {
-    'blue': '#3c84f7',
+    'default': '#3c84f7',
     'purple': '#AB47BC',
     'pink':  '#EC407A',
     'red': '#E53935',
@@ -39,7 +39,7 @@ def_accent_light = {
 }
 
 def_accent_dark = {
-    'blue': '#5b9bf8',
+    'default': '#5b9bf8',
     'purple': '#BA68C8',
     'pink':  '#F06292',
     'red': '#F44336',
