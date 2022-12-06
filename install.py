@@ -32,10 +32,10 @@ parser.add_argument('--name', '-n',
 parser.add_argument('--accent', '-a',
                     metavar='Accent of the theme',
                     type=str,
-                    default="lavender",
+                    default="blue",
                     dest="accent",
-                    choices=['lavender', 'mauve', 'pink', 'peach',
-                             'red', 'yellow', 'green', 'teal'],
+                    choices=['rosewater', 'flamingo', 'pink', 'mauve', 'red', 'maroon', 'peach',
+                             'yellow', ' green', 'teal', 'sky', 'sapphire', 'blue', 'lavender'],
                     help='Accent of the theme')
 
 parser.add_argument("--size", "-s",
@@ -71,12 +71,9 @@ except FileExistsError:
 
 install_cmd: str = "./install.sh"
 
-recolor(ctp_colors[args.type])
-install_cmd += " -c dark -l"
+recolor(ctp_colors[args.type], args.accent)
+install_cmd += f" -c dark -l -s {args.size} -n {args.name}"
 
-install_cmd += f" -t {color_map[args.accent]}"
-install_cmd += f" -s {args.size}"
-install_cmd += f" -n {args.name}"
 if args.tweaks:
     install_cmd += f" --tweaks {' '.join([tweak for tweak in args.tweaks])}"
 
