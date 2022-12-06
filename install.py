@@ -91,7 +91,6 @@ reset_cmd: str = "git reset --hard HEAD"
 subprocess.call(reset_cmd, shell=True)
 
 try:
-    print("Trying to rename the files")
     new_filename = f"{theme_name}-{args.type.capitalize()}-{args.size.capitalize()}-{args.accent.capitalize()}"
     filename = f"{theme_name}-Dark"
     if args.size == 'compact':
@@ -107,6 +106,22 @@ try:
     os.rename(args.dest + "/" + filename, args.dest + "/" + new_filename)
 except Exception as e:
     print("Failed to rename the files due to:", e)
+
+
+try:
+    # Attempte relinking all the libadvaita files
+    subprocess.call('rm -rf "${HOME}/.config/gtk-4.0/"{assets,gtk.css,gtk-dark.css}', shell=True)
+    HOME = os.path.expanduser('~')
+
+    try:
+        os.makedirs(f"{HOME}/.config/gtk-4.0")
+    except:
+        pass
+    os.symlink(f"{args.dest + '/' + new_filename}/gtk-4.0/assets", f"{HOME}/.config/gtk-4.0/assets")   
+    os.symlink(f"{args.dest + '/' + new_filename}/gtk-4.0/gtk.css", f"{HOME}/.config/gtk-4.0/gtk.css") 
+    os.symlink(f"{args.dest + '/' + new_filename}/gtk-4.0/gtk-dark.css", f"{HOME}/.config/gtk-4.0/gtk-dark.css")                                     
+except Exception as e:
+    print("Failed to link due to :", e)
 
 if args.clean:
     shutil.rmtree(work_dir)
