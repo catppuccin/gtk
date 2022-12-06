@@ -12,7 +12,7 @@ import subprocess
 
 from scripts.ctp_colors import ctp_colors
 from scripts.recolor import recolor
-from scripts.var import color_map, tmp_dir, work_dir
+from scripts.var import theme_name, tmp_dir, work_dir
 
 
 parser = argparse.ArgumentParser(description='Catppuccin theme')
@@ -29,13 +29,20 @@ parser.add_argument('--name', '-n',
                     dest="name",
                     help='Name of the theme to apply. Defaults to Catppuccin')
 
+parser.add_argument('--dest', '-d',
+                    metavar='destination',
+                    type=str,
+                    default=tmp_dir,
+                    dest="dest",
+                    help='Destination of the files')
+
 parser.add_argument('--accent', '-a',
                     metavar='Accent of the theme',
                     type=str,
                     default="blue",
                     dest="accent",
                     choices=['rosewater', 'flamingo', 'pink', 'mauve', 'red', 'maroon', 'peach',
-                             'yellow', ' green', 'teal', 'sky', 'sapphire', 'blue', 'lavender'],
+                             'yellow', 'green', 'teal', 'sky', 'sapphire', 'blue', 'lavender'],
                     help='Accent of the theme')
 
 parser.add_argument("--size", "-s",
@@ -72,7 +79,7 @@ except FileExistsError:
 install_cmd: str = "./install.sh"
 
 recolor(ctp_colors[args.type], args.accent)
-install_cmd += f" -c dark -l -s {args.size} -n {args.name}"
+install_cmd += f" -c dark -s {args.size} -n {args.name} -d {args.dest}"
 
 if args.tweaks:
     install_cmd += f" --tweaks {' '.join([tweak for tweak in args.tweaks])}"
@@ -82,6 +89,18 @@ subprocess.call(install_cmd, shell=True)
 
 reset_cmd: str = "git reset --hard HEAD"
 subprocess.call(reset_cmd, shell=True)
+
+try:
+    print("Trying to rename the files")
+    new_filename = f"{theme_name}-{args.type.capitalize()}-{args.size.capitalize()}-{args.accent.capitalize()}"
+    filename = f"{theme_name}-Dark"
+    if args.size == 'compact':
+        filename += '-Compact'
+    os.rename(args.dest + "/" + filename + '-hdpi', args.dest + "/" + new_filename + '-hdpi')
+    os.rename(args.dest + "/" + filename + '-xhdpi', args.dest + "/" + new_filename + '-xhdpi')
+    os.rename(args.dest + "/" + filename, args.dest + "/" + new_filename)
+except Exception as e:
+    print("Failed to rename the files due to:", e)
 
 if args.clean:
     shutil.rmtree(work_dir)
