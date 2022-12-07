@@ -60,14 +60,37 @@ With your favourite AUR helper, install them:
   ```
 
 ## Development
+**Note**: Ensure that you have atleast python version 3.10 installed
 
-** WIP **
-Clone the repo using git clone --recurse-submodules git@github.com:npv12/gtk.git
-python install.py --help for better info
+Clone the repository using
+```bash
+git clone --recurse-submodules git@github.com:npv12/gtk.git
+```
+To check out the install script, run 
+```bash
+python install.py --help
+```
 
+You can install any theme like the following example
+```bash
+python install.py mocha -a sky --tweaks rimless -d ~/.themes
+```
+You can build all possible variations of the theme possible using the following command and it will output it to releases folder in the root of the repo.
+```bash
+python build.py
+```
+
+A few important notes to keep in mind
+
+* `recolor.py` handles all changes that needs to be done to colloid to ensure it generated catppuccin colors. If vinceliuice changes anything in his theme in future, that is where you must change
+* `ctp_colors.py` includes all catppuccin colors and accent. If any colors beside accent is included, ensure it is changed in `get_accent` as well. 
+* `var.py` includes all different variables that you can tinker around as per your personal requirements. 
+* `create_theme.py` consists of a wrapper that will recolor the colloid theme, install it as per the args provided and rename it accordingly. 
+ 
 ## 💝 Thanks to
 
 -   [sadrach-cl](https://github.com/sadrach-cl)
+-   [npv12](https://github.com/npv12)
 
 &nbsp;
 

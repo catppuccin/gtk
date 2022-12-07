@@ -29,7 +29,7 @@ parser.add_argument('--dest', '-d',
                     type=str,
                     default=tmp_dir,
                     dest="dest",
-                    help='Destination of the files')
+                    help='Destination of the files. defaults to releases folder inside the root')
 
 parser.add_argument('--accent', '-a',
                     metavar='Accent of the theme',
@@ -38,7 +38,7 @@ parser.add_argument('--accent', '-a',
                     dest="accent",
                     choices=['rosewater', 'flamingo', 'pink', 'mauve', 'red', 'maroon', 'peach',
                              'yellow', 'green', 'teal', 'sky', 'sapphire', 'blue', 'lavender'],
-                    help='Accent of the theme')
+                    help="Accent of the theme. Can include 'rosewater', 'flamingo', 'pink', 'mauve', 'red', 'maroon', 'peach', 'yellow', 'green', 'teal', 'sky', 'sapphire', 'blue', 'lavender'")
 
 parser.add_argument("--size", "-s",
                     metavar='Size of the theme',
@@ -46,7 +46,7 @@ parser.add_argument("--size", "-s",
                     default="compact",
                     dest="size",
                     choices=['standard', 'compact'],
-                    help='Size variant of the theme')
+                    help='Size variant of the theme. Can be standard or compact')
 
 parser.add_argument('--tweaks',
                     metavar='Colloid specific tweaks',
@@ -55,7 +55,7 @@ parser.add_argument('--tweaks',
                     nargs='+',
                     dest="tweaks",
                     choices=['black', 'rimless', 'normal'],
-                    help='Some specifc tweaks. like black, rimless, normal buttons etc.')
+                    help='Some specifc tweaks. like black, rimless, normal buttons')
 
 parser.add_argument('--link',
                     help='Link advaita themes to our catppuccin theme',
