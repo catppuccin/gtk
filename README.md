@@ -65,6 +65,9 @@ With your favourite AUR helper, install them:
 Clone the repository using
 ```bash
 git clone --recurse-submodules git@github.com:npv12/gtk.git
+virtualenv -p python3 venv  # to be created only once and only if you need a virtual env
+source venv/bin/activate  
+pip install -r requirements.txt
 ```
 To check out the install script, run 
 ```bash
@@ -83,7 +86,6 @@ python build.py
 A few important notes to keep in mind
 
 * `recolor.py` handles all changes that needs to be done to colloid to ensure it generated catppuccin colors. If vinceliuice changes anything in his theme in future, that is where you must change
-* `ctp_colors.py` includes all catppuccin colors and accent. If any colors beside accent is included, ensure it is changed in `get_accent` as well. 
 * `var.py` includes all different variables that you can tinker around as per your personal requirements. 
 * `create_theme.py` consists of a wrapper that will recolor the colloid theme, install it as per the args provided and rename it accordingly. 
  
