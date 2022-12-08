@@ -7,7 +7,7 @@ from scripts.recolor import recolor
 from scripts.var import def_color_map, theme_name, tmp_dir, work_dir
 
 
-def create_theme(type: str, accent: str, dest: str = tmp_dir, link: bool = False, name: str = theme_name, size: str = "compact", tweaks=['rimless']) -> str:
+def create_theme(type: str, accent: str, dest: str = tmp_dir, link: bool = False, name: str = theme_name, size: str = "standard", tweaks=[]) -> str:
 
     try:
         os.makedirs(tmp_dir)  # Create our temporary directory
