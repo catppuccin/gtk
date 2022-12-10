@@ -7,9 +7,9 @@ ctp_colors = {
     "macchiato": Flavour.macchiato()
 }
 
-def get_all_accent(color):
+def get_all_accent(flavor):
         accent = {}
-        for key, value in color.__dict__.items():
+        for key, value in flavor.__dict__.items():
             if key not in ['white', 'black', 'text', 'subtext0', 'subtext1', 'overlay0', 'overlay1', 'overlay2', 'surface0', 'surface1', 'surface2', 'base', 'mantle', 'crust']:
                 accent[key] = value
 

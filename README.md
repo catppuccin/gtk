@@ -64,7 +64,7 @@ With your favourite AUR helper, install them:
 
 Clone the repository using
 ```bash
-git clone --recurse-submodules git@github.com:npv12/gtk.git
+git clone --recurse-submodules git@github.com:catppuccin/gtk.git
 virtualenv -p python3 venv  # to be created only once and only if you need a virtual env
 source venv/bin/activate  
 pip install -r requirements.txt
