@@ -12,6 +12,11 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
+      - name: Checkout Colliod Theme
+        uses: actions/checkout@v3
+        with:
+          repository: vinceliuice/Colloid-gtk-theme
+          path: colliod
       - uses: actions/setup-python@v4
         with:
           python-version: '3.11'
