@@ -13,7 +13,7 @@ def create_theme(type: str, accent: str, dest: str = tmp_dir, link: bool = False
         os.makedirs(tmp_dir)  # Create our temporary directory
     except FileExistsError:
         pass
-
+    
     # Recolor colloid wrt our selection like mocha. latte
     recolor(ctp_colors[type], accent)
     theme_style: str = "light" if type == "latte" else "dark"
