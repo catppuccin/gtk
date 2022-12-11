@@ -91,8 +91,16 @@ A few important notes to keep in mind
  
 ## 💝 Thanks to
 
--   [sadrach-cl](https://github.com/sadrach-cl)
--   [npv12](https://github.com/npv12)
+**Current maintainers**
+- [npv12](https://github.com/npv12)
+- [ghostx31](https://github.com/ghostx31)
+- [Syndrizzle](https://github.com/Syndrizzle)
+
+**Contributions**
+- [rubyowo](https://github.com/rubyowo) - for working on the build and CI script
+
+**Previous maintainer(s)**
+- [sadrach-cl](https://github.com/sadrach-cl)
 
 &nbsp;
 
