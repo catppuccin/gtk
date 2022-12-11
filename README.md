@@ -12,7 +12,7 @@
 </p>
 
 <p align="center">
-  <img src="https://raw.githubusercontent.com/catppuccin/gtk/main/assets/demo2.png"/>
+  <img src="assets/res.webp"/>
 </p>
 
 # About
