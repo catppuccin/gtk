@@ -10,10 +10,10 @@ from scripts.var import def_color_map, theme_name, tmp_dir, work_dir
 def create_theme(type: str, accent: str, dest: str = tmp_dir, link: bool = False, name: str = theme_name, size: str = "standard", tweaks=[]) -> str:
 
     try:
-        os.makedirs(tmp_dir)  # Create our temporary directory
+        os.makedirs(dest)  # Create our destination directory
     except FileExistsError:
         pass
-    
+
     # Recolor colloid wrt our selection like mocha. latte
     recolor(ctp_colors[type], accent)
     theme_style: str = "light" if type == "latte" else "dark"
@@ -29,7 +29,8 @@ def create_theme(type: str, accent: str, dest: str = tmp_dir, link: bool = False
 
     try:
         # Rename colloid generated files as per catppuccin
-        new_filename = f"{theme_name}-{type.capitalize()}-{size.capitalize()}-{accent.capitalize()}"
+        new_filename = dest + \
+            f"/{theme_name}-{type.capitalize()}-{size.capitalize()}-{accent.capitalize()}"
         filename = f"{theme_name}"
         if def_color_map[accent] != 'default':
             filename += f"-{def_color_map[accent].capitalize()}"
@@ -37,16 +38,16 @@ def create_theme(type: str, accent: str, dest: str = tmp_dir, link: bool = False
         if size == 'compact':
             filename += '-Compact'
         try:
-            shutil.rmtree(dest + "/" + new_filename + '-hdpi')
-            shutil.rmtree(dest + "/" + new_filename + '-xhdpi')
-            shutil.rmtree(dest + "/" + new_filename)
+            shutil.rmtree(new_filename + '-hdpi')
+            shutil.rmtree(new_filename + '-xhdpi')
+            shutil.rmtree(new_filename)
         except:
             pass
         os.rename(dest + "/" + filename + '-hdpi',
-                  dest + "/" + new_filename + '-hdpi')
+                  new_filename + '-hdpi')
         os.rename(dest + "/" + filename + '-xhdpi',
-                  dest + "/" + new_filename + '-xhdpi')
-        os.rename(dest + "/" + filename, dest + "/" + new_filename)
+                  new_filename + '-xhdpi')
+        os.rename(dest + "/" + filename, new_filename)
         print("Successfully renamed file")
     except Exception as e:
         print("Failed to rename the files due to:", e)
@@ -63,11 +64,11 @@ def create_theme(type: str, accent: str, dest: str = tmp_dir, link: bool = False
                 os.makedirs(f"{HOME}/.config/gtk-4.0")
             except FileExistsError:
                 pass
-            os.symlink(f"{dest + '/' + new_filename}/gtk-4.0/assets",
+            os.symlink(f"{new_filename}/gtk-4.0/assets",
                        f"{HOME}/.config/gtk-4.0/assets")
-            os.symlink(f"{dest + '/' + new_filename}/gtk-4.0/gtk.css",
+            os.symlink(f"{new_filename}/gtk-4.0/gtk.css",
                        f"{HOME}/.config/gtk-4.0/gtk.css")
-            os.symlink(f"{dest + '/' + new_filename}/gtk-4.0/gtk-dark.css",
+            os.symlink(f"{new_filename}/gtk-4.0/gtk-dark.css",
                        f"{HOME}/.config/gtk-4.0/gtk-dark.css")
             print("Successfully created symlinks for libadvaita")
         except Exception as e:
