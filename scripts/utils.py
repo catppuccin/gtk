@@ -38,9 +38,10 @@ def zipdir(path, ziph):
                                        os.path.join(path, '..')))
 
 
-def zip_multiple_folders(dir_list, zip_name):
+def zip_multiple_folders(dir_list, zip_name, remove = True):
     zipf = zipfile.ZipFile(zip_name, 'w', zipfile.ZIP_DEFLATED)
     for dir in dir_list:
         zipdir(dir, zipf)
-        shutil.rmtree(dir)
+        if remove:
+            shutil.rmtree(dir)
     zipf.close()

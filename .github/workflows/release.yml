@@ -21,7 +21,7 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
       - name: Generate themes
-        run: python ./build.py
+        run: python ./install.py all -a all --zip
       - name: Add zips to release
         uses: softprops/action-gh-release@v1
         with:
