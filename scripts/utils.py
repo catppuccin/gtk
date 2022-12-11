@@ -1,4 +1,7 @@
+import os
 import re
+import shutil
+import zipfile
 
 
 def replacetext(file_name: str, search_text: str, replace_text: str) -> None:
@@ -20,3 +23,25 @@ def replacetext(file_name: str, search_text: str, replace_text: str) -> None:
         f.seek(0)
         f.write(file)
         f.truncate()
+
+
+def zipdir(path, ziph):
+    """
+    Takes in a oath of a directory and zips it in a ziph.
+    Util to zip a directory.
+    Thanks https://stackoverflow.com/questions/46229764/python-zip-multiple-directories-into-one-zip-file
+    """
+    for root, _, files in os.walk(path):
+        for file in files:
+            ziph.write(os.path.join(root, file),
+                       os.path.relpath(os.path.join(root, file),
+                                       os.path.join(path, '..')))
+
+
+def zip_multiple_folders(dir_list, zip_name, remove = True):
+    zipf = zipfile.ZipFile(zip_name, 'w', zipfile.ZIP_DEFLATED)
+    for dir in dir_list:
+        zipdir(dir, zipf)
+        if remove:
+            shutil.rmtree(dir)
+    zipf.close()
