@@ -29,10 +29,9 @@ This GTK theme is based on the [Colloid](https://github.com/vinceliuice/Colloid-
 
 ### Installation
 
-1. Download and extract the **Catppuccin-Flavour.zip** file. or **Catppuccin-Flavour-Color.zip** file.
-[From Release](https://github.com/sadrach-cl/catppuccin-gtk/releases/) or you can install the theme from the [AUR](#for-arch-linux-users)
+1. Download and extract the theme zip from [releases](https://github.com/catppuccin/gtk/releases/) or you can install the theme from the [AUR](#for-arch-linux-users).
 2. Move the theme folder to **".themes"** in your home directory. **(~/.themes)** (Skip this step if you are using the AUR package)
-3. Select **"Catppuccin-Flavour** or **Catppuccin-Flavour-Color"** via your desktop specific tweaks application (**gnome-tweaks** on Gnome3+).
+3. Select the downloaded theme via your desktop specific tweaks application (**gnome-tweaks** on Gnome 3+).
 
 ### For Flatpak users
 
@@ -60,6 +59,7 @@ With your favourite AUR helper, install them:
   ```
 
 ## Development
+
 **Note**: Ensure that you have atleast python version 3.10 installed
 
 Clone the repository using
