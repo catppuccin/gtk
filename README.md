@@ -78,9 +78,9 @@ You can install any theme like the following example
 ```bash
 python install.py mocha -a sky --tweaks rimless -d ~/.themes
 ```
-You can build all possible variations of the theme possible using the following command and it will output it to releases folder in the root of the repo.
+You can build all possible variations of the theme possible using the following command and it will install it tot releases folder
 ```bash
-python build.py
+python install.py all -a all
 ```
 
 A few important notes to keep in mind
