@@ -88,11 +88,11 @@ def recolor(flavor, accent: str):
         replacetext(f"{src_dir}/sass/_color-palette-default.scss",
                     "grey-800: #212121", f"grey-800: #{Flavour.mocha().crust.hex}")  # E $panel-solid;p
         replacetext(f"{src_dir}/sass/_color-palette-default.scss",
-                    "grey-850: #121212", f"grey-850: #{Flavour.mocha().surface1.hex}")  # H Darknes
+                    "grey-850: #121212", f"grey-850: #020202")  # H Darknes
         replacetext(f"{src_dir}/sass/_color-palette-default.scss",
-                    "grey-900: #0F0F0F", f"grey-900: #{Flavour.mocha().base.hex}")  # G Darknes
+                    "grey-900: #0F0F0F", f"grey-900: #010101")  # G Darknes
         replacetext(f"{src_dir}/sass/_color-palette-default.scss",
-                    "grey-950: #030303", f"grey-950: #{Flavour.mocha().crust.hex}")  # F Darknes
+                    "grey-950: #030303", f"grey-950: #000000")  # F Darknes
     else:
         replacetext(f"{src_dir}/sass/_color-palette-default.scss",
                     "grey-050: #FAFAFA", f"grey-050: #{flavor.overlay2.hex}")
@@ -113,11 +113,11 @@ def recolor(flavor, accent: str):
         replacetext(f"{src_dir}/sass/_color-palette-default.scss",
                     "grey-800: #212121", f"grey-800: #{flavor.crust.hex}")  # E $panel-solid;p
         replacetext(f"{src_dir}/sass/_color-palette-default.scss",
-                    "grey-850: #121212", f"grey-850: #{flavor.surface1.hex}")  # H Darknes
+                    "grey-850: #121212", f"grey-850: #020202")  # H Darknes
         replacetext(f"{src_dir}/sass/_color-palette-default.scss",
-                    "grey-900: #0F0F0F", f"grey-900: #{flavor.base.hex}")  # G Darknes
+                    "grey-900: #0F0F0F", f"grey-900: #010101")  # G Darknes
         replacetext(f"{src_dir}/sass/_color-palette-default.scss",
-                    "grey-950: #030303", f"grey-950: #{flavor.crust.hex}")  # F Darknes
+                    "grey-950: #030303", f"grey-950: #000000")  # F Darknes
 
     # Buttons
     replacetext(f"{src_dir}/sass/_color-palette-default.scss",

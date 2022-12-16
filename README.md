@@ -83,7 +83,7 @@ To check out the install script, run
 ```bash
 python install.py --help
 ```
-> Tip: `./install.sh` allows the following options:
+> Tip: `python install.py --help` allows the following options:
 
 ```
 Compulsory field        Specify color variant(s) [mocha|frappe|macchiato|latte|all]
