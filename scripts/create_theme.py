@@ -20,7 +20,6 @@ def create_theme(types: List[str], accents: List[str], dest: str = tmp_dir, link
     for type in types:
         for accent in accents:
             # Recolor colloid wrt our selection like mocha. latte
-            print(type, accent)
             recolor(ctp_colors[type], accent)
             theme_style: str = "light" if type == "latte" else "dark"
             install_cmd: str = f"./install.sh -c {theme_style} -s {size} -n {name} -d {dest} -t {def_color_map[accent]}"
@@ -28,10 +27,9 @@ def create_theme(types: List[str], accents: List[str], dest: str = tmp_dir, link
                 install_cmd += f" --tweaks {' '.join([tweak for tweak in tweaks])}"
 
             os.chdir(work_dir)
-            # Install the theme globally for you
-            subprocess.call(install_cmd, shell=True)
-            # reset colloid repo to original state
-            subprocess.call("git reset --hard HEAD", shell=True)
+            subprocess.call("./build.sh", shell=True) # Rebuild all scss
+            subprocess.call(install_cmd, shell=True) # Install the theme globally for you
+            subprocess.call("git reset --hard HEAD", shell=True)  # reset colloid repo to original state
 
             try:
                 # Rename colloid generated files as per catppuccin
