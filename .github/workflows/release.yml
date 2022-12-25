@@ -23,7 +23,7 @@ jobs:
       - name: Install colloid specific deps
         run: sudo apt-get install sassc
       - name: Generate themes
-        run: python ./install.py all -a all --zip
+        run: python ./install.py all -a all --zip -d $PWD/release
       - name: Add zips to release
         uses: softprops/action-gh-release@v1
         with:

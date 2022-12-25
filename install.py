@@ -6,10 +6,11 @@ Usage:
     python install.py [options]
 """
 import argparse
+import os
 
 from scripts.ctp_colors import ctp_colors, get_all_accent
 from scripts.create_theme import create_theme
-from scripts.var import theme_name, tmp_dir
+from scripts.var import theme_name
 
 parser = argparse.ArgumentParser(description="Catppuccin theme")
 parser.add_argument("flavor",
@@ -29,7 +30,6 @@ parser.add_argument("--name", "-n",
 parser.add_argument("--dest", "-d",
                     metavar="destination",
                     type=str,
-                    default=tmp_dir,
                     dest="dest",
                     help="Destination of the files. defaults to releases folder inside the root")
 
@@ -87,5 +87,12 @@ if "all" in args.accent:
 else:
     accents = args.accent
 
-filename = create_theme(flavors, accents, args.dest,
+if args.dest:
+    dest = args.dest
+elif os.geteuid() == 0: # Sudo
+    dest = "/usr/share/themes"
+else:
+    dest = os.path.expanduser('~') + "/.themes"
+
+filename = create_theme(flavors, accents, dest,
                         args.link, args.name, args.size, args.tweaks, args.zip)

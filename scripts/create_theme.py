@@ -6,10 +6,10 @@ from typing import List
 from scripts.ctp_colors import ctp_colors
 from scripts.recolor import recolor
 from scripts.utils import zip_multiple_folders
-from scripts.var import def_color_map, theme_name, tmp_dir, work_dir
+from scripts.var import def_color_map, theme_name, work_dir
 
 
-def create_theme(types: List[str], accents: List[str], dest: str = tmp_dir, link: bool = False, 
+def create_theme(types: List[str], accents: List[str], dest: str, link: bool = False, 
     name: str = theme_name, size: str = "standard", tweaks=[], zip = False) -> None:
 
     try:
