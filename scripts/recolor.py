@@ -1,32 +1,23 @@
 from catppuccin import Flavour
 
-from .utils import replacetext
+from .utils import replacetext, replaceAllText
 from .var import (def_accent_dark, def_accent_light, def_color_map, src_dir,
                   theme_name, work_dir)
 
 
-def recolor_accent(flavor, file: str, accent: str = "blue"):
+def recolor_accent(flavor, accent: str = "blue"):
     """
     Recolors the accent color in a file.
     flavor:
         The flavor to recolor to. Like mocha, frappe, latte, etc.
-    file:
-        The file to modify
     accent:
         The accent color to replace. Defaults to Blue
     """
-    print(f"Recoloring accent for {file}...")
-    # Recolor as per accent for light. Hard code it as latte
-    for key, value in Flavour.latte().__dict__.items():
-        if key == accent:
-            replacetext(
-                file, def_accent_light[def_color_map[accent]], value.hex)
-
-    # Recolor as per base for dark theme.
-    for key, value in flavor.__dict__.items():
-        if key == accent:
-            replacetext(
-                file, def_accent_dark[def_color_map[accent]], value.hex)
+    print(f"Recoloring all accents")
+    replaceAllText(  # Recolor as per base for dark theme.
+        work_dir, def_accent_dark[def_color_map[accent]], flavor.__dict__[accent].hex)
+    replaceAllText(  # Recolor as per accent for light. Hard code it as latte
+        work_dir, def_accent_light[def_color_map[accent]], Flavour.latte().__dict__[accent].hex)
 
 
 def recolor(flavor, accent: str):
@@ -36,10 +27,10 @@ def recolor(flavor, accent: str):
     print("Recoloring to suit catppuccin theme")
     replacetext(f"{work_dir}/install.sh", "Colloid", theme_name)
 
-    print("MOD: Gtkrc.sh")
-    # Recolor as per accent for dark
-    recolor_accent(flavor, f"{work_dir}/gtkrc.sh", accent)
+    print("Recoloring accents")
+    recolor_accent(flavor, accent)
 
+    print("MOD: Gtkrc.sh")
     replacetext(f"{work_dir}/gtkrc.sh", "background_light='#FFFFFF'",
                 f"background_light='#{Flavour.latte().base.hex}'")  # use latte_base for background_light
     replacetext(f"{work_dir}/gtkrc.sh", "background_dark='#0F0F0F'",
@@ -64,8 +55,6 @@ def recolor(flavor, accent: str):
                 "titlebar_dark='#242424'", f"titlebar_dark='#{flavor.crust.hex}'")
 
     print("Mod SASS Color_Palette_default")
-    recolor_accent(
-        flavor, f"{src_dir}/sass/_color-palette-default.scss", accent)
 
     # Greys
     if flavor == Flavour.latte():  # Hardcode till someone smarter than me comes along
@@ -126,16 +115,3 @@ def recolor(flavor, accent: str):
                 "button-max: #38c76a", f"button-max: #{flavor.green.hex}")
     replacetext(f"{src_dir}/sass/_color-palette-default.scss",
                 "button-min: #fdbe04", f"button-min: #{flavor.yellow.hex}")
-
-    print("Mod Accent Cinnamon")
-    recolor_accent(flavor, f"{src_dir}/assets/cinnamon/make-assets.sh", accent)
-
-    print("Mod Accent Gnome shell")
-    recolor_accent(
-        flavor, f"{src_dir}/assets/gnome-shell/make-assets.sh", accent)
-
-    print("Mod Accent GTK")
-    recolor_accent(flavor, f"{src_dir}/assets/gtk/make-assets.sh", accent)
-
-    print("Mod Accent GTK 2.0")
-    recolor_accent(flavor, f"{src_dir}/assets/gtk-2.0/make-assets.sh", accent)

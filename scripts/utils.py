@@ -4,25 +4,38 @@ import shutil
 import zipfile
 
 
-def replacetext(file_name: str, search_text: str, replace_text: str) -> None:
+def replacetext(filepath: str, search_text: str, replace_text: str) -> None:
     """
     Helper function to replace the color in the file.
     Can be used to replace any text in the file.
 
     Args:
-        file_name (str): The file to replace the text in.
+        filepath (str): The file to replace the text in.
         search_text (str): The text to be replaced.
         replace_text (str): The text to replace with.
 
     Returns:
         None
     """
-    with open(file_name, 'r+') as f:
-        file = f.read()
-        file = re.sub(search_text, replace_text, file)
-        f.seek(0)
-        f.write(file)
-        f.truncate()
+
+    try:
+        with open(filepath, 'r+') as f:
+            file = f.read()
+            file = re.sub(search_text, replace_text, file)
+            f.seek(0)
+            f.write(file)
+            f.truncate()
+    except Exception as e:
+        print(f"Failed to recolor {filepath}")
+
+
+def replaceAllText(start_dir: str, search_text: str, replace_text: str) -> None:
+    for path, _, files in os.walk(os.path.abspath(start_dir)):
+        for filename in files:
+            filepath = os.path.join(path, filename)
+            if filepath.endswith(".png"):
+                continue
+            replacetext(filepath, search_text, replace_text)
 
 
 def zipdir(path, ziph):
@@ -38,7 +51,7 @@ def zipdir(path, ziph):
                                        os.path.join(path, '..')))
 
 
-def zip_multiple_folders(dir_list, zip_name, remove = True):
+def zip_multiple_folders(dir_list, zip_name, remove=True):
     zipf = zipfile.ZipFile(zip_name, 'w', zipfile.ZIP_DEFLATED)
     for dir in dir_list:
         zipdir(dir, zipf)
