@@ -7,10 +7,11 @@ Usage:
 """
 import argparse
 import os
+import subprocess
 
 from scripts.ctp_colors import ctp_colors, get_all_accent
 from scripts.create_theme import create_theme
-from scripts.var import theme_name
+from scripts.var import theme_name, work_dir
 
 parser = argparse.ArgumentParser(description="Catppuccin theme")
 parser.add_argument("flavor",
@@ -93,6 +94,9 @@ elif os.geteuid() == 0: # Sudo
     dest = "/usr/share/themes"
 else:
     dest = os.path.expanduser('~') + "/.themes"
+
+if not os.listdir(work_dir):
+    subprocess.call("git submodule update --init --recursive", shell=True)
 
 filename = create_theme(flavors, accents, dest,
                         args.link, args.name, args.size, args.tweaks, args.zip)
