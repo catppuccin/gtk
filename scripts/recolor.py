@@ -108,6 +108,12 @@ def recolor(flavor, accent: str):
         replacetext(f"{src_dir}/sass/_color-palette-default.scss",
                     "grey-950: #030303", f"grey-950: #000000")  # F Darknes
 
+        # Make the hover black
+        replacetext(f"{src_dir}/sass/gtk/_common-3.0.scss",
+                    "if\(\$colorscheme != 'dracula', white, rgba\(black, 0\.5\)\)", "rgba(black, 0.5)")
+        replacetext(f"{src_dir}/sass/gtk/_common-4.0.scss",
+                    "if\(\$colorscheme != 'dracula', white, rgba\(black, 0\.5\)\)", "rgba(black, 0.5)")
+
     # Buttons
     replacetext(f"{src_dir}/sass/_color-palette-default.scss",
                 "button-close: #fd5f51", f"button-close: #{flavor.red.hex}")
