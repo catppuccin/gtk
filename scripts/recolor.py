@@ -33,26 +33,45 @@ def recolor(flavor, accent: str):
     print("MOD: Gtkrc.sh")
     replacetext(f"{work_dir}/gtkrc.sh", "background_light='#FFFFFF'",
                 f"background_light='#{Flavour.latte().base.hex}'")  # use latte_base for background_light
-    replacetext(f"{work_dir}/gtkrc.sh", "background_dark='#0F0F0F'",
-                f"background_dark='#{flavor.base.hex}'")
-    replacetext(f"{work_dir}/gtkrc.sh", "background_darker='#121212'",
-                f"background_darker='#{flavor.mantle.hex}'")
-    replacetext(f"{work_dir}/gtkrc.sh",
-                "background_alt='#212121'", f"background_alt='#{flavor.crust.hex}'")
     replacetext(f"{work_dir}/gtkrc.sh", "titlebar_light='#F2F2F2'",
                 f"titlebar_light='#{Flavour.latte().crust.hex}'")  # use latte_crust for titlebar_light
-    replacetext(f"{work_dir}/gtkrc.sh", "titlebar_dark='#030303'",
-                f"titlebar_dark='#{flavor.crust.hex}'")
-    replacetext(f"{work_dir}/gtkrc.sh", "background_dark='#2C2C2C'",
-                f"background_dark='#{flavor.base.hex}'")
-    replacetext(f"{work_dir}/gtkrc.sh", "background_darker='#3C3C3C'",
-                f"background_darker='#{flavor.mantle.hex}'")
-    replacetext(f"{work_dir}/gtkrc.sh",
-                "background_alt='#464646'", f"background_alt='#{flavor.crust.hex}'")
     replacetext(f"{work_dir}/gtkrc.sh",
                 "titlebar_light='#F2F2F2'", f"titlebar_light='#{Flavour.latte().crust.hex}'")
-    replacetext(f"{work_dir}/gtkrc.sh",
-                "titlebar_dark='#242424'", f"titlebar_dark='#{flavor.crust.hex}'")
+
+    if flavor == Flavour.latte():
+        replacetext(f"{work_dir}/gtkrc.sh", "background_dark='#0F0F0F'",
+                    f"background_dark='#{Flavour.mocha().base.hex}'")
+        replacetext(f"{work_dir}/gtkrc.sh", "background_darker='#121212'",
+                    f"background_darker='#{Flavour.mocha().mantle.hex}'")
+        replacetext(f"{work_dir}/gtkrc.sh",
+                    "background_alt='#212121'", f"background_alt='#{Flavour.mocha().crust.hex}'")
+        replacetext(f"{work_dir}/gtkrc.sh", "titlebar_dark='#030303'",
+                    f"titlebar_dark='#{Flavour.mocha().crust.hex}'")
+        replacetext(f"{work_dir}/gtkrc.sh", "background_dark='#2C2C2C'",
+                    f"background_dark='#{Flavour.mocha().base.hex}'")
+        replacetext(f"{work_dir}/gtkrc.sh", "background_darker='#3C3C3C'",
+                    f"background_darker='#{Flavour.mocha().mantle.hex}'")
+        replacetext(f"{work_dir}/gtkrc.sh",
+                    "background_alt='#464646'", f"background_alt='#{Flavour.mocha().crust.hex}'")
+        replacetext(f"{work_dir}/gtkrc.sh",
+                    "titlebar_dark='#242424'", f"titlebar_dark='#{Flavour.mocha().crust.hex}'")
+    else:
+        replacetext(f"{work_dir}/gtkrc.sh", "background_dark='#0F0F0F'",
+                    f"background_dark='#{flavor.base.hex}'")
+        replacetext(f"{work_dir}/gtkrc.sh", "background_darker='#121212'",
+                    f"background_darker='#{flavor.mantle.hex}'")
+        replacetext(f"{work_dir}/gtkrc.sh",
+                    "background_alt='#212121'", f"background_alt='#{flavor.crust.hex}'")
+        replacetext(f"{work_dir}/gtkrc.sh", "titlebar_dark='#030303'",
+                    f"titlebar_dark='#{flavor.crust.hex}'")
+        replacetext(f"{work_dir}/gtkrc.sh", "background_dark='#2C2C2C'",
+                    f"background_dark='#{flavor.base.hex}'")
+        replacetext(f"{work_dir}/gtkrc.sh", "background_darker='#3C3C3C'",
+                    f"background_darker='#{flavor.mantle.hex}'")
+        replacetext(f"{work_dir}/gtkrc.sh",
+                    "background_alt='#464646'", f"background_alt='#{flavor.crust.hex}'")
+        replacetext(f"{work_dir}/gtkrc.sh",
+                    "titlebar_dark='#242424'", f"titlebar_dark='#{flavor.crust.hex}'")
 
     print("Mod SASS Color_Palette_default")
 
