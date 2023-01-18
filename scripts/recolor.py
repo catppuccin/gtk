@@ -20,6 +20,52 @@ def recolor_accent(flavor, accent: str = "blue"):
         work_dir, def_accent_light[def_color_map[accent]], Flavour.latte().__dict__[accent].hex)
 
 
+def recolor_firefox(flavor, accent: str = "blue"):
+    """
+    Recolor the custom gnomish firefox to catpuccin color
+    """
+    firefox_color_file_dark = f"{src_dir}/other/firefox/chrome/Colloid/colors/dark.css"
+    firefox_color_file_light = f"{src_dir}/other/firefox/chrome/Colloid/colors/light.css"
+
+    replacetext(firefox_color_file_light, "2e3436", flavor.base.hex)
+    replacetext(firefox_color_file_light, "fafafa", Flavour.latte().base.hex)
+    replacetext(firefox_color_file_light, "f2f2f2", flavor.crust.hex)
+    replacetext(firefox_color_file_light, "303030", Flavour.mocha().base.hex)
+    replacetext(firefox_color_file_light, "ffffff", flavor.base.hex)
+    replacetext(firefox_color_file_light, "5b9bf8", flavor.surface0.hex)
+    replacetext(firefox_color_file_light, "3c84f7", flavor.__dict__[accent].hex)
+    replacetext(firefox_color_file_light, "dedede", flavor.surface1.hex)
+    replacetext(firefox_color_file_light, "f0f0f0", flavor.surface0.hex)
+    replacetext(firefox_color_file_light, "FAFAFA", flavor.surface1.hex)
+    replacetext(firefox_color_file_light, "fafafa", flavor.surface0.hex)
+    replacetext(firefox_color_file_light, "323232", flavor.mantle.hex)
+    replacetext(firefox_color_file_light, "d5d0cc", flavor.subtext1.hex)
+
+    # Buttons
+    replacetext(firefox_color_file_light, "fd5f51", flavor.red.hex)
+    replacetext(firefox_color_file_light, "38c76a", flavor.green.hex)
+    replacetext(firefox_color_file_light, "fdbe04", flavor.yellow.hex)
+
+    # Dark
+    replacetext(firefox_color_file_dark, "eeeeee", flavor.base.hex)
+    replacetext(firefox_color_file_dark, "2c2c2c", Flavour.mocha().base.hex)
+    replacetext(firefox_color_file_dark, "242424", flavor.crust.hex)
+    replacetext(firefox_color_file_dark, "ffffff", Flavour.latte().base.hex)
+    replacetext(firefox_color_file_dark, "383838", flavor.base.hex)
+    replacetext(firefox_color_file_dark, "3584e4", flavor.surface0.hex)
+    replacetext(firefox_color_file_dark, "78aeed", flavor.__dict__[accent].hex)
+    replacetext(firefox_color_file_dark, "363636", flavor.surface1.hex)
+    replacetext(firefox_color_file_dark, "404040", flavor.surface0.hex)
+    replacetext(firefox_color_file_dark, "4F4F4F", flavor.surface1.hex)
+    replacetext(firefox_color_file_dark, "444444", flavor.surface0.hex)
+    replacetext(firefox_color_file_dark, "323232", flavor.mantle.hex)
+    replacetext(firefox_color_file_dark, "919191", flavor.subtext1.hex)
+
+    # Buttons
+    replacetext(firefox_color_file_dark, "fd5f51", flavor.red.hex)
+    replacetext(firefox_color_file_dark, "38c76a", flavor.green.hex)
+    replacetext(firefox_color_file_dark, "fdbe04", flavor.yellow.hex)
+
 def recolor(flavor, accent: str):
     """
     Recolor the theme. currently hard code it frappe
@@ -29,6 +75,7 @@ def recolor(flavor, accent: str):
 
     print("Recoloring accents")
     recolor_accent(flavor, accent)
+    recolor_firefox(flavor, accent)    
 
     print("MOD: Gtkrc.sh")
     replacetext(f"{work_dir}/gtkrc.sh", "background_light='#FFFFFF'",

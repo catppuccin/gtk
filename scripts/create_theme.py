@@ -6,7 +6,7 @@ from typing import List
 from scripts.ctp_colors import ctp_colors
 from scripts.recolor import recolor
 from scripts.utils import zip_multiple_folders
-from scripts.var import def_color_map, theme_name, work_dir
+from scripts.var import def_color_map, repo_dir, src_dir, theme_name, work_dir
 
 
 def create_theme(types: List[str], accents: List[str], dest: str, link: bool = False, 
@@ -25,7 +25,8 @@ def create_theme(types: List[str], accents: List[str], dest: str, link: bool = F
             install_cmd: str = f"./install.sh -c {theme_style} -s {size} -n {name} -d {dest} -t {def_color_map[accent]}"
             if tweaks:
                 install_cmd += f" --tweaks {' '.join([tweak for tweak in tweaks])}"
-
+            shutil.rmtree(f"{repo_dir}/chrome", ignore_errors=True)
+            shutil.copytree(f"{src_dir}/other/firefox/chrome", f"{repo_dir}/chrome")
             os.chdir(work_dir)
             subprocess.call("./build.sh", shell=True) # Rebuild all scss
             subprocess.call(install_cmd, shell=True) # Install the theme globally for you
