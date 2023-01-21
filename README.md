@@ -45,11 +45,39 @@ With your favourite AUR helper, install them:
   ```bash
   yay -S catppuccin-gtk-theme-mocha catppuccin-gtk-theme-macchiato catppuccin-gtk-theme-frappe catppuccin-gtk-theme-latte
   ```
+### For Nix users
+The [catppuccin-gtk](https://github.com/NixOS/nixpkgs/blob/master/pkgs/data/themes/catppuccin-gtk/default.nix) nixpkg packages all four of the flavours.
+The default flavour is `frappe` and the default accent is `blue`. To override them use:
+```nix
+    pkgs.catppuccin-gtk.override {
+        accents = ["pink"] # You can specify multiple here
+        variant = "macchiato"
+    }
+```
+To use it in home-manager:
+```nix
+{
+  pkgs,
+  config,
+  ...
+}: {
+  config.gtk = {
+    enable = true;
+    theme = {
+      name = "Catppuccin-Macchiato-Standard-Pink-Dark";
+      package = pkgs.catppuccin-gtk.override {
+        accents = ["pink"];
+        variant = "macchiato";
+      };
+    };
+  };
+}
+```
 
 ### For gtk-4.0 users
 
 To theme gtk-4.0 applications you have to manually symlink the `~/.config/gtk-4.0/` to the themes folder. Use the following commands
-```
+```bash
 mkdir -p "${HOME}/.config/gtk-4.0"
 ln -sf "${THEME_DIR}/gtk-4.0/assets" "${HOME}/.config/gtk-4.0/assets"
 ln -sf "${THEME_DIR}/gtk-4.0/gtk.css" "${HOME}/.config/gtk-4.0/gtk.css"
