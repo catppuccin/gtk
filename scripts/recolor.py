@@ -1,8 +1,7 @@
 from catppuccin import Flavour
 
 from .utils import replacetext, replaceAllText
-from .var import (def_accent_dark, def_accent_light, def_color_map, src_dir,
-                  theme_name, work_dir)
+from .var import (def_accent_dark, def_accent_light, def_color_map, src_dir, work_dir)
 
 
 def recolor_accent(flavor, accent: str = "blue"):
@@ -71,10 +70,9 @@ def recolor(flavor, accent: str):
     Recolor the theme. currently hard code it frappe
     """
     print("Recoloring to suit catppuccin theme")
-    replacetext(f"{work_dir}/install.sh", "Colloid", theme_name)
-
     print("Recoloring accents")
     recolor_accent(flavor, accent)
+    print("Recoloring firefox")
     recolor_firefox(flavor, accent)    
 
     print("MOD: Gtkrc.sh")
