@@ -25,7 +25,7 @@ def replacetext(filepath: str, search_text: str, replace_text: str) -> None:
             f.seek(0)
             f.write(file)
             f.truncate()
-    except Exception as e:
+    except Exception:
         print(f"Failed to recolor {filepath}")
 
 
