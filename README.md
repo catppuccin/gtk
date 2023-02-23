@@ -46,27 +46,35 @@ With your favourite AUR helper, install them:
   yay -S catppuccin-gtk-theme-mocha catppuccin-gtk-theme-macchiato catppuccin-gtk-theme-frappe catppuccin-gtk-theme-latte
   ```
 ### For Nix users
-The [catppuccin-gtk](https://github.com/NixOS/nixpkgs/blob/master/pkgs/data/themes/catppuccin-gtk/default.nix) nixpkg packages all four of the flavours.
-The default flavour is `frappe` and the default accent is `blue`. To override them use:
+The [catppuccin-gtk](https://github.com/NixOS/nixpkgs/blob/master/pkgs/data/themes/catppuccin-gtk/default.nix) package in Nixpkgs allows you to specify the accents, size, tweaks and variant (flavour) of the theme by overriding the package.
+
+By default, the variant is `frappe`, the accent is `blue`, the size is `standard`, and no tweaks are enabled. To change them, override the package. A list of valid choices are available in the package definition [here](https://github.com/NixOS/nixpkgs/blob/7ce8e7c4cf90492a631e96bcfe70724104914381/pkgs/data/themes/catppuccin-gtk/default.nix#L16).
+
+Example:
 ```nix
-    pkgs.catppuccin-gtk.override {
-        accents = ["pink"] # You can specify multiple here
-        variant = "macchiato"
-    }
+pkgs.catppuccin-gtk.override {
+  accents = [ "pink" ]; # You can specify multiple accents here to output multiple themes 
+  size = "compact";
+  tweaks = [ "rimless" "black" ]; # You can also specify multiple tweaks here
+  variant = "macchiato";
+}
 ```
+
 To use it in home-manager:
 ```nix
+# home.nix
 {
   pkgs,
-  config,
   ...
 }: {
-  config.gtk = {
+  gtk = {
     enable = true;
     theme = {
-      name = "Catppuccin-Macchiato-Standard-Pink-Dark";
+      name = "Catppuccin-Macchiato-Compact-Pink-Dark";
       package = pkgs.catppuccin-gtk.override {
-        accents = ["pink"];
+        accents = [ "pink" ];
+        size = "compact";
+        tweaks = [ "rimless" "black" ];
         variant = "macchiato";
       };
     };
