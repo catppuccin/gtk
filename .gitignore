@@ -2,6 +2,7 @@ pkgs/
 *-temp.scss
 __pycache__
 venv/
+.venv
 
 # Releases folder
 releases
