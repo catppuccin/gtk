@@ -76,6 +76,13 @@ parser.add_argument("--zip",
                     action=argparse.BooleanOptionalAction,
                     dest="zip")
 
+parser.add_argument("--recreate-asset",
+                    help="Recreate assets for xfwm4 and such",
+                    type=bool,
+                    default=True,
+                    action=argparse.BooleanOptionalAction,
+                    dest="rec_asset")
+
 args = parser.parse_args()
 
 if "all" in args.flavor:
@@ -99,4 +106,4 @@ if not os.listdir(work_dir):
     subprocess.call("git submodule update --init --recursive", shell=True)
 
 filename = create_theme(flavors, accents, dest,
-                        args.link, args.name, args.size, args.tweaks, args.zip)
+                        args.link, args.name, args.size, args.tweaks, args.zip, args.rec_asset)
