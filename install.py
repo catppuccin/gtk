@@ -79,7 +79,7 @@ parser.add_argument("--zip",
 parser.add_argument("--recreate-asset",
                     help="Recreate assets for xfwm4 and such",
                     type=bool,
-                    default=True,
+                    default=False,
                     action=argparse.BooleanOptionalAction,
                     dest="rec_asset")
 

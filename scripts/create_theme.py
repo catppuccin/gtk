@@ -21,7 +21,7 @@ def create_theme(types: List[str], accents: List[str], dest: str, link: bool = F
     for type in types:
         if recreate_assets:
             recreate_xfwm4_assets(type)
-            
+
         for accent in accents:
             # Recolor colloid wrt our selection like mocha. latte
             recolor(ctp_colors[type], accent)
@@ -39,8 +39,8 @@ def create_theme(types: List[str], accents: List[str], dest: str, link: bool = F
             try:
                 # Rename colloid generated files as per catppuccin
                 new_filename = dest + \
-                    f"/{theme_name}-{type.capitalize()}-{size.capitalize()}-{accent.capitalize()}-{theme_style.title()}"
-                filename = f"{theme_name}"
+                    f"/{name}-{type.capitalize()}-{size.capitalize()}-{accent.capitalize()}-{theme_style.title()}"
+                filename = f"{name}"
                 if def_color_map[accent] != 'default':
                     filename += f"-{def_color_map[accent].capitalize()}"
                 filename += f"-{theme_style.capitalize()}"
