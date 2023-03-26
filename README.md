@@ -148,11 +148,16 @@ python install.py all -a all
 
 ## Development
 
+You need to install the following packages to build the theme. Check with your distribution for the package names in the repository
+- `sassc`
+- `inkscape`
+- `optipng`
+
 A few important notes to keep in mind
 
-* `recolor.py` handles all changes that needs to be done to colloid to ensure it generated catppuccin colors. If vinceliuice changes anything in his theme in future, that is where you must change
-* `var.py` includes all different variables that you can tinker around as per your personal requirements. 
-* `create_theme.py` consists of a wrapper that will recolor the colloid theme, install it as per the args provided and rename it accordingly. 
+- `recolor.py` handles all changes that needs to be done to colloid to ensure it generated catppuccin colors. If vinceliuice changes anything in his theme in future, that is where you must change
+- `var.py` includes all different variables that you can tinker around as per your personal requirements. 
+- `create_theme.py` consists of a wrapper that will recolor the colloid theme, install it as per the args provided and rename it accordingly. 
  
 ## 💝 Thanks to
 
