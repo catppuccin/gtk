@@ -11,7 +11,7 @@ from scripts.var import def_color_map, repo_dir, src_dir, theme_name, work_dir
 
 
 def create_theme(types: List[str], accents: List[str], dest: str, link: bool = False, 
-    name: str = theme_name, size: str = "standard", tweaks=[], zip = False, recreate_assets = True) -> None:
+    name: str = theme_name, size: str = "standard", tweaks=[], zip = False, recreate_assets = False) -> None:
 
     try:
         os.makedirs(dest)  # Create our destination directory
@@ -19,11 +19,12 @@ def create_theme(types: List[str], accents: List[str], dest: str, link: bool = F
         pass
 
     for type in types:
+        if recreate_assets:
+            recreate_xfwm4_assets(type)
+            
         for accent in accents:
             # Recolor colloid wrt our selection like mocha. latte
             recolor(ctp_colors[type], accent)
-            if recreate_assets:
-                recreate_xfwm4_assets(type)
             theme_style: str = "light" if type == "latte" else "dark"
             install_cmd: str = f"./install.sh -c {theme_style} -s {size} -n {name} -d {dest} -t {def_color_map[accent]}"
             if tweaks:
