@@ -23,7 +23,7 @@ jobs:
       - name: Install colloid specific dependencies
         run: sudo apt update && sudo apt install -y sassc inkscape optipng
       - name: Generate themes
-        run: python ./install.py all -a all --zip -d $PWD/releases
+        run: python ./install.py all -a all --zip -d $PWD/releases --recreate-asset
       - name: Add zips to release
         uses: softprops/action-gh-release@v1
         with:
