@@ -20,8 +20,8 @@ jobs:
           cache: 'pip'
       - name: Install dependencies
         run: pip install -r requirements.txt
-      - name: Install colloid specific deps
-        run: sudo apt-get install sassc
+      - name: Install colloid specific dependencies
+        run: sudo apt update && sudo apt install -y sassc inkscape optipng
       - name: Generate themes
         run: python ./install.py all -a all --zip -d $PWD/releases
       - name: Add zips to release
