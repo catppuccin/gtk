@@ -6,7 +6,7 @@ from typing import List
 from scripts.ctp_colors import ctp_colors
 from scripts.patches import recreate_xfwm4_assets
 from scripts.recolor import recolor
-from scripts.utils import zip_multiple_folders
+from scripts.utils import replacetext, zip_multiple_folders
 from scripts.var import def_color_map, repo_dir, src_dir, theme_name, work_dir
 
 
@@ -57,6 +57,7 @@ def create_theme(types: List[str], accents: List[str], dest: str, link: bool = F
                 os.rename(dest + "/" + filename + '-xhdpi',
                         new_filename + '-xhdpi')
                 os.rename(dest + "/" + filename, new_filename)
+                replacetext(new_filename + '/index.theme', filename, new_filename.split("/")[-1])
                 print("Successfully renamed file")
             except Exception as e:
                 print("Failed to rename the files due to:", e)
