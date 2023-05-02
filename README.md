@@ -128,7 +128,7 @@ Compulsory field        Specify color variant(s) [mocha|frappe|macchiato|latte|a
 -a, --accent VARIANT... Specify theme color variant(s) [rosewater|flamingo|pink|mauve|red|maroon|peach|yellow|green|teal|sky|
                         sapphire|blue|lavender|all] (Default: blue)
 -s, --size VARIANT...   Specify size variant [standard|compact] (Default: standard variant)
--l, --libadwaita        Link installed gtk-4.0 theme to config folder for all libadwaita app use this theme
+-l, --link              Link installed gtk-4.0 theme to config folder for all libadwaita app use this theme
 --zip                   Zips up the finally produced themes. 
 --tweaks                Specify versions for tweaks [black|rimless|normal]
                         1. black:    Blackness color version
