@@ -59,7 +59,7 @@ parser.add_argument("--tweaks",
                     default=[],
                     nargs="+",
                     dest="tweaks",
-                    choices=["black", "rimless", "normal"],
+                    choices=["black", "rimless", "normal", "float"],
                     help="Some specifc tweaks. like black, rimless, normal buttons")
 
 parser.add_argument("-l", "--link",

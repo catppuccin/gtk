@@ -130,10 +130,11 @@ Compulsory field        Specify color variant(s) [mocha|frappe|macchiato|latte|a
 -s, --size VARIANT...   Specify size variant [standard|compact] (Default: standard variant)
 -l, --link              Link installed gtk-4.0 theme to config folder for all libadwaita app use this theme
 --zip                   Zips up the finally produced themes. 
---tweaks                Specify versions for tweaks [black|rimless|normal]
+--tweaks                Specify versions for tweaks [black|rimless|normal|float]
                         1. black:    Blackness color version
                         2. rimless:  Remove the 1px border about windows and menus
                         3. normal:   Normal windows button style (titlebuttons: max/min/close)
+                        4. float:    Floating gnome-shell panel style
 -h, --help              Show help
 ```
 You can install any theme like the following example
