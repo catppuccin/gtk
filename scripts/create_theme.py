@@ -39,7 +39,7 @@ def create_theme(types: List[str], accents: List[str], dest: str, link: bool = F
             try:
                 # Rename colloid generated files as per catppuccin
                 new_filename = dest + \
-                    f"/{name}-{type.capitalize()}-{size.capitalize()}-{accent.capitalize()}-{theme_style.title()}"
+                    f"/{name}-{type.capitalize()}-{size.capitalize()}-{accent.capitalize()}-{theme_style}"
                 filename = f"{name}"
                 if def_color_map[accent] != 'default':
                     filename += f"-{def_color_map[accent].capitalize()}"
