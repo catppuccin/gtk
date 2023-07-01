@@ -29,7 +29,7 @@ This GTK theme is based on the [Colloid](https://github.com/vinceliuice/Colloid-
 
 ### Installation
 
-1. Download and extract the theme zip from [releases](https://github.com/catppuccin/gtk/releases/) or you can install the theme from the [AUR](#for-arch-linux-users).
+1. Download and extract the theme zip from [releases](https://github.com/catppuccin/gtk/releases/).
 2. Move the theme folder to **".themes"** in your home directory. **(~/.themes)** (Skip this step if you are using the AUR package)
 3. Select the downloaded theme via your desktop specific tweaks application (**gnome-tweaks** on Gnome 3+).
 
@@ -82,9 +82,9 @@ To use it in home-manager:
 }
 ```
 
-### For gtk-4.0 users
+### For GTK 4 users
 
-To theme gtk-4.0 applications you have to manually symlink the `~/.config/gtk-4.0/` to the themes folder. Use the following commands
+To theme GTK 4 applications you have to manually symlink the `~/.config/gtk-4.0/` to the themes folder. Use the following commands
 ```bash
 mkdir -p "${HOME}/.config/gtk-4.0"
 ln -sf "${THEME_DIR}/gtk-4.0/assets" "${HOME}/.config/gtk-4.0/assets"
@@ -106,7 +106,7 @@ ln -sf "${THEME_DIR}/gtk-4.0/gtk-dark.css" "${HOME}/.config/gtk-4.0/gtk-dark.css
 
 ### Using the script
 
-**Note**: Ensure that you have atleast python version 3.10 installed
+**Note**: Ensure that you have at least Python version 3.10 installed
 
 Clone the repository using
 ```bash
