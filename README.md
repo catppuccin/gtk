@@ -102,7 +102,7 @@ ln -sf "${THEME_DIR}/gtk-4.0/gtk-dark.css" "${HOME}/.config/gtk-4.0/gtk-dark.css
   ```bash
   sudo flatpak override --env=GTK_THEME=##theme##
   ```
-3. For a more in depth tutorial see Hamza Algohary's tutorial on [It's Foss](https://itsfoss.com/flatpak-app-apply-theme/)
+3. For a more in depth tutorial see Hamza Algohary's tutorial on [It's FOSS](https://itsfoss.com/flatpak-app-apply-theme/)
 
 ### Using the script
 
