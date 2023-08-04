@@ -70,7 +70,7 @@ To use it in home-manager:
   gtk = {
     enable = true;
     theme = {
-      name = "Catppuccin-Macchiato-Compact-Pink-dark";
+      name = "Catppuccin-Macchiato-Compact-Pink-Dark";
       package = pkgs.catppuccin-gtk.override {
         accents = [ "pink" ];
         size = "compact";
