@@ -53,7 +53,7 @@ By default, the variant is `frappe`, the accent is `blue`, the size is `standard
 Example:
 ```nix
 pkgs.catppuccin-gtk.override {
-  accents = [ "pink" ]; # You can specify multiple accents here to output multiple themes 
+  accents = [ "pink" ]; # You can specify multiple accents here to output multiple themes
   size = "compact";
   tweaks = [ "rimless" "black" ]; # You can also specify multiple tweaks here
   variant = "macchiato";
@@ -104,6 +104,28 @@ ln -sf "${THEME_DIR}/gtk-4.0/gtk-dark.css" "${HOME}/.config/gtk-4.0/gtk-dark.css
   ```
 3. For a more in depth tutorial see Hamza Algohary's tutorial on [It's FOSS](https://itsfoss.com/flatpak-app-apply-theme/)
 
+### Handling GTK theme installation from window manager
+
+1. Install unzip and curl.
+2. Go to your window manager config file.
+3. Add an entrance to the config file to be executed when your window manager is loaded.
+    - i3/sway example:
+    ```
+    # catppuccin
+    set $ctp-version v0.6.1
+    exec_always if [ ! -e ~/.themes/Catppuccin-Frappe-Standard-Lavender-dark ]; then \
+      mkdir -p ~/.themes \
+      && curl -L https://github.com/catppuccin/gtk/releases/download/$ctp-version/Catppuccin-Frappe-Standard-Lavender-dark.zip -o ~/.themes/catppuccin.zip \
+      && unzip ~/.themes/catppuccin.zip -d ~/.themes/ \
+      && rm -rf ~/.themes/catppuccin.zip; fi
+    ```
+    >Note: The previous example execute that script every time i3/sway is reloaded.
+4. Set the GTK_THEME environment variable:
+```sh
+export GTK_THEME='Catppuccin-Frappe-Standard-Lavender-dark:dark'
+```
+>Note: In order to update the theme's version, just change the variable `$ctp-version`.
+
 ### Using the script
 
 **Note**: Ensure that you have at least Python version 3.10 installed
@@ -112,10 +134,10 @@ Clone the repository using
 ```bash
 git clone --recurse-submodules git@github.com:catppuccin/gtk.git
 virtualenv -p python3 venv  # to be created only once and only if you need a virtual env
-source venv/bin/activate  
+source venv/bin/activate
 pip install -r requirements.txt
 ```
-To check out the install script, run 
+To check out the install script, run
 ```bash
 python install.py --help
 ```
@@ -129,7 +151,7 @@ Compulsory field        Specify color variant(s) [mocha|frappe|macchiato|latte|a
                         sapphire|blue|lavender|all] (Default: blue)
 -s, --size VARIANT...   Specify size variant [standard|compact] (Default: standard variant)
 -l, --link              Link installed gtk-4.0 theme to config folder for all libadwaita app use this theme
---zip                   Zips up the finally produced themes. 
+--zip                   Zips up the finally produced themes.
 --tweaks                Specify versions for tweaks [black|rimless|normal|float]
                         1. black:    Blackness color version
                         2. rimless:  Remove the 1px border about windows and menus
@@ -157,9 +179,9 @@ You need to install the following packages to build the theme. Check with your d
 A few important notes to keep in mind
 
 - `recolor.py` handles all changes that needs to be done to colloid to ensure it generated catppuccin colors. If vinceliuice changes anything in his theme in future, that is where you must change
-- `var.py` includes all different variables that you can tinker around as per your personal requirements. 
-- `create_theme.py` consists of a wrapper that will recolor the colloid theme, install it as per the args provided and rename it accordingly. 
- 
+- `var.py` includes all different variables that you can tinker around as per your personal requirements.
+- `create_theme.py` consists of a wrapper that will recolor the colloid theme, install it as per the args provided and rename it accordingly.
+
 ## 💝 Thanks to
 
 **Current maintainers**
