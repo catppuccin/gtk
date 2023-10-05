@@ -25,7 +25,6 @@ This GTK theme is based on the [Colloid](https://github.com/vinceliuice/Colloid-
 
 -   GTK `>=3.20`
 -   `gnome-themes-extra` (or `gnome-themes-standard`)
--   Murrine engine
 
 ### Installation
 
