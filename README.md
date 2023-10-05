@@ -108,9 +108,10 @@ ln -sf "${THEME_DIR}/gtk-4.0/gtk-dark.css" "${HOME}/.config/gtk-4.0/gtk-dark.css
 
 **Note**: Ensure that you have at least Python version 3.10 installed
 
-Clone the repository using
+Set up the installer using
 ```bash
 git clone --recurse-submodules git@github.com:catppuccin/gtk.git
+cd gtk
 virtualenv -p python3 venv  # to be created only once and only if you need a virtual env
 source venv/bin/activate  
 pip install -r requirements.txt
