@@ -133,13 +133,12 @@ Set up the installer using
 ```bash
 git clone --recurse-submodules git@github.com:catppuccin/gtk.git
 cd gtk
-virtualenv -p python3 venv  # to be created only once and only if you need a virtual env
-source venv/bin/activate
-pip install -r requirements.txt
+python3 -m venv venv  # to be created only once and only if you need a virtual env
+./venv/bin/pip install -r requirements.txt
 ```
 To check out the install script, run
 ```bash
-python install.py --help
+./venv/bin/python install.py --help
 ```
 > Tip: `python install.py --help` allows the following options:
 
@@ -161,12 +160,12 @@ Compulsory field        Specify color variant(s) [mocha|frappe|macchiato|latte|a
 ```
 You can install any theme like the following example
 ```bash
-python install.py mocha -a sky --tweaks rimless -d ~/.themes
+./venv/bin/python install.py mocha -a sky --tweaks rimless -d ~/.themes
 
 ```
 You can build all possible variations of the theme possible using the following command and it will install it to releases folder
 ```bash
-python install.py all -a all
+./venv/bin/python install.py all -a all
 ```
 
 ## Development
