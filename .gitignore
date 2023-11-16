@@ -3,6 +3,9 @@ pkgs/
 __pycache__
 venv/
 .venv
+bin/
+lib*/
+*.cfg
 
 # Releases folder
 releases
