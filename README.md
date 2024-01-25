@@ -51,12 +51,18 @@ By default, the variant is `frappe`, the accent is `blue`, the size is `standard
 
 Example:
 ```nix
-pkgs.catppuccin-gtk.override {
-  accents = [ "pink" ]; # You can specify multiple accents here to output multiple themes
-  size = "compact";
-  tweaks = [ "rimless" "black" ]; # You can also specify multiple tweaks here
-  variant = "macchiato";
-}
+# as per wiki examples
+environment.systemPackages = with pkgs; [
+  ...
+  (pkgs.catppuccin-gtk.override {
+    accents = [ "pink" ]; # You can specify multiple accents here to output multiple themes
+    size = "compact";
+    tweaks = [ "rimless" "black" ]; # You can also specify multiple tweaks here
+    variant = "macchiato";
+  })
+  ...
+];
+# again, this is pulling from a nixos wiki example and is made to work with most nixos configrations 
 ```
 
 To use it in home-manager:
