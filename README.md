@@ -88,7 +88,6 @@ xdg.configFile = {
 };
 ```
 
-
 ### For GTK 4 users
 
 To theme GTK 4 applications you have to manually symlink the `~/.config/gtk-4.0/` to the themes folder. Use the following commands
@@ -98,8 +97,6 @@ ln -sf "${THEME_DIR}/gtk-4.0/assets" "${HOME}/.config/gtk-4.0/assets"
 ln -sf "${THEME_DIR}/gtk-4.0/gtk.css" "${HOME}/.config/gtk-4.0/gtk.css"
 ln -sf "${THEME_DIR}/gtk-4.0/gtk-dark.css" "${HOME}/.config/gtk-4.0/gtk-dark.css"
 ```
-
-
 
 ### For Flatpak users
 
