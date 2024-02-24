@@ -149,9 +149,7 @@ export GTK_THEME='Catppuccin-Frappe-Standard-Lavender-dark:dark'
 ### GDM Theme
 
 > [!WARNING]
-> Applying a custom theme to GDM is not recommended.
-> gnome-shell has fallback css components for it to fallback to when themeing fails,
-> however, gdm doesn't have anything to fallback on so **the display manager WILL break**
+> Applying a custom theme to GDM is not recommended as it is not themeable, however you can do it through certain *hacks*.
 
 To apply the theme to GDM, A new `gnome-shell-theme.gresource.xml` needs to be complied.
 To achieve this, you can run the following:
