@@ -143,9 +143,15 @@ sudo flatpak override --env=GTK_THEME=##theme##
 export GTK_THEME='Catppuccin-Frappe-Standard-Lavender-dark:dark'
 ```
 
-> Note: In order to update the theme's version, just change the variable `$ctp-version`.
+> [!NOTE]
+> in order to update the theme's version, just change the variable `$ctp-version`.
 
 ### GDM Theme
+
+> [!WARNING]
+> Applying a custom theme to GDM is not recommended.
+> gnome-shell has fallback css components for it to fallback to when themeing fails,
+> however, gdm doesn't have anything to fallback on so **the display manager WILL break**
 
 To apply the theme to GDM, A new `gnome-shell-theme.gresource.xml` needs to be complied.
 To achieve this, you can run the following:
