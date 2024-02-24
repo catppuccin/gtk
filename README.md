@@ -86,9 +86,7 @@ To use it in home-manager:
 To theme GTK 4 applications you have to manually symlink the `~/.config/gtk-4.0/` to the themes folder. Use the following commands
 ```bash
 mkdir -p "${HOME}/.config/gtk-4.0"
-ln -sf "${THEME_DIR}/gtk-4.0/assets" "${HOME}/.config/gtk-4.0/assets"
-ln -sf "${THEME_DIR}/gtk-4.0/gtk.css" "${HOME}/.config/gtk-4.0/gtk.css"
-ln -sf "${THEME_DIR}/gtk-4.0/gtk-dark.css" "${HOME}/.config/gtk-4.0/gtk-dark.css"
+ln -sf "${THEME_DIR}/gtk-4.0" "${HOME}/.config/gtk-4.0"
 ```
 
 ### For Flatpak users
