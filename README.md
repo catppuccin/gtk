@@ -23,8 +23,8 @@ This GTK theme is based on the [Colloid](https://github.com/vinceliuice/Colloid-
 
 ### Requirements
 
--   GTK `>=3.20`
--   `gnome-themes-extra` (or `gnome-themes-standard`)
+- GTK `>=3.20`
+- `gnome-themes-extra` (or `gnome-themes-standard`)
 
 ### Installation
 
@@ -35,21 +35,26 @@ This GTK theme is based on the [Colloid](https://github.com/vinceliuice/Colloid-
 ### For Arch Linux users
 
 We have 4 AUR packages for all the 4 flavours of the theme:
+
 - [Latte](https://aur.archlinux.org/packages/catppuccin-gtk-theme-latte)
 - [Frappe](https://aur.archlinux.org/packages/catppuccin-gtk-theme-frappe)
 - [Macchiato](https://aur.archlinux.org/packages/catppuccin-gtk-theme-macchiato)
 - [Mocha](https://aur.archlinux.org/packages/catppuccin-gtk-theme-mocha)
 
 With your favourite AUR helper, install them:
-  ```bash
-  yay -S catppuccin-gtk-theme-mocha catppuccin-gtk-theme-macchiato catppuccin-gtk-theme-frappe catppuccin-gtk-theme-latte
-  ```
+
+```bash
+yay -S catppuccin-gtk-theme-mocha catppuccin-gtk-theme-macchiato catppuccin-gtk-theme-frappe catppuccin-gtk-theme-latte
+```
+
 ### For Nix users
+
 The [catppuccin-gtk](https://github.com/NixOS/nixpkgs/blob/master/pkgs/data/themes/catppuccin-gtk/default.nix) package in Nixpkgs allows you to specify the accents, size, tweaks and variant (flavour) of the theme by overriding the package.
 
 By default, the variant is `frappe`, the accent is `blue`, the size is `standard`, and no tweaks are enabled. To change them, override the package. A list of valid choices are available in the package definition [here](https://github.com/NixOS/nixpkgs/blob/7ce8e7c4cf90492a631e96bcfe70724104914381/pkgs/data/themes/catppuccin-gtk/default.nix#L16).
 
 Example:
+
 ```nix
 pkgs.catppuccin-gtk.override {
   accents = [ "pink" ]; # You can specify multiple accents here to output multiple themes
@@ -60,6 +65,7 @@ pkgs.catppuccin-gtk.override {
 ```
 
 To use it in home-manager:
+
 ```nix
 # home.nix
 {
@@ -91,6 +97,7 @@ xdg.configFile = {
 ### For GTK 4 users
 
 To theme GTK 4 applications you have to manually symlink the `~/.config/gtk-4.0/` to the themes folder. Use the following commands
+
 ```bash
 mkdir -p "${HOME}/.config/gtk-4.0"
 ln -sf "${THEME_DIR}/gtk-4.0/assets" "${HOME}/.config/gtk-4.0/assets"
@@ -101,13 +108,17 @@ ln -sf "${THEME_DIR}/gtk-4.0/gtk-dark.css" "${HOME}/.config/gtk-4.0/gtk-dark.css
 ### For Flatpak users
 
 1. To give your Flatpaks access to your themes folder run:
-  ```bash
-  sudo flatpak override --filesystem=$HOME/.themes
-  ```
+
+```bash
+sudo flatpak override --filesystem=$HOME/.themes
+```
+
 2. To set the theme for all Flatpaks, replace `##theme##` with the name of the theme you want to use and run this command:
-  ```bash
-  sudo flatpak override --env=GTK_THEME=##theme##
-  ```
+
+```bash
+sudo flatpak override --env=GTK_THEME=##theme##
+```
+
 3. For a more in depth tutorial see Hamza Algohary's tutorial on [It's FOSS](https://itsfoss.com/flatpak-app-apply-theme/)
 
 ### Handling GTK theme installation from window manager
@@ -115,28 +126,52 @@ ln -sf "${THEME_DIR}/gtk-4.0/gtk-dark.css" "${HOME}/.config/gtk-4.0/gtk-dark.css
 1. Install unzip and curl.
 2. Go to your window manager config file.
 3. Add an entrance to the config file to be executed when your window manager is loaded.
-    - i3/sway example:
-    ```
-    # catppuccin
-    set $ctp-version v0.6.1
-    exec_always if [ ! -e ~/.themes/Catppuccin-Frappe-Standard-Lavender-dark ]; then \
-      mkdir -p ~/.themes \
-      && curl -L https://github.com/catppuccin/gtk/releases/download/$ctp-version/Catppuccin-Frappe-Standard-Lavender-dark.zip -o ~/.themes/catppuccin.zip \
-      && unzip ~/.themes/catppuccin.zip -d ~/.themes/ \
-      && rm -rf ~/.themes/catppuccin.zip; fi
-    ```
-    >Note: The previous example execute that script every time i3/sway is reloaded.
+   - i3/sway example:
+   ```
+   # catppuccin
+   set $ctp-version v0.6.1
+   exec_always if [ ! -e ~/.themes/Catppuccin-Frappe-Standard-Lavender-dark ]; then \
+     mkdir -p ~/.themes \
+     && curl -L https://github.com/catppuccin/gtk/releases/download/$ctp-version/Catppuccin-Frappe-Standard-Lavender-dark.zip -o ~/.themes/catppuccin.zip \
+     && unzip ~/.themes/catppuccin.zip -d ~/.themes/ \
+     && rm -rf ~/.themes/catppuccin.zip; fi
+   ```
+   > Note: The previous example execute that script every time i3/sway is reloaded.
 4. Set the GTK_THEME environment variable:
+
 ```sh
 export GTK_THEME='Catppuccin-Frappe-Standard-Lavender-dark:dark'
 ```
->Note: In order to update the theme's version, just change the variable `$ctp-version`.
+
+> [!NOTE]
+> in order to update the theme's version, just change the variable `$ctp-version`.
+
+### GDM Theme
+
+> [!WARNING]
+> Applying a custom theme to GDM is not recommended as it is not themeable, however you can do it through certain *hacks*.
+
+To apply the theme to GDM, A new `gnome-shell-theme.gresource.xml` needs to be complied.
+To achieve this, you can run the following:
+
+```bash
+# Backup the current gresource file.
+sudo cp -av /usr/share/gnome-shell/gnome-shell-theme.gresource{,~}
+sudo glib-compile-resources --target="/usr/share/gnome-shell/gnome-shell-theme.gresource" --sourcedir="$THEME_DIR" "$THEME_DIR/gnome-shell-theme.gresource.xml"
+```
+
+Make sure to replace `$THEME_DIR` to where the theme was extracted accordingly.
+
+- For nix users, it'll be the nix store path of the package.
+- For AUR users, it'll be in `~/.themes`
+- Otherwise, it'll be wherever you extracted the theme.
 
 ### Using the script
 
 **Note**: Ensure that you have at least Python version 3.10 installed
 
 Set up the installer using
+
 ```bash
 git clone --recurse-submodules git@github.com:catppuccin/gtk.git
 cd gtk
@@ -144,10 +179,13 @@ virtualenv -p python3 venv  # to be created only once and only if you need a vir
 source venv/bin/activate
 pip install -r requirements.txt
 ```
+
 To check out the install script, run
+
 ```bash
 python install.py --help
 ```
+
 > Tip: `python install.py --help` allows the following options:
 
 ```
@@ -166,12 +204,16 @@ Compulsory field        Specify color variant(s) [mocha|frappe|macchiato|latte|a
                         4. float:    Floating gnome-shell panel style
 -h, --help              Show help
 ```
+
 You can install any theme like the following example
+
 ```bash
 python install.py mocha -a sky --tweaks rimless -d ~/.themes
 
 ```
+
 You can build all possible variations of the theme possible using the following command and it will install it to releases folder
+
 ```bash
 python install.py all -a all
 ```
@@ -179,6 +221,7 @@ python install.py all -a all
 ## Development
 
 You need to install the following packages to build the theme. Check with your distribution for the package names in the repository
+
 - `sassc`
 - `inkscape`
 - `optipng`
@@ -192,14 +235,18 @@ A few important notes to keep in mind
 ## 💝 Thanks to
 
 **Current maintainers**
+
 - [npv12](https://github.com/npv12)
 - [ghostx31](https://github.com/ghostx31)
 - [Syndrizzle](https://github.com/Syndrizzle)
 
 **Contributions**
-- [rubyowo](https://github.com/rubyowo) - for working on the build and CI script
+
+- [rubyowo](https://github.com/rubyowo) - CI and docs
+- [braheezy](https://github.com/braheezy) - Instructions for the GDM theme.
 
 **Previous maintainer(s)**
+
 - [sadrach-cl](https://github.com/sadrach-cl)
 
 &nbsp;
