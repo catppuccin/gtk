@@ -1,16 +1,16 @@
+from catppuccin import PALETTE
 import os
 import shutil
 import subprocess
 from typing import List
 
-from scripts.ctp_colors import ctp_colors
 from scripts.patches import recreate_xfwm4_assets
 from scripts.recolor import recolor
 from scripts.utils import replacetext, zip_multiple_folders
 from scripts.var import def_color_map, repo_dir, src_dir, theme_name, work_dir
 
 
-def create_theme(types: List[str], accents: List[str], dest: str, link: bool = False, 
+def create_theme(types: List[str], accents: List[str], dest: str, link: bool = False,
     name: str = theme_name, size: str = "standard", tweaks=[], zip = False, recreate_assets = False) -> None:
 
     try:
@@ -24,7 +24,7 @@ def create_theme(types: List[str], accents: List[str], dest: str, link: bool = F
 
         for accent in accents:
             # Recolor colloid wrt our selection like mocha. latte
-            recolor(ctp_colors[type], accent)
+            recolor(getattr(PALETTE, type), accent)
             theme_style: str = "light" if type == "latte" else "dark"
             install_cmd: str = f"./install.sh -c {theme_style} -s {size} -n {name} -d {dest} -t {def_color_map[accent]}"
             if tweaks:
