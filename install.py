@@ -9,7 +9,7 @@ import argparse
 import os
 import subprocess
 
-from scripts.ctp_colors import ctp_colors, get_all_accent
+from scripts.ctp_colors import get_all_accent, get_all_flavors
 from scripts.create_theme import create_theme
 from scripts.var import theme_name, work_dir
 
@@ -86,12 +86,12 @@ parser.add_argument("--recreate-asset",
 args = parser.parse_args()
 
 if "all" in args.flavor:
-    flavors = ctp_colors.keys()
+    flavors = get_all_flavors()
 else:
     flavors = args.flavor
 
 if "all" in args.accent:
-    accents = get_all_accent().keys()
+    accents = get_all_accent()
 else:
     accents = args.accent
 
