@@ -86,7 +86,7 @@ def recolor(flavor, accent: str):
     replacetext(f"{work_dir}/gtkrc.sh",
                 "titlebar_light='#F2F2F2'", f"titlebar_light='{latte_colors.crust.hex}'")
 
-    if flavor.name == "latte":
+    if flavor.name == PALETTE.latte.name:
         replacetext(f"{work_dir}/gtkrc.sh", "background_dark='#0F0F0F'",
                     f"background_dark='{mocha_colors.base.hex}'")
         replacetext(f"{work_dir}/gtkrc.sh", "background_darker='#121212'",
@@ -124,7 +124,7 @@ def recolor(flavor, accent: str):
     print("Mod SASS Color_Palette_default")
 
     # Greys
-    if flavor.name == "latte":  # Hardcode till someone smarter than me comes along
+    if flavor.name == PALETTE.latte.name:  # Hardcode till someone smarter than me comes along
         replacetext(f"{src_dir}/sass/_color-palette-default.scss",
                     "grey-050: #FAFAFA", f"grey-050: {colors.crust.hex}")
         replacetext(f"{src_dir}/sass/_color-palette-default.scss",
