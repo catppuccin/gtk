@@ -74,6 +74,7 @@ To use it in home-manager:
 ```nix
 # home.nix
 {
+  config,
   pkgs,
   ...
 }: {
