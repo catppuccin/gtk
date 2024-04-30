@@ -70,7 +70,7 @@ Alternatively, you can use [catppuccin-gtk](https://github.com/NixOS/nixpkgs/blo
 ```
 
 > [!TIP]
-> For further information on the options available, see the [the full documentation](https://github.com/catppuccin/nix/blob/main/docs/home-manager-options.md#gtkcatppuccinenable).
+> For further information on the options available, see the [full documentation](https://github.com/catppuccin/nix/blob/main/docs/home-manager-options.md#gtkcatppuccinenable).
 
 ### For GTK 4 users
 
