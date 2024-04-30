@@ -21,7 +21,7 @@ Please mention your Linux distribution and the theme version you've installed.
 - [ ] Flatpak
 
 **Symlinked the gtk-4.0 folder?**
-Have you symlinked the `gtk-4.0` folder as mentioned in the [README](https://github.com/catppuccin/gtk/blob/e907775723eb68a5628c1bcd718b9d822cea9aee/README.md?plain=1#L85-L93)? **This is not applicable for users who have installed the theme with the Nixpkg.**
+Have you symlinked the `gtk-4.0` folder as mentioned in the [README](https://github.com/catppuccin/gtk/blob/e907775723eb68a5628c1bcd718b9d822cea9aee/README.md?plain=1#L85-L93)?
 
 **Expected behavior**
 A clear and concise description of what you expected to happen.
