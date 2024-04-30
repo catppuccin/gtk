@@ -49,6 +49,30 @@ yay -S catppuccin-gtk-theme-mocha catppuccin-gtk-theme-macchiato catppuccin-gtk-
 
 ### For Nix users
 
+#### Using our flake
+
+```nix
+{inputs, ...}: {
+  imports = [inputs.catppuccin.homeManagerModules.catppuccin];
+
+  gtk = {
+    enable = true;
+    catppuccin = {
+      enable = true;
+      flavor = "mocha";
+      accent = "pink";
+      size = "standard";
+      tweaks = [ "normal" ];
+    };
+  };
+}
+```
+
+> [!TIP]
+> See [the full documentation](https://github.com/catppuccin/nix/blob/main/docs/home-manager-options.md#gtkcatppuccinenable) for more help.
+
+#### Using nixpkgs
+
 The [catppuccin-gtk](https://github.com/NixOS/nixpkgs/blob/master/pkgs/data/themes/catppuccin-gtk/default.nix) package in Nixpkgs allows you to specify the accents, size, tweaks and variant (flavour) of the theme by overriding the package.
 
 By default, the variant is `frappe`, the accent is `blue`, the size is `standard`, and no tweaks are enabled. To change them, override the package. A list of valid choices are available in the package definition [here](https://github.com/NixOS/nixpkgs/blob/7ce8e7c4cf90492a631e96bcfe70724104914381/pkgs/data/themes/catppuccin-gtk/default.nix#L16).
@@ -69,7 +93,7 @@ environment.systemPackages = with pkgs; [
 ];
 ```
 
-To use it in home-manager:
+#### Using home-manager
 
 ```nix
 # home.nix
