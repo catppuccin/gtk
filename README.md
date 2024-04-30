@@ -49,7 +49,8 @@ yay -S catppuccin-gtk-theme-mocha catppuccin-gtk-theme-macchiato catppuccin-gtk-
 
 ### For Nix users
 
-#### Using our flake
+We suggest you uses [catppuccin/nix](https://github.com/catppuccin/nix). 
+Alternatively, the you can use [catppuccin-gtk](https://github.com/NixOS/nixpkgs/blob/master/pkgs/data/themes/catppuccin-gtk/default.nix) from nixpkgs.
 
 ```nix
 {inputs, ...}: {
@@ -70,59 +71,6 @@ yay -S catppuccin-gtk-theme-mocha catppuccin-gtk-theme-macchiato catppuccin-gtk-
 
 > [!TIP]
 > See [the full documentation](https://github.com/catppuccin/nix/blob/main/docs/home-manager-options.md#gtkcatppuccinenable) for more help.
-
-#### Using nixpkgs
-
-The [catppuccin-gtk](https://github.com/NixOS/nixpkgs/blob/master/pkgs/data/themes/catppuccin-gtk/default.nix) package in Nixpkgs allows you to specify the accents, size, tweaks and variant (flavour) of the theme by overriding the package.
-
-By default, the variant is `frappe`, the accent is `blue`, the size is `standard`, and no tweaks are enabled. To change them, override the package. A list of valid choices are available in the package definition [here](https://github.com/NixOS/nixpkgs/blob/7ce8e7c4cf90492a631e96bcfe70724104914381/pkgs/data/themes/catppuccin-gtk/default.nix#L16).
-
-Example:
-
-```nix
-# as per wiki examples
-environment.systemPackages = with pkgs; [
-  ...
-  (catppuccin-gtk.override {
-    accents = [ "pink" ]; # You can specify multiple accents here to output multiple themes
-    size = "compact";
-    tweaks = [ "rimless" "black" ]; # You can also specify multiple tweaks here
-    variant = "macchiato";
-  })
-  ...
-];
-```
-
-#### Using home-manager
-
-```nix
-# home.nix
-{
-  config,
-  pkgs,
-  ...
-}: {
-  gtk = {
-    enable = true;
-    theme = {
-      name = "Catppuccin-Macchiato-Compact-Pink-Dark";
-      package = pkgs.catppuccin-gtk.override {
-        accents = [ "pink" ];
-        size = "compact";
-        tweaks = [ "rimless" "black" ];
-        variant = "macchiato";
-      };
-    };
-  };
-}
-
-# Now symlink the `~/.config/gtk-4.0/` folder declaratively:
-xdg.configFile = {
-  "gtk-4.0/assets".source = "${config.gtk.theme.package}/share/themes/${config.gtk.theme.name}/gtk-4.0/assets";
-  "gtk-4.0/gtk.css".source = "${config.gtk.theme.package}/share/themes/${config.gtk.theme.name}/gtk-4.0/gtk.css";
-  "gtk-4.0/gtk-dark.css".source = "${config.gtk.theme.package}/share/themes/${config.gtk.theme.name}/gtk-4.0/gtk-dark.css";
-};
-```
 
 ### For GTK 4 users
 
