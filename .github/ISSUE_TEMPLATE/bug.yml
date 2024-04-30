@@ -1,0 +1,53 @@
+name: Bug Report
+description: Report your bugs with the theme here!
+labels: [bug]
+body:
+  - type: checkboxes
+    attributes:
+      label: Is there an existing issue outlining your problem?
+      description: Please search to see if an issue already exists for your problem.
+      options:
+        - label: I have searched the existing issues and they do not solve my problem.
+          required: true
+  - type: textarea
+    attributes:
+      label: Describe the bug.
+      description: Also tell us, what do you expect to see?
+      placeholder: The tabs are darker than they should be...
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Attach screenshots.
+      description: If applicable, attach screenshots which clearly highlight the bug.
+  - type: dropdown
+    id: installation_method
+    attributes:
+      label: How did you install the theme?
+      options:
+        - GitHub Release
+        - AUR Package
+        - catppuccin/nix
+        - Nixpkgs
+        - Flatpak
+        - From source (Python script)
+    validations:
+      required: true
+  - type: checkboxes
+    attributes:
+      label: If using GTK4, have you symlinked the "gtk-4.0" folder?
+      description: "The instructions for symlinking are described in the [README](https://github.com/catppuccin/gtk/tree/877e75568c9bb0d57c7ddda85b246fa17af45e57?tab=readme-ov-file#for-gtk-4-users)."
+      options:
+        - label: I have symlinked the `gtk-4.0` folder.
+          required: false
+  - type: input
+    attributes:
+      label: What GNOME version are you seeing the bug on?
+      description: "Follow [GNOME's instructions](https://help.gnome.org/users/gnome-help/stable/gnome-version.html.en) to find out what version you are running."
+      placeholder: "GNOME Version 42.9"
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: Any additional comments?
+      description: Add any information that hasn't been covered in the previous sections!
