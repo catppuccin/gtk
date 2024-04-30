@@ -124,7 +124,7 @@ def recolor(flavor, accent: str):
     print("Mod SASS Color_Palette_default")
 
     # Greys
-    if flavor.name == PALETTE.latte.name:  # Hardcode till someone smarter than me comes along
+    if flavor.name == PALETTE.latte.name:
         replacetext(f"{src_dir}/sass/_color-palette-default.scss",
                     "grey-050: #FAFAFA", f"grey-050: {colors.crust.hex}")
         replacetext(f"{src_dir}/sass/_color-palette-default.scss",
