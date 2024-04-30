@@ -49,56 +49,28 @@ yay -S catppuccin-gtk-theme-mocha catppuccin-gtk-theme-macchiato catppuccin-gtk-
 
 ### For Nix users
 
-The [catppuccin-gtk](https://github.com/NixOS/nixpkgs/blob/master/pkgs/data/themes/catppuccin-gtk/default.nix) package in Nixpkgs allows you to specify the accents, size, tweaks and variant (flavour) of the theme by overriding the package.
-
-By default, the variant is `frappe`, the accent is `blue`, the size is `standard`, and no tweaks are enabled. To change them, override the package. A list of valid choices are available in the package definition [here](https://github.com/NixOS/nixpkgs/blob/7ce8e7c4cf90492a631e96bcfe70724104914381/pkgs/data/themes/catppuccin-gtk/default.nix#L16).
-
-Example:
+We suggest you use [catppuccin/nix](https://github.com/catppuccin/nix). 
+Alternatively, you can use [catppuccin-gtk](https://github.com/NixOS/nixpkgs/blob/master/pkgs/data/themes/catppuccin-gtk/default.nix) from nixpkgs.
 
 ```nix
-# as per wiki examples
-environment.systemPackages = with pkgs; [
-  ...
-  (catppuccin-gtk.override {
-    accents = [ "pink" ]; # You can specify multiple accents here to output multiple themes
-    size = "compact";
-    tweaks = [ "rimless" "black" ]; # You can also specify multiple tweaks here
-    variant = "macchiato";
-  })
-  ...
-];
-```
+{inputs, ...}: {
+  imports = [inputs.catppuccin.homeManagerModules.catppuccin];
 
-To use it in home-manager:
-
-```nix
-# home.nix
-{
-  config,
-  pkgs,
-  ...
-}: {
   gtk = {
     enable = true;
-    theme = {
-      name = "Catppuccin-Macchiato-Compact-Pink-Dark";
-      package = pkgs.catppuccin-gtk.override {
-        accents = [ "pink" ];
-        size = "compact";
-        tweaks = [ "rimless" "black" ];
-        variant = "macchiato";
-      };
+    catppuccin = {
+      enable = true;
+      flavor = "mocha";
+      accent = "pink";
+      size = "standard";
+      tweaks = [ "normal" ];
     };
   };
 }
-
-# Now symlink the `~/.config/gtk-4.0/` folder declaratively:
-xdg.configFile = {
-  "gtk-4.0/assets".source = "${config.gtk.theme.package}/share/themes/${config.gtk.theme.name}/gtk-4.0/assets";
-  "gtk-4.0/gtk.css".source = "${config.gtk.theme.package}/share/themes/${config.gtk.theme.name}/gtk-4.0/gtk.css";
-  "gtk-4.0/gtk-dark.css".source = "${config.gtk.theme.package}/share/themes/${config.gtk.theme.name}/gtk-4.0/gtk-dark.css";
-};
 ```
+
+> [!TIP]
+> For further information on the options available, see the [full documentation](https://github.com/catppuccin/nix/blob/main/docs/home-manager-options.md#gtkcatppuccinenable).
 
 ### For GTK 4 users
 
