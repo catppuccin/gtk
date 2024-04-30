@@ -49,8 +49,8 @@ yay -S catppuccin-gtk-theme-mocha catppuccin-gtk-theme-macchiato catppuccin-gtk-
 
 ### For Nix users
 
-We suggest you uses [catppuccin/nix](https://github.com/catppuccin/nix). 
-Alternatively, the you can use [catppuccin-gtk](https://github.com/NixOS/nixpkgs/blob/master/pkgs/data/themes/catppuccin-gtk/default.nix) from nixpkgs.
+We suggest you use [catppuccin/nix](https://github.com/catppuccin/nix). 
+Alternatively, you can use [catppuccin-gtk](https://github.com/NixOS/nixpkgs/blob/master/pkgs/data/themes/catppuccin-gtk/default.nix) from nixpkgs.
 
 ```nix
 {inputs, ...}: {
@@ -70,7 +70,7 @@ Alternatively, the you can use [catppuccin-gtk](https://github.com/NixOS/nixpkgs
 ```
 
 > [!TIP]
-> See [the full documentation](https://github.com/catppuccin/nix/blob/main/docs/home-manager-options.md#gtkcatppuccinenable) for more help.
+> For further information on the options available, see the [the full documentation](https://github.com/catppuccin/nix/blob/main/docs/home-manager-options.md#gtkcatppuccinenable).
 
 ### For GTK 4 users
 
