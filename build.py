@@ -317,9 +317,9 @@ def theme_tweaks():
 def make_gtkrc(dest, name, theme, color, size, scheme):
     gtkrc_dir = f"{SRC_DIR}/main/gtk-2.0"
 
-    else_dark = ''
+    dark_suffix = ''
     if color == "dark":
-        else_dark = "-Dark"
+        dark_suffix = "-Dark"
 
     theme_dir = make_theme_dir(dest, name, theme, color, size, scheme)
     palette = getattr(PALETTE, args.flavor)
@@ -341,7 +341,7 @@ def make_gtkrc(dest, name, theme, color, size, scheme):
         titlebar_dark = "#242424"
 
     shutil.copyfile(
-        f"{gtkrc_dir}/gtkrc{else_dark}-default", f"{theme_dir}/gtk-2.0/gtkrc"
+        f"{gtkrc_dir}/gtkrc{dark_suffix}-default", f"{theme_dir}/gtk-2.0/gtkrc"
     )
 
     subst_text(f"{theme_dir}/gtk-2.0/gtkrc", "#FFFFFF", background_light)
@@ -368,7 +368,7 @@ def install_theme():
     if args.flavor == "latte":
         color = "light"
     else:
-        color = "light"
+        color = "dark"
 
     if "normal" in args.tweaks:
         window = "normal"
@@ -447,7 +447,7 @@ def uninstall_theme():
     if args.flavor == "latte":
         color = "light"
     else:
-        color = "light"
+        color = "dark"
 
     if "normal" in args.tweaks:
         window = "normal"
