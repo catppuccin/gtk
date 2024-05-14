@@ -200,11 +200,11 @@ def compact_size():
 
 
 def blackness_color():
-    write_tweak("blackness", "false'", "'true'")
+    write_tweak("blackness", "'false'", "'true'")
 
 
 def border_rimless():
-    write_tweak("rimless", "false'", "'true'")
+    write_tweak("rimless", "'false'", "'true'")
 
 
 def normal_winbutton():
@@ -212,7 +212,7 @@ def normal_winbutton():
 
 
 def float_panel():
-    write_tweak("float", "false'", "'true'")
+    write_tweak("float", "'false'", "'true'")
 
 
 def color_schemes():
