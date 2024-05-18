@@ -10,21 +10,22 @@ jobs:
     strategy:
       matrix:
         flavor: [mocha, macchiato, latte, frappe]
-        accent: [
-            rosewater
-            flamingo
-            pink
-            mauve
-            red
-            maroon
-            peach
-            yellow
-            green
-            teal
-            sky
-            sapphire
-            blue
-            lavender
+        accent:
+          [
+            rosewater,
+            flamingo,
+            pink,
+            mauve,
+            red,
+            maroon,
+            peach,
+            yellow,
+            green,
+            teal,
+            sky,
+            sapphire,
+            blue,
+            lavender,
           ]
     runs-on: ubuntu-latest
     steps:
