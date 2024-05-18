@@ -40,7 +40,7 @@ class BuildContext:
     tweaks: Tweaks
 
     def output_dir(self) -> str:
-        return f"{self.build_root}/{self.theme_name}-{self.flavor.identifier}-{self.accent.identifier}-{self.size}+{self.tweaks.id()}"
+        return f"{self.build_root}/{self.theme_name}-{self.flavor.identifier}-{self.accent.identifier}-{self.size}+{self.tweaks.id() or 'default'}"
 
     def build_id(self) -> str:
         return f"{self.theme_name}-{self.flavor.identifier}-{self.accent.identifier}-{self.size}"
@@ -270,7 +270,7 @@ def apply_tweaks(ctx: BuildContext):
     subst_text(
         f"{SRC_DIR}/sass/_tweaks-temp.scss",
         "@import 'color-palette-default';",
-        "@import 'color-palette-catppuccin';",
+        f"@import 'color-palette-catppuccin-{ctx.flavor.identifier}';",
     )
     write_tweak("colorscheme", "'default'", "'catppuccin'")
 
@@ -341,20 +341,10 @@ def make_assets(ctx: BuildContext):
 
     theme_color = ctx.accent.hex
 
-    if ctx.tweaks.has("black"):
-        background_light = "#FFFFFF"
-        background_dark = "#0F0F0F"
-        background_darker = "#121212"
-        background_alt = "#212121"
-        titlebar_light = "#F2F2F2"
-        titlebar_dark = "#030303"
-    else:
-        background_light = "#FFFFFF"
-        background_dark = "#2C2C2C"
-        background_darker = "#3C3C3C"
-        background_alt = "#464646"
-        titlebar_light = "#F2F2F2"
-        titlebar_dark = "#242424"
+    palette = ctx.flavor.colors
+    background = palette.base.hex
+    background_alt = palette.mantle.hex
+    titlebar = palette.overlay0.hex
 
     for file in glob.glob(f"{output_dir}/cinnamon/assets/*.svg"):
         subst_text(file, "#5b9bf8", theme_color)
@@ -367,35 +357,35 @@ def make_assets(ctx: BuildContext):
     for file in glob.glob(f"{output_dir}/gtk-3.0/assets/*.svg"):
         subst_text(file, "#5b9bf8", theme_color)
         subst_text(file, "#3c84f7", theme_color)
-        subst_text(file, "#ffffff", background_light)
-        subst_text(file, "#2c2c2c", background_dark)
+        subst_text(file, "#ffffff", background)
+        subst_text(file, "#2c2c2c", background)
         subst_text(file, "#3c3c3c", background_alt)
 
     for file in glob.glob(f"{output_dir}/gtk-4.0/assets/*.svg"):
         subst_text(file, "#5b9bf8", theme_color)
         subst_text(file, "#3c84f7", theme_color)
-        subst_text(file, "#ffffff", background_light)
-        subst_text(file, "#2c2c2c", background_dark)
+        subst_text(file, "#ffffff", background)
+        subst_text(file, "#2c2c2c", background)
         subst_text(file, "#3c3c3c", background_alt)
 
     if ctx.flavor.dark:
-        subst_text(f"{output_dir}/cinnamon/thumbnail.png", "#2c2c2c", background_dark)
+        subst_text(f"{output_dir}/cinnamon/thumbnail.png", "#2c2c2c", background)
         subst_text(f"{output_dir}/cinnamon/thumbnail.png", "#5b9bf8", theme_color)
 
-        subst_text(f"{output_dir}/gtk-3.0/thumbnail.png", "#2c2c2c", background_dark)
-        subst_text(f"{output_dir}/gtk-4.0/thumbnail.png", "#2c2c2c", background_dark)
+        subst_text(f"{output_dir}/gtk-3.0/thumbnail.png", "#2c2c2c", background)
+        subst_text(f"{output_dir}/gtk-4.0/thumbnail.png", "#2c2c2c", background)
 
         subst_text(f"{output_dir}/gtk-3.0/thumbnail.png", "#5b9bf8", theme_color)
         subst_text(f"{output_dir}/gtk-4.0/thumbnail.png", "#5b9bf8", theme_color)
     else:
-        subst_text(f"{output_dir}/cinnamon/thumbnail.png", "#ffffff", background_light)
-        subst_text(f"{output_dir}/cinnamon/thumbnail.png", "#f2f2f2", titlebar_light)
+        subst_text(f"{output_dir}/cinnamon/thumbnail.png", "#ffffff", background)
+        subst_text(f"{output_dir}/cinnamon/thumbnail.png", "#f2f2f2", titlebar)
         subst_text(f"{output_dir}/cinnamon/thumbnail.png", "#3c84f7", theme_color)
 
-        subst_text(f"{output_dir}/gtk-3.0/thumbnail.png", "#f2f2f2", titlebar_light)
+        subst_text(f"{output_dir}/gtk-3.0/thumbnail.png", "#f2f2f2", titlebar)
         subst_text(f"{output_dir}/gtk-3.0/thumbnail.png", "#3c84f7", theme_color)
 
-        subst_text(f"{output_dir}/gtk-4.0/thumbnail.png", "#f2f2f2", titlebar_light)
+        subst_text(f"{output_dir}/gtk-4.0/thumbnail.png", "#f2f2f2", titlebar)
         subst_text(f"{output_dir}/gtk-4.0/thumbnail.png", "#3c84f7", theme_color)
 
     for file in glob.glob(f"{SRC_DIR}/assets/cinnamon/common-assets/*.svg"):
@@ -475,7 +465,10 @@ def apply_colloid_patches():
         "plank-dark.patch",
         "plank-light.patch",
         "sass-colors.patch",
-        "sass-palette.patch",
+        "sass-palette-frappe.patch",
+        "sass-palette-mocha.patch",
+        "sass-palette-latte.patch",
+        "sass-palette-macchiato.patch",
     ]:
         path = f"./patches/colloid/{patch}"
         logger.info(f"Applying patch '{patch}', located at '{path}'")

@@ -1,0 +1,78 @@
+diff --git a/src/sass/_color-palette-catppuccin-latte.scss b/src/sass/_color-palette-catppuccin-latte.scss
+new file mode 100644
+index 00000000..8a905942
+--- /dev/null
++++ b/src/sass/_color-palette-catppuccin-latte.scss
+@@ -0,0 +1,72 @@
++// Default Theme Color Palette
++
++// Red
++$red-light: #d20f39;
++$red-dark: #900a27;
++
++// Pink
++$pink-light: #ea76cb;
++$pink-dark: #851567;
++
++// Purple
++$purple-light: #8839ef;
++$purple-dark: #440b8f;
++
++// Blue
++$blue-light: #1e66f5;
++$blue-dark: #073693;
++
++// Teal
++$teal-light: #179299;
++$teal-dark: #148086;
++
++// Green
++$green-light: #40a02b;
++$green-dark: #317921;
++
++// Yellow
++$yellow-light: #df8e1d;
++$yellow-dark: #885712;
++
++// Orange
++$orange-light: #fe640b;
++$orange-dark: #993901;
++
++// Grey
++$grey-050: #4c4f69;
++$grey-100: #5c5f77;
++$grey-150: #5c5f77;
++$grey-200: #6c6f85;
++$grey-250: #6c6f85;
++$grey-300: #8c8fa1;
++$grey-350: #8c8fa1;
++$grey-400: #9ca0b0;
++$grey-450: #9ca0b0;
++$grey-500: #acb0be;
++$grey-550: #acb0be;
++$grey-600: #bcc0cc;
++$grey-650: #bcc0cc;
++$grey-700: #ccd0da;
++$grey-750: #ccd0da;
++$grey-800: #eff1f5;
++$grey-850: #eff1f5;
++$grey-900: #dce0e8;
++$grey-950: #dce0e8;
++
++// White
++$white: #FFFFFF;
++
++// Black
++$black: #000000;
++
++// Button
++$button-close: #d20f39;
++$button-max: #40a02b;
++$button-min: #df8e1d;
++
++// Link
++$links: #04a5e5;
++
++// Theme
++$default-light: $purple-light;
++$default-dark: $purple-dark;
