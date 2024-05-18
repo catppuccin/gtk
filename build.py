@@ -593,14 +593,22 @@ def parse_args():
         type=bool,
         default=False,
         action=argparse.BooleanOptionalAction,
-        dest="zip",
+    )
+
+    parser.add_argument(
+        "--patch",
+        help="Whether to patch the colloid submodule",
+        type=bool,
+        default=True,
+        action=argparse.BooleanOptionalAction,
     )
 
     return parser.parse_args()
 
 def main():
     args = parse_args()
-    apply_colloid_patches()
+    if args.patch:
+        apply_colloid_patches()
 
     palette = getattr(PALETTE, args.flavor)
     accents=[
