@@ -7,6 +7,25 @@ on:
 
 jobs:
   release:
+    strategy:
+      matrix:
+        flavor: [mocha, macchiato, latte, frappe]
+        accent: [
+            rosewater
+            flamingo
+            pink
+            mauve
+            red
+            maroon
+            peach
+            yellow
+            green
+            teal
+            sky
+            sapphire
+            blue
+            lavender
+          ]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -15,14 +34,14 @@ jobs:
           submodules: true
       - uses: actions/setup-python@v5
         with:
-          python-version: '3.11'
-          cache: 'pip'
+          python-version: "3.11"
+          cache: "pip"
       - name: Install dependencies
         run: pip install -r requirements.txt
       - name: Install colloid specific dependencies
         run: sudo apt update && sudo apt install -y sassc inkscape optipng
       - name: Generate themes
-        run: python ./install.py all -a all --zip -d $PWD/releases --recreate-asset
+        run: python ./build.py ${{ matrix.flavor }} -a ${{ matrix.accent }} --zip -d $PWD/releases
       - name: Add zips to release
         uses: softprops/action-gh-release@v2
         with:
