@@ -1,5 +1,5 @@
 #! /usr/bin/env python3
-import os, re, shutil, subprocess, argparse, glob, logging
+import os, re, shutil, subprocess, argparse, glob, logging, zipfile
 
 from dataclasses import dataclass
 from typing import Literal, List
@@ -27,12 +27,13 @@ class Tweaks:
         return tweak in self.tweaks
 
     def id(self) -> str:
-        return ','.join(self.tweaks)
+        return ",".join(self.tweaks)
 
 
 @dataclass
 class BuildContext:
     build_root: str
+    output_format: Literal["zip"] | Literal["dir"]
     theme_name: str
     flavor: Flavor
     accent: Color
@@ -40,10 +41,10 @@ class BuildContext:
     tweaks: Tweaks
 
     def output_dir(self) -> str:
-        return f"{self.build_root}/{self.theme_name}-{self.flavor.identifier}-{self.accent.identifier}-{self.size}+{self.tweaks.id() or 'default'}"
+        return f"{self.build_root}/{self.build_id()}"
 
     def build_id(self) -> str:
-        return f"{self.theme_name}-{self.flavor.identifier}-{self.accent.identifier}-{self.size}"
+        return f"{self.theme_name}-{self.flavor.identifier}-{self.accent.identifier}-{self.size}+{self.tweaks.id() or 'default'}"
 
 
 def build(ctx: BuildContext):
@@ -158,6 +159,7 @@ def build(ctx: BuildContext):
         f"{output_dir}/metacity-1/metacity-theme-3.xml",
     )
     # FIXME: Symlinks aren't working as intended
+    # FIXME: Do we need them?
     # os.symlink(
     #     f"{output_dir}/metacity-1/metacity-theme-3.xml",
     #     f"{output_dir}/metacity-1/metacity-theme-2.xml",
@@ -260,6 +262,7 @@ def write_tweak(key, default, value):
     subst_text(
         f"{SRC_DIR}/sass/_tweaks-temp.scss", f"\\${key}: {default}", f"${key}: {value}"
     )
+
 
 def apply_tweaks(ctx: BuildContext):
     write_tweak("theme", "'default'", translate_accent(ctx.accent))
@@ -425,6 +428,26 @@ def make_assets(ctx: BuildContext):
         shutil.copy(file, f"{output_dir}-xhdpi/xfwm4")
 
 
+def zip_dir(path, zip_file):
+    # Ref: https://stackoverflow.com/questions/46229764/python-zip-multiple-directories-into-one-zip-file
+    for root, _, files in os.walk(path):
+        for file in files:
+            zip_file.write(
+                os.path.join(root, file),
+                os.path.relpath(os.path.join(root, file), os.path.join(path, "..")),
+            )
+
+
+def zip_artifacts(dir_list, zip_name, remove=True):
+    with zipfile.ZipFile(zip_name, "w", zipfile.ZIP_DEFLATED) as zipf:
+        for dir in dir_list:
+            zip_dir(dir, zipf)
+
+    if remove:
+        for dir in dir_list:
+            shutil.rmtree(dir)
+
+
 def build_theme(ctx: BuildContext):
     build_info = f"""Build info:
     build_root: {ctx.build_root}
@@ -440,6 +463,17 @@ def build_theme(ctx: BuildContext):
     logger.info("Bundling assets...")
     make_assets(ctx)
     logger.info("Asset bundling done")
+
+    if ctx.output_format == "zip":
+        zip_artifacts(
+            [
+                ctx.output_dir(),
+                f"{ctx.output_dir()}-hdpi",
+                f"{ctx.output_dir()}-xhdpi",
+            ],
+            f"{ctx.build_root}/{ctx.build_id()}.zip",
+            True,
+        )
 
     """
     if (command -v xfce4-popup-whiskermenu &> /dev/null) && $(sed -i "s|.*menu-opacity=.*|menu-opacity=95|" "$HOME/.config/xfce4/panel/whiskermenu"*".rc" &> /dev/null); then
@@ -478,6 +512,7 @@ def apply_colloid_patches():
         f.write("true")
 
     logger.info("Patching finished.")
+
 
 def parse_args():
     parser = argparse.ArgumentParser()
@@ -551,6 +586,15 @@ def parse_args():
         help="Tweaks to apply to the build.",
     )
 
+    parser.add_argument(
+        "--zip",
+        help="Whether to bundle the theme into a zip",
+        type=bool,
+        default=False,
+        action=argparse.BooleanOptionalAction,
+        dest="zip",
+    )
+
     return parser.parse_args()
 
 
@@ -563,6 +607,11 @@ def main():
     accent = getattr(palette.colors, args.accent)
     tweaks = Tweaks(tweaks=args.tweaks)
 
+    if args.zip:
+        output_format = 'zip'
+    else:
+        output_format = 'dir'
+
     ctx = BuildContext(
         build_root=args.dest,
         theme_name=args.name,
@@ -570,6 +619,7 @@ def main():
         accent=accent,
         size=args.size,
         tweaks=tweaks,
+        output_format=output_format
     )
 
     logger.info("Building temp tweaks file")
@@ -579,6 +629,7 @@ def main():
     logger.info("Building main theme")
     build_theme(ctx)
     logger.info("Done!")
+
 
 try:
     main()
