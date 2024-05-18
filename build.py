@@ -21,10 +21,10 @@ formatter = logging.Formatter('[%(name)s] [%(levelname)s] - %(message)s')
 ch.setFormatter(formatter)
 logger.addHandler(ch)
 
-def make_theme_dir(dest, name, theme, color, size, scheme):
-    return f"{dest}/{name}-{theme}-{color}-{size}-{scheme}"
+def make_theme_dir(dest, name, flavor, accent, size):
+    return f"{dest}/{name}-{flavor}-{accent}-{size}"
 
-def install(dest, name, theme, color, size, scheme, window):
+def install(dest, name, flavor, accent, size, window):
     dark_suffix = ""
     light_suffix = ""
     window_suffix = ""
@@ -33,15 +33,15 @@ def install(dest, name, theme, color, size, scheme, window):
     if window == "normal":
         window_suffix = "-Normal"
 
-    if color == "light":
+    if flavor == "latte":
         light_suffix = "-Light"
         suffix = "-Light"
 
-    if color == "dark":
+    if flavor != "":
         dark_suffix = "-Dark"
         suffix = "-Dark"
 
-    theme_dir = make_theme_dir(dest, name, theme, color, size, scheme)
+    theme_dir = make_theme_dir(dest, name, flavor, accent, size)
     # [[ -d "${THEME_DIR}" ]] && rm -rf "${THEME_DIR}"
     logger.info(f"Building into '{theme_dir}'...")
 
@@ -52,15 +52,15 @@ def install(dest, name, theme, color, size, scheme, window):
     with open(f"{theme_dir}/index.theme", "w") as file:
         file.write("[Desktop Entry]\n")
         file.write("Type=X-GNOME-Metatheme\n")
-        file.write(f"Name={name}-{theme}-{color}-{size}-{scheme}\n")
+        file.write(f"Name={name}-{flavor}-{accent}-{size}\n")
         file.write("Comment=An Flat Gtk+ theme based on Elegant Design\n")
         file.write("Encoding=UTF-8\n")
         file.write("\n")
         file.write("[X-GNOME-Metatheme]\n")
-        file.write(f"GtkTheme={name}-{theme}-{color}-{size}-{scheme}\n")
-        file.write(f"MetacityTheme={name}-{theme}-{color}-{size}-{scheme}\n")
+        file.write(f"GtkTheme={name}-{flavor}-{accent}-{size}\n")
+        file.write(f"MetacityTheme={name}-{flavor}-{accent}-{size}\n")
         file.write(f"IconTheme=Tela-circle{dark_suffix}\n")
-        file.write(f"CursorTheme={theme}-cursors\n")
+        file.write(f"CursorTheme={flavor}-cursors\n")
         file.write("ButtonLayout=close,minimize,maximize:menu\n")
 
     os.makedirs(f"{theme_dir}/gnome-shell", exist_ok=True)
@@ -77,15 +77,8 @@ def install(dest, name, theme, color, size, scheme, window):
         ]
     )
 
-    os.makedirs(f"{theme_dir}/gtk-2.0", exist_ok=True)
-
     # Commented out upstream:
     # cp -r "${SRC_DIR}/main/gtk-2.0/gtkrc${theme}${ELSE_DARK:-}${scheme}"                       "${THEME_DIR}/gtk-2.0/gtkrc"
-
-    for rc in ["apps", "hacks", "main"]:
-        shutil.copyfile(
-            f"{SRC_DIR}/main/gtk-2.0/common/{rc}.rc", f"{theme_dir}/gtk-2.0/{rc}.rc"
-        )
 
     os.makedirs(f"{theme_dir}/gtk-3.0", exist_ok=True)
     subprocess.check_call(
@@ -166,18 +159,16 @@ def install(dest, name, theme, color, size, scheme, window):
         f"{SRC_DIR}/main/xfwm4/themerc{light_suffix}",
         f"{theme_dir}-hdpi/xfwm4/themerc",
     )
-    # TODO:
-    # sed -i "s/button_offset=6/button_offset=9/"                                                "${THEME_DIR}-hdpi/xfwm4/themerc"
+    subst_text(f'{theme_dir}-hdpi/xfwm4/themerc', 'button_offset=6', 'button_offset=9')
 
     os.makedirs(f"{theme_dir}-xhdpi/xfwm4", exist_ok=True)
     shutil.copyfile(
         f"{SRC_DIR}/main/xfwm4/themerc{light_suffix or ''}",
         f"{theme_dir}-xhdpi/xfwm4/themerc",
     )
-    # TODO:
-    # sed -i "s/button_offset=6/button_offset=12/"                                               "${THEME_DIR}-xhdpi/xfwm4/themerc"
+    subst_text(f'{theme_dir}-xhdpi/xfwm4/themerc', 'button_offset=6', 'button_offset=12')
 
-    if color == "-Light":
+    if flavor == 'latte':
         shutil.copytree(
             f"{SRC_DIR}/main/plank/theme-Light{scheme_suffix}/", f"{theme_dir}/plank"
         )
@@ -326,65 +317,26 @@ def theme_tweaks():
         float_panel()
 
 
-def make_gtkrc(dest, name, theme, color, size, scheme):
-    gtkrc_dir = f"{SRC_DIR}/main/gtk-2.0"
-
-    dark_suffix = ""
-    if color == "dark":
-        dark_suffix = "-Dark"
-
-    theme_dir = make_theme_dir(dest, name, theme, color, size, scheme)
-    palette = getattr(PALETTE, args.flavor)
-    theme_color = getattr(palette.colors, args.accent).hex
-
-    if "black" in args.tweaks:
-        background_light = "#FFFFFF"
-        background_dark = "#0F0F0F"
-        background_darker = "#121212"
-        background_alt = "#212121"
-        titlebar_light = "#F2F2F2"
-        titlebar_dark = "#030303"
-    else:
-        background_light = "#FFFFFF"
-        background_dark = "#2C2C2C"
-        background_darker = "#3C3C3C"
-        background_alt = "#464646"
-        titlebar_light = "#F2F2F2"
-        titlebar_dark = "#242424"
-
-    shutil.copyfile(
-        f"{gtkrc_dir}/gtkrc{dark_suffix}-default", f"{theme_dir}/gtk-2.0/gtkrc"
-    )
-
-    subst_text(f"{theme_dir}/gtk-2.0/gtkrc", "#FFFFFF", background_light)
-    subst_text(f"{theme_dir}/gtk-2.0/gtkrc", "#2C2C2C", background_dark)
-    subst_text(f"{theme_dir}/gtk-2.0/gtkrc", "#464646", background_alt)
-
-    if color == "-Dark":
-        subst_text(f"{theme_dir}/gtk-2.0/gtkrc", "#5b9bf8", theme_color)
-        subst_text(f"{theme_dir}/gtk-2.0/gtkrc", "#3C3C3C", background_darker)
-        subst_text(f"{theme_dir}/gtk-2.0/gtkrc", "#242424", titlebar_dark)
-    else:
-        subst_text(f"{theme_dir}/gtk-2.0/gtkrc", "#3c84f7", theme_color)
-        subst_text(f"{theme_dir}/gtk-2.0/gtkrc", "#F2F2F2", titlebar_light)
-
-
-def make_assets(dest, name, theme, color, size, scheme):
+def make_assets(dest, name, flavor, accent, size):
     color_suffix = ""
-    if color == "light":
+    if flavor == "latte":
         color_suffix = "-Light"
     else:
         color_suffix = '-Dark'
 
     dark_suffix = ""
-    if color == "dark":
+    if flavor != 'latte':
         dark_suffix = "-Dark"
+
+    light_suffix = ""
+    if flavor != 'latte':
+        light_suffix = "-Light"
 
     window_suffix = ""
     if 'normal' in args.tweaks:
         window_suffix = "-Normal"
 
-    theme_dir = make_theme_dir(dest, name, theme, color, size, scheme)
+    theme_dir = make_theme_dir(dest, name, flavor, accent, size)
 
     os.makedirs(f"{theme_dir}/cinnamon/assets", exist_ok=True)
     for file in glob.glob(f"{SRC_DIR}/assets/cinnamon/theme/*.svg"):
@@ -427,8 +379,6 @@ def make_assets(dest, name, theme, color, size, scheme):
         titlebar_light = "#F2F2F2"
         titlebar_dark = "#242424"
 
-    # TODO: Do we need to replace both? Upstream has 2 hexes for light / dark
-    # but ctp only operates with 1 [accent at atime]
     for file in glob.glob(f"{theme_dir}/cinnamon/assets/*.svg"):
         subst_text(file, "#5b9bf8", theme_color)
         subst_text(file, "#3c84f7", theme_color)
@@ -451,7 +401,7 @@ def make_assets(dest, name, theme, color, size, scheme):
         subst_text(file, "#2c2c2c", background_dark)
         subst_text(file, "#3c3c3c", background_alt)
 
-    if color == "dark":
+    if accent == "dark":
         subst_text(
             f"{theme_dir}/cinnamon/thumbnail.png", "#2c2c2c", background_dark
         )
@@ -491,12 +441,6 @@ def make_assets(dest, name, theme, color, size, scheme):
         shutil.copy(file, f"{theme_dir}/gtk-3.0/assets")
         shutil.copy(file, f"{theme_dir}/gtk-4.0/assets")
 
-    # TODO: GTK 2.0 support
-    """
-    cp -r "${SRC_DIR}/assets/gtk-2.0/assets-common${ELSE_DARK:-}"                              "${THEME_DIR}/gtk-2.0/assets"
-    cp -r "${SRC_DIR}/assets/gtk-2.0/assets${theme}${ELSE_DARK:-}${scheme}/"*"png"             "${THEME_DIR}/gtk-2.0/assets"
-    """
-
     for file in glob.glob(f"{SRC_DIR}/assets/metacity-1/assets-{window_suffix}/*.svg"):
         shutil.copy(file, f"{theme_dir}/metacity-1/assets")
     shutil.copy(
@@ -504,19 +448,20 @@ def make_assets(dest, name, theme, color, size, scheme):
         f'{theme_dir}/metacity-1/thumbnail.png'
     )
 
-    # TODO: xfwm4 support
-    """
-    cp -r "${SRC_DIR}/assets/xfwm4/assets${ELSE_LIGHT:-}${scheme}${window}/"*.png              "${THEME_DIR}/xfwm4"
-    cp -r "${SRC_DIR}/assets/xfwm4/assets${ELSE_LIGHT:-}${scheme}${window}-hdpi/"*.png         "${THEME_DIR}-hdpi/xfwm4"
-    cp -r "${SRC_DIR}/assets/xfwm4/assets${ELSE_LIGHT:-}${scheme}${window}-xhdpi/"*.png        "${THEME_DIR}-xhdpi/xfwm4"
-    """
+    # TODO: Make our own assets for this and patch them in with the patch system, then code it to be
+    # {src_dir}/assets/xfwm4/assets{light_suffix}-Catppuccin/
+    # where assets-Light-Catppuccin will have latte
+    # nad assets-Catppuccin will have mocha or something
+    for file in glob.glob(f"{SRC_DIR}/assets/xfwm4/assets{light_suffix}/*.png"):
+        shutil.copy(file, f"{theme_dir}/xfwm4")
+
+    for file in glob.glob(f"{SRC_DIR}/assets/xfwm4/assets{light_suffix}-hdpi/*.png"):
+        shutil.copy(file, f"{theme_dir}-hdpi/xfwm4")
+
+    for file in glob.glob(f"{SRC_DIR}/assets/xfwm4/assets{light_suffix}-xhdpi/*.png"):
+        shutil.copy(file, f"{theme_dir}-xhdpi/xfwm4")
 
 def install_theme():
-    if args.flavor == "latte":
-        color = "light"
-    else:
-        color = "dark"
-
     if "normal" in args.tweaks:
         window = "normal"
     else:
@@ -527,30 +472,21 @@ def install_theme():
     install(
         dest=args.dest,
         name=args.name,
-        theme=translate_accent(args.accent),
-        color=color,
+        flavor=args.flavor,
+        accent=args.accent,
         size=args.size,
-        scheme="catppuccin",
         window=window,
     )
 
-    make_gtkrc(
-        dest=args.dest,
-        name=args.name,
-        theme=translate_accent(args.accent),
-        color=color,
-        size=args.size,
-        scheme="catppuccin",
-    )
-
+    logger.info('Bundling assets...')
     make_assets(
         dest=args.dest,
         name=args.name,
-        theme=translate_accent(args.accent),
-        color=color,
+        flavor=args.flavor,
+        accent=args.accent,
         size=args.size,
-        scheme="catppuccin",
     )
+    logger.info('Asset bundling done')
 
     """
     if (command -v xfce4-popup-whiskermenu &> /dev/null) && $(sed -i "s|.*menu-opacity=.*|menu-opacity=95|" "$HOME/.config/xfce4/panel/whiskermenu"*".rc" &> /dev/null); then
