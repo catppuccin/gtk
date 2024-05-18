@@ -4,6 +4,8 @@ import re
 import shutil
 import subprocess
 import argparse
+import glob
+import logging
 
 from catppuccin import PALETTE
 from catppuccin.models import Flavor
@@ -12,36 +14,42 @@ THIS_DIR = os.path.dirname(os.path.realpath(__file__))
 SRC_DIR = f"{THIS_DIR}/colloid/src"
 SASSC_OPT = ["-M", "-t", "expanded"]
 
+logger = logging.getLogger('catppuccin-gtk')
+logger.setLevel(logging.DEBUG)
+ch = logging.StreamHandler()
+formatter = logging.Formatter('[%(name)s] [%(levelname)s] - %(message)s')
+ch.setFormatter(formatter)
+logger.addHandler(ch)
+
 def make_theme_dir(dest, name, theme, color, size, scheme):
     return f"{dest}/{name}-{theme}-{color}-{size}-{scheme}"
 
 def install(dest, name, theme, color, size, scheme, window):
-    dark_suffix = ''
-    light_suffix = ''
-    window_suffix = ''
-    scheme_suffix = '-Catppuccin'
+    dark_suffix = ""
+    light_suffix = ""
+    window_suffix = ""
+    scheme_suffix = "-Catppuccin"
 
-    if window == 'normal':
-        window_suffix = '-Normal'
+    if window == "normal":
+        window_suffix = "-Normal"
 
     if color == "light":
         light_suffix = "-Light"
-        suffix = '-Light'
+        suffix = "-Light"
 
     if color == "dark":
         dark_suffix = "-Dark"
-        suffix = '-Dark'
-
+        suffix = "-Dark"
 
     theme_dir = make_theme_dir(dest, name, theme, color, size, scheme)
     # [[ -d "${THEME_DIR}" ]] && rm -rf "${THEME_DIR}"
-    print(f"Building into '{theme_dir}'...")
+    logger.info(f"Building into '{theme_dir}'...")
 
     theme_tweaks()
 
     os.makedirs(theme_dir, exist_ok=True)
 
-    with open(f"{theme_dir}/index.theme", 'w') as file:
+    with open(f"{theme_dir}/index.theme", "w") as file:
         file.write("[Desktop Entry]\n")
         file.write("Type=X-GNOME-Metatheme\n")
         file.write(f"Name={name}-{theme}-{color}-{size}-{scheme}\n")
@@ -57,7 +65,8 @@ def install(dest, name, theme, color, size, scheme, window):
 
     os.makedirs(f"{theme_dir}/gnome-shell", exist_ok=True)
     shutil.copyfile(
-        f"{SRC_DIR}/main/gnome-shell/pad-osd.css", f"{theme_dir}/gnome-shell/pad-osd.css"
+        f"{SRC_DIR}/main/gnome-shell/pad-osd.css",
+        f"{theme_dir}/gnome-shell/pad-osd.css",
     )
     subprocess.check_call(
         [
@@ -181,6 +190,7 @@ def install(dest, name, theme, color, size, scheme, window):
 def tweaks_temp():
     shutil.copyfile(f"{SRC_DIR}/sass/_tweaks.scss", f"{SRC_DIR}/sass/_tweaks-temp.scss")
 
+
 def subst_text(path, _from, to):
     with open(path, "r+") as f:
         content = f.read()
@@ -288,8 +298,10 @@ ctp_to_colloid = {
 def translate_accent(ctp_accent):
     return ctp_to_colloid[ctp_accent]
 
+
 def theme_color():
     write_tweak("theme", "'default'", translate_accent(args.accent))
+
 
 def theme_tweaks():
     if args.accent:
@@ -317,7 +329,7 @@ def theme_tweaks():
 def make_gtkrc(dest, name, theme, color, size, scheme):
     gtkrc_dir = f"{SRC_DIR}/main/gtk-2.0"
 
-    dark_suffix = ''
+    dark_suffix = ""
     if color == "dark":
         dark_suffix = "-Dark"
 
@@ -350,19 +362,154 @@ def make_gtkrc(dest, name, theme, color, size, scheme):
 
     if color == "-Dark":
         subst_text(f"{theme_dir}/gtk-2.0/gtkrc", "#5b9bf8", theme_color)
-
         subst_text(f"{theme_dir}/gtk-2.0/gtkrc", "#3C3C3C", background_darker)
-
         subst_text(f"{theme_dir}/gtk-2.0/gtkrc", "#242424", titlebar_dark)
     else:
         subst_text(f"{theme_dir}/gtk-2.0/gtkrc", "#3c84f7", theme_color)
-
         subst_text(f"{theme_dir}/gtk-2.0/gtkrc", "#F2F2F2", titlebar_light)
 
 
-def make_assets(**_):
-    print("FIXME: Implement asset generation")
+def make_assets(dest, name, theme, color, size, scheme):
+    color_suffix = ""
+    if color == "light":
+        color_suffix = "-Light"
+    else:
+        color_suffix = '-Dark'
 
+    dark_suffix = ""
+    if color == "dark":
+        dark_suffix = "-Dark"
+
+    window_suffix = ""
+    if 'normal' in args.tweaks:
+        window_suffix = "-Normal"
+
+    theme_dir = make_theme_dir(dest, name, theme, color, size, scheme)
+
+    os.makedirs(f"{theme_dir}/cinnamon/assets", exist_ok=True)
+    for file in glob.glob(f"{SRC_DIR}/assets/cinnamon/theme/*.svg"):
+        shutil.copy(file, f"{theme_dir}/cinnamon/assets")
+    shutil.copy(
+        f"{SRC_DIR}/assets/cinnamon/thumbnail{color_suffix}.svg",
+        f"{theme_dir}/cinnamon/thumbnail.png",
+    )
+
+    os.makedirs(f"{theme_dir}/gnome-shell/assets", exist_ok=True)
+    for file in glob.glob(f"{SRC_DIR}/assets/gnome-shell/theme/*.svg"):
+        shutil.copy(file, f"{theme_dir}/gnome-shell/assets")
+
+    shutil.copytree(f"{SRC_DIR}/assets/gtk/assets", f"{theme_dir}/gtk-3.0/assets", dirs_exist_ok=True)
+    shutil.copytree(f"{SRC_DIR}/assets/gtk/assets", f"{theme_dir}/gtk-4.0/assets", dirs_exist_ok=True)
+    shutil.copyfile(
+        f"{SRC_DIR}/assets/gtk/thumbnail{dark_suffix}.svg",
+        f"{theme_dir}/gtk-3.0/thumbnail.png",
+    )
+    shutil.copyfile(
+        f"{SRC_DIR}/assets/gtk/thumbnail{dark_suffix}.svg",
+        f"{theme_dir}/gtk-4.0/thumbnail.png",
+    )
+
+    palette = getattr(PALETTE, args.flavor)
+    theme_color = getattr(palette.colors, args.accent).hex
+
+    if "black" in args.tweaks:
+        background_light = "#FFFFFF"
+        background_dark = "#0F0F0F"
+        background_darker = "#121212"
+        background_alt = "#212121"
+        titlebar_light = "#F2F2F2"
+        titlebar_dark = "#030303"
+    else:
+        background_light = "#FFFFFF"
+        background_dark = "#2C2C2C"
+        background_darker = "#3C3C3C"
+        background_alt = "#464646"
+        titlebar_light = "#F2F2F2"
+        titlebar_dark = "#242424"
+
+    # TODO: Do we need to replace both? Upstream has 2 hexes for light / dark
+    # but ctp only operates with 1 [accent at atime]
+    for file in glob.glob(f"{theme_dir}/cinnamon/assets/*.svg"):
+        subst_text(file, "#5b9bf8", theme_color)
+        subst_text(file, "#3c84f7", theme_color)
+
+    for file in glob.glob(f"{theme_dir}/gnome-shell/assets/*.svg"):
+        subst_text(file, "#5b9bf8", theme_color)
+        subst_text(file, "#3c84f7", theme_color)
+
+    for file in glob.glob(f"{theme_dir}/gtk-3.0/assets/*.svg"):
+        subst_text(file, "#5b9bf8", theme_color)
+        subst_text(file, "#3c84f7", theme_color)
+        subst_text(file, "#ffffff", background_light)
+        subst_text(file, "#2c2c2c", background_dark)
+        subst_text(file, "#3c3c3c", background_alt)
+
+    for file in glob.glob(f"{theme_dir}/gtk-4.0/assets/*.svg"):
+        subst_text(file, "#5b9bf8", theme_color)
+        subst_text(file, "#3c84f7", theme_color)
+        subst_text(file, "#ffffff", background_light)
+        subst_text(file, "#2c2c2c", background_dark)
+        subst_text(file, "#3c3c3c", background_alt)
+
+    if color == "dark":
+        subst_text(
+            f"{theme_dir}/cinnamon/thumbnail.png", "#2c2c2c", background_dark
+        )
+        subst_text(f"{theme_dir}/cinnamon/thumbnail.png", "#5b9bf8", theme_color)
+
+        subst_text(f"{theme_dir}/gtk-3.0/thumbnail.png", "#2c2c2c", background_dark)
+        subst_text(f"{theme_dir}/gtk-4.0/thumbnail.png", "#2c2c2c", background_dark)
+
+        subst_text(f"{theme_dir}/gtk-3.0/thumbnail.png", "#5b9bf8", theme_color)
+        subst_text(f"{theme_dir}/gtk-4.0/thumbnail.png", "#5b9bf8", theme_color)
+    else:
+        subst_text(
+            f"{theme_dir}/cinnamon/thumbnail.png", "#ffffff", background_light
+        )
+        subst_text(f"{theme_dir}/cinnamon/thumbnail.png", "#f2f2f2", titlebar_light)
+        subst_text(f"{theme_dir}/cinnamon/thumbnail.png", "#3c84f7", theme_color)
+
+        subst_text(f"{theme_dir}/gtk-3.0/thumbnail.png", "#f2f2f2", titlebar_light)
+        subst_text(f"{theme_dir}/gtk-3.0/thumbnail.png", "#3c84f7", theme_color)
+
+        subst_text(f"{theme_dir}/gtk-4.0/thumbnail.png", "#f2f2f2", titlebar_light)
+        subst_text(f"{theme_dir}/gtk-4.0/thumbnail.png", "#3c84f7", theme_color)
+
+    for file in glob.glob(f"{SRC_DIR}/assets/cinnamon/common-assets/*.svg"):
+        shutil.copy(file, f"{theme_dir}/cinnamon/assets")
+
+    for file in glob.glob(f"{SRC_DIR}/assets/cinnamon/assets-{dark_suffix}/*.svg"):
+        shutil.copy(file, f"{theme_dir}/cinnamon/assets")
+
+    for file in glob.glob(f"{SRC_DIR}/assets/gnome-shell/common-assets/*.svg"):
+        shutil.copy(file, f"{theme_dir}/gnome-shell/assets")
+
+    for file in glob.glob(f"{SRC_DIR}/assets/gnome-shell/assets-{dark_suffix}/*.svg"):
+        shutil.copy(file, f"{theme_dir}/gnome-shell/assets")
+
+    for file in glob.glob(f"{SRC_DIR}/assets/gtk/symbolics/*.svg"):
+        shutil.copy(file, f"{theme_dir}/gtk-3.0/assets")
+        shutil.copy(file, f"{theme_dir}/gtk-4.0/assets")
+
+    # TODO: GTK 2.0 support
+    """
+    cp -r "${SRC_DIR}/assets/gtk-2.0/assets-common${ELSE_DARK:-}"                              "${THEME_DIR}/gtk-2.0/assets"
+    cp -r "${SRC_DIR}/assets/gtk-2.0/assets${theme}${ELSE_DARK:-}${scheme}/"*"png"             "${THEME_DIR}/gtk-2.0/assets"
+    """
+
+    for file in glob.glob(f"{SRC_DIR}/assets/metacity-1/assets-{window_suffix}/*.svg"):
+        shutil.copy(file, f"{theme_dir}/metacity-1/assets")
+    shutil.copy(
+        f'{SRC_DIR}/assets/metacity-1/thumbnail{dark_suffix}.png',
+        f'{theme_dir}/metacity-1/thumbnail.png'
+    )
+
+    # TODO: xfwm4 support
+    """
+    cp -r "${SRC_DIR}/assets/xfwm4/assets${ELSE_LIGHT:-}${scheme}${window}/"*.png              "${THEME_DIR}/xfwm4"
+    cp -r "${SRC_DIR}/assets/xfwm4/assets${ELSE_LIGHT:-}${scheme}${window}-hdpi/"*.png         "${THEME_DIR}-hdpi/xfwm4"
+    cp -r "${SRC_DIR}/assets/xfwm4/assets${ELSE_LIGHT:-}${scheme}${window}-xhdpi/"*.png        "${THEME_DIR}-xhdpi/xfwm4"
+    """
 
 def install_theme():
     if args.flavor == "latte":
@@ -373,7 +520,9 @@ def install_theme():
     if "normal" in args.tweaks:
         window = "normal"
     else:
-        window = ''
+        window = ""
+
+    logger.info(f'Building with args={args}')
 
     install(
         dest=args.dest,
@@ -413,28 +562,35 @@ def install_theme():
     fi
     """
 
+
 def apply_patches():
-    if os.path.isfile('colloid/.patched'):
-        print('Patches seem to be applied, remove "colloid/.patched" to force application (this may fail)') 
+    if os.path.isfile("colloid/.patched"):
+        logger.info(
+            'Patches seem to be applied, remove "colloid/.patched" to force application (this may fail)'
+        )
         return
 
+    logger.info("Applying patches...")
     # Change into colloid
     for patch in [
-        'plank-dark.patch',
-        'plank-light.patch',
-        'sass-colors.patch',
-        'sass-palette.patch',
+        "plank-dark.patch",
+        "plank-light.patch",
+        "sass-colors.patch",
+        "sass-palette.patch",
     ]:
-        path = f'./patches/colloid/{patch}'
-        print(f"Applying patch '{patch}', located at '{path}'")
-        subprocess.check_call(['git', 'apply', path, '--directory', f'colloid'])
-    
-    with open('colloid/.patched', 'w') as f:
-        f.write('true')
+        path = f"./patches/colloid/{patch}"
+        logger.info(f"Applying patch '{patch}', located at '{path}'")
+        subprocess.check_call(["git", "apply", path, "--directory", f"colloid"])
+
+    with open("colloid/.patched", "w") as f:
+        f.write("true")
+
+    logger.info("Patching finished.")
+
 
 def uninstall(dest, name, theme, color, size, scheme, window):
     theme_dir = make_theme_dir(dest, name, theme, color, size, scheme)
-    print("Would remove", f"'{theme_dir}'")
+    logger.info("Would remove", f"'{theme_dir}'")
     """
     if [[ -d "${THEME_DIR}" ]]; then
         echo -e "Uninstall ${THEME_DIR}... "
@@ -452,7 +608,7 @@ def uninstall_theme():
     if "normal" in args.tweaks:
         window = "normal"
     else:
-        window = ''
+        window = ""
 
     uninstall(
         dest=args.dest,
@@ -463,6 +619,7 @@ def uninstall_theme():
         scheme="catppuccin",
         window=window,
     )
+
 
 """
 uninstall_link() {
@@ -649,6 +806,7 @@ parser.add_argument(
 
 args = parser.parse_args()
 
+
 def main():
     apply_patches()
 
@@ -663,12 +821,15 @@ def main():
         """
         uninstall_theme()
     else:
+        logger.info('Building temp tweaks file')
         tweaks_temp()
+        logger.info('Inserting gnome-shell imports')
         gnome_shell_version()
+        logger.info('Building main theme')
         install_theme()
+        logger.info('Done!')
 
 try:
     main()
 except Exception as e:
-    print("Something went wrong when installing the theme:")
-    raise e
+    logger.error("Something went wrong when installing the theme:", exc_info=e)
