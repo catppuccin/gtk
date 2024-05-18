@@ -562,6 +562,7 @@ def parse_args():
             "sapphire",
             "blue",
             "lavender",
+            "all"
         ],
         help="Accent of the theme.",
     )
@@ -597,38 +598,79 @@ def parse_args():
 
     return parser.parse_args()
 
-
 def main():
     args = parse_args()
-
     apply_colloid_patches()
 
     palette = getattr(PALETTE, args.flavor)
-    accent = getattr(palette.colors, args.accent)
-    tweaks = Tweaks(tweaks=args.tweaks)
+    accents=[
+        "rosewater",
+        "flamingo",
+        "pink",
+        "mauve",
+        "red",
+        "maroon",
+        "peach",
+        "yellow",
+        "green",
+        "teal",
+        "sky",
+        "sapphire",
+        "blue",
+        "lavender",
+    ]
 
-    if args.zip:
-        output_format = 'zip'
+    if args.accent == 'all':
+        for accent in accents:
+            accent = getattr(palette.colors, accent)
+
+            tweaks = Tweaks(tweaks=args.tweaks)
+
+            if args.zip:
+                output_format = 'zip'
+            else:
+                output_format = 'dir'
+
+            ctx = BuildContext(
+                build_root=args.dest,
+                theme_name=args.name,
+                flavor=palette,
+                accent=accent,
+                size=args.size,
+                tweaks=tweaks,
+                output_format=output_format
+            )
+
+            tweaks_temp()
+            gnome_shell_version()
+            build_theme(ctx)
+            logger.info("Done!")
     else:
-        output_format = 'dir'
+        accent = getattr(palette.colors, args.accent)
+        tweaks = Tweaks(tweaks=args.tweaks)
 
-    ctx = BuildContext(
-        build_root=args.dest,
-        theme_name=args.name,
-        flavor=palette,
-        accent=accent,
-        size=args.size,
-        tweaks=tweaks,
-        output_format=output_format
-    )
+        if args.zip:
+            output_format = 'zip'
+        else:
+            output_format = 'dir'
 
-    logger.info("Building temp tweaks file")
-    tweaks_temp()
-    logger.info("Inserting gnome-shell imports")
-    gnome_shell_version()
-    logger.info("Building main theme")
-    build_theme(ctx)
-    logger.info("Done!")
+        ctx = BuildContext(
+            build_root=args.dest,
+            theme_name=args.name,
+            flavor=palette,
+            accent=accent,
+            size=args.size,
+            tweaks=tweaks,
+            output_format=output_format
+        )
+
+        logger.info("Building temp tweaks file")
+        tweaks_temp()
+        logger.info("Inserting gnome-shell imports")
+        gnome_shell_version()
+        logger.info("Building main theme")
+        build_theme(ctx)
+        logger.info("Done!")
 
 
 try:
