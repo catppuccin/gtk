@@ -111,14 +111,6 @@ Refer to [Using the install script to install the theme](https://github.com/catp
 ### Theming the GDM Theme
 In order to theme the GDM theme, install the ``gdm-settings`` app and select the Catppuccin theme and click on "Save"
 
-## Development
-
-If you want to build the theme, make sure you have these packages installed.
-- `sassc`
-- `inkscape`
-- `optipng`
-
-
 ## 💝 Thanks to
 
 **Current maintainers**
@@ -131,7 +123,7 @@ If you want to build the theme, make sure you have these packages installed.
 
 - [rubyowo](https://github.com/rubyowo) - CI and docs
 - [braheezy](https://github.com/braheezy) - Instructions for the GDM theme.
-- [Omar](https://github.com/somerand0mcat) - Improving the README
+- [Omar](https://github.com/somerand0mcat) - Improving the instructions
 
 **Previous maintainer(s)**
 
