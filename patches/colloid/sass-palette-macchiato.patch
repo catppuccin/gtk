@@ -8,35 +8,35 @@ index 00000000..8a905942
 +
 +// Red
 +$red-light: #ed8796;
-+$red-dark: #861425;
++$red-dark: #ed8796;
 +
 +// Pink
 +$pink-light: #f5bde6;
-+$pink-dark: #861467;
++$pink-dark: #f5bde6;
 +
 +// Purple
 +$purple-light: #c6a0f6;
-+$purple-dark: #470d8d;
++$purple-dark: #c6a0f6;
 +
 +// Blue
 +$blue-light: #8aadf4;
-+$blue-dark: #0d388d;
++$blue-dark: #8aadf4;
 +
 +// Teal
 +$teal-light: #8bd5ca;
-+$teal-dark: #297166;
++$teal-dark: #8bd5ca;
 +
 +// Green
 +$green-light: #a6da95;
-+$green-dark: #3a7228;
++$green-dark: #a6da95;
 +
 +// Yellow
 +$yellow-light: #eed49f;
-+$yellow-dark: #835f17;
++$yellow-dark: #eed49f;
 +
 +// Orange
 +$orange-light: #f5a97f;
-+$orange-dark: #8f390b;
++$orange-dark: #f5a97f;
 +
 +// Grey
 +$grey-050: #cad3f5;

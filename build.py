@@ -2,7 +2,7 @@
 import os, re, shutil, subprocess, argparse, glob, logging, zipfile
 
 from dataclasses import dataclass
-from typing import Literal, List
+from typing import Any, Literal, List
 
 from catppuccin import PALETTE
 from catppuccin.models import Flavor, Color
@@ -31,6 +31,20 @@ class Tweaks:
 
 
 @dataclass
+class Suffix:
+    true_value: str
+    test: Any # callback function
+    false_value: str = ""
+
+
+IS_DARK = Suffix(true_value="-Dark", test=lambda ctx: ctx.flavor.dark)
+IS_LIGHT = Suffix(true_value="-Light", test=lambda ctx: not ctx.flavor.dark)
+IS_WINDOW_NORMAL = Suffix(true_value="-Normal", test=lambda ctx: ctx.tweaks.has('normal'))
+DARK_LIGHT = Suffix(
+    true_value="-Dark", false_value="-Light", test=lambda ctx: ctx.flavor.dark
+)
+
+@dataclass
 class BuildContext:
     build_root: str
     output_format: Literal["zip"] | Literal["dir"]
@@ -46,26 +60,15 @@ class BuildContext:
     def build_id(self) -> str:
         return f"{self.theme_name}-{self.flavor.identifier}-{self.accent.identifier}-{self.size}+{self.tweaks.id() or 'default'}"
 
+    def apply_suffix(self, suffix: Suffix) -> str:
+        if suffix.test(self):
+            return suffix.true_value
+        else:
+            return suffix.false_value
+
 
 def build(ctx: BuildContext):
-    dark_suffix = ""
-    light_suffix = ""
-    window_suffix = ""
-    scheme_suffix = "-Catppuccin"
-
-    if ctx.tweaks.has("normal"):
-        window_suffix = "-Normal"
-
-    if ctx.flavor == "latte":
-        light_suffix = "-Light"
-        suffix = "-Light"
-
-    if ctx.flavor != "":
-        dark_suffix = "-Dark"
-        suffix = "-Dark"
-
     output_dir = ctx.output_dir()
-    # [[ -d "${THEME_DIR}" ]] && rm -rf "${THEME_DIR}"
     logger.info(f"Building into '{output_dir}'...")
 
     apply_tweaks(ctx)
@@ -81,7 +84,7 @@ def build(ctx: BuildContext):
         file.write("[X-GNOME-Metatheme]\n")
         file.write(f"GtkTheme={ctx.build_id()}\n")
         file.write(f"MetacityTheme={ctx.build_id()}\n")
-        file.write(f"IconTheme=Tela-circle{dark_suffix}\n")
+        file.write(f"IconTheme=Tela-circle{ctx.apply_suffix(IS_DARK)}\n")
         file.write(f"CursorTheme={ctx.flavor.name}-cursors\n")
         file.write("ButtonLayout=close,minimize,maximize:menu\n")
 
@@ -94,7 +97,7 @@ def build(ctx: BuildContext):
         [
             "sassc",
             *SASSC_OPT,
-            f"{SRC_DIR}/main/gnome-shell/gnome-shell{suffix}.scss",
+            f"{SRC_DIR}/main/gnome-shell/gnome-shell{ctx.apply_suffix(DARK_LIGHT)}.scss",
             f"{output_dir}/gnome-shell/gnome-shell.css",
         ]
     )
@@ -104,7 +107,7 @@ def build(ctx: BuildContext):
         [
             "sassc",
             *SASSC_OPT,
-            f"{SRC_DIR}/main/gtk-3.0/gtk{suffix}.scss",
+            f"{SRC_DIR}/main/gtk-3.0/gtk{ctx.apply_suffix(DARK_LIGHT)}.scss",
             f"{output_dir}/gtk-3.0/gtk.css",
         ]
     )
@@ -123,7 +126,7 @@ def build(ctx: BuildContext):
         [
             "sassc",
             *SASSC_OPT,
-            f"{SRC_DIR}/main/gtk-4.0/gtk{suffix}.scss",
+            f"{SRC_DIR}/main/gtk-4.0/gtk{ctx.apply_suffix(DARK_LIGHT)}.scss",
             f"{output_dir}/gtk-4.0/gtk.css",
         ]
     )
@@ -142,14 +145,14 @@ def build(ctx: BuildContext):
         [
             "sassc",
             *SASSC_OPT,
-            f"{SRC_DIR}/main/cinnamon/cinnamon{suffix}.scss",
+            f"{SRC_DIR}/main/cinnamon/cinnamon{ctx.apply_suffix(DARK_LIGHT)}.scss",
             f"{output_dir}/cinnamon/cinnamon.css",
         ]
     )
 
     os.makedirs(f"{output_dir}/metacity-1", exist_ok=True)
     shutil.copyfile(
-        f"{SRC_DIR}/main/metacity-1/metacity-theme-3{window_suffix}.xml",
+        f"{SRC_DIR}/main/metacity-1/metacity-theme-3{ctx.apply_suffix(IS_WINDOW_NORMAL)}.xml",
         f"{output_dir}/metacity-1/metacity-theme-3.xml",
     )
     # FIXME: Symlinks aren't working as intended
@@ -165,20 +168,20 @@ def build(ctx: BuildContext):
 
     os.makedirs(f"{output_dir}/xfwm4", exist_ok=True)
     shutil.copyfile(
-        f"{SRC_DIR}/main/xfwm4/themerc{light_suffix}",
+        f"{SRC_DIR}/main/xfwm4/themerc{ctx.apply_suffix(IS_LIGHT)}",
         f"{output_dir}/xfwm4/themerc",
     )
 
     os.makedirs(f"{output_dir}-hdpi/xfwm4", exist_ok=True)
     shutil.copyfile(
-        f"{SRC_DIR}/main/xfwm4/themerc{light_suffix}",
+        f"{SRC_DIR}/main/xfwm4/themerc{ctx.apply_suffix(IS_LIGHT)}",
         f"{output_dir}-hdpi/xfwm4/themerc",
     )
     subst_text(f"{output_dir}-hdpi/xfwm4/themerc", "button_offset=6", "button_offset=9")
 
     os.makedirs(f"{output_dir}-xhdpi/xfwm4", exist_ok=True)
     shutil.copyfile(
-        f"{SRC_DIR}/main/xfwm4/themerc{light_suffix or ''}",
+        f"{SRC_DIR}/main/xfwm4/themerc{ctx.apply_suffix(IS_LIGHT)}",
         f"{output_dir}-xhdpi/xfwm4/themerc",
     )
     subst_text(
@@ -187,11 +190,11 @@ def build(ctx: BuildContext):
 
     if not ctx.flavor.dark:
         shutil.copytree(
-            f"{SRC_DIR}/main/plank/theme-Light{scheme_suffix}/", f"{output_dir}/plank"
+            f"{SRC_DIR}/main/plank/theme-Light-Catppuccin/", f"{output_dir}/plank"
         )
     else:
         shutil.copytree(
-            f"{SRC_DIR}/main/plank/theme-Dark{scheme_suffix}/", f"{output_dir}/plank"
+            f"{SRC_DIR}/main/plank/theme-Dark-Catppuccin/", f"{output_dir}/plank"
         )
 
 
@@ -285,31 +288,13 @@ def apply_tweaks(ctx: BuildContext):
 
 
 def make_assets(ctx: BuildContext):
-    color_suffix = ""
-    if not ctx.flavor.dark:
-        color_suffix = "-Light"
-    else:
-        color_suffix = "-Dark"
-
-    dark_suffix = ""
-    if ctx.flavor.dark:
-        dark_suffix = "-Dark"
-
-    light_suffix = ""
-    if not ctx.flavor.dark:
-        light_suffix = "-Light"
-
-    window_suffix = ""
-    if ctx.tweaks.has("normal"):
-        window_suffix = "-Normal"
-
     output_dir = ctx.output_dir()
 
     os.makedirs(f"{output_dir}/cinnamon/assets", exist_ok=True)
     for file in glob.glob(f"{SRC_DIR}/assets/cinnamon/theme/*.svg"):
         shutil.copy(file, f"{output_dir}/cinnamon/assets")
     shutil.copy(
-        f"{SRC_DIR}/assets/cinnamon/thumbnail{color_suffix}.svg",
+        f"{SRC_DIR}/assets/cinnamon/thumbnail{ctx.apply_suffix(DARK_LIGHT)}.svg",
         f"{output_dir}/cinnamon/thumbnail.png",
     )
 
@@ -328,11 +313,11 @@ def make_assets(ctx: BuildContext):
         dirs_exist_ok=True,
     )
     shutil.copyfile(
-        f"{SRC_DIR}/assets/gtk/thumbnail{dark_suffix}.svg",
+        f"{SRC_DIR}/assets/gtk/thumbnail{ctx.apply_suffix(IS_DARK)}.svg",
         f"{output_dir}/gtk-3.0/thumbnail.png",
     )
     shutil.copyfile(
-        f"{SRC_DIR}/assets/gtk/thumbnail{dark_suffix}.svg",
+        f"{SRC_DIR}/assets/gtk/thumbnail{ctx.apply_suffix(IS_DARK)}.svg",
         f"{output_dir}/gtk-4.0/thumbnail.png",
     )
 
@@ -388,23 +373,23 @@ def make_assets(ctx: BuildContext):
     for file in glob.glob(f"{SRC_DIR}/assets/cinnamon/common-assets/*.svg"):
         shutil.copy(file, f"{output_dir}/cinnamon/assets")
 
-    for file in glob.glob(f"{SRC_DIR}/assets/cinnamon/assets-{dark_suffix}/*.svg"):
+    for file in glob.glob(f"{SRC_DIR}/assets/cinnamon/assets{ctx.apply_suffix(IS_DARK)}/*.svg"):
         shutil.copy(file, f"{output_dir}/cinnamon/assets")
 
     for file in glob.glob(f"{SRC_DIR}/assets/gnome-shell/common-assets/*.svg"):
         shutil.copy(file, f"{output_dir}/gnome-shell/assets")
 
-    for file in glob.glob(f"{SRC_DIR}/assets/gnome-shell/assets-{dark_suffix}/*.svg"):
+    for file in glob.glob(f"{SRC_DIR}/assets/gnome-shell/assets{ctx.apply_suffix(IS_DARK)}/*.svg"):
         shutil.copy(file, f"{output_dir}/gnome-shell/assets")
 
     for file in glob.glob(f"{SRC_DIR}/assets/gtk/symbolics/*.svg"):
         shutil.copy(file, f"{output_dir}/gtk-3.0/assets")
         shutil.copy(file, f"{output_dir}/gtk-4.0/assets")
 
-    for file in glob.glob(f"{SRC_DIR}/assets/metacity-1/assets-{window_suffix}/*.svg"):
+    for file in glob.glob(f"{SRC_DIR}/assets/metacity-1/assets{ctx.apply_suffix(IS_WINDOW_NORMAL)}/*.svg"):
         shutil.copy(file, f"{output_dir}/metacity-1/assets")
     shutil.copy(
-        f"{SRC_DIR}/assets/metacity-1/thumbnail{dark_suffix}.png",
+        f"{SRC_DIR}/assets/metacity-1/thumbnail{ctx.apply_suffix(IS_DARK)}.png",
         f"{output_dir}/metacity-1/thumbnail.png",
     )
 
@@ -412,13 +397,13 @@ def make_assets(ctx: BuildContext):
     # {src_dir}/assets/xfwm4/assets{light_suffix}-Catppuccin/
     # where assets-Light-Catppuccin will have latte
     # nad assets-Catppuccin will have mocha or something
-    for file in glob.glob(f"{SRC_DIR}/assets/xfwm4/assets{light_suffix}/*.png"):
+    for file in glob.glob(f"{SRC_DIR}/assets/xfwm4/assets{ctx.apply_suffix(IS_LIGHT)}/*.png"):
         shutil.copy(file, f"{output_dir}/xfwm4")
 
-    for file in glob.glob(f"{SRC_DIR}/assets/xfwm4/assets{light_suffix}-hdpi/*.png"):
+    for file in glob.glob(f"{SRC_DIR}/assets/xfwm4/assets{ctx.apply_suffix(IS_LIGHT)}-hdpi/*.png"):
         shutil.copy(file, f"{output_dir}-hdpi/xfwm4")
 
-    for file in glob.glob(f"{SRC_DIR}/assets/xfwm4/assets{light_suffix}-xhdpi/*.png"):
+    for file in glob.glob(f"{SRC_DIR}/assets/xfwm4/assets{ctx.apply_suffix(IS_LIGHT)}-xhdpi/*.png"):
         shutil.copy(file, f"{output_dir}-xhdpi/xfwm4")
 
 
@@ -556,7 +541,7 @@ def parse_args():
             "sapphire",
             "blue",
             "lavender",
-            "all"
+            "all",
         ],
         help="Accent of the theme.",
     )
@@ -599,13 +584,14 @@ def parse_args():
 
     return parser.parse_args()
 
+
 def main():
     args = parse_args()
     if args.patch:
         apply_colloid_patches()
 
     palette = getattr(PALETTE, args.flavor)
-    accents=[
+    accents = [
         "rosewater",
         "flamingo",
         "pink",
@@ -622,16 +608,16 @@ def main():
         "lavender",
     ]
 
-    if args.accent == 'all':
+    if args.accent == "all":
         for accent in accents:
             accent = getattr(palette.colors, accent)
 
             tweaks = Tweaks(tweaks=args.tweaks)
 
             if args.zip:
-                output_format = 'zip'
+                output_format = "zip"
             else:
-                output_format = 'dir'
+                output_format = "dir"
 
             ctx = BuildContext(
                 build_root=args.dest,
@@ -640,7 +626,7 @@ def main():
                 accent=accent,
                 size=args.size,
                 tweaks=tweaks,
-                output_format=output_format
+                output_format=output_format,
             )
 
             tweaks_temp()
@@ -652,9 +638,9 @@ def main():
         tweaks = Tweaks(tweaks=args.tweaks)
 
         if args.zip:
-            output_format = 'zip'
+            output_format = "zip"
         else:
-            output_format = 'dir'
+            output_format = "dir"
 
         ctx = BuildContext(
             build_root=args.dest,
@@ -663,7 +649,7 @@ def main():
             accent=accent,
             size=args.size,
             tweaks=tweaks,
-            output_format=output_format
+            output_format=output_format,
         )
 
         logger.info("Building temp tweaks file")
