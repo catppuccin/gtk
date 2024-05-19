@@ -684,4 +684,4 @@ def main():
 try:
     main()
 except Exception as e:
-    logger.error("Something went wrong when installing the theme:", exc_info=e)
+    logger.error("Something went wrong when building the theme:", exc_info=e)
