@@ -33,11 +33,11 @@ To build the theme, make sure the following packages are installed:
 ### Installing the theme manually
 
 1. Download and extract the theme zip from the [latest release](https://github.com/catppuccin/gtk/releases/latest/).
-2. Move the theme folder to the `~/.local/share/themes` directory (skip this step if you're using the AUR package).
+2. Move the theme folder to the `~/.local/share/themes` directory.
 3. Select the downloaded theme via your desktop specific tweaks application (GNOME Tweaks on GNOME 3+).
 4. To theme other apps that are using GTK, make sure to run the following command:
 ```bash
-export THEME_DIR="~/.local/share/themes/catppuccin-<flavor>-<accent color>-standard+default"
+export THEME_DIR="~/.local/share/themes/catppuccin-<flavor>-<accent>-standard+default"
 mkdir -p "${HOME}/.config/gtk-4.0" && 
 ln -sf "${THEME_DIR}/gtk-4.0/assets" "${HOME}/.config/gtk-4.0/assets" &&
 ln -sf "${THEME_DIR}/gtk-4.0/gtk.css" "${HOME}/.config/gtk-4.0/gtk.css" &&
@@ -52,10 +52,9 @@ sudo flatpak override --filesystem=$HOME/.local/share/themes
 
 Then, run the following command to apply the theme.
 ```bash
+export THEME_DIR="~/.local/share/themes/catppuccin-<flavor>-<accent>-standard+default"
 sudo flatpak override --env=GTK_THEME=$THEME_DIR
-```
 
-Make sure to export `$THEME_DIR` to where the theme is before executing the command or the theme won't work.
 
 ### Using the install script to install the theme
 
