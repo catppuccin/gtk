@@ -25,8 +25,6 @@ This GTK theme is based on the [Colloid](https://github.com/vinceliuice/Colloid-
 - `python3`
 - `gnome-themes-extra` (or `gnome-themes-standard`)
 
-In order to make sure you're running Python 3, run ``python --version`` and it should output ``Python 3.x.x``
-
 To build the theme, make sure the following packages are installed:
 - `sassc`
 - `inkscape`
@@ -39,16 +37,17 @@ To build the theme, make sure the following packages are installed:
 3. Select the downloaded theme via your desktop specific tweaks application (GNOME Tweaks on GNOME 3+).
 4. To theme other apps that are using GTK, make sure to run the following command:
 ```bash
-mkdir -p "${HOME}/.config/gtk-4.0" && ln -sf "${THEME_DIR}/gtk-4.0/assets" "${HOME}/.config/gtk-4.0/assets" && ln -sf "${THEME_DIR}/gtk-4.0/gtk.css" "${HOME}/.config/gtk-4.0/gtk.css" && ln -sf "${THEME_DIR}/gtk-4.0/gtk-dark.css" "${HOME}/.config/gtk-4.0/gtk-dark.css"
+export THEME_DIR="~/.local/share/themes/catppuccin-<flavor>-<accent color>-standard+default"
+mkdir -p "${HOME}/.config/gtk-4.0" && 
+ln -sf "${THEME_DIR}/gtk-4.0/assets" "${HOME}/.config/gtk-4.0/assets" &&
+ln -sf "${THEME_DIR}/gtk-4.0/gtk.css" "${HOME}/.config/gtk-4.0/gtk.css" &&
+ln -sf "${THEME_DIR}/gtk-4.0/gtk-dark.css" "${HOME}/.config/gtk-4.0/gtk-dark.css"
 ```
-Make sure to export `$THEME_DIR` to where the theme is before executing the command.
 
-###  Applying the theme on Flatpak (Skip this step if flatpak isn't installed)
-If you have Flatpak installed, make sure to execute the following commands to theme flatpak with the theme.
-
+###  Applying the theme on Flatpak
 In order for Flatpak to access the theme, make sure to run the following command:
 ```bash
-sudo flatpak override --filesystem=$HOME/.themes
+sudo flatpak override --filesystem=$HOME/.local/share/themes
 ```
 
 Then, run the following command to apply the theme.
@@ -56,17 +55,17 @@ Then, run the following command to apply the theme.
 sudo flatpak override --env=GTK_THEME=$THEME_DIR
 ```
 
-Again, Make sure to export `$THEME_DIR` to where the theme is before executing the command or the theme won't work.
+Make sure to export `$THEME_DIR` to where the theme is before executing the command or the theme won't work.
 
 ### Using the install script to install the theme
 
 To install the theme using the install script, run `install.py`:
 ```
-python install.py <latte, frappe, macchiato, mocha> <accent color>
+python3 install.py <flavor> <accent>
 ```
 If you have adwaita installed, make sure to include --link in order to add symlinks for it:
 ```
-python install.py <latte, frappe, macchiato, mocha> <accent color> --link
+python3 install.py <flavor> <accent> --link
 ```
 Run the command and the gtk theme should be installed!
 
@@ -80,7 +79,7 @@ With your favourite AUR helper, you can install one of these flavors:
 yay -S catppuccin-gtk-theme-<flavor>
 ```
 
-### Using Nix to install the theme
+### Using Nix
 
 We suggest you use [catppuccin/nix](https://github.com/catppuccin/nix). 
 Alternatively, you can use [catppuccin-gtk](https://github.com/NixOS/nixpkgs/blob/master/pkgs/data/themes/catppuccin-gtk/default.nix) from nixpkgs.
