@@ -1,0 +1,87 @@
+---
+whiskers:
+  version: 2.1.0
+  matrix:
+    - flavor
+  filename: 'sass-palette-{{ flavor.identifier }}.patch'
+---
+{%- set palette = flavor.colors -%}
+diff --git a/src/sass/_color-palette-catppuccin-{{ flavor.identifier }}.scss b/src/sass/_color-palette-catppuccin-{{ flavor.identifier }}.scss
+new file mode 100644
+index 00000000..8a905942
+--- /dev/null
++++ b/src/sass/_color-palette-catppuccin-{{ flavor.identifier }}.scss
+@@ -0,0 +1,72 @@
++// Default Theme Color Palette
++
++// Red
++$red-light: #{{ palette.red.hex }};
++$red-dark: #{{ palette.red | mod(lightness=30) | get(key="hex") }};
++
++// Pink
++$pink-light: #{{ palette.pink.hex }};
++$pink-dark: #{{ palette.pink | mod(lightness=30) | get(key="hex") }};
++
++// Purple
++$purple-light: #{{ palette.mauve.hex }};
++$purple-dark: #{{ palette.mauve | mod(lightness=30) | get(key="hex") }};
++
++// Blue
++$blue-light: #{{ palette.blue.hex }};
++$blue-dark: #{{ palette.blue | mod(lightness=30) | get(key="hex") }};
++
++// Teal
++$teal-light: #{{ palette.teal.hex }};
++$teal-dark: #{{ palette.teal | mod(lightness=30) | get(key="hex") }};
++
++// Green
++$green-light: #{{ palette.green.hex }};
++$green-dark: #{{ palette.green | mod(lightness=30) | get(key="hex") }};
++
++// Yellow
++$yellow-light: #{{ palette.yellow.hex }};
++$yellow-dark: #{{ palette.yellow | mod(lightness=30) | get(key="hex") }};
++
++// Orange
++$orange-light: #{{ palette.peach.hex }};
++$orange-dark: #{{ palette.peach | mod(lightness=30) | get(key="hex") }};
++
++// Grey
++$grey-050: #{{ palette.text.hex }};
++$grey-100: #{{ palette.subtext1.hex }};
++$grey-150: #{{ palette.subtext1.hex }};
++$grey-200: #{{ palette.subtext0.hex }};
++$grey-250: #{{ palette.subtext0.hex }};
++$grey-300: #{{ palette.overlay1.hex }};
++$grey-350: #{{ palette.overlay1.hex }};
++$grey-400: #{{ palette.overlay0.hex }};
++$grey-450: #{{ palette.overlay0.hex }};
++$grey-500: #{{ palette.surface2.hex }};
++$grey-550: #{{ palette.surface2.hex }};
++$grey-600: #{{ palette.surface1.hex }};
++$grey-650: #{{ palette.surface1.hex }};
++$grey-700: #{{ palette.surface0.hex }};
++$grey-750: #{{ palette.surface0.hex }};
++$grey-800: #{{ palette.base.hex }};
++$grey-850: #{{ palette.base.hex }};
++$grey-900: #{{ palette.crust.hex }};
++$grey-950: #{{ palette.crust.hex }};
++
++// White
++$white: #FFFFFF;
++
++// Black
++$black: #000000;
++
++// Button
++$button-close: #{{ palette.red.hex }};
++$button-max: #{{ palette.green.hex }};
++$button-min: #{{ palette.yellow.hex }};
++
++// Link
++$links: #{{ palette.sky.hex }};
++
++// Theme
++$default-light: $purple-light;
++$default-dark: $purple-dark;
+{{ '' }}

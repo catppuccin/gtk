@@ -1,0 +1,78 @@
+diff --git a/src/sass/_color-palette-catppuccin-frappe.scss b/src/sass/_color-palette-catppuccin-frappe.scss
+new file mode 100644
+index 00000000..8a905942
+--- /dev/null
++++ b/src/sass/_color-palette-catppuccin-frappe.scss
+@@ -0,0 +1,72 @@
++// Default Theme Color Palette
++
++// Red
++$red-light: #e78284;
++$red-dark: #81191b;
++
++// Pink
++$pink-light: #f4b8e4;
++$pink-dark: #851567;
++
++// Purple
++$purple-light: #ca9ee6;
++$purple-dark: #58207a;
++
++// Blue
++$blue-light: #8caaee;
++$blue-dark: #143686;
++
++// Teal
++$teal-light: #81c8be;
++$teal-dark: #2f6b63;
++
++// Green
++$green-light: #a6d189;
++$green-dark: #466f2b;
++
++// Yellow
++$yellow-light: #e5c890;
++$yellow-dark: #7d5d1d;
++
++// Orange
++$orange-light: #ef9f76;
++$orange-dark: #8a3910;
++
++// Grey
++$grey-050: #c6d0f5;
++$grey-100: #b5bfe2;
++$grey-150: #b5bfe2;
++$grey-200: #a5adce;
++$grey-250: #a5adce;
++$grey-300: #838ba7;
++$grey-350: #838ba7;
++$grey-400: #737994;
++$grey-450: #737994;
++$grey-500: #626880;
++$grey-550: #626880;
++$grey-600: #51576d;
++$grey-650: #51576d;
++$grey-700: #414559;
++$grey-750: #414559;
++$grey-800: #303446;
++$grey-850: #303446;
++$grey-900: #232634;
++$grey-950: #232634;
++
++// White
++$white: #FFFFFF;
++
++// Black
++$black: #000000;
++
++// Button
++$button-close: #e78284;
++$button-max: #a6d189;
++$button-min: #e5c890;
++
++// Link
++$links: #99d1db;
++
++// Theme
++$default-light: $purple-light;
++$default-dark: $purple-dark;

@@ -6,6 +6,8 @@ venv/
 bin/
 lib*/
 *.cfg
+.direnv
+build/
 
 # Releases folder
 releases
