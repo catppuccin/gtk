@@ -55,7 +55,7 @@ Then, run the following command to apply the theme.
 ```bash
 export THEME_DIR="~/.local/share/themes/catppuccin-<flavor>-<accent>-standard+default"
 sudo flatpak override --env=GTK_THEME=$THEME_DIR
-
+```
 
 ### Using the install script to install the theme
 
@@ -63,7 +63,8 @@ To install the theme using the install script, run `install.py`:
 ```
 python3 install.py <flavor> <accent>
 ```
-If you have adwaita installed, make sure to include --link in order to add symlinks for it:
+
+If you have adwaita installed, make sure to include `--link` in order to add symlinks for it:
 ```
 python3 install.py <flavor> <accent> --link
 ```
