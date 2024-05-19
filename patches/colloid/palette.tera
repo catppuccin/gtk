@@ -16,35 +16,35 @@ index 00000000..8a905942
 +
 +// Red
 +$red-light: #{{ palette.red.hex }};
-+$red-dark: #{{ palette.red | mod(lightness=30) | get(key="hex") }};
++$red-dark: #{{ palette.red.hex }};
 +
 +// Pink
 +$pink-light: #{{ palette.pink.hex }};
-+$pink-dark: #{{ palette.pink | mod(lightness=30) | get(key="hex") }};
++$pink-dark: #{{ palette.pink.hex }};
 +
 +// Purple
 +$purple-light: #{{ palette.mauve.hex }};
-+$purple-dark: #{{ palette.mauve | mod(lightness=30) | get(key="hex") }};
++$purple-dark: #{{ palette.mauve.hex }};
 +
 +// Blue
 +$blue-light: #{{ palette.blue.hex }};
-+$blue-dark: #{{ palette.blue | mod(lightness=30) | get(key="hex") }};
++$blue-dark: #{{ palette.blue.hex }};
 +
 +// Teal
 +$teal-light: #{{ palette.teal.hex }};
-+$teal-dark: #{{ palette.teal | mod(lightness=30) | get(key="hex") }};
++$teal-dark: #{{ palette.teal.hex }};
 +
 +// Green
 +$green-light: #{{ palette.green.hex }};
-+$green-dark: #{{ palette.green | mod(lightness=30) | get(key="hex") }};
++$green-dark: #{{ palette.green.hex }};
 +
 +// Yellow
 +$yellow-light: #{{ palette.yellow.hex }};
-+$yellow-dark: #{{ palette.yellow | mod(lightness=30) | get(key="hex") }};
++$yellow-dark: #{{ palette.yellow.hex }};
 +
 +// Orange
 +$orange-light: #{{ palette.peach.hex }};
-+$orange-dark: #{{ palette.peach | mod(lightness=30) | get(key="hex") }};
++$orange-dark: #{{ palette.peach.hex }};
 +
 +// Grey
 +$grey-050: #{{ palette.text.hex }};
