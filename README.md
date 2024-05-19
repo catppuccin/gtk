@@ -15,7 +15,7 @@
   <img src="assets/res.webp"/>
 </p>
 
-This GTK theme is based on the [Colloid](https://github.com/vinceliuice/Colloid-gtk-theme) theme made by [Vinceliuice](https://github.com/vinceliuice)
+This GTK theme is based on the [Colloid](https://github.com/vinceliuice/Colloid-gtk-theme) theme made by [vinceliuice](https://github.com/vinceliuice)
 
 ## Usage
 
@@ -122,7 +122,7 @@ In order to theme the GDM theme, install the `gdm-settings` app, select the Catp
 **Contributions**
 
 - [rubyowo](https://github.com/rubyowo) - CI and docs
-- [braheezy](https://github.com/braheezy) - Instructions for the GDM theme.
+- [braheezy](https://github.com/braheezy) - Instructions for the GDM theme
 
 **Previous maintainer(s)**
 
