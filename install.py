@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import os, zipfile, argparse, logging, io
 from pathlib import Path
 from dataclasses import dataclass
