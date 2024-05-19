@@ -30,7 +30,7 @@ To build the theme, make sure the following packages are installed:
 - `inkscape`
 - `optipng`
 
-### Installing the theme manually
+### Manually
 
 1. Download and extract the theme zip from the [latest release](https://github.com/catppuccin/gtk/releases/latest/).
 2. Move the theme folder to the `~/.local/share/themes` directory.
@@ -44,7 +44,8 @@ ln -sf "${THEME_DIR}/gtk-4.0/gtk.css" "${HOME}/.config/gtk-4.0/gtk.css" &&
 ln -sf "${THEME_DIR}/gtk-4.0/gtk-dark.css" "${HOME}/.config/gtk-4.0/gtk-dark.css"
 ```
 
-###  Applying the theme on Flatpak
+###  Flatpak
+
 In order for Flatpak to access the theme, make sure to run the following command:
 ```bash
 sudo flatpak override --filesystem=$HOME/.local/share/themes
@@ -68,7 +69,7 @@ python3 install.py <flavor> <accent> --link
 ```
 Run the command and the gtk theme should be installed!
 
-### Using the AUR to install the theme
+### AUR
 
 We have 4 AUR packages for all the 4 flavours (Latte, Frappe, Macchiato, Mocha)
 
@@ -78,7 +79,7 @@ With your favourite AUR helper, you can install one of these flavors:
 yay -S catppuccin-gtk-theme-<flavor>
 ```
 
-### Using Nix
+### Nix
 
 We suggest you use [catppuccin/nix](https://github.com/catppuccin/nix). 
 Alternatively, you can use [catppuccin-gtk](https://github.com/NixOS/nixpkgs/blob/master/pkgs/data/themes/catppuccin-gtk/default.nix) from nixpkgs.
