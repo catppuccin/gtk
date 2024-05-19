@@ -6,9 +6,6 @@ on:
       - "v*"
 jobs:
   release:
-    strategy:
-      matrix:
-        flavor: [mocha, macchiato, latte, frappe]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -24,7 +21,11 @@ jobs:
       - name: Install colloid specific dependencies
         run: sudo apt update && sudo apt install -y sassc inkscape optipng
       - name: Generate themes
-        run: python ./build.py ${{ matrix.flavor }} -a all --zip -d $PWD/releases
+        run: |
+          python ./build.py mocha -a all --zip -d $PWD/releases &&
+          python ./build.py macchiato -a all --zip -d $PWD/releases &&
+          python ./build.py frappe -a all --zip -d $PWD/releases &&
+          python ./build.py latte -a all --zip -d $PWD/releases
       - name: Add zips to release
         uses: softprops/action-gh-release@v2
         with:
