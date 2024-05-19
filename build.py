@@ -112,8 +112,9 @@ def build(ctx: BuildContext):
         [
             "sassc",
             *SASSC_OPT,
+            # NOTE: This uses 'Dark' for the source, but 'dark' for the destination. This is intentional. Do !!NOT!! change it without consultation
             f"{SRC_DIR}/main/gtk-3.0/gtk-Dark.scss",
-            f"{output_dir}/gtk-3.0/gtk-Dark.css",
+            f"{output_dir}/gtk-3.0/gtk-dark.css",
         ]
     )
 
@@ -130,8 +131,9 @@ def build(ctx: BuildContext):
         [
             "sassc",
             *SASSC_OPT,
+            # NOTE: This uses 'Dark' for the source, but 'dark' for the destination. This is intentional. Do !!NOT!! change it without consultation
             f"{SRC_DIR}/main/gtk-4.0/gtk-Dark.scss",
-            f"{output_dir}/gtk-4.0/gtk-Dark.css",
+            f"{output_dir}/gtk-4.0/gtk-dark.css",
         ]
     )
 
@@ -142,14 +144,6 @@ def build(ctx: BuildContext):
             *SASSC_OPT,
             f"{SRC_DIR}/main/cinnamon/cinnamon{suffix}.scss",
             f"{output_dir}/cinnamon/cinnamon.css",
-        ]
-    )
-    subprocess.check_call(
-        [
-            "sassc",
-            *SASSC_OPT,
-            f"{SRC_DIR}/main/gtk-4.0/gtk-Dark.scss",
-            f"{output_dir}/gtk-4.0/gtk-Dark.css",
         ]
     )
 

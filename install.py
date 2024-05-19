@@ -121,7 +121,7 @@ def install(ctx: InstallContext):
         logger.info(f'Target: {gtk4_dir}')
         os.symlink(dir_name / 'assets', gtk4_dir / 'assets')
         os.symlink(dir_name / 'gtk.css', gtk4_dir / 'gtk.css')
-        os.symlink(dir_name / 'gtk-Dark.css', gtk4_dir / 'gtk-dark.css')
+        os.symlink(dir_name / 'gtk-dark.css', gtk4_dir / 'gtk-dark.css')
 
 
 def main():
