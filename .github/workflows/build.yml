@@ -1,4 +1,4 @@
-name: "Build test build on PRs"
+name: "Generate test artifacts"
 
 on:
   pull_request:
