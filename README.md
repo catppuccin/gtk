@@ -20,11 +20,11 @@ This GTK theme is based on the [Colloid](https://github.com/vinceliuice/Colloid-
 
 ## Installation
 This GTK theme requires:
-- GTK >=3.20
+- GTK `>=3.20`
 - Python 3+
 
 ### Automated script
-We provide a Python script to automate the process of installing the theme:
+We provide a Python script to automate the process of installing the theme, This is what the output will look like:
 
 ```
 curl -LsS "https://raw.githubusercontent.com/catppuccin/gtk/main/install.py" -o install.py
@@ -32,7 +32,7 @@ python3 install.py <flavor> <accent>
   [catppuccin-gtk] [INFO] - Installation info:
       flavor:     mocha
       accent:     blue
-      dest:       /home/****/.local/share/themes
+      dest:       /home/<user>/.local/share/themes
       link:       False
 
       remote_url: https://github.com/catppuccin/gtk/releases/download/v1.0.0-alpha/catppuccin-mocha-blue-standard+default.zip
@@ -46,18 +46,30 @@ python3 install.py <flavor> <accent>
   [catppuccin-gtk] [INFO] - Theme installation complete! 
 ```
 
-### Arch Linux
-  With your favourite AUR helper, you can install your theme of choice:
+### Flatpak
+In order to give flatpaks access to the theme directory, run this command:
+```bash
+sudo flatpak override --filesystem=$HOME/.local/share/themes
+```
 
-  ```bash
-  yay -S catppuccin-gtk-theme-<flavor>
-  paru -S catppuccin-gtk-theme-<flavor>
-  ```
+Then, run this command to set the theme:
+```bash
+export THEME_DIR="~/.local/share/themes/catppuccin-<flavor>-<accent>-standard+default"
+sudo flatpak override --env=GTK_THEME=$THEME_DIR
+```
+
+### Arch Linux
+With your favourite AUR helper, you can install the 4 flavors (Latte, Frappe, Macchiato, Mocha):
+
+```bash
+yay -S catppuccin-gtk-theme-<flavor>
+paru -S catppuccin-gtk-theme-<flavor>
+```
 
 ### Nix
-  We have created a Nix module ([catppuccin/nix](https://github.com/catppuccin/nix)) for theming apps under Nix, and recommend that you use it.
-  You can set up our Nix module for GTK with the following config:
-  ```nix
+We have created a Nix module ([catppuccin/nix](https://github.com/catppuccin/nix)) for theming apps under Nix, and recommend that you use it.
+You can set up our Nix module for GTK with the following config:
+```nix
   {inputs, ...}: {
     imports = [inputs.catppuccin.homeManagerModules.catppuccin];
 
@@ -73,36 +85,39 @@ python3 install.py <flavor> <accent>
     };
   }
   ```
-  > [!TIP]
-  > For further information on the options available with our module, see the [full documentation](https://github.com/catppuccin/nix/blob/main/docs/home-manager-options.md#gtkcatppuccinenable).
+> [!TIP]
+> For further information on the options available with our module, see the [full documentation](https://github.com/catppuccin/nix/blob/main/docs/home-manager-options.md#gtkcatppuccinenable).
 
-  Alternatively, if you are not using our Nix module, you can grab the theme from [nixpkgs/catppuccin-gtk](https://github.com/NixOS/nixpkgs/blob/master/pkgs/data/themes/catppuccin-gtk/default.nix)
+Alternatively, if you are not using our Nix module, you can grab the theme from [nixpkgs/catppuccin-gtk](https://github.com/NixOS/nixpkgs/blob/master/pkgs/data/themes/catppuccin-gtk/default.nix)
 
 ### Manual installation
-  If your distro does not package our theme, and the installation script will not work for your use case, you can pull down releases and extract them yourself. You can find the [latest release on GitHub](https://github.com/catppuccin/gtk/releases/latest).
+If your distro does not package our theme, and the installation script will not work for your use case, you can pull down releases and extract them yourself. You can find the [latest release on GitHub](https://github.com/catppuccin/gtk/releases/latest).
 
-  ```bash
-  cd ~/.local/share/themes
+```bash
+cd ~/.local/share/themes
 
-  local ROOT_URL="https://https://github.com/catppuccin/gtk/releases/download"
+# Set the root URL
+declare ROOT_URL="https://https://github.com/catppuccin/gtk/releases/download"
 
-  # Change to the tag you want to download
-  local RELEASE = "v1.0.0"
+# Change to the tag you want to download
+declare RELEASE = "v1.0.0"
   
-  # Change to suite your flavor / accent combination
-  local FLAVOR = "mocha"
-  local ACCENT = "mauve"
-  curl -LsS "${ROOT_URL}/${RELEASE}/catppuccin-${FLAVOR}-${ACCENT}-standard+default.zip"
+# Change to suite your flavor / accent combination
+declare FLAVOR = "mocha"
+declare ACCENT = "mauve"
+curl -LsS "${ROOT_URL}/${RELEASE}/catppuccin-${FLAVOR}-${ACCENT}-standard+default.zip"
 
-  unzip catppuccin-${FLAVOR}-${ACCENT}-standard+default.zip
+# Extract the catppuccin zip file
+unzip catppuccin-${FLAVOR}-${ACCENT}-standard+default.zip
 
-  export THEME_DIR="~/.local/share/themes/catppuccin-${FLAVOR}-${ACCENT}-standard+default"
+# Set the catppuccin theme directory
+export THEME_DIR="~/.local/share/themes/catppuccin-${FLAVOR}-${ACCENT}-standard+default"
 
-  # Optionally, add support for libadwaita
-  mkdir -p "${HOME}/.config/gtk-4.0" && 
-  ln -sf "${THEME_DIR}/gtk-4.0/assets" "${HOME}/.config/gtk-4.0/assets" &&
-  ln -sf "${THEME_DIR}/gtk-4.0/gtk.css" "${HOME}/.config/gtk-4.0/gtk.css" &&
-  ln -sf "${THEME_DIR}/gtk-4.0/gtk-dark.css" "${HOME}/.config/gtk-4.0/gtk-dark.css"
+# Optionally, add support for libadwaita
+mkdir -p "${HOME}/.config/gtk-4.0" && 
+ln -sf "${THEME_DIR}/gtk-4.0/assets" "${HOME}/.config/gtk-4.0/assets" &&
+ln -sf "${THEME_DIR}/gtk-4.0/gtk.css" "${HOME}/.config/gtk-4.0/gtk.css" &&
+ln -sf "${THEME_DIR}/gtk-4.0/gtk-dark.css" "${HOME}/.config/gtk-4.0/gtk-dark.css"
   ```
 
 ## Building
@@ -114,7 +129,7 @@ If our prebuilt offerings do not match your requirements, you will have to build
 
 > [!WARNING]
 > We use a submodule to bring in colloid, the theme this theme is based on. You will need to clone
-> with `git clone <url> --recurse-submodules` to bring in the submodule.
+> with `git clone <url> --recurse-submodules` to bring in the submodule, or the theme will be broken.
 
 To build the theme, simply invoke `build.py`:
 ```bash
