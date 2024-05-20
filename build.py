@@ -393,17 +393,16 @@ def make_assets(ctx: BuildContext):
         f"{output_dir}/metacity-1/thumbnail.png",
     )
 
-    # TODO: Make our own assets for this and patch them in with the patch system, then code it to be
-    # {src_dir}/assets/xfwm4/assets{light_suffix}-Catppuccin/
-    # where assets-Light-Catppuccin will have latte
-    # nad assets-Catppuccin will have mocha or something
-    for file in glob.glob(f"{SRC_DIR}/assets/xfwm4/assets{ctx.apply_suffix(IS_LIGHT)}/*.png"):
+    xfwm4_assets = f"{THIS_DIR}/patches/xfwm4/generated/assets-catppuccin-{ctx.flavor.identifier}"
+    for file in glob.glob(xfwm4_assets + '/*'):
         shutil.copy(file, f"{output_dir}/xfwm4")
 
-    for file in glob.glob(f"{SRC_DIR}/assets/xfwm4/assets{ctx.apply_suffix(IS_LIGHT)}-hdpi/*.png"):
+    xfwm4_assets = xfwm4_assets + "-hdpi/*"
+    for file in glob.glob(xfwm4_assets):
         shutil.copy(file, f"{output_dir}-hdpi/xfwm4")
 
-    for file in glob.glob(f"{SRC_DIR}/assets/xfwm4/assets{ctx.apply_suffix(IS_LIGHT)}-xhdpi/*.png"):
+    xfwm4_assets = xfwm4_assets + "-xhdpi/*"
+    for file in glob.glob(xfwm4_assets):
         shutil.copy(file, f"{output_dir}-xhdpi/xfwm4")
 
 
@@ -490,7 +489,6 @@ def apply_colloid_patches():
         f.write("true")
 
     logger.info("Patching finished.")
-
 
 def parse_args():
     parser = argparse.ArgumentParser()
