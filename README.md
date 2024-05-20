@@ -79,13 +79,17 @@ python3 install.py <flavor> <accent>
   Alternatively, if you are not using our Nix module, you can grab the theme from [nixpkgs/catppuccin-gtk](https://github.com/NixOS/nixpkgs/blob/master/pkgs/data/themes/catppuccin-gtk/default.nix)
 
 ### Manual installation
-  If your distro does not package our theme, and the installation script will not work for your use case, you can pull down releases and extract them yourself.
+  If your distro does not package our theme, and the installation script will not work for your use case, you can pull down releases and extract them yourself. You can find the [latest release on GitHub](https://github.com/catppuccin/gtk/releases/latest).
 
   ```bash
   cd ~/.local/share/themes
 
   local ROOT_URL="https://https://github.com/catppuccin/gtk/releases/download"
+
+  # Change to the tag you want to download
   local RELEASE = "v1.0.0"
+  
+  # Change to suite your flavor / accent combination
   local FLAVOR = "mocha"
   local ACCENT = "mauve"
   curl -LsS "${ROOT_URL}/${RELEASE}/catppuccin-${FLAVOR}-${ACCENT}-standard+default.zip"
