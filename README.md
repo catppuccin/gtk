@@ -26,7 +26,7 @@ This GTK theme requires:
 
 ### Automated script
 
-In order to install the theme using Python, curl the Python script and the output should look like this:
+We provide a Python script to automate the process of installing the theme:
 
 ```bash
 curl -LsS "https://raw.githubusercontent.com/catppuccin/gtk/main/install.py" -o install.py
@@ -48,24 +48,9 @@ python3 install.py <flavor> <accent>
   [catppuccin-gtk] [INFO] - Theme installation complete! 
 ```
 
-### Flatpak
-
-In order to give flatpaks access to the theme directory, run this command:
-
-```bash
-sudo flatpak override --filesystem=$HOME/.local/share/themes
-```
-
-Then, run this command to set the theme:
-
-```bash
-export THEME_DIR="~/.local/share/themes/catppuccin-<flavor>-<accent>-standard+default"
-sudo flatpak override --env=GTK_THEME=$THEME_DIR
-```
-
 ### Arch Linux
 
-With your favourite AUR helper, you can install the 4 flavors (Latte, Frappe, Macchiato, Mocha):
+With your favourite AUR helper, you can install your flavor of choice:
 
 ```bash
 yay -S catppuccin-gtk-theme-<flavor>
