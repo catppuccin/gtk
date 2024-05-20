@@ -150,23 +150,20 @@ You can now find the built theme under `./build`. If you want to package the the
 - All the [requirements for building](#building)
 - `whiskers`, optionally, from [catppucin/toolbox](https://github.com/catppuccin/toolbox/tree/main/whiskers#installation)
 
+### Patching colloid
+> [!TIP]
+> If you need to change the patches, reset the submodule and rerun the build script.
+
 We patch upstream colloid through a series of `.patch` files, applied through `git apply` once when the build begins.
 The patches are located in `./patches/colloid/`. 
-<br>
-> [!TIP]
-> Once the build script patches the submodule, it will write a file into
-> `colloid/.patched`, to signal to future invocations that the patches have already been applied.
-> If you need to change the patches, reset the submodule and rerun the build script.
+
+Once the build script patches the submodule, it will write a file into
+`colloid/.patched`, to signal to future invocations that the patches have already been applied.
 
 The palette patches are generated through `whiskers`,
 so if you're changing them, they will need regenerated. Simply run `whiskers palette.tera` to rebuild them.
 
 The process for building the theme is [documented above](#building).
-
-## Notes
-
-### GDM theming
-In order to theme the GDM theme, install the `gdm-settings` app, select the Catppuccin theme, and click *Save*.
 
 ## 💝 Thanks to
 
