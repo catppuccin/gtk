@@ -649,7 +649,9 @@ def main():
         gnome_shell_version()
         logger.info("Building main theme")
         build_theme(ctx)
-        logger.info("Done!")
+        logger.info(f"Completed {palette.identifier} with {accent.identifier}")
+
+    logger.info("Done!")
 
 try:
     main()
