@@ -198,7 +198,7 @@ def build(ctx: BuildContext):
         )
 
 
-def tweaks_temp():
+def init_tweaks_temp():
     shutil.copyfile(f"{SRC_DIR}/sass/_tweaks.scss", f"{SRC_DIR}/sass/_tweaks-temp.scss")
 
 
@@ -262,7 +262,7 @@ def write_tweak(key, default, value):
 
 
 def apply_tweaks(ctx: BuildContext):
-    write_tweak("theme", "'default'", translate_accent(ctx.accent))
+    write_tweak("theme", "'default'", f"'{translate_accent(ctx.accent)}'")
 
     if ctx.size == "compact":
         write_tweak("compact", "'false'", "'true'")
@@ -477,7 +477,6 @@ def apply_colloid_patches():
     for patch in [
         "plank-dark.patch",
         "plank-light.patch",
-        "sass-colors.patch",
         "sass-palette-frappe.patch",
         "sass-palette-mocha.patch",
         "sass-palette-latte.patch",
@@ -644,7 +643,7 @@ def main():
             output_format=output_format,
         )
         logger.info("Building temp tweaks file")
-        tweaks_temp()
+        init_tweaks_temp()
         logger.info("Inserting gnome-shell imports")
         gnome_shell_version()
         logger.info("Building main theme")
