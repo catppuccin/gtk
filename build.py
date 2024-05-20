@@ -1,4 +1,4 @@
-#! /usr/bin/env python3
+#!/usr/bin/env python3
 import os, re, shutil, subprocess, argparse, glob, logging, zipfile
 
 from dataclasses import dataclass
@@ -525,7 +525,8 @@ def parse_args():
         "-a",
         type=str,
         default="mauve",
-        dest="accent",
+        nargs='+',
+        dest="accents",
         choices=[
             "rosewater",
             "flamingo",
@@ -541,9 +542,15 @@ def parse_args():
             "sapphire",
             "blue",
             "lavender",
-            "all",
         ],
         help="Accent of the theme.",
+    )
+
+    parser.add_argument(
+        "--all-accents",
+        help="Whether to build all accents",
+        dest="all_accents",
+        action="store_true",
     )
 
     parser.add_argument(
@@ -598,44 +605,35 @@ def main():
     tweaks = Tweaks(tweaks=args.tweaks)
 
     palette = getattr(PALETTE, args.flavor)
-    accents = [
-        "rosewater",
-        "flamingo",
-        "pink",
-        "mauve",
-        "red",
-        "maroon",
-        "peach",
-        "yellow",
-        "green",
-        "teal",
-        "sky",
-        "sapphire",
-        "blue",
-        "lavender",
-    ]
 
-    if args.accent == "all":
-        for accent in accents:
-            accent = getattr(palette.colors, accent)
+    accents = args.accents
+    if args.all_accents:
+        accents = [
+            "rosewater",
+            "flamingo",
+            "pink",
+            "mauve",
+            "red",
+            "maroon",
+            "peach",
+            "yellow",
+            "green",
+            "teal",
+            "sky",
+            "sapphire",
+            "blue",
+            "lavender",
+        ]
 
-            ctx = BuildContext(
-                build_root=args.dest,
-                theme_name=args.name,
-                flavor=palette,
-                accent=accent,
-                size=args.size,
-                tweaks=tweaks,
-                output_format=output_format,
-            )
+    for accent in accents:
+        accent = getattr(palette.colors, accent)
 
-            tweaks_temp()
-            gnome_shell_version()
-            build_theme(ctx)
-            logger.info("Done!")
-    else:
-        accent = getattr(palette.colors, args.accent)
+        tweaks = Tweaks(tweaks=args.tweaks)
 
+        if args.zip:
+            output_format = "zip"
+        else:
+            output_format = "dir"
         ctx = BuildContext(
             build_root=args.dest,
             theme_name=args.name,
@@ -645,15 +643,15 @@ def main():
             tweaks=tweaks,
             output_format=output_format,
         )
-
         logger.info("Building temp tweaks file")
         tweaks_temp()
         logger.info("Inserting gnome-shell imports")
         gnome_shell_version()
         logger.info("Building main theme")
         build_theme(ctx)
-        logger.info("Done!")
+        logger.info(f"Completed {palette.identifier} with {accent.identifier}")
 
+    logger.info("Done!")
 
 try:
     main()
