@@ -1,14 +1,14 @@
 <h3 align="center">
-	<img src="https://raw.githubusercontent.com/catppuccin/catppuccin/main/assets/logos/exports/1544x1544_circle.png" width="100" alt="Logo"/><br/>
-	<img src="https://raw.githubusercontent.com/catppuccin/catppuccin/main/assets/misc/transparent.png" height="30" width="0px"/>
-	Catppuccin for <a href="https://gtk.org/">GTK</a>
-	<img src="https://raw.githubusercontent.com/catppuccin/catppuccin/main/assets/misc/transparent.png" height="30" width="0px"/>
+  <img src="https://raw.githubusercontent.com/catppuccin/catppuccin/main/assets/logos/exports/1544x1544_circle.png" width="100" alt="Logo"/><br/>
+  <img src="https://raw.githubusercontent.com/catppuccin/catppuccin/main/assets/misc/transparent.png" height="30" width="0px"/>
+  Catppuccin for <a href="https://gtk.org/">GTK</a>
+  <img src="https://raw.githubusercontent.com/catppuccin/catppuccin/main/assets/misc/transparent.png" height="30" width="0px"/>
 </h3>
 
 <p align="center">
-    <a href="https://github.com/catppuccin/gtk/stargazers"><img src="https://img.shields.io/github/stars/catppuccin/gtk?colorA=363a4f&colorB=b7bdf8&style=for-the-badge"></a>
-    <a href="https://github.com/catppuccin/gtk/issues"><img src="https://img.shields.io/github/issues/catppuccin/gtk?colorA=363a4f&colorB=f5a97f&style=for-the-badge"></a>
-    <a href="https://github.com/catppuccin/gtk/contributors"><img src="https://img.shields.io/github/contributors/catppuccin/gtk?colorA=363a4f&colorB=a6da95&style=for-the-badge"></a>
+  <a href="https://github.com/catppuccin/gtk/stargazers"><img src="https://img.shields.io/github/stars/catppuccin/gtk?colorA=363a4f&colorB=b7bdf8&style=for-the-badge"></a>
+  <a href="https://github.com/catppuccin/gtk/issues"><img src="https://img.shields.io/github/issues/catppuccin/gtk?colorA=363a4f&colorB=f5a97f&style=for-the-badge"></a>
+  <a href="https://github.com/catppuccin/gtk/contributors"><img src="https://img.shields.io/github/contributors/catppuccin/gtk?colorA=363a4f&colorB=a6da95&style=for-the-badge"></a>
 </p>
 
 <p align="center">
@@ -17,22 +17,24 @@
 
 This GTK theme is based on the [Colloid](https://github.com/vinceliuice/Colloid-gtk-theme) theme made by [vinceliuice](https://github.com/vinceliuice)
 
-
 ## Installation
+
 This GTK theme requires:
-- GTK >=3.20
+
+- GTK `>=3.20`
 - Python 3+
 
 ### Automated script
+
 We provide a Python script to automate the process of installing the theme:
 
-```
+```bash
 curl -LsS "https://raw.githubusercontent.com/catppuccin/gtk/main/install.py" -o install.py
 python3 install.py <flavor> <accent>
   [catppuccin-gtk] [INFO] - Installation info:
       flavor:     mocha
       accent:     blue
-      dest:       /home/****/.local/share/themes
+      dest:       /home/<user>/.local/share/themes
       link:       False
 
       remote_url: https://github.com/catppuccin/gtk/releases/download/v1.0.0-alpha/catppuccin-mocha-blue-standard+default.zip
@@ -47,68 +49,77 @@ python3 install.py <flavor> <accent>
 ```
 
 ### Arch Linux
-  With your favourite AUR helper, you can install your theme of choice:
 
-  ```bash
-  yay -S catppuccin-gtk-theme-<flavor>
-  paru -S catppuccin-gtk-theme-<flavor>
-  ```
+With your favourite AUR helper, you can install your flavor of choice:
+
+```bash
+yay -S catppuccin-gtk-theme-<flavor>
+paru -S catppuccin-gtk-theme-<flavor>
+```
 
 ### Nix
-  We have created a Nix module ([catppuccin/nix](https://github.com/catppuccin/nix)) for theming apps under Nix, and recommend that you use it.
-  You can set up our Nix module for GTK with the following config:
-  ```nix
-  {inputs, ...}: {
-    imports = [inputs.catppuccin.homeManagerModules.catppuccin];
 
-    gtk = {
+We have created a Nix module ([catppuccin/nix](https://github.com/catppuccin/nix)) for theming apps under Nix, and recommend that you use it.
+You can set up our Nix module for GTK with the following config:
+
+```nix
+{inputs, ...}: {
+  imports = [inputs.catppuccin.homeManagerModules.catppuccin];
+  gtk = {
+    enable = true;
+    catppuccin = {
       enable = true;
-      catppuccin = {
-        enable = true;
-        flavor = "mocha";
-        accent = "pink";
-        size = "standard";
-        tweaks = [ "normal" ];
-      };
+      flavor = "mocha";
+      accent = "pink";
+      size = "standard";
+      tweaks = [ "normal" ];
     };
-  }
-  ```
-  > [!TIP]
-  > For further information on the options available with our module, see the [full documentation](https://github.com/catppuccin/nix/blob/main/docs/home-manager-options.md#gtkcatppuccinenable).
+  };
+}
+```
 
-  Alternatively, if you are not using our Nix module, you can grab the theme from [nixpkgs/catppuccin-gtk](https://github.com/NixOS/nixpkgs/blob/master/pkgs/data/themes/catppuccin-gtk/default.nix)
+> [!TIP]
+> For further information on the options available with our module, see the [full documentation](https://github.com/catppuccin/nix/blob/main/docs/home-manager-options.md#gtkcatppuccinenable).
+
+Alternatively, if you are not using our Nix module, you can grab the theme from [nixpkgs/catppuccin-gtk](https://github.com/NixOS/nixpkgs/blob/master/pkgs/data/themes/catppuccin-gtk/default.nix)
 
 ### Manual installation
-  If your distro does not package our theme, and the installation script will not work for your use case, you can pull down releases and extract them yourself. You can find the [latest release on GitHub](https://github.com/catppuccin/gtk/releases/latest).
 
-  ```bash
-  cd ~/.local/share/themes
+If your distro does not package our theme, and the installation script will not work for your use case, you can pull down releases and extract them yourself. You can find the [latest release on GitHub](https://github.com/catppuccin/gtk/releases/latest).
 
-  local ROOT_URL="https://https://github.com/catppuccin/gtk/releases/download"
+```bash
+cd ~/.local/share/themes
 
-  # Change to the tag you want to download
-  local RELEASE = "v1.0.0"
+# Set the root URL
+export ROOT_URL="https://https://github.com/catppuccin/gtk/releases/download"
+
+# Change to the tag you want to download
+export RELEASE="v1.0.0"
   
-  # Change to suite your flavor / accent combination
-  local FLAVOR = "mocha"
-  local ACCENT = "mauve"
-  curl -LsS "${ROOT_URL}/${RELEASE}/catppuccin-${FLAVOR}-${ACCENT}-standard+default.zip"
+# Change to suite your flavor / accent combination
+export FLAVOR="mocha"
+export ACCENT="mauve"
+curl -LsS "${ROOT_URL}/${RELEASE}/catppuccin-${FLAVOR}-${ACCENT}-standard+default.zip"
 
-  unzip catppuccin-${FLAVOR}-${ACCENT}-standard+default.zip
+# Extract the catppuccin zip file
+unzip catppuccin-${FLAVOR}-${ACCENT}-standard+default.zip
 
-  export THEME_DIR="~/.local/share/themes/catppuccin-${FLAVOR}-${ACCENT}-standard+default"
+# Set the catppuccin theme directory
+export THEME_DIR="~/.local/share/themes/catppuccin-${FLAVOR}-${ACCENT}-standard+default"
 
-  # Optionally, add support for libadwaita
-  mkdir -p "${HOME}/.config/gtk-4.0" && 
-  ln -sf "${THEME_DIR}/gtk-4.0/assets" "${HOME}/.config/gtk-4.0/assets" &&
-  ln -sf "${THEME_DIR}/gtk-4.0/gtk.css" "${HOME}/.config/gtk-4.0/gtk.css" &&
-  ln -sf "${THEME_DIR}/gtk-4.0/gtk-dark.css" "${HOME}/.config/gtk-4.0/gtk-dark.css"
-  ```
+# Optionally, add support for libadwaita
+mkdir -p "${HOME}/.config/gtk-4.0" && 
+ln -sf "${THEME_DIR}/gtk-4.0/assets" "${HOME}/.config/gtk-4.0/assets" &&
+ln -sf "${THEME_DIR}/gtk-4.0/gtk.css" "${HOME}/.config/gtk-4.0/gtk.css" &&
+ln -sf "${THEME_DIR}/gtk-4.0/gtk-dark.css" "${HOME}/.config/gtk-4.0/gtk-dark.css"
+```
 
 ## Building
+
 If our prebuilt offerings do not match your requirements, you will have to build the theme from source.
 
 ### Requirements
+
 - Python 3+
 - `sassc`, the Sass compiler
 
@@ -117,6 +128,7 @@ If our prebuilt offerings do not match your requirements, you will have to build
 > with `git clone <url> --recurse-submodules` to bring in the submodule.
 
 To build the theme, simply invoke `build.py`:
+
 ```bash
 python3 build.py mocha --dest ./build -a rosewater --tweaks rimless
   [catppuccin-gtk] [INFO] - Patches seem to be applied, remove "colloid/.patched" to force application (this may fail)
