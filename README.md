@@ -72,7 +72,6 @@ You can set up our Nix module for GTK with the following config:
 ```nix
   {inputs, ...}: {
     imports = [inputs.catppuccin.homeManagerModules.catppuccin];
-
     gtk = {
       enable = true;
       catppuccin = {
