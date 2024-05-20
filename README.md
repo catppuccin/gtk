@@ -17,105 +17,133 @@
 
 This GTK theme is based on the [Colloid](https://github.com/vinceliuice/Colloid-gtk-theme) theme made by [vinceliuice](https://github.com/vinceliuice)
 
-## Usage
 
-### Requirements
-
+## Installation
+This GTK theme requires:
 - GTK >=3.20
-- `python3`
-- `gnome-themes-extra` (or `gnome-themes-standard`)
+- Python 3+
 
-To build the theme, make sure the following packages are installed:
-- `sassc`
-- `inkscape`
-- `optipng`
+### Automated script
+We provide a Python script to automate the process of installing the theme:
 
-### Manually
-
-1. Download and extract the theme zip from the [latest release](https://github.com/catppuccin/gtk/releases/latest/).
-2. Move the theme folder to the `~/.local/share/themes` directory.
-3. Select the downloaded theme via your desktop specific tweaks application (GNOME Tweaks on GNOME 3+).
-4. To theme other apps that are using GTK, make sure to run the following command:
-```bash
-export THEME_DIR="~/.local/share/themes/catppuccin-<flavor>-<accent>-standard+default"
-mkdir -p "${HOME}/.config/gtk-4.0" && 
-ln -sf "${THEME_DIR}/gtk-4.0/assets" "${HOME}/.config/gtk-4.0/assets" &&
-ln -sf "${THEME_DIR}/gtk-4.0/gtk.css" "${HOME}/.config/gtk-4.0/gtk.css" &&
-ln -sf "${THEME_DIR}/gtk-4.0/gtk-dark.css" "${HOME}/.config/gtk-4.0/gtk-dark.css"
 ```
-
-###  Flatpak
-
-In order for Flatpak to access the theme, make sure to run the following command:
-```bash
-sudo flatpak override --filesystem=$HOME/.local/share/themes
-```
-
-Then, run the following command to apply the theme.
-```bash
-export THEME_DIR="~/.local/share/themes/catppuccin-<flavor>-<accent>-standard+default"
-sudo flatpak override --env=GTK_THEME=$THEME_DIR
-```
-
-### Using the install script to install the theme
-
-To install the theme using the install script, run `install.py`:
-```
+curl -LsS "https://raw.githubusercontent.com/catppuccin/gtk/main/install.py" -o install.py
 python3 install.py <flavor> <accent>
+  [catppuccin-gtk] [INFO] - Installation info:
+      flavor:     mocha
+      accent:     blue
+      dest:       /home/****/.local/share/themes
+      link:       False
+
+      remote_url: https://github.com/catppuccin/gtk/releases/download/v1.0.0-alpha/catppuccin-mocha-blue-standard+default.zip
+  [catppuccin-gtk] [INFO] - Starting download...
+  [catppuccin-gtk] [INFO] - Response status: 200
+  [catppuccin-gtk] [INFO] - Download finished, zip is valid
+  [catppuccin-gtk] [INFO] - Verifying download..
+  [catppuccin-gtk] [INFO] - Download verified
+  [catppuccin-gtk] [INFO] - Extracting...
+  [catppuccin-gtk] [INFO] - Extraction complete
+  [catppuccin-gtk] [INFO] - Theme installation complete! 
 ```
 
-If you have adwaita installed, make sure to include `--link` in order to add symlinks for it:
-```
-python3 install.py <flavor> <accent> --link
-```
-Run the command and the gtk theme should be installed!
+### Arch Linux
+  With your favourite AUR helper, you can install your theme of choice:
 
-### AUR
-
-We have 4 AUR packages for all the 4 flavours (Latte, Frappe, Macchiato, Mocha)
-
-With your favourite AUR helper, you can install one of these flavors:
-
-```bash
-yay -S catppuccin-gtk-theme-<flavor>
-```
+  ```bash
+  yay -S catppuccin-gtk-theme-<flavor>
+  paru -S catppuccin-gtk-theme-<flavor>
+  ```
 
 ### Nix
+  We have created a Nix module ([catppuccin/nix](https://github.com/catppuccin/nix)) for theming apps under Nix, and recommend that you use it.
+  You can set up our Nix module for GTK with the following config:
+  ```nix
+  {inputs, ...}: {
+    imports = [inputs.catppuccin.homeManagerModules.catppuccin];
 
-We suggest you use [catppuccin/nix](https://github.com/catppuccin/nix). 
-Alternatively, you can use [catppuccin-gtk](https://github.com/NixOS/nixpkgs/blob/master/pkgs/data/themes/catppuccin-gtk/default.nix) from nixpkgs.
-
-```nix
-{inputs, ...}: {
-  imports = [inputs.catppuccin.homeManagerModules.catppuccin];
-
-  gtk = {
-    enable = true;
-    catppuccin = {
+    gtk = {
       enable = true;
-      flavor = "mocha";
-      accent = "pink";
-      size = "standard";
-      tweaks = [ "normal" ];
+      catppuccin = {
+        enable = true;
+        flavor = "mocha";
+        accent = "pink";
+        size = "standard";
+        tweaks = [ "normal" ];
+      };
     };
-  };
-}
+  }
+  ```
+  > [!TIP]
+  > For further information on the options available with our module, see the [full documentation](https://github.com/catppuccin/nix/blob/main/docs/home-manager-options.md#gtkcatppuccinenable).
+
+  Alternatively, if you are not using our Nix module, you can grab the theme from [nixpkgs/catppuccin-gtk](https://github.com/NixOS/nixpkgs/blob/master/pkgs/data/themes/catppuccin-gtk/default.nix)
+
+### Manual installation
+  If your distro does not package our theme, and the installation script will not work for your use case, you can pull down releases and extract them yourself. You can find the [latest release on GitHub](https://github.com/catppuccin/gtk/releases/latest).
+
+  ```bash
+  cd ~/.local/share/themes
+
+  local ROOT_URL="https://https://github.com/catppuccin/gtk/releases/download"
+
+  # Change to the tag you want to download
+  local RELEASE = "v1.0.0"
+  
+  # Change to suite your flavor / accent combination
+  local FLAVOR = "mocha"
+  local ACCENT = "mauve"
+  curl -LsS "${ROOT_URL}/${RELEASE}/catppuccin-${FLAVOR}-${ACCENT}-standard+default.zip"
+
+  unzip catppuccin-${FLAVOR}-${ACCENT}-standard+default.zip
+
+  export THEME_DIR="~/.local/share/themes/catppuccin-${FLAVOR}-${ACCENT}-standard+default"
+
+  # Optionally, add support for libadwaita
+  mkdir -p "${HOME}/.config/gtk-4.0" && 
+  ln -sf "${THEME_DIR}/gtk-4.0/assets" "${HOME}/.config/gtk-4.0/assets" &&
+  ln -sf "${THEME_DIR}/gtk-4.0/gtk.css" "${HOME}/.config/gtk-4.0/gtk.css" &&
+  ln -sf "${THEME_DIR}/gtk-4.0/gtk-dark.css" "${HOME}/.config/gtk-4.0/gtk-dark.css"
+  ```
+
+## Building
+If our prebuilt offerings do not match your requirements, you will have to build the theme from source.
+
+### Requirements
+- Python 3+
+- `sassc`, the Sass compiler
+
+> [!WARNING]
+> We use a submodule to bring in colloid, the theme this theme is based on. You will need to clone
+> with `git clone <url> --recurse-submodules` to bring in the submodule.
+
+To build the theme, simply invoke `build.py`:
+```bash
+python3 build.py mocha --dest ./build -a rosewater --tweaks rimless
+  [catppuccin-gtk] [INFO] - Patches seem to be applied, remove "colloid/.patched" to force application (this may fail)
+  [catppuccin-gtk] [INFO] - Building temp tweaks file
+  [catppuccin-gtk] [INFO] - Inserting gnome-shell imports
+  [catppuccin-gtk] [INFO] - Building main theme
+  [catppuccin-gtk] [INFO] - Build info:
+      build_root: ./build
+      theme_name: catppuccin
+      flavor:     mocha
+      accent:     rosewater
+      size:       standard
+      tweaks:     Tweaks(tweaks=['rimless'])
+  [catppuccin-gtk] [INFO] - Building into './build/catppuccin-mocha-rosewater-standard+rimless'...
+  [catppuccin-gtk] [INFO] - Main build complete
+  [catppuccin-gtk] [INFO] - Bundling assets...
+  [catppuccin-gtk] [INFO] - Asset bundling done
+  [catppuccin-gtk] [INFO] - Done!
 ```
 
-> [!TIP]
-> For further information on the options available, see the [full documentation](https://github.com/catppuccin/nix/blob/main/docs/home-manager-options.md#gtkcatppuccinenable).
-
-### For Other Distros
-
-Refer to [Using the install script to install the theme](https://github.com/catppuccin/gtk/edit/refactor/build-system/README.md#installing-the-theme-manually) or [Installing the theme manually](https://github.com/catppuccin/gtk/edit/refactor/build-system/README.md#installing-the-theme-manually).
-
-### Theming the GDM Theme
-In order to theme the GDM theme, install the `gdm-settings` app, select the Catppuccin theme, and click *Save*.
+You can now find the built theme under `./build`. If you want to package the theme up as a zip instead, pass `--zip` to the build script.
 
 ## 💝 Thanks to
 
 **Current maintainers**
 
+- [nullishamy](https://github.com/nullishamy)
 - [npv12](https://github.com/npv12)
 - [ghostx31](https://github.com/ghostx31)
 - [Syndrizzle](https://github.com/Syndrizzle)
