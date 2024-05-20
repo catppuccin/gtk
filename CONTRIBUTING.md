@@ -2,7 +2,7 @@
 
 ### Requirements
 - All the [requirements for building](#building)
-- `whiskers`, optionally, from [catppucin/toolbox](https://github.com/catppuccin/toolbox/tree/main/whiskers#installation)
+- `whiskers`, optionally, from [catppuccin/toolbox](https://github.com/catppuccin/toolbox/tree/main/whiskers#installation)
 
 ### Patching colloid
 > [!TIP]
