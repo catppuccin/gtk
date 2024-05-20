@@ -84,14 +84,14 @@ python3 install.py <flavor> <accent>
   ```bash
   cd ~/.local/share/themes
 
-  local ROOT_URL="https://https://github.com/catppuccin/gtk/releases/download"
+  export ROOT_URL="https://github.com/catppuccin/gtk/releases/download"
 
   # Change to the tag you want to download
-  local RELEASE = "v1.0.0"
+  export RELEASE = "v1.0.0"
   
   # Change to suite your flavor / accent combination
-  local FLAVOR = "mocha"
-  local ACCENT = "mauve"
+  export FLAVOR = "mocha"
+  export ACCENT = "mauve"
   curl -LsS "${ROOT_URL}/${RELEASE}/catppuccin-${FLAVOR}-${ACCENT}-standard+default.zip"
 
   unzip catppuccin-${FLAVOR}-${ACCENT}-standard+default.zip
