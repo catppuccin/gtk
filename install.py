@@ -12,6 +12,23 @@ formatter = logging.Formatter("[%(name)s] [%(levelname)s] - %(message)s")
 ch.setFormatter(formatter)
 logger.addHandler(ch)
 
+ACCENT_CHOICES = [
+    "rosewater",
+    "flamingo",
+    "pink",
+    "mauve",
+    "red",
+    "maroon",
+    "peach",
+    "yellow",
+    "green",
+    "teal",
+    "sky",
+    "sapphire",
+    "blue",
+    "lavender",
+]
+
 
 @dataclass
 class InstallContext:
@@ -34,23 +51,7 @@ def parse_args():
         "accent",
         type=str,
         default="mauve",
-        choices=[
-            "rosewater",
-            "flamingo",
-            "pink",
-            "mauve",
-            "red",
-            "maroon",
-            "peach",
-            "yellow",
-            "green",
-            "teal",
-            "sky",
-            "sapphire",
-            "blue",
-            "lavender",
-            "all",
-        ],
+        choices=[accent for accent in ACCENT_CHOICES].append("all"),
         help="Accent of the theme.",
     )
 
@@ -88,7 +89,7 @@ def install(ctx: InstallContext):
     accent:     {ctx.accent}
     dest:       {ctx.dest.absolute()}
     link:       {ctx.link}
-
+    
     remote_url: {url}"""
     logger.info(build_info)
     httprequest = Request(url)
@@ -112,16 +113,22 @@ def install(ctx: InstallContext):
     logger.info("Extraction complete")
 
     if ctx.link:
-        dir_name = (ctx.dest / f"catppuccin-{ctx.flavor}-{ctx.accent}-standard+default" / 'gtk-4.0').absolute()
-        gtk4_dir = (Path(os.path.expanduser('~')) / '.config' / 'gtk-4.0').absolute()
+        dir_name = (
+            ctx.dest
+            / f"catppuccin-{ctx.flavor}-{ctx.accent}-standard+default"
+            / "gtk-4.0"
+        ).absolute()
+        gtk4_dir = (Path(os.path.expanduser("~")) / ".config" / "gtk-4.0").absolute()
         os.makedirs(gtk4_dir, exist_ok=True)
 
         logger.info("Adding symlinks for libadwaita")
-        logger.info(f'Root:   {dir_name}')
-        logger.info(f'Target: {gtk4_dir}')
-        os.symlink(dir_name / 'assets', gtk4_dir / 'assets')
-        os.symlink(dir_name / 'gtk.css', gtk4_dir / 'gtk.css')
-        os.symlink(dir_name / 'gtk-dark.css', gtk4_dir / 'gtk-dark.css')
+        logger.info(f"Root:   {dir_name}")
+        logger.info(f"Target: {gtk4_dir}")
+        os.symlink(dir_name / "assets", gtk4_dir / "assets")
+        os.symlink(dir_name / "gtk.css", gtk4_dir / "gtk.css")
+        os.symlink(dir_name / "gtk-dark.css", gtk4_dir / "gtk-dark.css")
+
+    logger.info(f"Theme installation complete for {ctx.flavor} and {ctx.accent}!")
 
 
 def main():
@@ -132,13 +139,17 @@ def main():
     if args.dest:
         dest = Path(args.dest)
 
-    ctx = InstallContext(
-        flavor=args.flavor, accent=args.accent, dest=dest, link=args.link
-    )
-
-    install(ctx)
-
-    logger.info('Theme installation complete!')
+    if args.accent == "all":
+        for accent in ACCENT_CHOICES:
+            ctx = InstallContext(
+                flavor=args.flavor, accent=accent, dest=dest, link=args.link
+            )
+            install(ctx)
+    else:
+        ctx = InstallContext(
+            flavor=args.flavor, accent=args.accent, dest=dest, link=args.link
+        )
+        install(ctx)
 
 
 try:
