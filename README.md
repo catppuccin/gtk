@@ -23,45 +23,39 @@ This GTK theme requires:
 - GTK >=3.20
 - Python 3+
 
-<details open>
-  <summary>Automated script</summary>
-  We provide a Python script to automate the process of installing the theme:
+### Automated script
+We provide a Python script to automate the process of installing the theme:
 
-  ```
-  curl -LsS "https://raw.githubusercontent.com/catppuccin/gtk/main/install.py" -o install.py
-  python3 install.py <flavor> <accent>
-    [catppuccin-gtk] [INFO] - Installation info:
-        flavor:     mocha
-        accent:     blue
-        dest:       /home/****/.local/share/themes
-        link:       False
+```
+curl -LsS "https://raw.githubusercontent.com/catppuccin/gtk/main/install.py" -o install.py
+python3 install.py <flavor> <accent>
+  [catppuccin-gtk] [INFO] - Installation info:
+      flavor:     mocha
+      accent:     blue
+      dest:       /home/****/.local/share/themes
+      link:       False
 
-        remote_url: https://github.com/catppuccin/gtk/releases/download/v1.0.0-alpha/catppuccin-mocha-blue-standard+default.zip
-    [catppuccin-gtk] [INFO] - Starting download...
-    [catppuccin-gtk] [INFO] - Response status: 200
-    [catppuccin-gtk] [INFO] - Download finished, zip is valid
-    [catppuccin-gtk] [INFO] - Verifying download..
-    [catppuccin-gtk] [INFO] - Download verified
-    [catppuccin-gtk] [INFO] - Extracting...
-    [catppuccin-gtk] [INFO] - Extraction complete
-    [catppuccin-gtk] [INFO] - Theme installation complete! 
-  ```
-</details>
+      remote_url: https://github.com/catppuccin/gtk/releases/download/v1.0.0-alpha/catppuccin-mocha-blue-standard+default.zip
+  [catppuccin-gtk] [INFO] - Starting download...
+  [catppuccin-gtk] [INFO] - Response status: 200
+  [catppuccin-gtk] [INFO] - Download finished, zip is valid
+  [catppuccin-gtk] [INFO] - Verifying download..
+  [catppuccin-gtk] [INFO] - Download verified
+  [catppuccin-gtk] [INFO] - Extracting...
+  [catppuccin-gtk] [INFO] - Extraction complete
+  [catppuccin-gtk] [INFO] - Theme installation complete! 
+```
 
-<details>
-  <summary>Arch Linux</summary>
+### Arch Linux
   With your favourite AUR helper, you can install your theme of choice:
 
   ```bash
   yay -S catppuccin-gtk-theme-<flavor>
   paru -S catppuccin-gtk-theme-<flavor>
   ```
-</details>
 
-<details>
-  <summary>Nix</summary>
-
-  We have created a Nix module (<a href="https://github.com/catppuccin/nix">catppuccin/nix</a>) for theming apps under Nix, and recommend that you use it.
+### Nix
+  We have created a Nix module ([catppuccin/nix](https://github.com/catppuccin/nix)) for theming apps under Nix, and recommend that you use it.
   You can set up our Nix module for GTK with the following config:
   ```nix
   {inputs, ...}: {
@@ -82,11 +76,9 @@ This GTK theme requires:
   > [!TIP]
   > For further information on the options available with our module, see the [full documentation](https://github.com/catppuccin/nix/blob/main/docs/home-manager-options.md#gtkcatppuccinenable).
 
-  Alternatively, if you are not using our Nix module, you can grab the theme from <a href="https://github.com/NixOS/nixpkgs/blob/master/pkgs/data/themes/catppuccin-gtk/default.nix">nixpkgs/catppuccin-gtk</a>.
-</details>
+  Alternatively, if you are not using our Nix module, you can grab the theme from [nixpkgs/catppuccin-gtk](https://github.com/NixOS/nixpkgs/blob/master/pkgs/data/themes/catppuccin-gtk/default.nix)
 
-<details>
-  <summary>Manual installation</summary>
+### Manual installation
   If your distro does not package our theme, and the installation script will not work for your use case, you can pull down releases and extract them yourself.
 
   ```bash
@@ -108,7 +100,6 @@ This GTK theme requires:
   ln -sf "${THEME_DIR}/gtk-4.0/gtk.css" "${HOME}/.config/gtk-4.0/gtk.css" &&
   ln -sf "${THEME_DIR}/gtk-4.0/gtk-dark.css" "${HOME}/.config/gtk-4.0/gtk-dark.css"
   ```
-</details>
 
 ## Building
 If our prebuilt offerings do not match your requirements, you will have to build the theme from source.
@@ -143,27 +134,6 @@ python3 build.py mocha --dest ./build -a rosewater --tweaks rimless
 ```
 
 You can now find the built theme under `./build`. If you want to package the theme up as a zip instead, pass `--zip` to the build script.
-
-## Development
-
-### Requirements
-- All the [requirements for building](#building)
-- `whiskers`, optionally, from [catppucin/toolbox](https://github.com/catppuccin/toolbox/tree/main/whiskers#installation)
-
-### Patching colloid
-> [!TIP]
-> If you need to change the patches, reset the submodule and rerun the build script.
-
-We patch upstream colloid through a series of `.patch` files, applied through `git apply` once when the build begins.
-The patches are located in `./patches/colloid/`. 
-
-Once the build script patches the submodule, it will write a file into
-`colloid/.patched`, to signal to future invocations that the patches have already been applied.
-
-The palette patches are generated through `whiskers`,
-so if you're changing them, they will need regenerated. Simply run `whiskers palette.tera` to rebuild them.
-
-The process for building the theme is [documented above](#building).
 
 ## 💝 Thanks to
 
