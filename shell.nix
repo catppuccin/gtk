@@ -7,5 +7,7 @@ pkgs.mkShell {
     python311
     python311Packages.catppuccin
     sassc
+    inkscape
+    optipng
   ];
 }

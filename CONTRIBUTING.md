@@ -18,3 +18,23 @@ The palette patches are generated through `whiskers`,
 so if you're changing them, they will need regenerated. Simply run `whiskers palette.tera` to rebuild them.
 
 The process for building the theme is [documented in the README](./README.md#building).
+
+### Running test builds
+We support building and publishing test builds from PRs. When you open PRs, the CI will automatically build with your changes and push an artifact
+which bundles all of the produced themes.
+
+You can then download the artifacts as a zip (result should look similar to 7bff2448a81e36bf3b0e03bfbd649bebe6973ec7-artifacts.zip) and
+pass the path into `install.py` under the `--from-artifact` option:
+```bash
+python3 install.py mocha blue --dest ./build --from-artifact ~/downloads/7bff2448a81e36bf3b0e03bfbd649bebe6973ec7-artifacts.zip
+```
+
+This will take the target flavor / accent out of the zip, and install it using the regular install process. 
+
+It is advised to pass a `--dest` when running in this mode, because the released zips follow the exact same naming scheme as regular builds.
+This wil cause conflicts when you install, if you already had that theme installed. Passing a different destination allows you to move the 
+extracted folders to `~/.local/share/themes` yourself, adding a suffix as appropriate to avoid conflicts.
+
+> [!WARNING]
+> If you pass `--link` to the install script when working from a PR, it will forcibly overwrite your `~/.config/gtk-4.0/` symlinks.
+> You will have to reinstall / relink to revert this.

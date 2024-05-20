@@ -1,4 +1,4 @@
-#! /usr/bin/env python3
+#!/usr/bin/env python3
 import os, re, shutil, subprocess, argparse, glob, logging, zipfile
 
 from dataclasses import dataclass
@@ -198,7 +198,7 @@ def build(ctx: BuildContext):
         )
 
 
-def tweaks_temp():
+def init_tweaks_temp():
     shutil.copyfile(f"{SRC_DIR}/sass/_tweaks.scss", f"{SRC_DIR}/sass/_tweaks-temp.scss")
 
 
@@ -262,7 +262,7 @@ def write_tweak(key, default, value):
 
 
 def apply_tweaks(ctx: BuildContext):
-    write_tweak("theme", "'default'", translate_accent(ctx.accent))
+    write_tweak("theme", "'default'", f"'{translate_accent(ctx.accent)}'")
 
     if ctx.size == "compact":
         write_tweak("compact", "'false'", "'true'")
@@ -393,17 +393,16 @@ def make_assets(ctx: BuildContext):
         f"{output_dir}/metacity-1/thumbnail.png",
     )
 
-    # TODO: Make our own assets for this and patch them in with the patch system, then code it to be
-    # {src_dir}/assets/xfwm4/assets{light_suffix}-Catppuccin/
-    # where assets-Light-Catppuccin will have latte
-    # nad assets-Catppuccin will have mocha or something
-    for file in glob.glob(f"{SRC_DIR}/assets/xfwm4/assets{ctx.apply_suffix(IS_LIGHT)}/*.png"):
+    xfwm4_assets = f"{THIS_DIR}/patches/xfwm4/generated/assets-catppuccin-{ctx.flavor.identifier}"
+    for file in glob.glob(xfwm4_assets + '/*'):
         shutil.copy(file, f"{output_dir}/xfwm4")
 
-    for file in glob.glob(f"{SRC_DIR}/assets/xfwm4/assets{ctx.apply_suffix(IS_LIGHT)}-hdpi/*.png"):
+    xfwm4_assets = xfwm4_assets + "-hdpi/*"
+    for file in glob.glob(xfwm4_assets):
         shutil.copy(file, f"{output_dir}-hdpi/xfwm4")
 
-    for file in glob.glob(f"{SRC_DIR}/assets/xfwm4/assets{ctx.apply_suffix(IS_LIGHT)}-xhdpi/*.png"):
+    xfwm4_assets = xfwm4_assets + "-xhdpi/*"
+    for file in glob.glob(xfwm4_assets):
         shutil.copy(file, f"{output_dir}-xhdpi/xfwm4")
 
 
@@ -477,7 +476,6 @@ def apply_colloid_patches():
     for patch in [
         "plank-dark.patch",
         "plank-light.patch",
-        "sass-colors.patch",
         "sass-palette-frappe.patch",
         "sass-palette-mocha.patch",
         "sass-palette-latte.patch",
@@ -491,7 +489,6 @@ def apply_colloid_patches():
         f.write("true")
 
     logger.info("Patching finished.")
-
 
 def parse_args():
     parser = argparse.ArgumentParser()
@@ -525,7 +522,8 @@ def parse_args():
         "-a",
         type=str,
         default="mauve",
-        dest="accent",
+        nargs='+',
+        dest="accents",
         choices=[
             "rosewater",
             "flamingo",
@@ -541,9 +539,15 @@ def parse_args():
             "sapphire",
             "blue",
             "lavender",
-            "all",
         ],
         help="Accent of the theme.",
+    )
+
+    parser.add_argument(
+        "--all-accents",
+        help="Whether to build all accents",
+        dest="all_accents",
+        action="store_true",
     )
 
     parser.add_argument(
@@ -590,58 +594,43 @@ def main():
     if args.patch:
         apply_colloid_patches()
 
-    palette = getattr(PALETTE, args.flavor)
-    accents = [
-        "rosewater",
-        "flamingo",
-        "pink",
-        "mauve",
-        "red",
-        "maroon",
-        "peach",
-        "yellow",
-        "green",
-        "teal",
-        "sky",
-        "sapphire",
-        "blue",
-        "lavender",
-    ]
-
-    if args.accent == "all":
-        for accent in accents:
-            accent = getattr(palette.colors, accent)
-
-            tweaks = Tweaks(tweaks=args.tweaks)
-
-            if args.zip:
-                output_format = "zip"
-            else:
-                output_format = "dir"
-
-            ctx = BuildContext(
-                build_root=args.dest,
-                theme_name=args.name,
-                flavor=palette,
-                accent=accent,
-                size=args.size,
-                tweaks=tweaks,
-                output_format=output_format,
-            )
-
-            tweaks_temp()
-            gnome_shell_version()
-            build_theme(ctx)
-            logger.info("Done!")
+    if args.zip:
+        output_format = "zip"
     else:
-        accent = getattr(palette.colors, args.accent)
+        output_format = "dir"
+
+    tweaks = Tweaks(tweaks=args.tweaks)
+
+    palette = getattr(PALETTE, args.flavor)
+
+    accents = args.accents
+    if args.all_accents:
+        accents = [
+            "rosewater",
+            "flamingo",
+            "pink",
+            "mauve",
+            "red",
+            "maroon",
+            "peach",
+            "yellow",
+            "green",
+            "teal",
+            "sky",
+            "sapphire",
+            "blue",
+            "lavender",
+        ]
+
+    for accent in accents:
+        accent = getattr(palette.colors, accent)
+
         tweaks = Tweaks(tweaks=args.tweaks)
 
         if args.zip:
             output_format = "zip"
         else:
             output_format = "dir"
-
         ctx = BuildContext(
             build_root=args.dest,
             theme_name=args.name,
@@ -651,15 +640,15 @@ def main():
             tweaks=tweaks,
             output_format=output_format,
         )
-
         logger.info("Building temp tweaks file")
-        tweaks_temp()
+        init_tweaks_temp()
         logger.info("Inserting gnome-shell imports")
         gnome_shell_version()
         logger.info("Building main theme")
         build_theme(ctx)
-        logger.info("Done!")
+        logger.info(f"Completed {palette.identifier} with {accent.identifier}")
 
+    logger.info("Done!")
 
 try:
     main()
