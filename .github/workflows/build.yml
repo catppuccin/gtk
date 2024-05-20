@@ -1,0 +1,33 @@
+name: "Build"
+
+on:
+  pull_request:
+    types: [opened, reopened]
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+      - name: Install colloid specific dependencies
+        run: sudo apt update && sudo apt install -y sassc inkscape optipng
+      - name: Generate themes
+        run: |
+          python ./build.py mocha --all-accents --zip -d $PWD/releases &&
+          python ./build.py macchiato --all-accents --zip -d $PWD/releases &&
+          python ./build.py frappe --all-accents --zip -d $PWD/releases &&
+          python ./build.py latte --all-accents --zip -d $PWD/releases
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: my-artifact
+          path: ./releases/*.zip
+
