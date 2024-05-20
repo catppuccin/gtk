@@ -25,13 +25,8 @@ jobs:
           python ./build.py macchiato --all-accents --zip -d $PWD/releases &&
           python ./build.py frappe --all-accents --zip -d $PWD/releases &&
           python ./build.py latte --all-accents --zip -d $PWD/releases
-      - name: Move zip files
-        run: |
-          mkdir -p individual_artifacts
-          mv ./releases/*.zip individual_artifacts/
-      - name: Upload individual artifacts
-        uses: actions/upload-artifact@v2
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
         with:
-          name: my-artifacts
-          path: individual_artifacts/
+          path: ./releases/*.zip
 
