@@ -49,7 +49,6 @@ def parse_args():
             "sapphire",
             "blue",
             "lavender",
-            "all",
         ],
         help="Accent of the theme.",
     )
