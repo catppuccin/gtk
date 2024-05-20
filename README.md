@@ -129,7 +129,7 @@ If our prebuilt offerings do not match your requirements, you will have to build
 
 > [!WARNING]
 > We use a submodule to bring in colloid, the theme this theme is based on. You will need to clone
-> with `git clone <url> --recurse-submodules` to bring in the submodule
+> with `git clone <url> --recurse-submodules` to bring in the submodule.
 
 To build the theme, simply invoke `build.py`:
 ```bash
