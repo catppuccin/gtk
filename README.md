@@ -122,6 +122,7 @@ If our prebuilt offerings do not match your requirements, you will have to build
 
 - Python 3+
 - `sassc`, the Sass compiler
+- `inkscape`, `optipng`, for rendering PNGs
 
 > [!WARNING]
 > We use a submodule to bring in colloid, the theme this theme is based on. You will need to clone
