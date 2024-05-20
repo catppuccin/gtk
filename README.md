@@ -17,7 +17,6 @@
 
 This GTK theme is based on the [Colloid](https://github.com/vinceliuice/Colloid-gtk-theme) theme made by [vinceliuice](https://github.com/vinceliuice)
 
-
 ## Installation
 This GTK theme requires:
 - GTK `>=3.20`
@@ -70,7 +69,7 @@ paru -S catppuccin-gtk-theme-<flavor>
 We have created a Nix module ([catppuccin/nix](https://github.com/catppuccin/nix)) for theming apps under Nix, and recommend that you use it.
 You can set up our Nix module for GTK with the following config:
 ```nix
-  {inputs, ...}: {
+ {inputs, ...}: {
     imports = [inputs.catppuccin.homeManagerModules.catppuccin];
     gtk = {
       enable = true;
