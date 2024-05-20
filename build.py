@@ -590,6 +590,13 @@ def main():
     if args.patch:
         apply_colloid_patches()
 
+    if args.zip:
+        output_format = "zip"
+    else:
+        output_format = "dir"
+
+    tweaks = Tweaks(tweaks=args.tweaks)
+
     palette = getattr(PALETTE, args.flavor)
     accents = [
         "rosewater",
@@ -612,13 +619,6 @@ def main():
         for accent in accents:
             accent = getattr(palette.colors, accent)
 
-            tweaks = Tweaks(tweaks=args.tweaks)
-
-            if args.zip:
-                output_format = "zip"
-            else:
-                output_format = "dir"
-
             ctx = BuildContext(
                 build_root=args.dest,
                 theme_name=args.name,
@@ -635,12 +635,6 @@ def main():
             logger.info("Done!")
     else:
         accent = getattr(palette.colors, args.accent)
-        tweaks = Tweaks(tweaks=args.tweaks)
-
-        if args.zip:
-            output_format = "zip"
-        else:
-            output_format = "dir"
 
         ctx = BuildContext(
             build_root=args.dest,
