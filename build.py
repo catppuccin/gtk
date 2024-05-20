@@ -542,9 +542,15 @@ def parse_args():
             "sapphire",
             "blue",
             "lavender",
-            "all",
         ],
         help="Accent of the theme.",
+    )
+
+    parser.add_argument(
+        "--all-accents",
+        help="Whether to build all accents",
+        dest="all_accents",
+        action="store_true",
     )
 
     parser.add_argument(
@@ -601,7 +607,7 @@ def main():
     palette = getattr(PALETTE, args.flavor)
 
     accents = args.accents
-    if "all" in accents:
+    if args.all_accents:
         accents = [
             "rosewater",
             "flamingo",
