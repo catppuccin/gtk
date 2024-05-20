@@ -22,10 +22,10 @@ jobs:
         run: sudo apt update && sudo apt install -y sassc inkscape optipng
       - name: Generate themes
         run: |
-          python ./build.py mocha -a all --zip -d $PWD/releases &&
-          python ./build.py macchiato -a all --zip -d $PWD/releases &&
-          python ./build.py frappe -a all --zip -d $PWD/releases &&
-          python ./build.py latte -a all --zip -d $PWD/releases
+          python ./build.py mocha --all-accents --zip -d $PWD/releases &&
+          python ./build.py macchiato --all-accents --zip -d $PWD/releases &&
+          python ./build.py frappe --all-accents --zip -d $PWD/releases &&
+          python ./build.py latte --all-accents --zip -d $PWD/releases
       - name: Add zips to release
         uses: softprops/action-gh-release@v2
         with:
