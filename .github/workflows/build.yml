@@ -1,11 +1,10 @@
-name: "Mainline release"
+name: "Generate test artifacts"
 
 on:
-  push:
-    tags:
-      - "v*"
+  pull_request:
+    types: [opened, reopened, synchronize]
 jobs:
-  release:
+  build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -26,8 +25,9 @@ jobs:
           python ./build.py macchiato --all-accents --zip -d $PWD/releases &&
           python ./build.py frappe --all-accents --zip -d $PWD/releases &&
           python ./build.py latte --all-accents --zip -d $PWD/releases
-      - name: Add zips to release
-        uses: softprops/action-gh-release@v2
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
         with:
-          draft: true
-          files: ./releases/*.zip
+          name: '${{ github.sha }}-artifacts'
+          path: ./releases/*.zip
+
