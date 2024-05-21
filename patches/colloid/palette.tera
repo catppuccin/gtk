@@ -3,14 +3,15 @@ whiskers:
   version: 2.1.0
   matrix:
     - flavor
-  filename: 'sass-palette-{{ flavor.identifier }}.patch'
+    - variant: [ 'oled', 'standard' ]
+  filename: 'sass-palette-{{ flavor.identifier }}-{{ variant }}.patch'
 ---
 {%- set palette = flavor.colors -%}
-diff --git a/src/sass/_color-palette-catppuccin-{{ flavor.identifier }}.scss b/src/sass/_color-palette-catppuccin-{{ flavor.identifier }}.scss
+diff --git a/src/sass/_color-palette-catppuccin-{{ flavor.identifier }}-{{ variant }}.scss b/src/sass/_color-palette-catppuccin-{{ flavor.identifier }}-{{ variant }}.scss
 new file mode 100644
 index 00000000..8a905942
 --- /dev/null
-+++ b/src/sass/_color-palette-catppuccin-{{ flavor.identifier }}.scss
++++ b/src/sass/_color-palette-catppuccin-{{ flavor.identifier }}-{{ variant }}.scss
 @@ -0,0 +1,72 @@
 +// Default Theme Color Palette
 +
@@ -63,15 +64,26 @@ index 00000000..8a905942
 +$grey-700: #{{ palette.surface0.hex }};
 +$grey-750: #{{ palette.surface0.hex }};
 +$grey-800: #{{ palette.base.hex }};
+{% if variant == "normal" -%} {#- Regular colours -#}
 +$grey-850: #{{ palette.base.hex }};
 +$grey-900: #{{ palette.crust.hex }};
 +$grey-950: #{{ palette.crust.hex }};
+{%- else -%} {#- OLED colours -#}
++$grey-850: #020202;
++$grey-900: #010101;
++$grey-950: #000000;
+{%- endif %}
 +
 +// White
-+$white: #FFFFFF;
++$white: #{{ palette.text.hex }};
 +
+{% if variant == "normal" -%}
++// Black
++$black: #{{ palette.crust.hex }};
+{%- else -%}
 +// Black
 +$black: #000000;
+{% endif -%}
 +
 +// Button
 +$button-close: #{{ palette.red.hex }};

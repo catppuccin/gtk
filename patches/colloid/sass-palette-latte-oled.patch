@@ -1,0 +1,78 @@
+diff --git a/src/sass/_color-palette-catppuccin-latte-oled.scss b/src/sass/_color-palette-catppuccin-latte-oled.scss
+new file mode 100644
+index 00000000..8a905942
+--- /dev/null
++++ b/src/sass/_color-palette-catppuccin-latte-oled.scss
+@@ -0,0 +1,72 @@
++// Default Theme Color Palette
++
++// Red
++$red-light: #d20f39;
++$red-dark: #d20f39;
++
++// Pink
++$pink-light: #ea76cb;
++$pink-dark: #ea76cb;
++
++// Purple
++$purple-light: #8839ef;
++$purple-dark: #8839ef;
++
++// Blue
++$blue-light: #1e66f5;
++$blue-dark: #1e66f5;
++
++// Teal
++$teal-light: #179299;
++$teal-dark: #179299;
++
++// Green
++$green-light: #40a02b;
++$green-dark: #40a02b;
++
++// Yellow
++$yellow-light: #df8e1d;
++$yellow-dark: #df8e1d;
++
++// Orange
++$orange-light: #fe640b;
++$orange-dark: #fe640b;
++
++// Grey
++$grey-050: #4c4f69;
++$grey-100: #5c5f77;
++$grey-150: #5c5f77;
++$grey-200: #6c6f85;
++$grey-250: #6c6f85;
++$grey-300: #8c8fa1;
++$grey-350: #8c8fa1;
++$grey-400: #9ca0b0;
++$grey-450: #9ca0b0;
++$grey-500: #acb0be;
++$grey-550: #acb0be;
++$grey-600: #bcc0cc;
++$grey-650: #bcc0cc;
++$grey-700: #ccd0da;
++$grey-750: #ccd0da;
++$grey-800: #eff1f5;
++$grey-850: #020202;
++$grey-900: #010101;
++$grey-950: #000000;
++
++// White
++$white: #4c4f69;
++
++// Black
++$black: #000000;
++
++// Button
++$button-close: #d20f39;
++$button-max: #40a02b;
++$button-min: #df8e1d;
++
++// Link
++$links: #04a5e5;
++
++// Theme
++$default-light: $purple-light;
++$default-dark: $purple-dark;

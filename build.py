@@ -37,6 +37,7 @@ class Suffix:
     false_value: str = ""
 
 
+IS_OLED = Suffix(true_value='-oled', false_value='-standard', test=lambda ctx: ctx.tweaks.has('oled'))
 IS_DARK = Suffix(true_value="-Dark", test=lambda ctx: ctx.flavor.dark)
 IS_LIGHT = Suffix(true_value="-Light", test=lambda ctx: not ctx.flavor.dark)
 IS_WINDOW_NORMAL = Suffix(true_value="-Normal", test=lambda ctx: ctx.tweaks.has('normal'))
@@ -270,7 +271,7 @@ def apply_tweaks(ctx: BuildContext):
     subst_text(
         f"{SRC_DIR}/sass/_tweaks-temp.scss",
         "@import 'color-palette-default';",
-        f"@import 'color-palette-catppuccin-{ctx.flavor.identifier}';",
+        f"@import 'color-palette-catppuccin-{ctx.flavor.identifier}{ctx.apply_suffix(IS_OLED)}';",
     )
     write_tweak("colorscheme", "'default'", "'catppuccin'")
 
@@ -476,10 +477,14 @@ def apply_colloid_patches():
     for patch in [
         "plank-dark.patch",
         "plank-light.patch",
-        "sass-palette-frappe.patch",
-        "sass-palette-mocha.patch",
-        "sass-palette-latte.patch",
-        "sass-palette-macchiato.patch",
+        "sass-palette-frappe-standard.patch",
+        "sass-palette-mocha-standard.patch",
+        "sass-palette-latte-standard.patch",
+        "sass-palette-macchiato-standard.patch",
+        "sass-palette-frappe-oled.patch",
+        "sass-palette-mocha-oled.patch",
+        "sass-palette-latte-oled.patch",
+        "sass-palette-macchiato-oled.patch",
     ]:
         path = f"./patches/colloid/{patch}"
         logger.info(f"Applying patch '{patch}', located at '{path}'")
@@ -566,7 +571,7 @@ def parse_args():
         default=[],
         nargs="+",
         dest="tweaks",
-        choices=["black", "rimless", "normal", "float"],
+        choices=["black", "rimless", "normal", "float", "oled"],
         help="Tweaks to apply to the build.",
     )
 
