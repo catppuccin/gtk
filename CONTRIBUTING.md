@@ -38,3 +38,7 @@ extracted folders to `~/.local/share/themes` yourself, adding a suffix as approp
 > [!WARNING]
 > If you pass `--link` to the install script when working from a PR, it will forcibly overwrite your `~/.config/gtk-4.0/` symlinks.
 > You will have to reinstall / relink to revert this.
+
+### Useful resources
+- GNOME-shell sources: https://gitlab.gnome.org/GNOME/gnome-shell/-/tree/gnome-46/data/theme
+- GTK inspector guide: https://developer.gnome.org/documentation/tools/inspector.html
