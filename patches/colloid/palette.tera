@@ -64,7 +64,7 @@ index 00000000..8a905942
 +$grey-700: #{{ palette.surface0.hex }};
 +$grey-750: #{{ palette.surface0.hex }};
 +$grey-800: #{{ palette.base.hex }};
-{% if variant == "normal" -%} {#- Regular colours -#}
+{% if variant == "standard" -%} {#- Regular colours -#}
 +$grey-850: #{{ palette.base.hex }};
 +$grey-900: #{{ palette.crust.hex }};
 +$grey-950: #{{ palette.crust.hex }};
@@ -77,7 +77,7 @@ index 00000000..8a905942
 +// White
 +$white: #{{ palette.text.hex }};
 +
-{% if variant == "normal" -%}
+{% if variant == "standard" -%}
 +// Black
 +$black: #{{ palette.crust.hex }};
 {%- else -%}

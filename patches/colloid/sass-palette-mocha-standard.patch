@@ -55,16 +55,15 @@ index 00000000..8a905942
 +$grey-700: #313244;
 +$grey-750: #313244;
 +$grey-800: #1e1e2e;
-+$grey-850: #020202;
-+$grey-900: #010101;
-+$grey-950: #000000;
++$grey-850: #1e1e2e;
++$grey-900: #11111b;
++$grey-950: #11111b;
 +
 +// White
 +$white: #cdd6f4;
 +
 +// Black
-+$black: #000000;
-+
++$black: #11111b;+
 +// Button
 +$button-close: #f38ba8;
 +$button-max: #a6e3a1;
