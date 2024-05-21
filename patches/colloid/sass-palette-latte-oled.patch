@@ -39,28 +39,28 @@ index 00000000..8a905942
 +$orange-dark: #fe640b;
 +
 +// Grey
-+$grey-050: #4c4f69;
-+$grey-100: #5c5f77;
-+$grey-150: #5c5f77;
-+$grey-200: #6c6f85;
-+$grey-250: #6c6f85;
-+$grey-300: #8c8fa1;
-+$grey-350: #8c8fa1;
-+$grey-400: #9ca0b0;
-+$grey-450: #9ca0b0;
++$grey-050: #eff1f5;
++$grey-100: #e6e9ef;
++$grey-150: #e6e9ef;
++$grey-200: #e6e9ef;
++$grey-250: #dce0e8;
++$grey-300: #dce0e8;
++$grey-350: #ccd0da;
++$grey-400: #bcc0cc;
++$grey-450: #bcc0cc;
 +$grey-500: #acb0be;
 +$grey-550: #acb0be;
-+$grey-600: #bcc0cc;
-+$grey-650: #bcc0cc;
-+$grey-700: #ccd0da;
-+$grey-750: #ccd0da;
-+$grey-800: #eff1f5;
++$grey-600: #9ca0b0;
++$grey-650: #8c8fa1;
++$grey-700: #eff1f5;
++$grey-750: #dce0e8;
++$grey-800: #6c6f85;
 +$grey-850: #020202;
 +$grey-900: #010101;
 +$grey-950: #000000;
 +
 +// White
-+$white: #4c4f69;
++$white: #eff1f5;
 +
 +// Black
 +$black: #000000;

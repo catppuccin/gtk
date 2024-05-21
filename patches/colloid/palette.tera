@@ -48,38 +48,66 @@ index 00000000..8a905942
 +$orange-dark: #{{ palette.peach.hex }};
 +
 +// Grey
+{% if flavor.dark -%} 
 +$grey-050: #{{ palette.text.hex }};
-+$grey-100: #{{ palette.subtext1.hex }};
++$grey-100: #{{ palette.text.hex }};
 +$grey-150: #{{ palette.subtext1.hex }};
 +$grey-200: #{{ palette.subtext0.hex }};
-+$grey-250: #{{ palette.subtext0.hex }};
++$grey-250: #{{ palette.overlay2.hex }};
 +$grey-300: #{{ palette.overlay1.hex }};
 +$grey-350: #{{ palette.overlay1.hex }};
 +$grey-400: #{{ palette.overlay0.hex }};
-+$grey-450: #{{ palette.overlay0.hex }};
-+$grey-500: #{{ palette.surface2.hex }};
-+$grey-550: #{{ palette.surface2.hex }};
-+$grey-600: #{{ palette.surface1.hex }};
-+$grey-650: #{{ palette.surface1.hex }};
-+$grey-700: #{{ palette.surface0.hex }};
-+$grey-750: #{{ palette.surface0.hex }};
-+$grey-800: #{{ palette.base.hex }};
-{% if variant == "standard" -%} {#- Regular colours -#}
-+$grey-850: #{{ palette.base.hex }};
++$grey-450: #{{ palette.surface2.hex }};
++$grey-500: #{{ palette.surface1.hex }};
++$grey-550: #{{ palette.surface1.hex }};
++$grey-600: #{{ palette.surface0.hex }};
++$grey-650: #{{ palette.surface0.hex }};
++$grey-700: #{{ palette.base.hex }};
++$grey-750: #{{ palette.mantle.hex }};
++$grey-800: #{{ palette.mantle.hex }};
+{% if variant == "standard" -%} {#- Regular colours, dark mode -#}
++$grey-850: #{{ palette.mantle.hex }};
 +$grey-900: #{{ palette.crust.hex }};
 +$grey-950: #{{ palette.crust.hex }};
-{%- else -%} {#- OLED colours -#}
+{%- else -%} {#- OLED colours, dark mode -#}
 +$grey-850: #020202;
 +$grey-900: #010101;
 +$grey-950: #000000;
 {%- endif %}
+{%- else -%} {#- Light mode -#}
++$grey-050: #{{ palette.base.hex }};
++$grey-100: #{{ palette.mantle.hex }};
++$grey-150: #{{ palette.mantle.hex }};
++$grey-200: #{{ palette.mantle.hex }};
++$grey-250: #{{ palette.crust.hex }};
++$grey-300: #{{ palette.crust.hex }};
++$grey-350: #{{ palette.surface0.hex }};
++$grey-400: #{{ palette.surface1.hex }};
++$grey-450: #{{ palette.surface1.hex }};
++$grey-500: #{{ palette.surface2.hex }};
++$grey-550: #{{ palette.surface2.hex }};
++$grey-600: #{{ palette.overlay0.hex }};
++$grey-650: #{{ palette.overlay1.hex }};
++$grey-700: #{{ palette.base.hex }};
++$grey-750: #{{ palette.crust.hex }};
++$grey-800: #{{ palette.subtext0.hex }};
+{% if variant == "standard" -%} {#- Regular colours, light mode -#}
++$grey-850: #{{ palette.subtext1.hex }};
++$grey-900: #{{ palette.text.hex }};
++$grey-950: #{{ palette.text.hex }};
+{%- else -%} {#- OLED colours, light mode -#}
++$grey-850: #020202;
++$grey-900: #010101;
++$grey-950: #000000;
+{%- endif %}
+{%- endif %}
 +
 +// White
-+$white: #{{ palette.text.hex }};
++$white: #{{ if(cond=flavor.dark, t=palette.text.hex, f=palette.base.hex) }};
 +
 {% if variant == "standard" -%}
 +// Black
-+$black: #{{ palette.crust.hex }};
++$black: #{{ if(cond=flavor.dark, t=palette.crust.hex, f=palette.text.hex) }};
 {% else -%}
 +// Black
 +$black: #000000;
