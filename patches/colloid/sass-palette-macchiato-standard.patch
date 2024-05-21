@@ -63,7 +63,8 @@ index 00000000..8a905942
 +$white: #cad3f5;
 +
 +// Black
-+$black: #181926;+
++$black: #181926;
++
 +// Button
 +$button-close: #ed8796;
 +$button-max: #a6da95;

@@ -80,7 +80,7 @@ index 00000000..8a905942
 {% if variant == "standard" -%}
 +// Black
 +$black: #{{ palette.crust.hex }};
-{%- else -%}
+{% else -%}
 +// Black
 +$black: #000000;
 {% endif -%}
