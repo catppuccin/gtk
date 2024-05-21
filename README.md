@@ -105,7 +105,7 @@ curl -LsS "${ROOT_URL}/${RELEASE}/catppuccin-${FLAVOR}-${ACCENT}-standard+defaul
 unzip catppuccin-${FLAVOR}-${ACCENT}-standard+default.zip
 
 # Set the catppuccin theme directory
-export THEME_DIR="~/.local/share/themes/catppuccin-${FLAVOR}-${ACCENT}-standard+default"
+export THEME_DIR="$HOME/.local/share/themes/catppuccin-${FLAVOR}-${ACCENT}-standard+default"
 
 # Optionally, add support for libadwaita
 mkdir -p "${HOME}/.config/gtk-4.0" && 
