@@ -114,6 +114,16 @@ ln -sf "${THEME_DIR}/gtk-4.0/gtk.css" "${HOME}/.config/gtk-4.0/gtk.css" &&
 ln -sf "${THEME_DIR}/gtk-4.0/gtk-dark.css" "${HOME}/.config/gtk-4.0/gtk-dark.css"
 ```
 
+## Flatpak
+> [!WARNING]
+> Flatpak is deprecated and we don't maintain it anymore.
+> We do not recommend themeing Flatpak with the theme.
+
+To allow flatpak to get access to the theme, type:
+```bash
+sudo flatpak override --filesystem=$HOME/.themes
+```
+
 ## Building
 
 If our prebuilt offerings do not match your requirements, you will have to build the theme from source.
