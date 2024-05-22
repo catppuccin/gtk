@@ -25,18 +25,25 @@ body:
     attributes:
       label: How did you install the theme?
       options:
-        - GitHub Release
-        - AUR Package
-        - catppuccin/nix
+        - From release (install.py)
+        - From release (manual installation)
+        - From source (build.py)
         - Nixpkgs
-        - Flatpak
-        - From source (Python script)
+        - catppuccin/nix
+        - AUR package
     validations:
       required: true
   - type: checkboxes
     attributes:
+      label: Are you running the latest release, and if not does the issue persist there?
+      description: "Our latest release can be found under the [GitHub releases](https://github.com/catppuccin/gtk/releases/latest)"
+      options:
+        - label: I am running on the latest release & the issue persists there
+          required: true
+  - type: checkboxes
+    attributes:
       label: If using GTK4, have you symlinked the "gtk-4.0" folder?
-      description: "The instructions for symlinking are described in the [README](https://github.com/catppuccin/gtk/tree/877e75568c9bb0d57c7ddda85b246fa17af45e57?tab=readme-ov-file#for-gtk-4-users)."
+      description: "The instructions for symlinking are described at the bottom of the [Manual Installation guide](https://github.com/catppuccin/gtk/tree/663f6c61f8cf1fcbbeb72110bf6b0a0214755245?tab=readme-ov-file#manual-installation)."
       options:
         - label: I have symlinked the `gtk-4.0` folder.
           required: false
