@@ -37,10 +37,10 @@ to signal these changes are to be sent to Colloid eventually.
     Add the `upstream:open` label
 5) Once the PR is merged in Colloid:
     1) Test that the issue no longer persists, without our patch
-    1) Open a PR to remove the patch file in our theme, with these details:
+    2) Open a PR to remove the patch file in our theme, with these details:
         - The tracking issue
         - The commit that fixed the issue in Colloid
-    2) Close the tracking issue & merge the PR to remove the patch file
+    3) Close the tracking issue & merge the PR to remove the patch file
   
 
 ### Running test builds
