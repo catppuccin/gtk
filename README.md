@@ -122,7 +122,7 @@ ln -sf "${THEME_DIR}/gtk-4.0/gtk-dark.css" "${HOME}/.config/gtk-4.0/gtk-dark.css
 To allow Flatpak to get access to the theme, type:
 
 ```bash
-sudo flatpak override --filesystem=$HOME/.themes
+sudo flatpak override --filesystem=$HOME/.local/share/themes
 ```
 
 ## Building
