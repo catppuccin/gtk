@@ -116,7 +116,7 @@ ln -sf "${THEME_DIR}/gtk-4.0/gtk-dark.css" "${HOME}/.config/gtk-4.0/gtk-dark.css
 
 ## Flatpak
 > [!WARNING]
-> Flatpak is unmaintained and we don't recommend using it as it'll cause some issues.
+> Flatpak package is not maintained by us. Due to that we cannot recommend using it as as there maybe some unexpected issues.
 
 To allow Flatpak to get access to the theme, type:
 
