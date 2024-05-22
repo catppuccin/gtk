@@ -19,6 +19,30 @@ so if you're changing them, they will need regenerated. Simply run `whiskers pal
 
 The process for building the theme is [documented in the README](./README.md#building).
 
+### Upstreaming procedure
+
+Now and again, Colloid will have bugs upstream that impacts our theme. With our patching system we can easily fix these problems,
+but we still want to contribute the fixes upstream to benefit all users & forks of Colloid.
+
+To avoid stalling unnecessarily, our procedure for the above is as follows:
+1) Open a PR to fix the issue, by adding a patch file to our theme, add `upstream:intended` 
+to signal these changes are to be sent to Colloid eventually.
+2) Merge the PR & close the issue in our theme pertaining to the issue, once reviewed and approved
+3) Open a PR in Colloid with the patch
+4) Open a new issue in our theme, with these details:
+    - The initial issue in our theme 
+    - The PR in Colloid that fixes the issue there
+    - The PR that fixed the issue in our theme
+
+    Add the `upstream:open` label
+5) Once the PR is merged in Colloid:
+    1) Test that the issue no longer persists, without our patch
+    1) Open a PR to remove the patch file in our theme, with these details:
+        - The tracking issue
+        - The commit that fixed the issue in Colloid
+    2) Close the tracking issue & merge the PR to remove the patch file
+  
+
 ### Running test builds
 We support building and publishing test builds from PRs. When you open PRs, the CI will automatically build with your changes and push an artifact
 which bundles all of the produced themes.
