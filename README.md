@@ -83,6 +83,28 @@ You can set up our Nix module for GTK with the following config:
 
 Alternatively, if you are not using our Nix module, you can grab the theme from [nixpkgs/catppuccin-gtk](https://github.com/NixOS/nixpkgs/blob/master/pkgs/data/themes/catppuccin-gtk/default.nix)
 
+## Flatpak
+> [!WARNING]
+> Flatpak package is not maintained by us. Due to that we cannot recommend using it as as there maybe some unexpected issues.
+
+Flatpak by default restricts access to themes, to allow access, use the following: 
+```bash
+sudo flatpak override --filesystem=$HOME/.local/share/themes
+```
+
+After you've allowed access, set the theme, using the following:
+```bash
+# Change to suite your flavor / accent combination
+export FLAVOR="mocha"
+export ACCENT="mauve"
+
+# Set the catppuccin theme directory
+export THEME_DIR="$HOME/.local/share/themes/catppuccin-${FLAVOR}-${ACCENT}-standard+default"
+
+# Set the theme
+sudo flatpak override --env=GTK_THEME=$THEME_DIR
+```
+
 ### Manual installation
 
 If your distro does not package our theme, and the installation script will not work for your use case, you can pull down releases and extract them yourself. You can find the [latest release on GitHub](https://github.com/catppuccin/gtk/releases/latest).
@@ -112,16 +134,6 @@ mkdir -p "${HOME}/.config/gtk-4.0" &&
 ln -sf "${THEME_DIR}/gtk-4.0/assets" "${HOME}/.config/gtk-4.0/assets" &&
 ln -sf "${THEME_DIR}/gtk-4.0/gtk.css" "${HOME}/.config/gtk-4.0/gtk.css" &&
 ln -sf "${THEME_DIR}/gtk-4.0/gtk-dark.css" "${HOME}/.config/gtk-4.0/gtk-dark.css"
-```
-
-## Flatpak
-> [!WARNING]
-> Flatpak package is not maintained by us. Due to that we cannot recommend using it as as there maybe some unexpected issues.
-
-To allow Flatpak to get access to the theme, type:
-
-```bash
-sudo flatpak override --filesystem=$HOME/.local/share/themes
 ```
 
 ## Building
