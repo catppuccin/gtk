@@ -98,11 +98,8 @@ After you've allowed access, set the theme, using the following:
 export FLAVOR="mocha"
 export ACCENT="mauve"
 
-# Set the catppuccin theme directory
-export THEME_DIR="catppuccin-${FLAVOR}-${ACCENT}-standard+default"
-
 # Set the theme
-sudo flatpak override --env=GTK_THEME=$THEME_DIR
+sudo flatpak override --env=GTK_THEME="catppuccin-${FLAVOR}-${ACCENT}-standard+default"
 ```
 
 ### Manual installation
