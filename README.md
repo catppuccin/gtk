@@ -99,7 +99,7 @@ export FLAVOR="mocha"
 export ACCENT="mauve"
 
 # Set the catppuccin theme directory
-export THEME_DIR="$HOME/.local/share/themes/catppuccin-${FLAVOR}-${ACCENT}-standard+default"
+export THEME_DIR="catppuccin-${FLAVOR}-${ACCENT}-standard+default"
 
 # Set the theme
 sudo flatpak override --env=GTK_THEME=$THEME_DIR
