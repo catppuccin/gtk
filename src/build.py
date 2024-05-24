@@ -9,6 +9,7 @@ from catppuccin import PALETTE
 
 THIS_DIR = os.path.dirname(os.path.realpath(__file__))
 SRC_DIR = f"{THIS_DIR}/../colloid/src"
+GS_VERSION = "46-0"
 
 
 def parse_args():
@@ -164,7 +165,7 @@ def main():
         logger.info("Building temp tweaks file")
         init_tweaks_temp(SRC_DIR)
         logger.info("Inserting gnome-shell imports")
-        gnome_shell_version(args.GS_VERSION, SRC_DIR)
+        gnome_shell_version(GS_VERSION, SRC_DIR)
         logger.info("Building main theme")
         build_theme(ctx)
         logger.info(f"Completed {palette.identifier} with {accent.identifier}")
