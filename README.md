@@ -84,9 +84,6 @@ You can set up our Nix module for GTK with the following config:
 Alternatively, if you are not using our Nix module, you can grab the theme from [nixpkgs/catppuccin-gtk](https://github.com/NixOS/nixpkgs/blob/master/pkgs/data/themes/catppuccin-gtk/default.nix)
 
 ## Flatpak
-> [!WARNING]
-> Flatpak package is not maintained by us. Due to that we cannot recommend using it as as there maybe some unexpected issues.
-
 Flatpak by default restricts access to themes, to allow access, use the following: 
 ```bash
 sudo flatpak override --filesystem=$HOME/.local/share/themes
