@@ -1,14 +1,14 @@
 import os
 import argparse
 from src.patches import apply_colloid_patches
-from src.theme import build_theme, init_tweaks_temp, gnome_shell_version
+from src.theme import build_theme, gnome_shell_version
+from src.utils import init_tweaks_temp, copy_dir
 from src.context import Tweaks, BuildContext
 from src.logger import logger
 from catppuccin import PALETTE
 
 
 THIS_DIR = os.path.dirname(os.path.realpath(__file__))
-SRC_DIR = f"{THIS_DIR}/../colloid/src"
 GS_VERSION = "46-0"
 
 
@@ -144,6 +144,11 @@ def main():
             "lavender",
         ]
 
+    COLLOID_DIR = f"{THIS_DIR}/../colloid/src"
+    SRC_DIR = f"{THIS_DIR}/../colloid-tmp-" + args.flavor
+
+    copy_dir(COLLOID_DIR, SRC_DIR)
+
     for accent in accents:
         accent = getattr(palette.colors, accent)
 
@@ -162,12 +167,13 @@ def main():
             tweaks=tweaks,
             output_format=output_format,
         )
+
         logger.info("Building temp tweaks file")
         init_tweaks_temp(SRC_DIR)
         logger.info("Inserting gnome-shell imports")
         gnome_shell_version(GS_VERSION, SRC_DIR)
         logger.info("Building main theme")
-        build_theme(ctx)
+        build_theme(ctx, SRC_DIR)
         logger.info(f"Completed {palette.identifier} with {accent.identifier}")
 
     logger.info("Done!")

@@ -2,6 +2,10 @@ import re
 import shutil
 
 
+def copy_dir(_from, to):
+    shutil.copytree(_from, to)
+
+
 def subst_text(path, _from, to):
     with open(path, "r+") as f:
         content = f.read()
