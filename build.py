@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-import os, re, shutil, subprocess, argparse, glob, logging, zipfile
+import os, re, shutil, subprocess, argparse, glob, logging, zipfile, sys
 
 from dataclasses import dataclass
 from typing import Any, Literal, List
@@ -654,3 +654,4 @@ try:
     main()
 except Exception as e:
     logger.error("Something went wrong when building the theme:", exc_info=e)
+    sys.exit(1)
