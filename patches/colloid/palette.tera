@@ -11,7 +11,22 @@ new file mode 100644
 index 00000000..4ff0da0d
 --- /dev/null
 +++ b/src/sass/_color-palette-catppuccin-{{ flavor.identifier }}.scss
-@@ -0,0 +1,72 @@
+@@ -0,0 +1,87 @@
++ // Our accents
++ $rosewater: #{{ palette.rosewater.hex }};
++ $flamingo: #{{ palette.flamingo.hex }};
++ $pink: #{{ palette.pink.hex }};
++ $mauve: #{{ palette.mauve.hex }};
++ $red: #{{ palette.red.hex }};
++ $maroon: #{{ palette.maroon.hex }};
++ $peach: #{{ palette.peach.hex }};
++ $yellow: #{{ palette.yellow.hex }};
++ $green: #{{ palette.green.hex }};
++ $teal: #{{ palette.teal.hex }};
++ $sky: #{{ palette.sky.hex }};
++ $sapphire: #{{ palette.sapphire.hex }};
++ $blue: #{{ palette.blue.hex }};
++ $lavender: #{{ palette.lavender.hex }};
 +// Default Theme Color Palette
 +
 +// Red
