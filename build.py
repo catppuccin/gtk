@@ -190,11 +190,11 @@ def build(ctx: BuildContext):
 
     if not ctx.flavor.dark:
         shutil.copytree(
-            f"{SRC_DIR}/main/plank/theme-Light-Catppuccin/", f"{output_dir}/plank"
+            f"{SRC_DIR}/main/plank/theme-Light-Catppuccin/", f"{output_dir}/plank", dirs_exist_ok=True
         )
     else:
         shutil.copytree(
-            f"{SRC_DIR}/main/plank/theme-Dark-Catppuccin/", f"{output_dir}/plank"
+            f"{SRC_DIR}/main/plank/theme-Dark-Catppuccin/", f"{output_dir}/plank", dirs_exist_ok=True
         )
 
 
