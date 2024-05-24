@@ -73,8 +73,6 @@ def build(ctx: BuildContext):
 
     apply_tweaks(ctx)
 
-    raise TypeError('This should fail the build')
-
     os.makedirs(output_dir, exist_ok=True)
     with open(f"{output_dir}/index.theme", "w") as file:
         file.write("[Desktop Entry]\n")
