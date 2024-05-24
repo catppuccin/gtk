@@ -37,7 +37,6 @@ class Suffix:
     false_value: str = ""
 
 
-IS_OLED = Suffix(true_value='-oled', false_value='-standard', test=lambda ctx: ctx.tweaks.has('black'))
 IS_DARK = Suffix(true_value="-Dark", test=lambda ctx: ctx.flavor.dark)
 IS_LIGHT = Suffix(true_value="-Light", test=lambda ctx: not ctx.flavor.dark)
 IS_WINDOW_NORMAL = Suffix(true_value="-Normal", test=lambda ctx: ctx.tweaks.has('normal'))
@@ -567,7 +566,7 @@ def parse_args():
         default=[],
         nargs="+",
         dest="tweaks",
-        choices=["black", "rimless", "normal", "float", "oled"],
+        choices=["black", "rimless", "normal", "float"],
         help="Tweaks to apply to the build.",
     )
 
