@@ -90,10 +90,10 @@ index 00000000..8a905942
 {%- endif %}
 +
 +// White
-+$white: #{{ if(cond=flavor.dark, t=palette.text.hex, f=palette.base.hex) }};
++$white: #eff1f5;
 +
 +// Black
-+$black: #{{ if(cond=flavor.dark, t=palette.base.hex, f="11111b") }};
++$black: #11111b;
 +
 +// Button
 +$button-close: #{{ palette.red.hex }};

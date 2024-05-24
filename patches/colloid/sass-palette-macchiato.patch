@@ -60,10 +60,10 @@ index 00000000..8a905942
 +$grey-950: #000000;
 +
 +// White
-+$white: #cad3f5;
++$white: #eff1f5;
 +
 +// Black
-+$black: #24273a;
++$black: #11111b;
 +
 +// Button
 +$button-close: #ed8796;
