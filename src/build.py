@@ -1,5 +1,7 @@
 import os
+import sys
 import argparse
+import shutil
 from src.patches import apply_colloid_patches
 from src.theme import build_theme, gnome_shell_version
 from src.utils import init_tweaks_temp, copy_dir
@@ -8,7 +10,6 @@ from src.logger import logger
 from catppuccin import PALETTE
 
 
-THIS_DIR = os.path.dirname(os.path.realpath(__file__))
 GS_VERSION = "46-0"
 
 
@@ -111,10 +112,16 @@ def parse_args():
     return parser.parse_args()
 
 
-def main():
+def main(context):
     args = parse_args()
+
+    COLLOID_DIR = f"{context}/colloid"
+    COLLOID_TMP_DIR = f"{context}/colloid-tmp-{args.flavor}"
+    copy_dir(COLLOID_DIR, COLLOID_TMP_DIR)
+    SRC_DIR = COLLOID_TMP_DIR + "/src"
+
     if args.patch:
-        apply_colloid_patches()
+        apply_colloid_patches(COLLOID_TMP_DIR)
 
     if args.zip:
         output_format = "zip"
@@ -144,11 +151,6 @@ def main():
             "lavender",
         ]
 
-    COLLOID_DIR = f"{THIS_DIR}/../colloid/src"
-    SRC_DIR = f"{THIS_DIR}/../colloid-tmp-" + args.flavor
-
-    copy_dir(COLLOID_DIR, SRC_DIR)
-
     for accent in accents:
         accent = getattr(palette.colors, accent)
 
@@ -176,6 +178,7 @@ def main():
         build_theme(ctx, SRC_DIR)
         logger.info(f"Completed {palette.identifier} with {accent.identifier}")
 
+    shutil.rmtree(COLLOID_TMP_DIR)
     logger.info("Done!")
 
 

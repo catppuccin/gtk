@@ -1,17 +1,14 @@
 name: "Generate test artifacts"
 
-
 on:
-  workflow_dispatch:
   pull_request:
     types: [opened, reopened, synchronize]
-
 
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
+
       - name: Checkout
         uses: actions/checkout@v4
         with:
@@ -32,14 +29,14 @@ jobs:
         run: |
           python patches/xfwm4/generate_assets.py
 
-          python ./main.py mocha --all-accents --zip -d $PWD/releases &&
-          python ./main.py macchiato --all-accents --zip -d $PWD/releases &&
-          python ./main.py frappe --all-accents --zip -d $PWD/releases &&
-          python ./main.py latte --all-accents --zip -d $PWD/releases
+          python ./main.py mocha --all-accents --zip -d $PWD/releases &
+          python ./main.py macchiato --all-accents --zip -d $PWD/releases &
+          python ./main.py frappe --all-accents --zip -d $PWD/releases &
+          python ./main.py latte --all-accents --zip -d $PWD/releases &
+          wait
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
           name: '${{ github.sha }}-artifacts'
           path: ./releases/*.zip
-
