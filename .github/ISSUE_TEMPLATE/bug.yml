@@ -28,8 +28,7 @@ body:
         - From release (install.py)
         - From release (manual installation)
         - From source (build.py)
-        - Nixpkgs
-        - catppuccin/nix
+        - Nix (nixpkgs / catppuccin/nix)
         - AUR package
     validations:
       required: true
