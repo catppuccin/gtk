@@ -44,26 +44,26 @@ index 00000000..8a905942
 +$grey-150: #eff1f5;
 +$grey-200: #ccd0da;
 +$grey-250: #bcc0cc;
-+$grey-300: #BFBFBF;
-+$grey-350: #A0A0A0;
-+$grey-400: #9E9E9E;
-+$grey-450: #868686;
-+$grey-500: #727272;
-+$grey-550: #555555;
-+$grey-600: #464646;
-+$grey-650: #8c8fa1;
++$grey-300: red;
++$grey-350: red;
++$grey-400: red;
++$grey-450: red;
++$grey-500: red;
++$grey-550: red;
++$grey-600: red;
++$grey-650: #eff1f5;
 +$grey-700: #eff1f5;
-+$grey-750: #dce0e8;
-+$grey-800: #6c6f85;
++$grey-750: #e6e9ef;
++$grey-800: #4c4f69;
 +$grey-850: #020202;
 +$grey-900: #010101;
 +$grey-950: #000000;
 +
 +// White
-+$white: #FFFFFF;
++$white: #eff1f5;
 +
 +// Black
-+$black: #000000;
++$black: #11111b;
 +
 +// Button
 +$button-close: #d20f39;

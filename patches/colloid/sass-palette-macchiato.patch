@@ -44,13 +44,13 @@ index 00000000..8a905942
 +$grey-150: #6e738d;
 +$grey-200: #5b6078;
 +$grey-250: #494d64;
-+$grey-300: #BFBFBF;
-+$grey-350: #A0A0A0;
-+$grey-400: #9E9E9E;
-+$grey-450: #868686;
-+$grey-500: #727272;
-+$grey-550: #555555;
-+$grey-600: #464646;
++$grey-300: red;
++$grey-350: red;
++$grey-400: red;
++$grey-450: red;
++$grey-500: red;
++$grey-550: red;
++$grey-600: red;
 +$grey-650: #363a4f;
 +$grey-700: #24273a;
 +$grey-750: #181926;
@@ -60,10 +60,10 @@ index 00000000..8a905942
 +$grey-950: #000000;
 +
 +// White
-+$white: #FFFFFF;
++$white: #cad3f5;
 +
 +// Black
-+$black: #000000;
++$black: #24273a;
 +
 +// Button
 +$button-close: #ed8796;
