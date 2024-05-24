@@ -1,8 +1,8 @@
-diff --git a/src/sass/_color-palette-catppuccin-latte-oled.scss b/src/sass/_color-palette-catppuccin-latte-oled.scss
+diff --git a/src/sass/_color-palette-catppuccin-latte.scss b/src/sass/_color-palette-catppuccin-latte.scss
 new file mode 100644
 index 00000000..8a905942
 --- /dev/null
-+++ b/src/sass/_color-palette-catppuccin-latte-oled.scss
++++ b/src/sass/_color-palette-catppuccin-latte.scss
 @@ -0,0 +1,72 @@
 +// Default Theme Color Palette
 +
@@ -39,18 +39,18 @@ index 00000000..8a905942
 +$orange-dark: #fe640b;
 +
 +// Grey
-+$grey-050: #eff1f5;
++$grey-050: #dce0e8;
 +$grey-100: #e6e9ef;
-+$grey-150: #e6e9ef;
-+$grey-200: #e6e9ef;
-+$grey-250: #dce0e8;
-+$grey-300: #dce0e8;
-+$grey-350: #ccd0da;
-+$grey-400: #bcc0cc;
-+$grey-450: #bcc0cc;
-+$grey-500: #acb0be;
-+$grey-550: #acb0be;
-+$grey-600: #9ca0b0;
++$grey-150: #eff1f5;
++$grey-200: #ccd0da;
++$grey-250: #bcc0cc;
++$grey-300: #BFBFBF;
++$grey-350: #A0A0A0;
++$grey-400: #9E9E9E;
++$grey-450: #868686;
++$grey-500: #727272;
++$grey-550: #555555;
++$grey-600: #464646;
 +$grey-650: #8c8fa1;
 +$grey-700: #eff1f5;
 +$grey-750: #dce0e8;
@@ -60,7 +60,7 @@ index 00000000..8a905942
 +$grey-950: #000000;
 +
 +// White
-+$white: #eff1f5;
++$white: #FFFFFF;
 +
 +// Black
 +$black: #000000;

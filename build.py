@@ -37,7 +37,7 @@ class Suffix:
     false_value: str = ""
 
 
-IS_OLED = Suffix(true_value='-oled', false_value='-standard', test=lambda ctx: ctx.tweaks.has('oled'))
+IS_OLED = Suffix(true_value='-oled', false_value='-standard', test=lambda ctx: ctx.tweaks.has('black'))
 IS_DARK = Suffix(true_value="-Dark", test=lambda ctx: ctx.flavor.dark)
 IS_LIGHT = Suffix(true_value="-Light", test=lambda ctx: not ctx.flavor.dark)
 IS_WINDOW_NORMAL = Suffix(true_value="-Normal", test=lambda ctx: ctx.tweaks.has('normal'))
@@ -191,11 +191,11 @@ def build(ctx: BuildContext):
 
     if not ctx.flavor.dark:
         shutil.copytree(
-            f"{SRC_DIR}/main/plank/theme-Light-Catppuccin/", f"{output_dir}/plank"
+            f"{SRC_DIR}/main/plank/theme-Light-Catppuccin/", f"{output_dir}/plank", dirs_exist_ok=True
         )
     else:
         shutil.copytree(
-            f"{SRC_DIR}/main/plank/theme-Dark-Catppuccin/", f"{output_dir}/plank"
+            f"{SRC_DIR}/main/plank/theme-Dark-Catppuccin/", f"{output_dir}/plank", dirs_exist_ok=True
         )
 
 
@@ -271,7 +271,7 @@ def apply_tweaks(ctx: BuildContext):
     subst_text(
         f"{SRC_DIR}/sass/_tweaks-temp.scss",
         "@import 'color-palette-default';",
-        f"@import 'color-palette-catppuccin-{ctx.flavor.identifier}{ctx.apply_suffix(IS_OLED)}';",
+        f"@import 'color-palette-catppuccin-{ctx.flavor.identifier}';",
     )
     write_tweak("colorscheme", "'default'", "'catppuccin'")
 
@@ -477,14 +477,10 @@ def apply_colloid_patches():
     for patch in [
         "plank-dark.patch",
         "plank-light.patch",
-        "sass-palette-frappe-standard.patch",
-        "sass-palette-mocha-standard.patch",
-        "sass-palette-latte-standard.patch",
-        "sass-palette-macchiato-standard.patch",
-        "sass-palette-frappe-oled.patch",
-        "sass-palette-mocha-oled.patch",
-        "sass-palette-latte-oled.patch",
-        "sass-palette-macchiato-oled.patch",
+        "sass-palette-frappe.patch",
+        "sass-palette-mocha.patch",
+        "sass-palette-latte.patch",
+        "sass-palette-macchiato.patch",
     ]:
         path = f"./patches/colloid/{patch}"
         logger.info(f"Applying patch '{patch}', located at '{path}'")
