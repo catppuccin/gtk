@@ -83,6 +83,22 @@ You can set up our Nix module for GTK with the following config:
 
 Alternatively, if you are not using our Nix module, you can grab the theme from [nixpkgs/catppuccin-gtk](https://github.com/NixOS/nixpkgs/blob/master/pkgs/data/themes/catppuccin-gtk/default.nix)
 
+## Flatpak
+Flatpak by default restricts access to themes, to allow access, use the following: 
+```bash
+sudo flatpak override --filesystem=$HOME/.local/share/themes
+```
+
+After you've allowed access, set the theme, using the following:
+```bash
+# Change to suite your flavor / accent combination
+export FLAVOR="mocha"
+export ACCENT="mauve"
+
+# Set the theme
+sudo flatpak override --env=GTK_THEME="catppuccin-${FLAVOR}-${ACCENT}-standard+default"
+```
+
 ### Manual installation
 
 If your distro does not package our theme, and the installation script will not work for your use case, you can pull down releases and extract them yourself. You can find the [latest release on GitHub](https://github.com/catppuccin/gtk/releases/latest).
