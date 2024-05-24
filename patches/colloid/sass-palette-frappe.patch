@@ -1,6 +1,6 @@
 diff --git a/src/sass/_color-palette-catppuccin-frappe.scss b/src/sass/_color-palette-catppuccin-frappe.scss
 new file mode 100644
-index 00000000..8a905942
+index 00000000..4ff0da0d
 --- /dev/null
 +++ b/src/sass/_color-palette-catppuccin-frappe.scss
 @@ -0,0 +1,72 @@
@@ -76,4 +76,3 @@ index 00000000..8a905942
 +// Theme
 +$default-light: $purple-light;
 +$default-dark: $purple-dark;
-
