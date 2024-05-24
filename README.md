@@ -2,7 +2,7 @@
   <img src="https://raw.githubusercontent.com/catppuccin/catppuccin/main/assets/logos/exports/1544x1544_circle.png" width="100" alt="Logo"/><br/>
   <img src="https://raw.githubusercontent.com/catppuccin/catppuccin/main/assets/misc/transparent.png" height="30" width="0px"/>
   Catppuccin for <a href="https://gtk.org/">GTK</a>
-  <img src="./assets/screenshot.png" height="30" width="0px"/>
+  <img src="https://raw.githubusercontent.com/catppuccin/catppuccin/main/assets/misc/transparent.png" height="30" width="0px"/>
 </h3>
 
 <p align="center">
@@ -12,7 +12,7 @@
 </p>
 
 <p align="center">
-  <img src="assets/res.webp"/>
+  <img src="assets/screenshot.png"/>
 </p>
 
 This GTK theme is based on the [Colloid](https://github.com/vinceliuice/Colloid-gtk-theme) theme made by [vinceliuice](https://github.com/vinceliuice)
