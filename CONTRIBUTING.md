@@ -6,6 +6,18 @@ Information regarding the architecture of the project can be found [in the ARCHI
 - All the [requirements for building](#building)
 - `whiskers`, optionally, from [catppuccin/toolbox](https://github.com/catppuccin/toolbox/tree/main/whiskers#installation)
 
+### Project structure
+
+`sources/` contains all of the source files needed for the project to build, including the Colloid submodule. 
+It also contains our patches for Colloid, alongside the core build system implemented by us to replace the one from Colloid.
+
+`build.py` is the entrypoint to the build system, placed at the root for convenience. The plumbing this utilizes is in
+`sources/build`.
+
+`install.py` is our officially supported install script, which will automate the process of pulling the release, extracting it,
+and optionally adding symlinks for GTK-4.0 support. This script intentionally has no dependencies other than Python 3 itself.
+This keeps the end user experience simple and reproducible. Do not add external dependencies to this script.
+
 ### Patching colloid
 > [!TIP]
 > If you need to change the patches, reset the submodule and rerun the build script.
