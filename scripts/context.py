@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 from typing import Any, Literal, List
 from catppuccin.models import Flavor, Color
-from .utils import subst_text
+from .utils import find_and_replace, Subsitution
 
 @dataclass
 class Tweaks:
@@ -19,7 +19,6 @@ class Suffix:
     true_value: str
     test: Any
     false_value: str = ""
-
 
 @dataclass
 class BuildContext:
@@ -53,12 +52,17 @@ class BuildContext:
             return suffix.false_value
 
     def apply_tweak(self, key, default, value):
-        subst_text(
-            f"{self.colloid_src_dir}/sass/_tweaks-temp.scss", f"\\${key}: {default}", f"${key}: {value}"
+        find_and_replace(
+            f"{self.colloid_src_dir}/sass/_tweaks-temp.scss",
+            Subsitution(find=f"\\${key}: {default}", replace=f"${key}: {value}"),
         )
 
 
 IS_DARK = Suffix(true_value="-Dark", test=lambda ctx: ctx.flavor.dark)
 IS_LIGHT = Suffix(true_value="-Light", test=lambda ctx: not ctx.flavor.dark)
-IS_WINDOW_NORMAL = Suffix(true_value="-Normal", test=lambda ctx: ctx.tweaks.has('normal'))
-DARK_LIGHT = Suffix(true_value="-Dark", false_value="-Light", test=lambda ctx: ctx.flavor.dark)
+IS_WINDOW_NORMAL = Suffix(
+    true_value="-Normal", test=lambda ctx: ctx.tweaks.has("normal")
+)
+DARK_LIGHT = Suffix(
+    true_value="-Dark", false_value="-Light", test=lambda ctx: ctx.flavor.dark
+)

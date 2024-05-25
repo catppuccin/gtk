@@ -1,18 +1,21 @@
 import re
 import shutil
+from dataclasses import dataclass
+from typing import List
 
+@dataclass
+class Subsitution:
+    find: str
+    replace: str
 
-def copy_dir(_from, to):
-    shutil.copytree(_from, to)
-
-
-def subst_text(path, _from, to):
+def find_and_replace(path: str, *subs: Subsitution):
     with open(path, "r+") as f:
         content = f.read()
         f.seek(0)
         f.truncate()
-        f.write(re.sub(_from, to, content))
-
+        for sub in subs:
+            content = re.sub(sub.find, sub.replace, content)
+        f.write(content)
 
 def translate_accent(ctp_accent):
     ctp_to_colloid = {

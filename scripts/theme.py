@@ -4,8 +4,9 @@ import subprocess
 import glob
 import zipfile
 from .logger import logger
-from .utils import subst_text
+from .utils import find_and_replace, Subsitution
 from .context import BuildContext, IS_DARK, IS_LIGHT, IS_WINDOW_NORMAL, DARK_LIGHT
+
 
 def apply_tweaks(ctx: BuildContext, src_dir):
     ctx.apply_tweak("theme", "'default'", f"'{ctx.accent.identifier}'")
@@ -13,10 +14,12 @@ def apply_tweaks(ctx: BuildContext, src_dir):
     if ctx.size == "compact":
         ctx.apply_tweak("compact", "'false'", "'true'")
 
-    subst_text(
+    find_and_replace(
         f"{src_dir}/sass/_tweaks-temp.scss",
-        "@import 'color-palette-default';",
-        f"@import 'color-palette-catppuccin-{ctx.flavor.identifier}';",
+        Subsitution(
+            find="@import 'color-palette-default';",
+            replace=f"@import 'color-palette-catppuccin-{ctx.flavor.identifier}';",
+        ),
     )
     ctx.apply_tweak("colorscheme", "'default'", "'catppuccin'")
 
@@ -34,6 +37,8 @@ def apply_tweaks(ctx: BuildContext, src_dir):
 
 
 SASSC_OPT = ["-M", "-t", "expanded"]
+
+
 def compile_sass(src: str, dest: str) -> subprocess.Popen:
     return subprocess.Popen(["sassc", *SASSC_OPT, src, dest])
 
@@ -130,15 +135,20 @@ def build(ctx: BuildContext, src_dir):
         f"{src_dir}/main/xfwm4/themerc{ctx.apply_suffix(IS_LIGHT)}",
         f"{output_dir}-hdpi/xfwm4/themerc",
     )
-    subst_text(f"{output_dir}-hdpi/xfwm4/themerc", "button_offset=6", "button_offset=9")
+    find_and_replace(
+        f"{output_dir}-hdpi/xfwm4/themerc",
+        Subsitution(find="button_offset=6", replace="button_offset=9"),
+    )
 
     os.makedirs(f"{output_dir}-xhdpi/xfwm4", exist_ok=True)
     shutil.copyfile(
         f"{src_dir}/main/xfwm4/themerc{ctx.apply_suffix(IS_LIGHT)}",
         f"{output_dir}-xhdpi/xfwm4/themerc",
     )
-    subst_text(
-        f"{output_dir}-xhdpi/xfwm4/themerc", "button_offset=6", "button_offset=12"
+
+    find_and_replace(
+        f"{output_dir}-xhdpi/xfwm4/themerc",
+        Subsitution(find="button_offset=6", replace="button_offset=12"),
     )
 
     if not ctx.flavor.dark:
@@ -198,46 +208,76 @@ def make_assets(ctx: BuildContext):
     titlebar = palette.overlay0.hex
 
     for file in glob.glob(f"{output_dir}/cinnamon/assets/*.svg"):
-        subst_text(file, "#5b9bf8", theme_color)
-        subst_text(file, "#3c84f7", theme_color)
+        find_and_replace(
+            file,
+            Subsitution(find="#5b9bf8", replace=theme_color),
+            Subsitution(find="#3c84f7", replace=theme_color),
+        )
 
     for file in glob.glob(f"{output_dir}/gnome-shell/assets/*.svg"):
-        subst_text(file, "#5b9bf8", theme_color)
-        subst_text(file, "#3c84f7", theme_color)
+        find_and_replace(
+            file,
+            Subsitution(find="#5b9bf8", replace=theme_color),
+            Subsitution(find="#3c84f7", replace=theme_color),
+        )
 
     for file in glob.glob(f"{output_dir}/gtk-3.0/assets/*.svg"):
-        subst_text(file, "#5b9bf8", theme_color)
-        subst_text(file, "#3c84f7", theme_color)
-        subst_text(file, "#ffffff", background)
-        subst_text(file, "#2c2c2c", background)
-        subst_text(file, "#3c3c3c", background_alt)
+        find_and_replace(
+            file,
+            Subsitution(find="#5b9bf8", replace=theme_color),
+            Subsitution(find="#3c84f7", replace=theme_color),
+            Subsitution(find="#ffffff", replace=background),
+            Subsitution(find="#2c2c2c", replace=background),
+            Subsitution(find="#3c3c3c", replace=background_alt),
+        )
 
     for file in glob.glob(f"{output_dir}/gtk-4.0/assets/*.svg"):
-        subst_text(file, "#5b9bf8", theme_color)
-        subst_text(file, "#3c84f7", theme_color)
-        subst_text(file, "#ffffff", background)
-        subst_text(file, "#2c2c2c", background)
-        subst_text(file, "#3c3c3c", background_alt)
+        find_and_replace(
+            file,
+            Subsitution(find="#5b9bf8", replace=theme_color),
+            Subsitution(find="#3c84f7", replace=theme_color),
+            Subsitution(find="#ffffff", replace=background),
+            Subsitution(find="#2c2c2c", replace=background),
+            Subsitution(find="#3c3c3c", replace=background_alt),
+        )
 
     if ctx.flavor.dark:
-        subst_text(f"{output_dir}/cinnamon/thumbnail.png", "#2c2c2c", background)
-        subst_text(f"{output_dir}/cinnamon/thumbnail.png", "#5b9bf8", theme_color)
+        find_and_replace(
+            f"{output_dir}/cinnamon/thumbnail.png",
+            Subsitution(find="#2c2c2c", replace=background),
+            Subsitution(find="#5b9bf8", replace=theme_color),
+        )
 
-        subst_text(f"{output_dir}/gtk-3.0/thumbnail.png", "#2c2c2c", background)
-        subst_text(f"{output_dir}/gtk-4.0/thumbnail.png", "#2c2c2c", background)
+        find_and_replace(
+            f"{output_dir}/gtk-3.0/thumbnail.png",
+            Subsitution(find="#5b9bf8", replace=theme_color),
+            Subsitution(find="#2c2c2c", replace=background),
+        )
 
-        subst_text(f"{output_dir}/gtk-3.0/thumbnail.png", "#5b9bf8", theme_color)
-        subst_text(f"{output_dir}/gtk-4.0/thumbnail.png", "#5b9bf8", theme_color)
+        find_and_replace(
+            f"{output_dir}/gtk-4.0/thumbnail.png",
+            Subsitution(find="#5b9bf8", replace=theme_color),
+            Subsitution(find="#2c2c2c", replace=background),
+        )
     else:
-        subst_text(f"{output_dir}/cinnamon/thumbnail.png", "#ffffff", background)
-        subst_text(f"{output_dir}/cinnamon/thumbnail.png", "#f2f2f2", titlebar)
-        subst_text(f"{output_dir}/cinnamon/thumbnail.png", "#3c84f7", theme_color)
+        find_and_replace(
+            f"{output_dir}/cinnamon/thumbnail.png",
+            Subsitution(find="#ffffff", replace=background),
+            Subsitution(find="#f2f2f2", replace=titlebar),
+            Subsitution(find="#3c84f7", replace=theme_color),
+        )
 
-        subst_text(f"{output_dir}/gtk-3.0/thumbnail.png", "#f2f2f2", titlebar)
-        subst_text(f"{output_dir}/gtk-3.0/thumbnail.png", "#3c84f7", theme_color)
+        find_and_replace(
+            f"{output_dir}/gtk-3.0/thumbnail.png",
+            Subsitution(find="#f2f2f2", replace=titlebar),
+            Subsitution(find="#3c84f7", replace=theme_color),
+        )
 
-        subst_text(f"{output_dir}/gtk-4.0/thumbnail.png", "#f2f2f2", titlebar)
-        subst_text(f"{output_dir}/gtk-4.0/thumbnail.png", "#3c84f7", theme_color)
+        find_and_replace(
+            f"{output_dir}/gtk-4.0/thumbnail.png",
+            Subsitution(find="#f2f2f2", replace=titlebar),
+            Subsitution(find="#3c84f7", replace=theme_color),
+        )
 
     for file in glob.glob(f"{src_dir}/assets/cinnamon/common-assets/*.svg"):
         shutil.copy(file, f"{output_dir}/cinnamon/assets")
@@ -268,9 +308,7 @@ def make_assets(ctx: BuildContext):
         f"{output_dir}/metacity-1/thumbnail.png",
     )
 
-    xfwm4_assets = (
-        f"{ctx.git_root}/patches/xfwm4/generated/assets-catppuccin-{ctx.flavor.identifier}"
-    )
+    xfwm4_assets = f"{ctx.git_root}/patches/xfwm4/generated/assets-catppuccin-{ctx.flavor.identifier}"
     for file in glob.glob(xfwm4_assets + "/*"):
         shutil.copy(file, f"{output_dir}/xfwm4")
 
@@ -341,8 +379,10 @@ def gnome_shell_version(src_dir):
         f"{src_dir}/sass/gnome-shell/_common.scss",
         f"{src_dir}/sass/gnome-shell/_common-temp.scss",
     )
-    subst_text(
+    find_and_replace(
         f"{src_dir}/sass/gnome-shell/_common-temp.scss",
-        "@import 'widgets-40-0';",
-        f"@import 'widgets-{gs_version}';",
+        Subsitution(
+            find="@import 'widgets-40-0';",
+            replace=f"@import 'widgets-{gs_version}';",
+        ),
     )

@@ -7,7 +7,7 @@ import os
 
 from scripts.patches import apply_colloid_patches
 from scripts.theme import build_theme, gnome_shell_version
-from scripts.utils import init_tweaks_temp, copy_dir
+from scripts.utils import init_tweaks_temp
 from scripts.context import Tweaks, BuildContext
 from scripts.logger import logger
 from catppuccin import PALETTE
@@ -118,7 +118,7 @@ def build():
     colloid_dir = f"{git_root}/colloid"
     colloid_tmp_dir = f"{git_root}/colloid-tmp-{args.flavor}"
 
-    copy_dir(colloid_dir, colloid_tmp_dir)
+    shutil.copytree(colloid_dir, colloid_tmp_dir)
 
     src_dir = colloid_tmp_dir + "/src"
 
