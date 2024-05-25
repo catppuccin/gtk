@@ -7,9 +7,10 @@ bin/
 lib*/
 *.cfg
 .direnv
-./build/
+build/
 *.log
 .ruff-cache
+.tmp
 
 # Releases folder
 releases

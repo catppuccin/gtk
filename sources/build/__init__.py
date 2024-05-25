@@ -11,14 +11,14 @@ from catppuccin import PALETTE
 
 def execute_build(git_root: str, args: Namespace):
     colloid_dir = f"{git_root}/sources/colloid"
-    colloid_tmp_dir = f"{git_root}/sources/colloid-tmp-{args.flavor}"
+    colloid_tmp_dir = f"{git_root}/.tmp/colloid-tmp-{args.flavor}"
 
     shutil.copytree(colloid_dir, colloid_tmp_dir)
 
     src_dir = colloid_tmp_dir + "/src"
 
     if args.patch:
-        patch_dir = git_root + "/sources//patches/colloid/"
+        patch_dir = git_root + "/sources/patches/colloid/"
         apply_colloid_patches(colloid_tmp_dir, patch_dir)
 
     if args.zip:

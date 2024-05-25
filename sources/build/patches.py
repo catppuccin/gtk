@@ -1,9 +1,12 @@
 import os
 import subprocess
+from pathlib import Path
 from .logger import logger
 
+
 def apply_colloid_patches(colloid_dir, patch_dir):
-    if os.path.isfile(colloid_dir + "/.patched"):
+    colloid_dir = Path(colloid_dir).relative_to(os.getcwd())
+    if os.path.isfile(colloid_dir / ".patched"):
         logger.info(
             f'Patches seem to be applied, remove "{colloid_dir}/.patched" to force application (this may fail)'
         )
@@ -19,12 +22,13 @@ def apply_colloid_patches(colloid_dir, patch_dir):
         "sass-palette-latte.patch",
         "sass-palette-macchiato.patch",
     ]:
-        path = f"{patch_dir}/{patch}"
+        path = (Path(patch_dir) / patch).relative_to(os.getcwd())
         logger.info(f"Applying patch '{patch}', located at '{path}'")
         subprocess.check_call(
-            ["git", "apply", path, "--directory", os.path.basename(colloid_dir)])
+            ["git", "apply", str(path), "--directory", str(colloid_dir)]
+        )
 
-    with open(colloid_dir + "/.patched", "w") as f:
+    with open(colloid_dir / ".patched", "w") as f:
         f.write("true")
 
     logger.info("Patching finished.")

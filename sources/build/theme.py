@@ -15,7 +15,7 @@ def apply_tweaks(ctx: BuildContext):
         ctx.apply_tweak("compact", "'false'", "'true'")
 
     find_and_replace(
-        f"{ctx.src_dir}/sass/_tweaks-temp.scss",
+        f"{ctx.colloid_src_dir}/sass/_tweaks-temp.scss",
         Subsitution(
             find="@import 'color-palette-default';",
             replace=f"@import 'color-palette-catppuccin-{ctx.flavor.identifier}';",
@@ -345,6 +345,7 @@ def zip_artifacts(dir_list, zip_name, remove=True):
 def build_with_context(ctx: BuildContext):
     build_info = f"""Build info:
     build_root: {ctx.output_root}
+    src_root:   {ctx.colloid_src_dir}
     theme_name: {ctx.theme_name}
     flavor:     {ctx.flavor.identifier}
     accent:     {ctx.accent.identifier}
