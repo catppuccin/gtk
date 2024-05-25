@@ -29,10 +29,10 @@ jobs:
         run: |
           python patches/xfwm4/generate_assets.py
 
-          python ./main.py mocha --all-accents --zip -d $PWD/releases &
-          python ./main.py macchiato --all-accents --zip -d $PWD/releases &
-          python ./main.py frappe --all-accents --zip -d $PWD/releases &
-          python ./main.py latte --all-accents --zip -d $PWD/releases &
+          python ./build.py mocha --all-accents --zip -d $PWD/releases &
+          python ./build.py macchiato --all-accents --zip -d $PWD/releases &
+          python ./build.py frappe --all-accents --zip -d $PWD/releases &
+          python ./build.py latte --all-accents --zip -d $PWD/releases &
           wait
 
       - name: Upload artifacts

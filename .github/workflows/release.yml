@@ -28,22 +28,28 @@ jobs:
         uses: actions/checkout@v4
         with:
           submodules: true
+
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
           cache: "pip"
+
       - name: Install dependencies
         run: pip install -r requirements.txt
+
       - name: Install colloid specific dependencies
         run: sudo apt update && sudo apt install -y sassc inkscape optipng
+
       - name: Generate themes
         run: |
           python patches/xfwm4/generate_assets.py
-          
-          python ./build.py mocha --all-accents --zip -d $PWD/releases &&
-          python ./build.py macchiato --all-accents --zip -d $PWD/releases &&
-          python ./build.py frappe --all-accents --zip -d $PWD/releases &&
-          python ./build.py latte --all-accents --zip -d $PWD/releases
+
+          python ./build.py mocha --all-accents --zip -d $PWD/releases &
+          python ./build.py macchiato --all-accents --zip -d $PWD/releases &
+          python ./build.py frappe --all-accents --zip -d $PWD/releases &
+          python ./build.py latte --all-accents --zip -d $PWD/releases &
+          wait
+
       - name: Add zips to release
         run: gh release upload ${{ needs.release-please.outputs.tag_name }} releases/*.zip
         env:
