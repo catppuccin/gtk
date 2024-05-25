@@ -1,12 +1,11 @@
 import os
 import subprocess
-from src.logger import logger
-
+from .logger import logger
 
 def apply_colloid_patches(colloid_dir):
     if os.path.isfile(colloid_dir + "/.patched"):
         logger.info(
-            'Patches seem to be applied, remove "colloid/.patched" to force application (this may fail)'
+            f'Patches seem to be applied, remove "{colloid_dir}/.patched" to force application (this may fail)'
         )
         return
 

@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 from typing import Any, Literal, List
 from catppuccin.models import Flavor, Color
-
+from .utils import subst_text
 
 @dataclass
 class Tweaks:
@@ -23,8 +23,15 @@ class Suffix:
 
 @dataclass
 class BuildContext:
+    # The src dir of the Colloid copy to operate on
     colloid_src_dir: str
+
+    # The root of the project
+    git_root: str
+
+    # The root of the output dir (as specified by --dest if given)
     output_root: str
+
     output_format: Literal["zip"] | Literal["dir"]
 
     theme_name: str
@@ -44,6 +51,11 @@ class BuildContext:
             return suffix.true_value
         else:
             return suffix.false_value
+
+    def apply_tweak(self, key, default, value):
+        subst_text(
+            f"{self.colloid_src_dir}/sass/_tweaks-temp.scss", f"\\${key}: {default}", f"${key}: {value}"
+        )
 
 
 IS_DARK = Suffix(true_value="-Dark", test=lambda ctx: ctx.flavor.dark)
