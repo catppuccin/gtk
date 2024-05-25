@@ -9,10 +9,6 @@ from src.context import Tweaks, BuildContext
 from src.logger import logger
 from catppuccin import PALETTE
 
-
-GS_VERSION = "46-0"
-
-
 def parse_args():
     parser = argparse.ArgumentParser()
     parser.add_argument(
@@ -112,16 +108,18 @@ def parse_args():
     return parser.parse_args()
 
 
-def main(context):
+def build(git_root: str):
     args = parse_args()
 
-    COLLOID_DIR = f"{context}/colloid"
-    COLLOID_TMP_DIR = f"{context}/colloid-tmp-{args.flavor}"
-    copy_dir(COLLOID_DIR, COLLOID_TMP_DIR)
-    SRC_DIR = COLLOID_TMP_DIR + "/src"
+    colloid_dir = f"{git_root}/colloid"
+    colloid_tmp_dir = f"{git_root}/colloid-tmp-{args.flavor}"
+
+    copy_dir(colloid_dir, colloid_tmp_dir)
+
+    src_dir = colloid_tmp_dir + "/src"
 
     if args.patch:
-        apply_colloid_patches(COLLOID_TMP_DIR)
+        apply_colloid_patches(colloid_tmp_dir)
 
     if args.zip:
         output_format = "zip"
@@ -129,7 +127,6 @@ def main(context):
         output_format = "dir"
 
     tweaks = Tweaks(tweaks=args.tweaks)
-
     palette = getattr(PALETTE, args.flavor)
 
     accents = args.accents
@@ -161,7 +158,8 @@ def main(context):
         else:
             output_format = "dir"
         ctx = BuildContext(
-            build_root=args.dest,
+            output_root=args.dest,
+            colloid_src_dir=src_dir,
             theme_name=args.name,
             flavor=palette,
             accent=accent,
@@ -171,19 +169,19 @@ def main(context):
         )
 
         logger.info("Building temp tweaks file")
-        init_tweaks_temp(SRC_DIR)
+        init_tweaks_temp(src_dir)
         logger.info("Inserting gnome-shell imports")
-        gnome_shell_version(GS_VERSION, SRC_DIR)
+        gnome_shell_version(src_dir)
         logger.info("Building main theme")
-        build_theme(ctx, SRC_DIR)
+        build_theme(ctx)
         logger.info(f"Completed {palette.identifier} with {accent.identifier}")
 
-    shutil.rmtree(COLLOID_TMP_DIR)
+    shutil.rmtree(colloid_tmp_dir)
     logger.info("Done!")
 
 
 if __name__ == "__main__":
     try:
-        main()
+        build()
     except Exception as e:
         logger.error("Something went wrong when building the theme:", exc_info=e)

@@ -306,9 +306,10 @@ def zip_artifacts(dir_list, zip_name, remove=True):
             shutil.rmtree(dir)
 
 
-def build_theme(ctx: BuildContext, src_dir):
+def build_theme(ctx: BuildContext):
+    src_dir = ctx.colloid_src_dir
     build_info = f"""Build info:
-    build_root: {ctx.build_root}
+    build_root: {ctx.output_root}
     theme_name: {ctx.theme_name}
     flavor:     {ctx.flavor.identifier}
     accent:     {ctx.accent.identifier}
@@ -329,12 +330,16 @@ def build_theme(ctx: BuildContext, src_dir):
                 f"{ctx.output_dir()}-hdpi",
                 f"{ctx.output_dir()}-xhdpi",
             ],
-            f"{ctx.build_root}/{ctx.build_id()}.zip",
+            f"{ctx.output_root}/{ctx.build_id()}.zip",
             True,
         )
 
 
-def gnome_shell_version(gs_version, src_dir):
+def gnome_shell_version(src_dir):
+    # Hardcoded here, Colloid checks for this on end user machines
+    # but we cannot do that. Old build system would've resulted in this too.
+    gs_version = "46-0"
+
     shutil.copyfile(
         f"{src_dir}/sass/gnome-shell/_common.scss",
         f"{src_dir}/sass/gnome-shell/_common-temp.scss",
@@ -344,10 +349,3 @@ def gnome_shell_version(gs_version, src_dir):
         "@import 'widgets-40-0';",
         f"@import 'widgets-{gs_version}';",
     )
-
-    if gs_version == "3-28":
-        subst_text(
-            f"{src_dir}/sass/gnome-shell/_common-temp.scss",
-            "@import 'extensions-40-0';",
-            f"@import 'extensions-{gs_version}';",
-        )

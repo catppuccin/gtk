@@ -23,8 +23,10 @@ class Suffix:
 
 @dataclass
 class BuildContext:
-    build_root: str
+    colloid_src_dir: str
+    output_root: str
     output_format: Literal["zip"] | Literal["dir"]
+
     theme_name: str
     flavor: Flavor
     accent: Color
@@ -32,7 +34,7 @@ class BuildContext:
     tweaks: Tweaks
 
     def output_dir(self) -> str:
-        return f"{self.build_root}/{self.build_id()}"
+        return f"{self.output_root}/{self.build_id()}"
 
     def build_id(self) -> str:
         return f"{self.theme_name}-{self.flavor.identifier}-{self.accent.identifier}-{self.size}+{self.tweaks.id() or 'default'}"

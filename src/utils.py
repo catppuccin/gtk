@@ -1,7 +1,6 @@
 import re
 import shutil
 
-
 def copy_dir(_from, to):
     shutil.copytree(_from, to)
 
