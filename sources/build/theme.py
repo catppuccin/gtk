@@ -8,14 +8,14 @@ from .utils import find_and_replace, Subsitution
 from .context import BuildContext, IS_DARK, IS_LIGHT, IS_WINDOW_NORMAL, DARK_LIGHT
 
 
-def apply_tweaks(ctx: BuildContext, src_dir):
+def apply_tweaks(ctx: BuildContext):
     ctx.apply_tweak("theme", "'default'", f"'{ctx.accent.identifier}'")
 
     if ctx.size == "compact":
         ctx.apply_tweak("compact", "'false'", "'true'")
 
     find_and_replace(
-        f"{src_dir}/sass/_tweaks-temp.scss",
+        f"{ctx.src_dir}/sass/_tweaks-temp.scss",
         Subsitution(
             find="@import 'color-palette-default';",
             replace=f"@import 'color-palette-catppuccin-{ctx.flavor.identifier}';",
@@ -43,11 +43,13 @@ def compile_sass(src: str, dest: str) -> subprocess.Popen:
     return subprocess.Popen(["sassc", *SASSC_OPT, src, dest])
 
 
-def build(ctx: BuildContext, src_dir):
+def execute_build(ctx: BuildContext):
+    src_dir = ctx.colloid_src_dir
     output_dir = ctx.output_dir()
+
     logger.info(f"Building into '{output_dir}'...")
 
-    apply_tweaks(ctx, src_dir)
+    apply_tweaks(ctx)
 
     os.makedirs(output_dir, exist_ok=True)
     with open(f"{output_dir}/index.theme", "w") as file:
@@ -340,8 +342,7 @@ def zip_artifacts(dir_list, zip_name, remove=True):
             shutil.rmtree(dir)
 
 
-def build_theme(ctx: BuildContext):
-    src_dir = ctx.colloid_src_dir
+def build_with_context(ctx: BuildContext):
     build_info = f"""Build info:
     build_root: {ctx.output_root}
     theme_name: {ctx.theme_name}
@@ -351,7 +352,7 @@ def build_theme(ctx: BuildContext):
     tweaks:     {ctx.tweaks}"""
     logger.info(build_info)
 
-    build(ctx, src_dir)
+    execute_build(ctx)
     logger.info("Main build complete")
 
     logger.info("Bundling assets...")

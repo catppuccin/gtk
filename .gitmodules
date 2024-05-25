@@ -1,3 +1,3 @@
 [submodule "colloid"]
-	path = colloid
+	path = sources/colloid
 	url = https://github.com/vinceliuice/Colloid-gtk-theme.git

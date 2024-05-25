@@ -7,7 +7,7 @@ bin/
 lib*/
 *.cfg
 .direnv
-build/
+./build/
 *.log
 .ruff-cache
 

@@ -3,9 +3,9 @@ import sys
 import time
 import os
 
-from scripts import build
-from scripts.args import parse_args
-from scripts.logger import logger
+from sources.build import execute_build
+from sources.build.args import parse_args
+from sources.build.logger import logger
 
 if __name__ == "__main__":
     git_root = os.path.dirname(os.path.realpath(__file__))
@@ -13,7 +13,7 @@ if __name__ == "__main__":
 
     try:
         start = time.time()
-        build(git_root, args)
+        execute_build(git_root, args)
         end = time.time() - start
 
         logger.info("")

@@ -2,14 +2,14 @@ from argparse import Namespace
 import shutil
 
 from .patches import apply_colloid_patches
-from .theme import build_theme, gnome_shell_version
+from .theme import build_with_context, gnome_shell_version
 from .utils import init_tweaks_temp
 from .context import Tweaks, BuildContext
 from .logger import logger
 from catppuccin import PALETTE
 
 
-def build(git_root: str, args: Namespace):
+def execute_build(git_root: str, args: Namespace):
     colloid_dir = f"{git_root}/colloid"
     colloid_tmp_dir = f"{git_root}/colloid-tmp-{args.flavor}"
 
@@ -76,7 +76,7 @@ def build(git_root: str, args: Namespace):
         gnome_shell_version(src_dir)
 
         logger.info("Building main theme")
-        build_theme(ctx)
+        build_with_context(ctx)
 
         logger.info(f"Completed {palette.identifier} with {accent.identifier}")
         print()
