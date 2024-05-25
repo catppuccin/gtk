@@ -2,7 +2,7 @@ import os
 import subprocess
 from .logger import logger
 
-def apply_colloid_patches(colloid_dir):
+def apply_colloid_patches(colloid_dir, patch_dir):
     if os.path.isfile(colloid_dir + "/.patched"):
         logger.info(
             f'Patches seem to be applied, remove "{colloid_dir}/.patched" to force application (this may fail)'
@@ -19,7 +19,7 @@ def apply_colloid_patches(colloid_dir):
         "sass-palette-latte.patch",
         "sass-palette-macchiato.patch",
     ]:
-        path = f"./patches/colloid/{patch}"
+        path = f"{patch_dir}/{patch}"
         logger.info(f"Applying patch '{patch}', located at '{path}'")
         subprocess.check_call(
             ["git", "apply", path, "--directory", os.path.basename(colloid_dir)])

@@ -18,7 +18,8 @@ def execute_build(git_root: str, args: Namespace):
     src_dir = colloid_tmp_dir + "/src"
 
     if args.patch:
-        apply_colloid_patches(colloid_tmp_dir)
+        patch_dir = git_root + "/sources//patches/colloid/"
+        apply_colloid_patches(colloid_tmp_dir, patch_dir)
 
     if args.zip:
         output_format = "zip"
