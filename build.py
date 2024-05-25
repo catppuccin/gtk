@@ -16,7 +16,7 @@ if __name__ == "__main__":
         build(git_root, args)
         end = time.time() - start
 
-        logger.info('')
-        logger.info(f'Built in {round(end, 3)}s')
+        logger.info("")
+        logger.info(f"Built in {round(end, 3)}s")
     except Exception as e:
         logger.error("Something went wrong when building the theme:", exc_info=e)

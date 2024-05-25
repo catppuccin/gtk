@@ -71,10 +71,13 @@ def build(git_root: str, args: Namespace):
 
         logger.info("Building temp tweaks file")
         init_tweaks_temp(src_dir)
+
         logger.info("Inserting gnome-shell imports")
         gnome_shell_version(src_dir)
+
         logger.info("Building main theme")
         build_theme(ctx)
+
         logger.info(f"Completed {palette.identifier} with {accent.identifier}")
         print()
 

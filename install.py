@@ -1,11 +1,15 @@
 #!/usr/bin/env python3
 
-import os, zipfile, argparse, logging, io
+import os
+import zipfile
+import argparse
+import logging
+import io
+
 from typing import Optional
 from pathlib import Path
 from dataclasses import dataclass
 from urllib.request import urlopen, Request
-from urllib.parse import urlparse
 
 logger = logging.getLogger("catppuccin-gtk")
 logger.setLevel(logging.DEBUG)
@@ -160,6 +164,7 @@ def install(ctx: InstallContext):
     if ctx.link:
         add_libadwaita_links(ctx)
 
+
 def install_from_artifact(ctx: InstallContext, artifact_path: Path):
     # Working from a pull request, special case it
     logger.info(f"Extracting artifact from '{artifact_path}'")
@@ -188,6 +193,7 @@ def install_from_artifact(ctx: InstallContext, artifact_path: Path):
         logger.info("Adding links (with rewrite)")
         add_libadwaita_links(ctx, True)
         logger.info("Links added")
+
 
 def main():
     args = parse_args()

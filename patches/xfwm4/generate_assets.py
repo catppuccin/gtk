@@ -2,7 +2,11 @@ from typing import List
 from catppuccin import PALETTE
 from catppuccin.models import Flavor
 
-import re, os, shutil, subprocess, time
+import re
+import os
+import shutil
+import subprocess
+import time
 from dataclasses import dataclass
 
 THIS_DIR = os.path.dirname(os.path.realpath(__file__))
@@ -83,9 +87,9 @@ def generate_for_flavor(flavor: Flavor):
     # Setup the palette
     palette = flavor.colors
 
-    close_color=f'#{palette.red.hex}'
-    max_color=f'#{palette.green.hex}'
-    min_color=f'#{palette.yellow.hex}'
+    close_color = f"#{palette.red.hex}"
+    max_color = f"#{palette.green.hex}"
+    min_color = f"#{palette.yellow.hex}"
 
     # We expand the source assets into the 4 flavors, but need to map between
     # Their definition of dark and ours. This means that latte will get the -light assets
@@ -187,8 +191,9 @@ screen_to_dpi = {
     "-xhdpi": "192",
 }
 
+
 def render_for_screen(state: RenderState, flavor: Flavor, screen: str, ident: str):
-    # NOTE: We do not generate for the -normal variant currently, that would just be 
+    # NOTE: We do not generate for the -normal variant currently, that would just be
     #       a stupid amount of compute and time for little benefit
     src_file = f"{state.input_root}/assets-catppuccin-{flavor.identifier}.svg"
 
@@ -215,9 +220,7 @@ def render_for_screen(state: RenderState, flavor: Flavor, screen: str, ident: st
 
 
 def render_for_flavor(flavor: Flavor, state: RenderState):
-    print(
-        f"Starting render tasks for {flavor.identifier}"
-    )
+    print(f"Starting render tasks for {flavor.identifier}")
     for ident in INDEX:
         render_for_screen(state=state, flavor=flavor, screen="", ident=ident)
         render_for_screen(state=state, flavor=flavor, screen="-hdpi", ident=ident)

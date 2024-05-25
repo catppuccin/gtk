@@ -9,6 +9,7 @@ lib*/
 .direnv
 build/
 *.log
+.ruff-cache
 
 # Releases folder
 releases

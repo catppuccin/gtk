@@ -3,6 +3,7 @@ from typing import Any, Literal, List
 from catppuccin.models import Flavor, Color
 from .utils import find_and_replace, Subsitution
 
+
 @dataclass
 class Tweaks:
     tweaks: List[str]
@@ -19,6 +20,7 @@ class Suffix:
     true_value: str
     test: Any
     false_value: str = ""
+
 
 @dataclass
 class BuildContext:

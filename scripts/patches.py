@@ -22,7 +22,7 @@ def apply_colloid_patches(colloid_dir):
         path = f"./patches/colloid/{patch}"
         logger.info(f"Applying patch '{patch}', located at '{path}'")
         subprocess.check_call(
-            ["git", "apply", path, "--directory", colloid_dir.split('/')[-1]])
+            ["git", "apply", path, "--directory", os.path.basename(colloid_dir)])
 
     with open(colloid_dir + "/.patched", "w") as f:
         f.write("true")
