@@ -8,6 +8,7 @@ lib*/
 *.cfg
 .direnv
 build/
+*.log
 
 # Releases folder
 releases

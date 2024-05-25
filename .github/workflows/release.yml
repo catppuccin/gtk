@@ -44,11 +44,13 @@ jobs:
         run: |
           python patches/xfwm4/generate_assets.py
 
-          python ./build.py mocha --all-accents --zip -d $PWD/releases &
-          python ./build.py macchiato --all-accents --zip -d $PWD/releases &
-          python ./build.py frappe --all-accents --zip -d $PWD/releases &
-          python ./build.py latte --all-accents --zip -d $PWD/releases &
+          python ./build.py mocha --all-accents --zip -d $PWD/releases > mocha.log 2>&1 &
+          python ./build.py macchiato --all-accents --zip -d $PWD/releases > macchiato.log 2>&1 &
+          python ./build.py frappe --all-accents --zip -d $PWD/releases > frappe.log 2>&1 &
+          python ./build.py latte --all-accents --zip -d $PWD/releases > latte.log 2>&1 &
           wait
+
+          cat *.log
 
       - name: Add zips to release
         run: gh release upload ${{ needs.release-please.outputs.tag_name }} releases/*.zip
