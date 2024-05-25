@@ -1,0 +1,46 @@
+diff --git a/src/sass/_colors.scss b/src/sass/_colors.scss
+index 8738bf37..71797c6d 100644
+--- a/src/sass/_colors.scss
++++ b/src/sass/_colors.scss
+@@ -58,27 +58,20 @@
+ }
+ 
+ @function theme($color) {
+-  @if ($variant == 'light') {
+-    @if ($theme == 'default') { @return $default-dark; }
+-    @if ($theme == 'purple') { @return $purple-dark; }
+-    @if ($theme == 'pink') { @return $pink-dark; }
+-    @if ($theme == 'red') { @return $red-dark; }
+-    @if ($theme == 'orange') { @return $orange-dark; }
+-    @if ($theme == 'yellow') { @return $yellow-dark; }
+-    @if ($theme == 'green') { @return $green-dark; }
+-    @if ($theme == 'teal') { @return $teal-dark; }
+-    @if ($theme == 'grey') { @return $grey-600; }
+-  } @else {
+-    @if ($theme == 'default') { @return $default-light; }
+-    @if ($theme == 'purple') { @return $purple-light; }
+-    @if ($theme == 'pink') { @return $pink-light; }
+-    @if ($theme == 'red') { @return $red-light; }
+-    @if ($theme == 'orange') { @return $orange-light; }
+-    @if ($theme == 'yellow') { @return $yellow-light; }
+-    @if ($theme == 'green') { @return $green-light; }
+-    @if ($theme == 'teal') { @return $teal-light; }
+-    @if ($theme == 'grey') { @return $grey-200; }
+-  }
++  @if ($theme == 'rosewater') { @return $rosewater; }
++  @if ($theme == 'flamingo') { @return $flamingo; }
++  @if ($theme == 'pink') { @return $pink; }
++  @if ($theme == 'mauve') { @return $mauve; }
++  @if ($theme == 'red') { @return $red; }
++  @if ($theme == 'maroon') { @return $maroon; }
++  @if ($theme == 'peach') { @return $peach; }
++  @if ($theme == 'yellow') { @return $yellow; }
++  @if ($theme == 'green') { @return $green; }
++  @if ($theme == 'teal') { @return $teal; }
++  @if ($theme == 'sky') { @return $sky; }
++  @if ($theme == 'sapphire') { @return $sapphire; }
++  @if ($theme == 'blue') { @return $blue; }
++  @if ($theme == 'lavender') { @return $lavender; }
+ }
+ 
+ @function background($type) {

@@ -1,9 +1,24 @@
 diff --git a/src/sass/_color-palette-catppuccin-latte.scss b/src/sass/_color-palette-catppuccin-latte.scss
 new file mode 100644
-index 00000000..8a905942
+index 00000000..4ff0da0d
 --- /dev/null
 +++ b/src/sass/_color-palette-catppuccin-latte.scss
-@@ -0,0 +1,72 @@
+@@ -0,0 +1,87 @@
++ // Our accents
++ $rosewater: #dc8a78;
++ $flamingo: #dd7878;
++ $pink: #ea76cb;
++ $mauve: #8839ef;
++ $red: #d20f39;
++ $maroon: #e64553;
++ $peach: #fe640b;
++ $yellow: #df8e1d;
++ $green: #40a02b;
++ $teal: #179299;
++ $sky: #04a5e5;
++ $sapphire: #209fb5;
++ $blue: #1e66f5;
++ $lavender: #7287fd;
 +// Default Theme Color Palette
 +
 +// Red
@@ -39,31 +54,31 @@ index 00000000..8a905942
 +$orange-dark: #fe640b;
 +
 +// Grey
-+$grey-050: #4c4f69;
-+$grey-100: #5c5f77;
-+$grey-150: #5c5f77;
-+$grey-200: #6c6f85;
-+$grey-250: #6c6f85;
-+$grey-300: #8c8fa1;
-+$grey-350: #8c8fa1;
-+$grey-400: #9ca0b0;
-+$grey-450: #9ca0b0;
-+$grey-500: #acb0be;
-+$grey-550: #acb0be;
-+$grey-600: #bcc0cc;
-+$grey-650: #bcc0cc;
-+$grey-700: #ccd0da;
-+$grey-750: #ccd0da;
-+$grey-800: #eff1f5;
-+$grey-850: #eff1f5;
-+$grey-900: #dce0e8;
-+$grey-950: #dce0e8;
++$grey-050: #dce0e8;
++$grey-100: #e6e9ef;
++$grey-150: #eff1f5;
++$grey-200: #ccd0da;
++$grey-250: #bcc0cc;
++$grey-300: red;
++$grey-350: red;
++$grey-400: red;
++$grey-450: red;
++$grey-500: red;
++$grey-550: red;
++$grey-600: red;
++$grey-650: #eff1f5;
++$grey-700: #eff1f5;
++$grey-750: #e6e9ef;
++$grey-800: #4c4f69;
++$grey-850: #020202;
++$grey-900: #010101;
++$grey-950: #000000;
 +
 +// White
-+$white: #FFFFFF;
++$white: #eff1f5;
 +
 +// Black
-+$black: #000000;
++$black: #11111b;
 +
 +// Button
 +$button-close: #d20f39;

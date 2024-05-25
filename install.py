@@ -118,7 +118,7 @@ def fetch_zip(url: str) -> Optional[zipfile.ZipFile]:
     return zip_file
 
 
-def add_libadwaita_links(ctx: InstallContext, rewrite: True):
+def add_libadwaita_links(ctx: InstallContext, rewrite: bool = False):
     dir_name = (
         ctx.dest / f"catppuccin-{ctx.flavor}-{ctx.accent}-standard+default" / "gtk-4.0"
     ).absolute()
@@ -130,9 +130,9 @@ def add_libadwaita_links(ctx: InstallContext, rewrite: True):
     logger.info(f"Target: {gtk4_dir}")
     try:
         if rewrite:
-            os.remove(dir_name / "assets", gtk4_dir / "assets")
-            os.remove(dir_name / "gtk.css", gtk4_dir / "gtk.css")
-            os.remove(dir_name / "gtk-dark.css", gtk4_dir / "gtk-dark.css")
+            os.remove(gtk4_dir / "assets")
+            os.remove(gtk4_dir / "gtk.css")
+            os.remove(gtk4_dir / "gtk-dark.css")
     except FileNotFoundError:
         logger.debug("Ignoring FileNotFound in symlink rewrite")
 

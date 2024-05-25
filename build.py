@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-import os, re, shutil, subprocess, argparse, glob, logging, zipfile
+import os, re, shutil, subprocess, argparse, glob, logging, zipfile, sys
 
 from dataclasses import dataclass
 from typing import Any, Literal, List
@@ -190,11 +190,11 @@ def build(ctx: BuildContext):
 
     if not ctx.flavor.dark:
         shutil.copytree(
-            f"{SRC_DIR}/main/plank/theme-Light-Catppuccin/", f"{output_dir}/plank"
+            f"{SRC_DIR}/main/plank/theme-Light-Catppuccin/", f"{output_dir}/plank", dirs_exist_ok=True
         )
     else:
         shutil.copytree(
-            f"{SRC_DIR}/main/plank/theme-Dark-Catppuccin/", f"{output_dir}/plank"
+            f"{SRC_DIR}/main/plank/theme-Dark-Catppuccin/", f"{output_dir}/plank", dirs_exist_ok=True
         )
 
 
@@ -231,38 +231,13 @@ def gnome_shell_version():
             f"@import 'extensions-{GS_VERSION}';",
         )
 
-
-# Accent translation
-ctp_to_colloid = {
-    "rosewater": "pink",
-    "flamingo": "pink",
-    "pink": "pink",
-    "mauve": "purple",
-    "red": "red",
-    "maroon": "red",
-    "peach": "orange",
-    "yellow": "yellow",
-    "green": "green",
-    "teal": "teal",
-    "sky": "teal",
-    "sapphire": "default",
-    "blue": "default",
-    "lavender": "default",
-}
-
-
-def translate_accent(ctp_accent: Color):
-    return ctp_to_colloid[ctp_accent.identifier]
-
-
 def write_tweak(key, default, value):
     subst_text(
         f"{SRC_DIR}/sass/_tweaks-temp.scss", f"\\${key}: {default}", f"${key}: {value}"
     )
 
-
 def apply_tweaks(ctx: BuildContext):
-    write_tweak("theme", "'default'", f"'{translate_accent(ctx.accent)}'")
+    write_tweak("theme", "'default'", f"'{ctx.accent.identifier}'")
 
     if ctx.size == "compact":
         write_tweak("compact", "'false'", "'true'")
@@ -476,6 +451,7 @@ def apply_colloid_patches():
     for patch in [
         "plank-dark.patch",
         "plank-light.patch",
+        "theme-func.patch",
         "sass-palette-frappe.patch",
         "sass-palette-mocha.patch",
         "sass-palette-latte.patch",
@@ -654,3 +630,4 @@ try:
     main()
 except Exception as e:
     logger.error("Something went wrong when building the theme:", exc_info=e)
+    sys.exit(1)
