@@ -10,8 +10,8 @@ from catppuccin import PALETTE
 
 
 def execute_build(git_root: str, args: Namespace):
-    colloid_dir = f"{git_root}/colloid"
-    colloid_tmp_dir = f"{git_root}/colloid-tmp-{args.flavor}"
+    colloid_dir = f"{git_root}/sources/colloid"
+    colloid_tmp_dir = f"{git_root}/sources/colloid-tmp-{args.flavor}"
 
     shutil.copytree(colloid_dir, colloid_tmp_dir)
 
