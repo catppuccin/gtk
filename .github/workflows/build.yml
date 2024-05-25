@@ -27,7 +27,7 @@ jobs:
 
       - name: Generate themes
         run: |
-          python patches/xfwm4/generate_assets.py
+          python sources/patches/xfwm4/generate_assets.py
 
           python ./build.py mocha --all-accents --zip -d $PWD/releases > mocha.log 2>&1 &
           python ./build.py macchiato --all-accents --zip -d $PWD/releases > macchiato.log 2>&1 &
