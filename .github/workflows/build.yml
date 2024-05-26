@@ -33,7 +33,17 @@ jobs:
           python ./build.py macchiato --all-accents --zip -d $PWD/releases > macchiato.log 2>&1 &
           python ./build.py frappe --all-accents --zip -d $PWD/releases > frappe.log 2>&1 &
           python ./build.py latte --all-accents --zip -d $PWD/releases > latte.log 2>&1 &
-          wait
+
+          set -e
+          declare -i err=0 werr=0
+          while wait -fn || werr=$?; ((werr != 127)); do
+            err=$werr
+            if [[ $err -ne 0 ]]; then
+              echo "Build failure, abort"
+              cat *.log
+              exit 1
+            fi
+          done
 
           cat *.log
 

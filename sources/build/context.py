@@ -59,7 +59,6 @@ class BuildContext:
             Subsitution(find=f"\\${key}: {default}", replace=f"${key}: {value}"),
         )
 
-
 IS_DARK = Suffix(true_value="-Dark", test=lambda ctx: ctx.flavor.dark)
 IS_LIGHT = Suffix(true_value="-Light", test=lambda ctx: not ctx.flavor.dark)
 IS_WINDOW_NORMAL = Suffix(
