@@ -20,10 +20,9 @@ jobs:
           cache: "pip"
 
       - name: Install dependencies
-        run: pip install -r requirements.txt
-
-      - name: Install colloid specific dependencies
-        run: sudo apt update && sudo apt install -y sassc inkscape optipng
+        run: |
+          sudo apt update && sudo apt install -y sassc inkscape optipng
+          pip install -r requirements.txt
 
       - name: Generate themes
         run: |
