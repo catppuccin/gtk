@@ -10,24 +10,19 @@ from catppuccin import PALETTE
 
 
 def execute_build(git_root: str, args: Namespace):
+
     colloid_dir = f"{git_root}/sources/colloid"
     colloid_tmp_dir = f"{git_root}/.tmp/colloid-tmp-{args.flavor}"
-
     shutil.copytree(colloid_dir, colloid_tmp_dir)
-
     src_dir = colloid_tmp_dir + "/src"
+
+    tweaks = Tweaks(tweaks=args.tweaks)
+    palette = getattr(PALETTE, args.flavor)
+    output_format = "zip" if args.zip else "dir"
 
     if args.patch:
         patch_dir = git_root + "/sources/patches/colloid/"
         apply_colloid_patches(colloid_tmp_dir, patch_dir)
-
-    if args.zip:
-        output_format = "zip"
-    else:
-        output_format = "dir"
-
-    tweaks = Tweaks(tweaks=args.tweaks)
-    palette = getattr(PALETTE, args.flavor)
 
     accents = args.accents
     if args.all_accents:
@@ -50,13 +45,6 @@ def execute_build(git_root: str, args: Namespace):
 
     for accent in accents:
         accent = getattr(palette.colors, accent)
-
-        tweaks = Tweaks(tweaks=args.tweaks)
-
-        if args.zip:
-            output_format = "zip"
-        else:
-            output_format = "dir"
 
         ctx = BuildContext(
             output_root=args.dest,
