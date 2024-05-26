@@ -28,6 +28,8 @@ This GTK theme requires:
 
 We provide a Python script to automate the process of installing the theme:
 
+<!-- x-release-please-start-version -->
+
 ```bash
 curl -LsS "https://raw.githubusercontent.com/catppuccin/gtk/main/install.py" -o install.py
 python3 install.py <flavor> <accent>
@@ -129,6 +131,8 @@ ln -sf "${THEME_DIR}/gtk-4.0/assets" "${HOME}/.config/gtk-4.0/assets" &&
 ln -sf "${THEME_DIR}/gtk-4.0/gtk.css" "${HOME}/.config/gtk-4.0/gtk.css" &&
 ln -sf "${THEME_DIR}/gtk-4.0/gtk-dark.css" "${HOME}/.config/gtk-4.0/gtk-dark.css"
 ```
+
+<!-- x-release-please-end -->
 
 ## Building
 

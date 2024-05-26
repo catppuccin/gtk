@@ -1,0 +1,14 @@
+{
+  "last-release-sha": "TODO AFTER v1.0.0",
+  "draft": true,
+  "packages": {
+    ".": {
+      "package-name": "",
+      "release-type": "simple",
+      "extra-files": [
+        "README.md"
+      ]
+    }
+  },
+  "$schema": "https://raw.githubusercontent.com/googleapis/release-please/main/schemas/config.json"
+}
