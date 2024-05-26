@@ -27,6 +27,8 @@ jobs:
 
       - name: Generate themes
         run: |
+          set -eu pipefile
+
           python sources/patches/xfwm4/generate_assets.py
 
           python ./build.py mocha --all-accents --zip -d $PWD/releases > mocha.log 2>&1 &
@@ -34,7 +36,6 @@ jobs:
           python ./build.py frappe --all-accents --zip -d $PWD/releases > frappe.log 2>&1 &
           python ./build.py latte --all-accents --zip -d $PWD/releases > latte.log 2>&1 &
 
-          set -e
           declare -i err=0 werr=0
           while wait -fn || werr=$?; ((werr != 127)); do
             err=$werr
