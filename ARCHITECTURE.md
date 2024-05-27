@@ -2,7 +2,7 @@
 
 The GTK port has a fairly complicated build pipeline / system, chiefly stemming from our use of Colloid as a base theme.
 We use Colloid as a base to reduce development overhead of creating our own theme from scratch, we look to replace this in the future
-to give us more flexibility and control over the theme.
+to give us more flexibility and control over the theme (see https://github.com/catppuccin/gtk/issues/164).
 
 We have reimplemented Colloid's build system (previously implemented in Shell) in Python to make it easier to maintain, extend, and iterate on.
 With this re-implementation, we have several distinct components in the system, described below:
@@ -58,7 +58,7 @@ etc. This is done through standard find-and-replace, as these assets are just SV
 
 We also build assets for Xfce's Xfwm4, which are first patched from a source SVG, and then rendered through the `inkscape` CLI. 
 This operation is done once, at the start of a build process (e.g CI, to be reused for every subsequent build), or once until they change in the future for local development. 
-The script to generate these assets can be found at `patches/xfwm4/generate_assets.py`
+The script to generate these assets can be found at [`patches/xfwm4/generate_assets.py`](./patches/xfwm4/generate_assets.py)
 
 
 ## CI integration
