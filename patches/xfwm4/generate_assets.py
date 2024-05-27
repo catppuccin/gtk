@@ -151,6 +151,9 @@ def call_subprocesses(inp: WorkerInput):
     return [
         subprocess.Popen(
             [
+                # FIXME: https://gitlab.com/inkscape/inkscape/-/issues/4716
+                "unshare",
+                "--user",
                 inkscape,
                 "--export-id",
                 inp.ident,
