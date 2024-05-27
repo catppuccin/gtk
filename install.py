@@ -94,7 +94,7 @@ def parse_args():
 
 def build_release_url(ctx: InstallContext) -> str:
     repo_root = "https://github.com/catppuccin/gtk/releases/download"
-    release = "v1.0.0-rc5" # x-release-please-version
+    release = "v1.0.0-rc6" # x-release-please-version
     zip_name = f"catppuccin-{ctx.flavor}-{ctx.accent}-standard+default.zip"
 
     return f"{repo_root}/{release}/{zip_name}"
@@ -120,8 +120,11 @@ def fetch_zip(url: str) -> Optional[zipfile.ZipFile]:
 
 
 def add_libadwaita_links(ctx: InstallContext, rewrite: bool = False):
+    suffix = "light"
+    if ctx.flavor != "latte":
+        suffix = "dark"
     dir_name = (
-        ctx.dest / f"catppuccin-{ctx.flavor}-{ctx.accent}-standard+default" / "gtk-4.0"
+        ctx.dest / f"catppuccin-{ctx.flavor}-{ctx.accent}-standard+default-{suffix}" / "gtk-4.0"
     ).absolute()
     gtk4_dir = (Path(os.path.expanduser("~")) / ".config" / "gtk-4.0").absolute()
     os.makedirs(gtk4_dir, exist_ok=True)

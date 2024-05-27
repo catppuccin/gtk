@@ -55,7 +55,10 @@ class BuildContext:
     tweaks: Tweaks
 
     def output_dir(self) -> str:
-        return f"{self.build_root}/{self.build_id()}"
+        suffix = "light"
+        if self.flavor.dark:
+            suffix = "dark"
+        return f"{self.build_root}/{self.build_id()}-{suffix}"
 
     def build_id(self) -> str:
         return f"{self.theme_name}-{self.flavor.identifier}-{self.accent.identifier}-{self.size}+{self.tweaks.id() or 'default'}"
@@ -368,15 +371,15 @@ def make_assets(ctx: BuildContext):
         f"{output_dir}/metacity-1/thumbnail.png",
     )
 
-    xfwm4_assets = f"{THIS_DIR}/patches/xfwm4/generated/assets-catppuccin-{ctx.flavor.identifier}"
-    for file in glob.glob(xfwm4_assets + '/*'):
+    xfwm4_assets_root = f"{THIS_DIR}/patches/xfwm4/generated/assets-catppuccin-{ctx.flavor.identifier}"
+    for file in glob.glob(xfwm4_assets_root + '/*'):
         shutil.copy(file, f"{output_dir}/xfwm4")
 
-    xfwm4_assets = xfwm4_assets + "-hdpi/*"
+    xfwm4_assets = xfwm4_assets_root + "-hdpi/*"
     for file in glob.glob(xfwm4_assets):
         shutil.copy(file, f"{output_dir}-hdpi/xfwm4")
 
-    xfwm4_assets = xfwm4_assets + "-xhdpi/*"
+    xfwm4_assets = xfwm4_assets_root + "-xhdpi/*"
     for file in glob.glob(xfwm4_assets):
         shutil.copy(file, f"{output_dir}-xhdpi/xfwm4")
 
