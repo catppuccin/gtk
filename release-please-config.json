@@ -6,7 +6,8 @@
       "package-name": "",
       "release-type": "simple",
       "extra-files": [
-        "README.md"
+        { "type": "generic", "path": "README.md" },
+        { "type": "generic", "path": "install.py" }
       ]
     }
   },
