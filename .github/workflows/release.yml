@@ -1,4 +1,4 @@
-name: "Mainline release"
+name: release
 
 on:
   workflow_dispatch:
@@ -40,6 +40,8 @@ jobs:
         run: sudo apt update && sudo apt install -y sassc inkscape optipng
       - name: Generate themes
         run: |
+          python patches/xfwm4/generate_assets.py
+          
           python ./build.py mocha --all-accents --zip -d $PWD/releases &&
           python ./build.py macchiato --all-accents --zip -d $PWD/releases &&
           python ./build.py frappe --all-accents --zip -d $PWD/releases &&
