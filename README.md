@@ -31,7 +31,7 @@ We provide a Python script to automate the process of installing the theme:
 <!-- x-release-please-start-version -->
 
 ```bash
-curl -LsS "https://raw.githubusercontent.com/catppuccin/gtk/main/install.py" -o install.py
+curl -LsSO "https://raw.githubusercontent.com/catppuccin/gtk/v1.0.2/install.py"
 python3 install.py <flavor> <accent>
   [catppuccin-gtk] [INFO] - Installation info:
       flavor:     mocha
@@ -103,7 +103,7 @@ sudo flatpak override --env=GTK_THEME="catppuccin-${FLAVOR}-${ACCENT}-standard+d
 
 ### Manual installation
 
-If your distro does not package our theme, and the installation script will not work for your use case, you can pull down releases and extract them yourself. You can find the [latest release on GitHub](https://github.com/catppuccin/gtk/releases/latest).
+If your distro does not package our theme, and the installation script will not work for your use case, you can pull down releases and extract them yourself. You can find the [latest release on GitHub](https://github.com/catppuccin/gtk/releases/tag/v1.0.2).
 
 ```bash
 cd ~/.local/share/themes
