@@ -1,0 +1,15 @@
+{
+  "last-release-sha": "8b54c05ff5de6c7fabc68fab410cfd093a91193c",
+  "draft": true,
+  "packages": {
+    ".": {
+      "package-name": "",
+      "release-type": "simple",
+      "extra-files": [
+        { "type": "generic", "path": "README.md" },
+        { "type": "generic", "path": "install.py" }
+      ]
+    }
+  },
+  "$schema": "https://raw.githubusercontent.com/googleapis/release-please/main/schemas/config.json"
+}
