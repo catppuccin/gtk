@@ -1,5 +1,75 @@
+diff --git a/src/sass/_colors.scss b/src/sass/_colors.scss
+index 8738bf37..432a0596 100644
+--- a/src/sass/_colors.scss
++++ b/src/sass/_colors.scss
+@@ -125,7 +125,7 @@ $surface:                               if($variant == 'light', background(a), b
+ $base:                                  if($variant == 'light', background(a), background(g));
+ $base-alt:                              if($variant == 'light', background(b), background(f));
+
+-$tooltip:                               if($variant == 'dark', rgba(darken(background(e), 3%), 0.9), rgba(darken(background(h), 3%), 0.9));
++$tooltip:                               $grey-100;
+ $osd:                                   background(e);
+ $scrim:                                 background(f);
+ $scrim-alt:                             background(g);
+diff --git a/src/sass/gtk/_common-3.0.scss b/src/sass/gtk/_common-3.0.scss
+index 0b6df5b8..ae7d0cbb 100644
+--- a/src/sass/gtk/_common-3.0.scss
++++ b/src/sass/gtk/_common-3.0.scss
+@@ -231,7 +231,7 @@ label {
+   &.osd {
+     border-radius: $corner-radius;
+     background-color: $tooltip;
+-    color: on($tooltip);
++    color: $grey-800;
+   }
+ }
+
+@@ -3544,7 +3544,7 @@ tooltip {
+     // background-color needs to be set this way otherwise it gets drawn twice
+     // see https://bugzilla.gnome.org/show_bug.cgi?id=736155 for details.
+     background-color: $tooltip;
+-    color: on($tooltip);
++    color: $grey-800;
+     border-radius: $corner-radius;
+   }
+
+diff --git a/src/sass/gtk/_common-4.0.scss b/src/sass/gtk/_common-4.0.scss
+index 09436043..f60a013a 100644
+--- a/src/sass/gtk/_common-4.0.scss
++++ b/src/sass/gtk/_common-4.0.scss
+@@ -4869,7 +4869,7 @@ tooltip {
+     // background-color needs to be set this way otherwise it gets drawn twice
+     // see https://bugzilla.gnome.org/show_bug.cgi?id=736155 for details.
+     background-color: $tooltip;
+-    color: on($tooltip);
++    color: $grey-800;
+     box-shadow: $shadow-z5;
+     border-radius: $corner-radius;
+     margin: 2px 6px 8px 6px;
+@@ -4877,7 +4877,7 @@ tooltip {
+
+   padding: $space-size $space-size * 2;
+   box-shadow: none; // otherwise it gets inherited by windowframe.csd
+-  border: none;
++  border: $grey-650;
+
+   > box {
+     border-spacing: $space-size;
+diff --git a/src/sass/libadwaita/_colors.scss b/src/sass/libadwaita/_colors.scss
+index 3128744b..cb2cf82a 100644
+--- a/src/sass/libadwaita/_colors.scss
++++ b/src/sass/libadwaita/_colors.scss
+@@ -118,7 +118,7 @@ $osd_focus_color: transparentize(white, .5);
+ $osd_link_color: gtkmix($accent_bg_color, $osd_text_color, 50%);
+ $osd_link_visited_color: gtkmix($accent_bg_color, $osd_text_color, 75%);
+
+-$tooltip_border_color: transparentize(white, 0.9);
++$tooltip_border_color: $grey-650;
+ $shadow_color: transparentize(black, 0.9);
+
+ $drop_target_color: $accent_bg_color;
 diff --git a/src/sass/libadwaita/widgets/_tooltip.scss b/src/sass/libadwaita/widgets/_tooltip.scss
-index 2ed45776..f7d4e038 100644
+index 2ed45776..c8450fee 100644
 --- a/src/sass/libadwaita/widgets/_tooltip.scss
 +++ b/src/sass/libadwaita/widgets/_tooltip.scss
 @@ -2,12 +2,12 @@ tooltip {
@@ -7,13 +77,14 @@ index 2ed45776..f7d4e038 100644
      // background-color needs to be set this way otherwise it gets drawn twice
      // see https://bugzilla.gnome.org/show_bug.cgi?id=736155 for details.
 -    background-color: transparentize(black, 0.2);
-+    background-color: $mantle;
++    background-color: $grey-100; // cappuccin mantle
      background-clip: padding-box;
      border: 1px solid $tooltip_border_color; // this subtle border is meant to
                                                // not make the tooltip melt with
                                                // very dark backgrounds
 -    color: white;
-+    color: $text;
++    color: $grey-800; // catppuccin text
    }
- 
+
    padding: 6px 10px;
+
