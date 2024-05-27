@@ -1,5 +1,7 @@
 ## Development
 
+Information regarding the architecture of the project can be found [in the ARCHITECTURE.md](./ARCHITECTURE.md) document.
+
 ### Requirements
 - All the [requirements for building](#building)
 - `whiskers`, optionally, from [catppuccin/toolbox](https://github.com/catppuccin/toolbox/tree/main/whiskers#installation)
