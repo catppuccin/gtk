@@ -452,6 +452,7 @@ def apply_colloid_patches():
     logger.info("Applying patches...")
     # Change into colloid
     for patch in [
+        "fix-tooltip.patch",
         "plank-dark.patch",
         "plank-light.patch",
         "theme-func.patch",

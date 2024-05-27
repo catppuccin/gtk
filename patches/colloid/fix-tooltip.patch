@@ -1,0 +1,19 @@
+diff --git a/src/sass/libadwaita/widgets/_tooltip.scss b/src/sass/libadwaita/widgets/_tooltip.scss
+index 2ed45776..f7d4e038 100644
+--- a/src/sass/libadwaita/widgets/_tooltip.scss
++++ b/src/sass/libadwaita/widgets/_tooltip.scss
+@@ -2,12 +2,12 @@ tooltip {
+   &.background {
+     // background-color needs to be set this way otherwise it gets drawn twice
+     // see https://bugzilla.gnome.org/show_bug.cgi?id=736155 for details.
+-    background-color: transparentize(black, 0.2);
++    background-color: $mantle;
+     background-clip: padding-box;
+     border: 1px solid $tooltip_border_color; // this subtle border is meant to
+                                               // not make the tooltip melt with
+                                               // very dark backgrounds
+-    color: white;
++    color: $text;
+   }
+ 
+   padding: 6px 10px;
