@@ -215,7 +215,6 @@ def subst_text(path, _from, to):
 
 GS_VERSION = "46-0"
 
-
 def gnome_shell_version():
     shutil.copyfile(
         f"{SRC_DIR}/sass/gnome-shell/_common.scss",
@@ -459,6 +458,7 @@ def apply_colloid_patches():
         "sass-palette-mocha.patch",
         "sass-palette-latte.patch",
         "sass-palette-macchiato.patch",
+        "fixes/alt-tab-background-color.patch"
     ]:
         path = f"./patches/colloid/{patch}"
         logger.info(f"Applying patch '{patch}', located at '{path}'")

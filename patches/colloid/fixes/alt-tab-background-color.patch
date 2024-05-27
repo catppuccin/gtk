@@ -1,0 +1,13 @@
+diff --git a/src/sass/gnome-shell/common/_switcher-popup.scss b/src/sass/gnome-shell/common/_switcher-popup.scss
+index 90b51ab4..408662fb 100644
+--- a/src/sass/gnome-shell/common/_switcher-popup.scss
++++ b/src/sass/gnome-shell/common/_switcher-popup.scss
+@@ -14,6 +14,8 @@
+     border-radius: $base_radius;
+     border: 1px solid transparent;
+ 
++    background-color: $osd;
++
+     &:outlined {
+       background-color: $divider;
+       color: $text; // for Ubuntu session
