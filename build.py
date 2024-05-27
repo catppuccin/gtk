@@ -55,7 +55,10 @@ class BuildContext:
     tweaks: Tweaks
 
     def output_dir(self) -> str:
-        return f"{self.build_root}/{self.build_id()}"
+        suffix = "light"
+        if self.flavor.dark:
+            suffix = "dark"
+        return f"{self.build_root}/{self.build_id()}-{suffix}"
 
     def build_id(self) -> str:
         return f"{self.theme_name}-{self.flavor.identifier}-{self.accent.identifier}-{self.size}+{self.tweaks.id() or 'default'}"
