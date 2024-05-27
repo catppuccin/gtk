@@ -120,8 +120,11 @@ def fetch_zip(url: str) -> Optional[zipfile.ZipFile]:
 
 
 def add_libadwaita_links(ctx: InstallContext, rewrite: bool = False):
+    suffix = "light"
+    if ctx.flavor != "latte":
+        suffix = "dark"
     dir_name = (
-        ctx.dest / f"catppuccin-{ctx.flavor}-{ctx.accent}-standard+default" / "gtk-4.0"
+        ctx.dest / f"catppuccin-{ctx.flavor}-{ctx.accent}-standard+default-{suffix}" / "gtk-4.0"
     ).absolute()
     gtk4_dir = (Path(os.path.expanduser("~")) / ".config" / "gtk-4.0").absolute()
     os.makedirs(gtk4_dir, exist_ok=True)
