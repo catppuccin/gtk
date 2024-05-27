@@ -39,7 +39,7 @@ python3 install.py <flavor> <accent>
       dest:       /home/<user>/.local/share/themes
       link:       False
 
-      remote_url: https://github.com/catppuccin/gtk/releases/download/v1.0.0-alpha/catppuccin-mocha-blue-standard+default.zip
+      remote_url: https://github.com/catppuccin/gtk/releases/download/v1.0.1/catppuccin-mocha-blue-standard+default.zip
   [catppuccin-gtk] [INFO] - Starting download...
   [catppuccin-gtk] [INFO] - Response status: 200
   [catppuccin-gtk] [INFO] - Download finished, zip is valid
@@ -112,7 +112,7 @@ cd ~/.local/share/themes
 export ROOT_URL="https://https://github.com/catppuccin/gtk/releases/download"
 
 # Change to the tag you want to download
-export RELEASE="v1.0.0"
+export RELEASE="v1.0.1"
   
 # Change to suite your flavor / accent combination
 export FLAVOR="mocha"
