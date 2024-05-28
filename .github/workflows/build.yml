@@ -4,9 +4,21 @@ on:
   pull_request:
     types: [opened, reopened, synchronize]
 
+# env:
+#   TAG: latest
+
 jobs:
   build:
     runs-on: ubuntu-latest
+
+    # container:
+    #   image: ghcr.io/${{ github.repository_owner }}/${{ github.repository }}:${{ env.TAG }}
+    #
+    #   # is this really necessary?
+    #   credentials:
+    #     username: ${{ github.actor }}
+    #     password: ${{ secrets.GITHUB_TOKEN }}
+
     steps:
 
       - name: Checkout
