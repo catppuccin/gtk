@@ -6,9 +6,7 @@ on:
     # types: [opened, reopened, synchronize]
     types: [synchronize]
 
-permissions:
-  contents: write
-  packages: write
+permissions: write-all
 
 jobs:
   build:
