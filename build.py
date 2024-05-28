@@ -43,6 +43,7 @@ IS_WINDOW_NORMAL = Suffix(true_value="-Normal", test=lambda ctx: ctx.tweaks.has(
 DARK_LIGHT = Suffix(
     true_value="-Dark", false_value="-Light", test=lambda ctx: ctx.flavor.dark
 )
+GTK_SUFFIX = Suffix(true_value='-Dark', false_value='-Light', test=lambda ctx: ctx.flavor.dark)
 
 @dataclass
 class BuildContext:
@@ -55,10 +56,7 @@ class BuildContext:
     tweaks: Tweaks
 
     def output_dir(self) -> str:
-        suffix = "light"
-        if self.flavor.dark:
-            suffix = "dark"
-        return f"{self.build_root}/{self.build_id()}-{suffix}"
+        return f"{self.build_root}/{self.build_id()}{self.apply_suffix(GTK_SUFFIX)}"
 
     def build_id(self) -> str:
         return f"{self.theme_name}-{self.flavor.identifier}-{self.accent.identifier}-{self.size}+{self.tweaks.id() or 'default'}"
@@ -80,13 +78,13 @@ def build(ctx: BuildContext):
     with open(f"{output_dir}/index.theme", "w") as file:
         file.write("[Desktop Entry]\n")
         file.write("Type=X-GNOME-Metatheme\n")
-        file.write(f"Name={ctx.build_id()}\n")
+        file.write(f"Name={ctx.build_id()}{ctx.apply_suffix(GTK_SUFFIX)}\n")
         file.write("Comment=An Flat Gtk+ theme based on Elegant Design\n")
         file.write("Encoding=UTF-8\n")
         file.write("\n")
         file.write("[X-GNOME-Metatheme]\n")
-        file.write(f"GtkTheme={ctx.build_id()}\n")
-        file.write(f"MetacityTheme={ctx.build_id()}\n")
+        file.write(f"GtkTheme={ctx.build_id()}{ctx.apply_suffix(GTK_SUFFIX)}\n")
+        file.write(f"MetacityTheme={ctx.build_id()}{ctx.apply_suffix(GTK_SUFFIX)}\n")
         file.write(f"IconTheme=Tela-circle{ctx.apply_suffix(IS_DARK)}\n")
         file.write(f"CursorTheme={ctx.flavor.name}-cursors\n")
         file.write("ButtonLayout=close,minimize,maximize:menu\n")
