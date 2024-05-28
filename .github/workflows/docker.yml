@@ -1,4 +1,4 @@
-name: "Generate test artifacts"
+name: "Publish containers for build"
 
 on:
   workflow_dispatch:
@@ -26,4 +26,4 @@ jobs:
           sh docker/build.sh -v no
 
           # push the image to the registry
-          sh docker/push.sh --username "${{ github.actor }}" --password  "${{ secrets.GITHUB_TOKEN }}"
+          sh docker/push.sh -u "${{ github.actor }}" -p  "${{ secrets.GITHUB_TOKEN }}"
