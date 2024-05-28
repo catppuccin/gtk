@@ -22,5 +22,8 @@ jobs:
 
       - name: Generate themes
         run: |
+          # build docker image for the ci
           sh docker/build.sh -v no
+
+          # push the image to the registry
           sh docker/push.sh --username "${{ github.actor }}" --password  "${{ secrets.GITHUB_TOKEN }}"
