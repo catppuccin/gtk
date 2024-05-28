@@ -21,6 +21,7 @@ def apply_colloid_patches(colloid_dir, patch_dir):
         "sass-palette-mocha.patch",
         "sass-palette-latte.patch",
         "sass-palette-macchiato.patch",
+        "theme-func.patch",
     ]:
         path = (Path(patch_dir) / patch).relative_to(os.getcwd())
         logger.info(f"Applying patch '{patch}', located at '{path}'")
