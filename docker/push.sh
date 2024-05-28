@@ -55,7 +55,7 @@ fi
 IMAGE_NAME="ghcr.io/catppuccin/gtk"
 
 # Log into ghcr
-echo $GITHUB_TOKEN | docker login ghcr.io -u <your-github-username> --password-stdin
+$CONTAINER_TOOL login ghcr.io -u $USERNAME --password $PASSWORD
 
 # Push docker image with latest tag
 $CONTAINER_TOOL push "$IMAGE_NAME:latest"
