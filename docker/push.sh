@@ -61,6 +61,6 @@ $CONTAINER_TOOL login ghcr.io -u $USERNAME --password $PASSWORD
 $CONTAINER_TOOL push "$IMAGE_NAME:latest"
 
 # Execute docker push for specific version if VERSION is not "no"
-if [ "$VERSION" == "no" ]; then
+if [ "$VERSION" != "no" ]; then
   $CONTAINER_TOOL push "$IMAGE_NAME:$VERSION"
 fi

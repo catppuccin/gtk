@@ -18,10 +18,10 @@ jobs:
         with:
           submodules: true
 
-      - name: Generate themes
+      - name: Generate and push image to ghcr
         run: |
           # build docker image for the ci
           sh docker/build.sh -v no
 
           # push the image to the registry
-          sh docker/push.sh -u "${{ github.actor }}" -p  "${{ secrets.GITHUB_TOKEN }}"
+          sh docker/push.sh -u "${{ github.actor }}" -p "${{ secrets.GITHUB_TOKEN }}"
