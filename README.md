@@ -31,7 +31,7 @@ We provide a Python script to automate the process of installing the theme:
 <!-- x-release-please-start-version -->
 
 ```bash
-curl -LsSO "https://raw.githubusercontent.com/catppuccin/gtk/v1.0.2/install.py"
+curl -LsSO "https://raw.githubusercontent.com/catppuccin/gtk/v1.0.3/install.py"
 python3 install.py <flavor> <accent>
   [catppuccin-gtk] [INFO] - Installation info:
       flavor:     mocha
@@ -39,7 +39,7 @@ python3 install.py <flavor> <accent>
       dest:       /home/<user>/.local/share/themes
       link:       False
 
-      remote_url: https://github.com/catppuccin/gtk/releases/download/v1.0.2/catppuccin-mocha-blue-standard+default.zip
+      remote_url: https://github.com/catppuccin/gtk/releases/download/v1.0.3/catppuccin-mocha-blue-standard+default.zip
   [catppuccin-gtk] [INFO] - Starting download...
   [catppuccin-gtk] [INFO] - Response status: 200
   [catppuccin-gtk] [INFO] - Download finished, zip is valid
@@ -103,7 +103,7 @@ sudo flatpak override --env=GTK_THEME="catppuccin-${FLAVOR}-${ACCENT}-standard+d
 
 ### Manual installation
 
-If your distro does not package our theme, and the installation script will not work for your use case, you can pull down releases and extract them yourself. You can find the [latest release on GitHub](https://github.com/catppuccin/gtk/releases/tag/v1.0.2).
+If your distro does not package our theme, and the installation script will not work for your use case, you can pull down releases and extract them yourself. You can find the [latest release on GitHub](https://github.com/catppuccin/gtk/releases/tag/v1.0.3).
 
 ```bash
 cd ~/.local/share/themes
@@ -112,7 +112,7 @@ cd ~/.local/share/themes
 export ROOT_URL="https://https://github.com/catppuccin/gtk/releases/download"
 
 # Change to the tag you want to download
-export RELEASE="v1.0.2"
+export RELEASE="v1.0.3"
   
 # Change to suite your flavor / accent combination
 export FLAVOR="mocha"
