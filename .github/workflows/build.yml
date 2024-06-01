@@ -3,33 +3,64 @@ name: "Generate test artifacts"
 on:
   pull_request:
     types: [opened, reopened, synchronize]
+
+# env:
+#   TAG: latest
+
 jobs:
   build:
     runs-on: ubuntu-latest
+
+    # container:
+    #   image: ghcr.io/${{ github.repository_owner }}/${{ github.repository }}:${{ env.TAG }}
+    #
+    #   # is this really necessary?
+    #   credentials:
+    #     username: ${{ github.actor }}
+    #     password: ${{ secrets.GITHUB_TOKEN }}
+
     steps:
+
       - name: Checkout
         uses: actions/checkout@v4
         with:
           submodules: true
+
       - uses: actions/setup-python@v5
         with:
           python-version: "3.11"
           cache: "pip"
+
       - name: Install dependencies
-        run: pip install -r requirements.txt
-      - name: Install colloid specific dependencies
-        run: sudo apt update && sudo apt install -y sassc inkscape optipng
+        run: |
+          sudo apt update && sudo apt install -y sassc inkscape optipng
+          pip install -r requirements.txt
+
       - name: Generate themes
         run: |
-          python patches/xfwm4/generate_assets.py
+          set -eu pipefile
 
-          python ./build.py mocha --all-accents --zip -d $PWD/releases &&
-          python ./build.py macchiato --all-accents --zip -d $PWD/releases &&
-          python ./build.py frappe --all-accents --zip -d $PWD/releases &&
-          python ./build.py latte --all-accents --zip -d $PWD/releases
+          python sources/patches/xfwm4/generate_assets.py
+
+          python ./build.py mocha --all-accents --zip -d $PWD/releases > mocha.log 2>&1 &
+          python ./build.py macchiato --all-accents --zip -d $PWD/releases > macchiato.log 2>&1 &
+          python ./build.py frappe --all-accents --zip -d $PWD/releases > frappe.log 2>&1 &
+          python ./build.py latte --all-accents --zip -d $PWD/releases > latte.log 2>&1 &
+
+          declare -i err=0 werr=0
+          while wait -fn || werr=$?; ((werr != 127)); do
+            err=$werr
+            if [[ $err -ne 0 ]]; then
+              echo "Build failure, abort"
+              cat *.log
+              exit 1
+            fi
+          done
+
+          cat *.log
+
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
         with:
           name: '${{ github.sha }}-artifacts'
           path: ./releases/*.zip
-

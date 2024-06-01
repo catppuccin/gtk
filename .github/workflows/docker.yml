@@ -1,0 +1,27 @@
+name: "Publish containers for build"
+
+on:
+  workflow_dispatch:
+  pull_request:
+    # types: [opened, reopened, synchronize]
+    types: [synchronize]
+
+permissions: write-all
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          submodules: true
+
+      - name: Generate and push image to ghcr
+        run: |
+          # build docker image for the ci
+          sh docker/build.sh -v no
+
+          # push the image to the registry
+          sh docker/push.sh -u "${{ github.actor }}" -p "${{ secrets.GITHUB_TOKEN }}"

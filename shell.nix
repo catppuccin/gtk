@@ -9,5 +9,6 @@ pkgs.mkShell {
     sassc
     inkscape
     optipng
+    ruff
   ];
 }
